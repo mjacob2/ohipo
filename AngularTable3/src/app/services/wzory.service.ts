@@ -91,11 +91,9 @@ export class WzoryService {
     applyFilter(event: Event) {
       const filterValue = (event.target as HTMLInputElement).value;
       this.dataSource.filter = filterValue.trim().toLowerCase();
-     
       if (this.dataSource.paginator) {
         this.dataSource.paginator.firstPage();
       }
-     
       
     }   
       
@@ -103,7 +101,6 @@ export class WzoryService {
       this.filterValues[column] = filterValue;
       this.dataSource.filter = JSON.stringify(this.filterValues);
     }    
-     
     */
 
 
