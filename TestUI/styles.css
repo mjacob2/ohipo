@@ -1,0 +1,11 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: brown;
+}
+
+.background{
+    background-color: burlywood;
+    width: 500px;
+    height: 100px;
+}

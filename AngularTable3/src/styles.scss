@@ -1,0 +1,120 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$my-app-primary: mat-palette($mat-blue, 800);
+$my-app-accent: mat-palette($mat-amber, 200, A100, A400);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
+
+@include angular-material-theme($my-app-theme);
+
+
+body {
+  font-family: Roboto, Arial, sans-serif;
+ margin: 0;
+ background-color: mat-color($my-app-primary); ;
+
+}
+
+footer{
+  color: white;
+  padding: 30px;
+}
+
+.cover{
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  z-index: 100;
+}
+
+.version-info {
+  font-size: 8pt;
+  float: right;
+}
+
+
+
+
+html, body { 
+ height: 100%; 
+ width: 100%;
+}
+
+mat-panel-title{
+  font-weight: bold; 
+  font-size: 18px;
+}
+
+
+
+form{
+ margin-bottom: 6px;
+}
+
+th{
+  color: red;
+}
+
+
+#kontener{
+  margin-left: 30px;
+  margin-right: 30px;
+  overflow: initial
+
+}
+
+.mat-paginator{
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.basic-container {
+  margin-right: 30px;
+  margin-left: 30px;
+  padding-top: 30px;
+  }
+
+  .mat-app-background{
+    background-color: mat-color($my-app-primary); ;
+  }
+
+  .szczegoly{
+    padding-right: 0px;
+    margin-left: 0px;
+  }
+
+//to po zwala dzielić mat-tooltip na linie
+  .mat-tooltip {
+    white-space: pre-line;
+  }
+
+@media only screen and (max-width: 1380px) {
+  
+
+  #kontener{
+    margin-left: 0px;
+    margin-right: 0px;
+    overflow: auto;
+
+  }
+  
+  .mat-paginator{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .basic-container {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-top: 8px;
+    }
+
+
+
+  mat-card{
+    margin-bottom: 24px;
+  }
+
+
+
+}

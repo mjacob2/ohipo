@@ -1,0 +1,214 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.side-naw{
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.dane-o-kredycie-element{
+margin-right: 20px;
+}
+
+.example-spacer {
+  /* Dzięki temu w TOOLBAR ikony po nazwie aplikacji będą się wygświetlały po prawej stronie  */
+  flex: 1 1 auto;
+}
+
+.example-is-mobile .example-toolbar {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+}
+
+h1.app-name {
+  margin-left: 8px;
+}
+
+.example-sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+.example-is-mobile .example-sidenav-container {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+}
+
+
+
+
+
+table {
+    width: 100%;
+    height: 100%;
+
+  }
+
+
+  .filtry-elementy{
+    display: flex;
+    flex-direction: column;;
+padding-left: 16px;
+padding-right: 16px;
+  }
+
+
+
+.stopka{
+  font-size: 12px;
+  text-align: justify;
+}
+
+
+
+  tr.mat-row{
+    height: 52px;
+  }
+
+
+  .wasko{
+    overflow: auto;
+
+
+  }
+    
+
+
+  .mat-expansion-panel-header{
+  font-size: 16px;
+  }
+
+.karta-brak-ofert{
+  margin: 30px;
+}
+
+  .mat-form-field {
+    font-size: 16px;
+
+  }
+
+
+
+
+  
+.th{
+  height: 150px;
+  
+  }
+
+//pierwsze cell swojego typu
+  td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type{
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+
+  th.mat-header-cell{
+    font-weight: bold;
+    font-size: 14px;
+    color: black;
+    height: 56px;
+    
+  }
+
+
+  .mat-header-cell{
+    padding-right: 16px;
+  }
+
+  .mat-cell{
+    padding-right: 16px;
+
+  }
+
+.ikona_akordeon{
+  margin-right: 10px;
+}
+
+
+  
+  .cell-numer{
+    text-align: right;
+    justify-content: right;
+    min-width: 85px;
+
+  }
+
+  .cell-bank{
+    min-width: 100px;
+
+  }
+
+  .cell-oferta-nazwa{
+    min-width: 220px;
+
+  }
+
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: lightgray;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+
+  .filtry-naglowek{
+    font-weight: bold;
+font-size: 18px;
+margin-bottom: 16px;
+margin-top: 16px;
+  }
+
+  mat-divider{
+    margin-top: 16px;
+  }
+
+
