@@ -8,7 +8,7 @@ export class WzoryService {
 
   /** odsetki zapłacone w całym okresie
  * 
- * I = cN - P
+ * I = cN - P 
  * 
  * I = suma odsetek
  * c = rata

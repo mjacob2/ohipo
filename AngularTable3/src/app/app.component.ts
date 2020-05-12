@@ -9,9 +9,11 @@ import oferty from '../app/oferty/oferty.json';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { CurrencyPipe } from '@angular/common';
+
 //Importuj Services
-import { HttpOfertyService } from './services/http-oferty.service';
-import { WzoryService } from './services/wzory.service';
+import { HttpOfertyService } from './services/http/http-oferty.service';
+import { WzoryService } from './services/wzory/wzory.service';
 
 
 //import { SnackBarService } from './services/snack-bar.service';
@@ -96,6 +98,9 @@ export interface PeriodicElement {
 //co się składa na ELEMENT DATA
 const ELEMENT_DATA: PeriodicElement[] = oferty
 
+
+
+
 @Component({
   selector: 'app-root',
   styleUrls: ['./app.component.scss'],
@@ -113,6 +118,8 @@ const ELEMENT_DATA: PeriodicElement[] = oferty
 
 export class AppComponent implements OnInit {
 
+
+
   //dla responsywnego sideNMavigacji
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -124,6 +131,10 @@ export class AppComponent implements OnInit {
     private _snackBar: MatSnackBar,
     //kontruktor dla Service pobierania ofert './services/http-oferty.service'
     private _http: HttpOfertyService,
+
+    //konstruktor żeby wyświetlić error dla min. wkład włąsny w postaci 50 000 zł zamiast 50000
+    private currencyPipe: CurrencyPipe,
+
 
   ) { // tu rzeczy dla side Barów
     this.mobileQuery = media.matchMedia('(max-width: 1380px)');
@@ -146,8 +157,9 @@ export class AppComponent implements OnInit {
   myGroup: FormGroup;
 
   // Utwórz zmienną dla kwoty deklarowanych wpływów
-  mKwotaKredytu: number = 0;
   mWartoscNieruchomosci: number = 0;
+  mwkladWlasny: number = 0;
+  mKwotaKredytu: number = 0;
   mLiczbaLat: number = 0;
   /**Zaznacz domyślnie RATY RÓWNE */
   selectedOptionRaty = '0';
@@ -170,7 +182,7 @@ export class AppComponent implements OnInit {
   mLTV: number = 0;
 
   //wyświetlane kolumny
-  displayedColumns: string[] = ['szczegoly', 'select', 'bank', 'ofertaNazwa', 'kosztyCalkowite', 'kosztyPoczatkowe', 'rata', 'oplatyMiesieczne', 'marza', 'pomostoweSuma', 'WIBOR', 'LTVobliczone', 'doKiedyObowiazuje'];
+  displayedColumns: string[] = ['szczegoly', 'select', 'bank', 'ofertaNazwa', 'kosztyCalkowite', 'kosztyPoczatkowe', 'rata', 'oplatyMiesieczne', 'marza', 'pomostoweSuma', 'WIBOR'];
 
   //po tych kolumnach mogą być filtrowane oferty
   filteredValues = {
@@ -189,6 +201,7 @@ export class AppComponent implements OnInit {
   /** to funkcja zaszyta w przycisku PRZELICZ */
   przelicz() {
 
+    this.mKwotaKredytu = this.mWartoscNieruchomosci - this.mwkladWlasny;
 
     //Licz wszystko to co jest potrzebne dla każdej z ofert z osobna
     ELEMENT_DATA.forEach((element) => {
@@ -513,6 +526,23 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
   }
 
 
+  // konstruktor dla ERROR dla  formWkladWlasny
+  get errorMessageformWkladWlasny(): string {
+
+    let nazwa = this.mWartoscNieruchomosci * 0.1
+    let nazwa3 = nazwa.toString()
+    nazwa3 = this.currencyPipe.transform(nazwa3, 'zł', 'symbol', '1.0-0', 'fr');
+
+    const form: FormControl = (this.myGroup.get('formWkladWlasny') as FormControl);
+    return form.hasError('required') ?
+      'Minimum ' + nazwa3 :
+      form.hasError('min') ?
+        'Minimum ' + nazwa3 :
+        form.hasError('max') ?
+          'Maksymalnie 2 000 000' : '';
+  }
+
+
   // konstruktor dla ERROR dla  formKwotaKredytu
   get errorMessageformKwotaKredytu(): string {
     const form: FormControl = (this.myGroup.get('formKwotaKredytu') as FormControl);
@@ -525,11 +555,14 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
   }
 
 
+
+
+
   // konstruktor dla ERROR dla  formKwotaKredytu
   get errorMessageformLiczbaLat(): string {
     const form: FormControl = (this.myGroup.get('formLiczbaLat') as FormControl);
     return form.hasError('required') ?
-      'Pole wymagane' :
+      'Minimum 5' :
       form.hasError('min') ?
         'Minimum 5' :
         form.hasError('max') ?
@@ -538,6 +571,12 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
 
   ngOnInit() {
+
+    //stwórz form Bilder
+    this.zbudujFormularz();
+
+    //sprawdć, czy nie zmieniła się wartość nieruchomoci i jeśli tak, to wymagaj minimum 10% wartości nieruchomości w polu wkład własny
+    this.zaktualizujValidary();
 
 
     // Działa ale wyłączone bo powoduje błąd w wersji testowej
@@ -550,16 +589,9 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
     this.xpandStatus = true;
 
-    //DO VALIDACJI DANCH FORMULARZA
-    this.myGroup = new FormGroup({
-      formWartoscNieruchomosci: new FormControl("", [Validators.max(2000000), Validators.min(60000)]),
-      formKwotaKredytu: new FormControl("", [Validators.max(2000000), Validators.min(50000)]),
-      formLiczbaLat: new FormControl("", [Validators.max(35), Validators.min(5)]),
-      formPomostoweIleMiesiecy: new FormControl("", [Validators.max(48), Validators.min(0)]),
-      formWIBOR3M: new FormControl("", [Validators.max(10), Validators.min(-10)]),
-      formWIBOR6M: new FormControl("", [Validators.max(10), Validators.min(-10)]),
 
-    });
+
+
 
 
     ELEMENT_DATA.forEach((element) => {
@@ -582,6 +614,36 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
     this.dataSource.filterPredicate = this.customFilterPredicate();
 
   }
+
+  zbudujFormularz() {
+    //DO VALIDACJI DANCH FORMULARZA
+    this.myGroup = new FormGroup({
+      formWartoscNieruchomosci: new FormControl("", [Validators.max(2000000), Validators.min(60000)]),
+      formKwotaKredytu: new FormControl("", [Validators.max(2000000), Validators.min(50000)]),
+      formLiczbaLat: new FormControl("", [Validators.max(35), Validators.min(5)]),
+      formPomostoweIleMiesiecy: new FormControl("", [Validators.max(48), Validators.min(0)]),
+      formWIBOR3M: new FormControl("", [Validators.max(10), Validators.min(-10)]),
+      formWIBOR6M: new FormControl("", [Validators.max(10), Validators.min(-10)]),
+      formWkladWlasny: new FormControl("", [Validators.max(2000000), Validators.min(1)]),
+
+    });
+  }
+
+
+  zaktualizujValidary() {
+    const formWkladWlasnyControl = this.myGroup.get('formWkladWlasny');
+    //const formWartoscNieruchomosciControl = this.myGroup.get('formWartoscNieruchomosci');
+
+    this.myGroup.get('formWartoscNieruchomosci').valueChanges
+      .subscribe(formWartoscNieruchomosci => {
+        formWkladWlasnyControl.setValidators([Validators.required, Validators.min(this.mWartoscNieruchomosci * 0.1)]);
+        formWkladWlasnyControl.updateValueAndValidity();
+
+      });
+  }
+
+
+
 
   customFilterPredicate() {
     const myFilterPredicate = (data: PeriodicElement, filter: string): boolean => {

@@ -10,9 +10,13 @@
     <button mat-button (click)="snav.toggle()">
       <mat-icon>filter_list</mat-icon> FILTRUJ OFERTY
     </button>
+
   </mat-toolbar>
 
+
+
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+
     <!-- 
       PIERWSZY SIDE NAW - PRAWY
     -->
@@ -71,6 +75,9 @@
 
 
 
+
+
+
     <mat-sidenav-content>
 
 
@@ -105,26 +112,28 @@
                     (input)="mWartoscNieruchomosci=$event.target.value" matInput type="number" matInput
                     placeholder="Wartość nieruchomości">
                   <mat-error>{{errorMessageformWartoscNieruchomosci}}</mat-error>
+                  <span matSuffix>zł</span>
                 </mat-form-field>
 
 
 
-
-                <!--KWOTA KREDYTU-->
-                <mat-form-field hideRequiredMarker class="dane-o-kredycie-element">
-                  <input required min="50000" max="2000000" formControlName="formKwotaKredytu"
-                    (input)="mKwotaKredytu=$event.target.value" matInput type="number" matInput
-                    placeholder="Kwota kredytu">
-
-                  <mat-error>{{errorMessageformKwotaKredytu}}</mat-error>
+                <!--WKŁAD WŁASNY-->
+                <mat-form-field hideRequiredMarker class="dane-o-kredycie-element">
+                  <input required min="6000" max="2000000" formControlName="formWkladWlasny"
+                    (input)="mwkladWlasny=$event.target.value"  matInput type="number"
+                     matInput placeholder="Wkład własny">
+                  <mat-error>{{errorMessageformWkladWlasny}}</mat-error>
+                  <span matSuffix>zł</span>
                 </mat-form-field>
+
+
+
 
                 <!--LICZBA LAT-->
                 <mat-form-field hideRequiredMarker class="dane-o-kredycie-element">
                   <input min="5" max="35" required formControlName="formLiczbaLat"
                     (input)="mLiczbaLat=$event.target.value" matInput type="number" matInput placeholder="Liczba lat">
                   <mat-error>{{errorMessageformLiczbaLat}}</mat-error>
-
                 </mat-form-field>
 
 

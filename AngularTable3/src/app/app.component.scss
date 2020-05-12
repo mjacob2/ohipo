@@ -8,6 +8,25 @@
   right: 0;
 }
 
+
+/* UKRYJ STRZAŁKI ZWIĘKSZAJACE W INPUT LICZBOWYM*/
+
+          /* Chrome, Safari, Edge, Opera */
+          input::-webkit-outer-spin-button,
+          input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+
+          /* Firefox */
+          input[type=number] {
+            -moz-appearance: textfield;
+          }
+
+
+
+
+
 .side-naw{
   padding: 16px;
   display: flex;
@@ -17,6 +36,7 @@
 
 .dane-o-kredycie-element{
 margin-right: 20px;
+margin-bottom: 16px;
 }
 
 .example-spacer {

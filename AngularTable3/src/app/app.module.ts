@@ -17,7 +17,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { registerLocaleData } from '@angular/common';
+import { registerLocaleData, CommonModule, CurrencyPipe } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 registerLocaleData(localeFr, 'fr');
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -31,13 +31,19 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+
+
+
 
 
 
 @NgModule({
 
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     FormsModule,
@@ -68,11 +74,14 @@ import { MatDividerModule } from '@angular/material/divider';
     MatToolbarModule,
     MatSidenavModule,
     MatDividerModule,
+    MatSliderModule,
+    MatButtonToggleModule,
+    CommonModule,
 
 
     AppRoutingModule
   ],
-  providers: [],
+  providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
