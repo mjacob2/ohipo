@@ -8,6 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import oferty from '../app/oferty/oferty.json';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { CurrencyPipe } from '@angular/common';
 
@@ -135,6 +136,10 @@ export class AppComponent implements OnInit {
     //konstruktor żeby wyświetlić error dla min. wkład włąsny w postaci 50 000 zł zamiast 50000
     private currencyPipe: CurrencyPipe,
 
+    //kontruktor dla dialogu kontaktowego
+    public dialogKontakt: MatDialog,
+
+
 
   ) { // tu rzeczy dla side Barów
     this.mobileQuery = media.matchMedia('(max-width: 1380px)');
@@ -181,8 +186,8 @@ export class AppComponent implements OnInit {
   mWplywy: number;
   mLTV: number = 0;
 
-  //wyświetlane kolumny
-  displayedColumns: string[] = ['szczegoly', 'select', 'bank', 'ofertaNazwa', 'kosztyCalkowite', 'kosztyPoczatkowe', 'rata', 'oplatyMiesieczne', 'marza', 'pomostoweSuma', 'WIBOR'];
+  //wyświetlane kolumny   narazie ukrywamy 'select', po szczegółach
+  displayedColumns: string[] = ['szczegoly', 'bank', 'ofertaNazwa', 'kosztyCalkowite', 'kosztyPoczatkowe', 'rata', 'oplatyMiesieczne', 'marza', 'pomostoweSuma'];
 
   //po tych kolumnach mogą być filtrowane oferty
   filteredValues = {
@@ -480,7 +485,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
     //**pokaż snack bar */
     this._snackBar.open("Oferty zostały przeliczone", "zamknij", {
-      duration: 2000,
+      duration: 4000,
     });
 
     //zamknij akordeon po obliczeniach
@@ -774,6 +779,13 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
   }
 
 
+  openDialogKontakt() {
+    const dialogRef = this.dialogKontakt.open(DialogKontakt);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
 
 
@@ -782,3 +794,9 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
 
 
+@Component({
+  selector: './dialog-kontakt',
+  styleUrls: ['./dialog-kontakt.scss'],
+  templateUrl: './dialog-kontakt.html',
+})
+export class DialogKontakt { }

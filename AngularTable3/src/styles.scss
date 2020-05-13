@@ -15,6 +15,16 @@ body {
 
 }
 
+.mat-checkbox-layout {
+  white-space: normal !important;
+  font-size: 9px;
+}
+
+.mat-checkbox-layout .mat-checkbox-label {
+  line-height: 1.1;
+  text-align: justify;
+}
+
 footer{
   color: white;
   padding: 30px;
@@ -33,7 +43,15 @@ footer{
 }
 
 
+//żeby obwódka buttona outliined była lepiej widoczna
+.mat-stroked-button{
+  border: 1px solid !important;
+}
 
+.mat-dialog-container{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 
 html, body { 
  height: 100%; 
@@ -114,7 +132,6 @@ th{
   mat-card{
     margin-bottom: 24px;
   }
-
 
 
 }

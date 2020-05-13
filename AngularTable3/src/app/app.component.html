@@ -7,8 +7,16 @@
     <h1 class="app-name">ohipo.pl</h1>
     <!--Example spacer robi przerwę miedzy lewąstroną Toolbar a prawą, żeby było łądne dopasowanie do prawej i lewej.-->
     <span class="example-spacer"></span>
+
+    <!-- PRZYCISK KONTAKT Z DORADCĄ-->
+    <button mat-stroked-button color="accent" (click)="openDialogKontakt()">
+      <mat-icon>stars</mat-icon> ZAPYTAJ DORADCĘ
+    </button>
+
+
+    <!-- PRZYCISK FILTRUJ-->
     <button mat-button (click)="snav.toggle()">
-      <mat-icon>filter_list</mat-icon> FILTRUJ OFERTY
+      <mat-icon>filter_list</mat-icon> FILTRY
     </button>
 
   </mat-toolbar>
@@ -26,7 +34,7 @@
       <div class="side-naw filtry">
 
 
-        <div>Ukryj oferty, które nie spełniają poniższych kryteriów:</div>
+        <div>Ukryj oferty, które nie spełniają <br> poniższych kryteriów:</div>
 
         <mat-divider></mat-divider>
 
@@ -66,10 +74,11 @@
     -->
     <mat-sidenav fixedTopGap="64" style="z-index: 100;" #snav2 [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches">
+      <mat-nav-list>
+        <a mat-list-item routerLink=".">O porównywarce </a>
+        <a mat-list-item routerLink=".">Kontakt </a>
+      </mat-nav-list>
 
-      1. Pierwsze cośtam fajnego
-      <br>
-      2. dRugie costam jeszcz lepszego
 
     </mat-sidenav>
 
@@ -489,11 +498,6 @@
 
 
 
-
-
-
-
-
         <footer class="stopka">Niniejszy dokument ma charakter wyłącznie poglądowy i nie stanowi oferty w rozumieniu
           przepisów
           kodeksu
@@ -508,7 +512,12 @@
           o nadzorze nad pośrednikami
           kredytu hipotecznego i agentami przekazywane są oddzielnie w dokumentach i terminach uwzględniających
           procedury
-          kredytowe poszczególnych kredytodawców.</footer>
+          kredytowe poszczególnych kredytodawców.
+          <br>
+          Middlers Sp. z o.o. z siedzibą we Wrocławiu ul. Leszczyńskiego 4/29, 50-078 Wrocław, zarejestrowana w Sądzie
+          Rejonowym dla Wrocławia-Fabrycznej KRS 0000532823, NIP 8971803272, REGON 360170795 kapitał zakładowy 5.000,00
+          zł wpłacony w całości.
+        </footer>
 
       </div>
     </mat-sidenav-content>

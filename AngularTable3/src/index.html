@@ -12,6 +12,52 @@
     gtag('config', 'UA-165452260-1');
   </script>
 
+  <script>
+    var mndFileds = new Array('Last Name', 'Mobile', 'Email', 'LEADCF2', 'City', 'Description');
+    var fldLangVal = new Array('Imię i Nazwisko', 'Telefon komórkowy', 'Adres Email', 'Województwo', 'Miasto', 'Twoje potrzeby');
+    var name = '';
+    var email = '';
+
+
+
+
+    function checkMandatory167379000002544206() {
+      for (i = 0; i < mndFileds.length; i++) {
+        var fieldObj = document.forms['WebToLeads167379000002544206'][mndFileds[i]];
+        if (fieldObj) {
+          if (((fieldObj.value).replace(/^\s+|\s+$/g, '')).length == 0) {
+            if (fieldObj.type == 'file') {
+              alert('Wybierz plik do przesłania.');
+              fieldObj.focus();
+              return false;
+            }
+            alert(fldLangVal[i] + ' nie może być puste.');
+            fieldObj.focus();
+            return false;
+          } else if (fieldObj.nodeName == 'SELECT') {
+            if (fieldObj.options[fieldObj.selectedIndex].value == '-None-') {
+              alert(fldLangVal[i] + ' nie może mieść wartości „brak”.');
+              fieldObj.focus();
+              return false;
+            }
+          } else if (fieldObj.type == 'checkbox') {
+            if (fieldObj.checked == false) {
+              alert('Please accept  ' + fldLangVal[i]);
+              fieldObj.focus();
+              return false;
+            }
+          }
+          try {
+            if (fieldObj.name == 'Last Name') {
+              name = fieldObj.value;
+            }
+          } catch (e) { }
+        }
+      }
+      document.getElementById('formsubmit').disabled = true;
+    }
+  </script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <meta charset="utf-8">
@@ -24,7 +70,16 @@
 
 <body>
   <app-root></app-root>
+
+
+
+
+
+
 </body>
+
+
+
 
 
 </html>

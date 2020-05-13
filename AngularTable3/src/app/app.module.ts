@@ -8,7 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent, DialogKontakt } from './app.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,6 +33,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatListModule } from '@angular/material/list';
+
 
 
 
@@ -43,7 +45,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
   declarations: [
     AppComponent,
-
+    DialogKontakt,
   ],
   imports: [
     FormsModule,
@@ -77,10 +79,17 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatSliderModule,
     MatButtonToggleModule,
     CommonModule,
+    MatListModule,
 
 
     AppRoutingModule
   ],
+
+
+
+
+
+
   providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
