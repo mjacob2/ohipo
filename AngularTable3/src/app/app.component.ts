@@ -780,7 +780,11 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
 
   openDialogKontakt() {
-    const dialogRef = this.dialogKontakt.open(DialogKontakt);
+    const dialogRef = this.dialogKontakt.open(DialogKontakt, {
+
+      backdropClass: 'backdropBackground' // ta klasa będzie przypisana do zaciemnienia tła kiedy Dialog jest otwarty
+    });
+
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

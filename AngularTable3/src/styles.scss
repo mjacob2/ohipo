@@ -63,7 +63,11 @@ mat-panel-title{
   font-size: 18px;
 }
 
-
+//tło dla background kiedy dialog jest otwarty
+.backdropBackground{
+  background: rgba(255, 255, 255, 0.2); // Make sure this color has an opacity of less than 1
+  backdrop-filter: blur(8px); // This be the blur
+}
 
 form{
  margin-bottom: 6px;

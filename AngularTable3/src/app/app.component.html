@@ -8,10 +8,7 @@
     <!--Example spacer robi przerwę miedzy lewąstroną Toolbar a prawą, żeby było łądne dopasowanie do prawej i lewej.-->
     <span class="example-spacer"></span>
 
-    <!-- PRZYCISK KONTAKT Z DORADCĄ-->
-    <button mat-stroked-button color="accent" (click)="openDialogKontakt()">
-      <mat-icon>stars</mat-icon> ZAPYTAJ DORADCĘ
-    </button>
+
 
 
     <!-- PRZYCISK FILTRUJ-->
@@ -66,6 +63,11 @@
         </div>
         <mat-divider></mat-divider>
 
+        <!-- PRZYCISK KONTAKT Z DORADCĄ-->
+        <button mat-raised-button color="accent" (click)="openDialogKontakt()">
+          <mat-icon>stars</mat-icon> ZAPYTAJ DORADCĘ
+        </button>
+
       </div>
     </mat-sidenav>
 
@@ -77,6 +79,10 @@
       <mat-nav-list>
         <a mat-list-item routerLink=".">O porównywarce </a>
         <a mat-list-item routerLink=".">Kontakt </a>
+        <!-- PRZYCISK KONTAKT Z DORADCĄ-->
+        <button mat-raised-button color="accent" (click)="openDialogKontakt()">
+          <mat-icon>stars</mat-icon> ZAPYTAJ DORADCĘ
+        </button>
       </mat-nav-list>
 
 
@@ -212,9 +218,15 @@
                       zaawansowane
                     </mat-slide-toggle>
 
+                    <!-- PRZYCISK KONTAKT Z DORADCĄ-->
+                    <button mat-raised-button color="accent" (click)="openDialogKontakt()">
+                      <mat-icon>stars</mat-icon> ZAPYTAJ DORADCĘ
+                    </button>
+
                     <!--PRZYCISK PRZELICZ-->
-                    <button matTooltipDisabled="fd" [disabled]="!myGroup.valid" style="margin-right: 20px;"
-                      mat-raised-button color="primary" (click)="przelicz()">PRZELICZ</button>
+
+                    <button [disabled]="!myGroup.valid" style="margin-right: 20px;" mat-raised-button color="primary"
+                      (click)="przelicz()">PRZELICZ</button>
                   </div>
                 </mat-action-row>
               </mat-expansion-panel>
