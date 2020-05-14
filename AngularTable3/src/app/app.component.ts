@@ -15,6 +15,7 @@ import { CurrencyPipe } from '@angular/common';
 //Importuj Services
 import { HttpOfertyService } from './services/http/http-oferty.service';
 import { WzoryService } from './services/wzory/wzory.service';
+import { InputErrorsService } from './services/inputErrors/input-errors.service'
 
 
 //import { SnackBarService } from './services/snack-bar.service';
@@ -94,6 +95,9 @@ export interface PeriodicElement {
   oplatyZawszeKredytowane: number;
   kwotaKredytuOferty: number;
   LTVobliczone: number;
+  maxLiczbaLat: number;
+  maxWiek: number;
+  maxWiekStatus: string;
 }
 
 //co się składa na ELEMENT DATA
@@ -180,10 +184,10 @@ export class AppComponent implements OnInit {
   /** ZADEKLAROWANE ZMIENNE DO FILTRÓW */
   wTrakcieBudowyFilter = new FormControl();
   wDeklarowaneWplywy = new FormControl();
+  wWiekNajstarszego = new FormControl();
   nameFilter = new FormControl();
   globalFilter = '';
   //Ustal zmienne dla filtrów
-  mWplywy: number;
   mLTV: number = 0;
 
   //wyświetlane kolumny   narazie ukrywamy 'select', po szczegółach
@@ -191,7 +195,7 @@ export class AppComponent implements OnInit {
 
   //po tych kolumnach mogą być filtrowane oferty
   filteredValues = {
-    minimalneWplywyStatus: '', bank: '', ofertaNazwa: '', minKwotaKredytuFILTR: '', maxKwotaKredytuFILTR: '', wTrakcieBudowy: '', maxLTVsave: '', minLTVsave: '', doKiedyObowiazujeStatus: '', odKiedyObowiazuje: ''
+    minimalneWplywyStatus: '', bank: '', maxLiczbaLat: '', maxWiekStatus: '', ofertaNazwa: '', minKwotaKredytuFILTR: '', maxKwotaKredytuFILTR: '', wTrakcieBudowy: '', maxLTVsave: '', minLTVsave: '', doKiedyObowiazujeStatus: '', odKiedyObowiazuje: ''
   };
 
 
@@ -419,6 +423,17 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
        * 
        */
 
+      //FILTR: maxLiczbaLat
+      if (this.mLiczbaLat > 30) {
+        this.filteredValues['maxLiczbaLat'] = "35";
+        this.dataSource.filter = JSON.stringify(this.filteredValues);
+      }
+
+
+
+
+
+
       //FILTR: minLTV
       if (element.LTVobliczone > element.minLTV) {
         element.minLTVsave = "minLTVok";
@@ -529,6 +544,11 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
         form.hasError('max') ?
           'Maksymalnie 2 000 000' : '';
   }
+
+
+
+
+
 
 
   // konstruktor dla ERROR dla  formWkladWlasny
@@ -676,6 +696,10 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
         data.maxKwotaKredytuFILTR.toString().trim().toLowerCase().indexOf(searchString.maxKwotaKredytuFILTR.toLowerCase()) !== -1
         &&
         data.minimalneWplywyStatus.toString().trim().toLowerCase().indexOf(searchString.minimalneWplywyStatus.toLowerCase()) !== -1
+        &&
+        data.maxLiczbaLat.toString().trim().toLowerCase().indexOf(searchString.maxLiczbaLat.toLowerCase()) !== -1
+        &&
+        data.maxWiekStatus.toString().trim().toLowerCase().indexOf(searchString.maxWiekStatus.toLowerCase()) !== -1
 
         ;
     }
@@ -708,6 +732,31 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
         }
       })
     });
+
+    //FILTR: Wiek najstarszego kredytobiorcy
+    this.wWiekNajstarszego.valueChanges.subscribe((wWiekNajstarszegoFilterValue) => {
+      console.log(+this.mLiczbaLat + +wWiekNajstarszegoFilterValue);
+
+      ELEMENT_DATA.forEach((element) => {
+        if (+this.mLiczbaLat + +wWiekNajstarszegoFilterValue <= element.maxWiek) {
+          element.maxWiekStatus = "wiekOK"
+
+          console.log(element.maxWiekStatus);
+
+          this.filteredValues['maxWiekStatus'] = "wiekOK";
+
+        } else {
+          element.maxWiekStatus = "wiekMalo"
+          console.log(element.maxWiekStatus);
+
+        }
+      })
+      this.dataSource.filter = JSON.stringify(this.filteredValues);
+    });
+
+
+
+
 
     //Dzisiajsza data dla OD-kiedyobowiazuje
     var todayDate = new Date();

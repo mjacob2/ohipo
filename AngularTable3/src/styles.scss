@@ -17,8 +17,13 @@ body {
 
 .mat-checkbox-layout {
   white-space: normal !important;
+
+}
+.checkboxMalyOpis{
   font-size: 9px;
 }
+
+
 
 .mat-checkbox-layout .mat-checkbox-label {
   line-height: 1.1;
@@ -65,7 +70,7 @@ mat-panel-title{
 
 //tło dla background kiedy dialog jest otwarty
 .backdropBackground{
-  background: rgba(255, 255, 255, 0.2); // Make sure this color has an opacity of less than 1
+  background: rgba(75, 75, 75, 0.384); // Make sure this color has an opacity of less than 1
   backdrop-filter: blur(8px); // This be the blur
 }
 

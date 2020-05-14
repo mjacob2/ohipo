@@ -5,6 +5,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/millennium_logo.png",
         "minLTV": 0,
         "maxLTV": 0.6,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 20000,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Standard",
@@ -57,7 +59,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 2,
@@ -65,6 +68,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/millennium_logo.png",
         "minLTV": 0,
         "maxLTV": 0.6,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 20000,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Wariant I",
@@ -117,7 +122,8 @@
         "doKiedyObowiazujeStatus": "def",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 3,
@@ -125,6 +131,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/millennium_logo.png",
         "minLTV": 0,
         "maxLTV": 0.6,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 20000,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Wariant II",
@@ -177,7 +185,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 4,
@@ -185,6 +194,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/millennium_logo.png",
         "minLTV": 0.6,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 20000,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Standard",
@@ -237,7 +248,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 5,
@@ -245,6 +257,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/millennium_logo.png",
         "minLTV": 0.6,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 20000,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Wariant I",
@@ -297,7 +311,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 6,
@@ -305,6 +320,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/millennium_logo.png",
         "minLTV": 0.6,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 20000,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Wariant II",
@@ -357,7 +374,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 7,
@@ -365,6 +383,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/millennium_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 20000,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Standard",
@@ -417,7 +437,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 8,
@@ -425,6 +446,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/millennium_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 20000,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Wariant I",
@@ -477,7 +500,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 9,
@@ -485,6 +509,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/millennium_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 20000,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Wariant II",
@@ -537,7 +563,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 10,
@@ -545,6 +572,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/ING_logo.png",
         "minLTV": 0,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 70000,
         "maxKwotaKredytu": 4000000,
         "ofertaNazwa": "Standard",
@@ -597,7 +626,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 11,
@@ -605,6 +635,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/ING_logo.png",
         "minLTV": 0,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 70000,
         "maxKwotaKredytu": 4000000,
         "ofertaNazwa": "Łatwy Start",
@@ -657,7 +689,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 12,
@@ -665,6 +698,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/ING_logo.png",
         "minLTV": 0,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 70000,
         "maxKwotaKredytu": 4000000,
         "ofertaNazwa": "Lekka Rata",
@@ -717,7 +752,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 13,
@@ -725,6 +761,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/ING_logo.png",
         "minLTV": 0,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 70000,
         "maxKwotaKredytu": 4000000,
         "ofertaNazwa": "Standard",
@@ -777,7 +815,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 14,
@@ -785,6 +824,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/ING_logo.png",
         "minLTV": 0,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 70000,
         "maxKwotaKredytu": 4000000,
         "ofertaNazwa": "Łatwy Start",
@@ -837,7 +878,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 15,
@@ -845,6 +887,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/ING_logo.png",
         "minLTV": 0,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 70000,
         "maxKwotaKredytu": 4000000,
         "ofertaNazwa": "Lekka Rata",
@@ -897,7 +941,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 16,
@@ -905,6 +950,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_hipoteczny_logo.png",
         "minLTV": 0,
         "maxLTV": 0.6,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 1000000,
         "ofertaNazwa": "Standard",
@@ -957,7 +1004,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 17,
@@ -965,6 +1013,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_hipoteczny_logo.png",
         "minLTV": 0.6,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 1000000,
         "ofertaNazwa": "Standard",
@@ -1017,7 +1067,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 18,
@@ -1025,6 +1076,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_hipoteczny_logo.png",
         "minLTV": 0,
         "maxLTV": 0.6,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 1000000,
         "ofertaNazwa": "eHipoteka",
@@ -1077,7 +1130,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 19,
@@ -1085,6 +1139,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_hipoteczny_logo.png",
         "minLTV": 0.6,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 1000000,
         "ofertaNazwa": "eHipoteka",
@@ -1137,7 +1193,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 20,
@@ -1145,6 +1202,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/BNP_Paribas_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 75,
         "minKwotaKredytu": 50000,
         "maxKwotaKredytu": 4000000,
         "ofertaNazwa": "Standard",
@@ -1197,7 +1256,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 21,
@@ -1205,6 +1265,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/BNP_Paribas_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 75,
         "minKwotaKredytu": 50000,
         "maxKwotaKredytu": 4000000,
         "ofertaNazwa": "Standard",
@@ -1257,7 +1319,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 22,
@@ -1265,6 +1328,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/BNP_Paribas_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 75,
         "minKwotaKredytu": 50000,
         "maxKwotaKredytu": 4000000,
         "ofertaNazwa": "Oferta Wiosna 2020",
@@ -1317,7 +1382,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 23,
@@ -1325,6 +1391,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/BNP_Paribas_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 75,
         "minKwotaKredytu": 50000,
         "maxKwotaKredytu": 4000000,
         "ofertaNazwa": "Oferta Wiosna 2020",
@@ -1377,787 +1445,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
-    },
-    {
-        "id": 24,
-        "bank": "mBank",
-        "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
-        "minLTV": 0,
-        "maxLTV": 0.8,
-        "minKwotaKredytu": 20000,
-        "maxKwotaKredytu": 2000000,
-        "ofertaNazwa": "Intensive",
-        "ofertaNazwaDopisek": "Standard",
-        "odKiedyObowiazuje": "2020, 04, 01",
-        "doKiedyObowiazuje": "2020, 04, 22",
-        "prowizjaStawka": 0.00,
-        "marza": 4.05,
-        "oprocStale": "nie",
-        "oprocStaleIleLat": null,
-        "oprocStaleMarzaPotem": null,
-        "pomostoweStawkaMiesieczna": 1.5,
-        "pomostoweJakLiczone": "doliczoneDoMarzy",
-        "ubezpNieruchStawkaRok": 0.078,
-        "ubezpNieruchOdCzegoLicz": "wartNieruchomosci",
-        "ubezpZycieStawkaMiesieczna": 0,
-        "ubezpZycieIleLat": 5,
-        "ubezpZycieOdKtoregoMiesiaca": 0,
-        "ubezZycieNaStart": 0,
-        "upezpPracaNaStart": 0,
-        "oplatyZawszeKredytowane": 0,
-        "wTrakcieBudowy": "tak",
-        "WIBOR": "3M",
-        "wycenaMieszkanie": 400,
-        "minimalneWpływy": 7000,
-        "minimalneWpływy2xRata": "nie",
-        "minimalneWplywyStatus": "abc",
-        "warunkiOferty": "• Rachunek mKonto Intensive - wymagane przez min. 5 lat\n • Wpływy na konto min 7 tys. (w 3 z ostatnich 6 miesięcy)\n • limit w koncie lub karta kredytowa na kwotę min. 10 tys \nLUB depozyty w banku na kwotę min. 50 tys. (od 3 pełnych miesiecy)\n • 15 transakcji karta płatniczą (w 3 z ostatnich 6 miesięcy)\n • Ubezpieczenie nieruchomości - wymagane przez cały okres, możliwe z zewnątrz.",
-        "link": "httpss://www.mbank.pl/indywidualny/kredyty/kredyty-hipoteczne/",
-        "minLTVsave": "abc",
-        "maxLTVsave": "abc",
-        "kosztyPoczatkowe": 0,
-        "odsetkiSuma": 0,
-        "oplatyMiesieczne": 0,
-        "kosztyCalkowite": 0,
-        "prowizjaSuma": 0,
-        "pomostoweSuma": 0,
-        "ubezpNieruchSuma": 0,
-        "ubezpNieruchTOTAL": 0,
-        "ubezpZycieSuma": 0,
-        "ubezpZycieTOTAL": 0,
-        "rata": 0,
-        "ubezZycieNaStartSuma": 0,
-        "upezpPracaNaStartSuma": 0,
-        "minKwotaKredytuFILTR": "abc",
-        "maxKwotaKredytuFILTR": "abc",
-        "pomostoweTOTAL": 0,
-        "WIBORstawka": 0,
-        "dataDostepu": "abc",
-        "doKiedyObowiazujeStatus": "abc",
-        "doKiedyObowiazujeWyswietl": "abc",
-        "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
-    },
-    {
-        "id": 25,
-        "bank": "mBank",
-        "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
-        "minLTV": 0,
-        "maxLTV": 0.8,
-        "minKwotaKredytu": 20000,
-        "maxKwotaKredytu": 2000000,
-        "ofertaNazwa": "Intensive",
-        "ofertaNazwaDopisek": "Wiosenna przeprowadzka",
-        "odKiedyObowiazuje": "2020, 04, 01",
-        "doKiedyObowiazuje": "2020, 04, 22",
-        "prowizjaStawka": 0.00,
-        "marza": 2.05,
-        "oprocStale": "nie",
-        "oprocStaleIleLat": null,
-        "oprocStaleMarzaPotem": null,
-        "pomostoweStawkaMiesieczna": 1.5,
-        "pomostoweJakLiczone": "doliczoneDoMarzy",
-        "ubezpNieruchStawkaRok": 0.078,
-        "ubezpNieruchOdCzegoLicz": "wartNieruchomosci",
-        "ubezpZycieStawkaMiesieczna": 0.0054,
-        "ubezpZycieIleLat": 5,
-        "ubezpZycieOdKtoregoMiesiaca": 12,
-        "ubezZycieNaStart": 0,
-        "upezpPracaNaStart": 0,
-        "oplatyZawszeKredytowane": 0,
-        "wTrakcieBudowy": "tak",
-        "WIBOR": "3M",
-        "wycenaMieszkanie": 400,
-        "minimalneWpływy": 7000,
-        "minimalneWpływy2xRata": "nie",
-        "minimalneWplywyStatus": "abc",
-        "warunkiOferty": "• Rachunek mKonto Intensive - wymagane przez min. 5 lat\n • Wpływy na konto min 7 tys. (w 3 z ostatnich 6 miesięcy)\n •Zasilanie rachunku całą kwotą wynagrodzenia (lub 2x rata dla działalności gosp.)\n • limit w koncie lub karta kredytowa na kwotę min. 10 tys \nLUB depozyty w banku na kwotę min. 50 tys. (od 3 pełnych miesiecy)\n • 15 transakcji karta płatniczą (w 3 z ostatnich 6 miesięcy)\n  • Ubezpieczenie na życie - wymagane bankowe przez min. 5 lat\n • Ubezpieczenie nieruchomości - wymagane przez cały okres, możliwe z zewnątrz.",
-        "link": "httpss://www.mbank.pl/indywidualny/kredyty/kredyty-hipoteczne/",
-        "minLTVsave": "abc",
-        "maxLTVsave": "abc",
-        "kosztyPoczatkowe": 0,
-        "odsetkiSuma": 0,
-        "oplatyMiesieczne": 0,
-        "kosztyCalkowite": 0,
-        "prowizjaSuma": 0,
-        "pomostoweSuma": 0,
-        "ubezpNieruchSuma": 0,
-        "ubezpNieruchTOTAL": 0,
-        "ubezpZycieSuma": 0,
-        "ubezpZycieTOTAL": 0,
-        "rata": 0,
-        "ubezZycieNaStartSuma": 0,
-        "upezpPracaNaStartSuma": 0,
-        "minKwotaKredytuFILTR": "abc",
-        "maxKwotaKredytuFILTR": "abc",
-        "pomostoweTOTAL": 0,
-        "WIBORstawka": 0,
-        "dataDostepu": "abc",
-        "doKiedyObowiazujeStatus": "abc",
-        "doKiedyObowiazujeWyswietl": "abc",
-        "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
-    },
-    {
-        "id": 26,
-        "bank": "mBank",
-        "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
-        "minLTV": 0.8,
-        "maxLTV": 0.9,
-        "minKwotaKredytu": 20000,
-        "maxKwotaKredytu": 2000000,
-        "ofertaNazwa": "Intensive",
-        "ofertaNazwaDopisek": "Standard",
-        "odKiedyObowiazuje": "2020, 04, 01",
-        "doKiedyObowiazuje": "2020, 04, 22",
-        "prowizjaStawka": 0.00,
-        "marza": 4.25,
-        "oprocStale": "nie",
-        "oprocStaleIleLat": null,
-        "oprocStaleMarzaPotem": null,
-        "pomostoweStawkaMiesieczna": 1.5,
-        "pomostoweJakLiczone": "doliczoneDoMarzy",
-        "ubezpNieruchStawkaRok": 0.078,
-        "ubezpNieruchOdCzegoLicz": "wartNieruchomosci",
-        "ubezpZycieStawkaMiesieczna": 0,
-        "ubezpZycieIleLat": 5,
-        "ubezpZycieOdKtoregoMiesiaca": 0,
-        "ubezZycieNaStart": 0,
-        "upezpPracaNaStart": 0,
-        "oplatyZawszeKredytowane": 0,
-        "wTrakcieBudowy": "tak",
-        "WIBOR": "3M",
-        "wycenaMieszkanie": 400,
-        "minimalneWpływy": 7000,
-        "minimalneWpływy2xRata": "nie",
-        "minimalneWplywyStatus": "abc",
-        "warunkiOferty": "• Rachunek mKonto Intensive - wymagane przez min. 5 lat\n • Wpływy na konto min 7 tys. (w 3 z ostatnich 6 miesięcy)\n • limit w koncie lub karta kredytowa na kwotę min. 10 tys \nLUB depozyty w banku na kwotę min. 50 tys. (od 3 pełnych miesiecy)\n • 15 transakcji karta płatniczą (w 3 z ostatnich 6 miesięcy)\n • Ubezpieczenie nieruchomości - wymagane przez cały okres, możliwe z zewnątrz.",
-        "link": "httpss://www.mbank.pl/indywidualny/kredyty/kredyty-hipoteczne/",
-        "minLTVsave": "abc",
-        "maxLTVsave": "abc",
-        "kosztyPoczatkowe": 0,
-        "odsetkiSuma": 0,
-        "oplatyMiesieczne": 0,
-        "kosztyCalkowite": 0,
-        "prowizjaSuma": 0,
-        "pomostoweSuma": 0,
-        "ubezpNieruchSuma": 0,
-        "ubezpNieruchTOTAL": 0,
-        "ubezpZycieSuma": 0,
-        "ubezpZycieTOTAL": 0,
-        "rata": 0,
-        "ubezZycieNaStartSuma": 0,
-        "upezpPracaNaStartSuma": 0,
-        "minKwotaKredytuFILTR": "abc",
-        "maxKwotaKredytuFILTR": "abc",
-        "pomostoweTOTAL": 0,
-        "WIBORstawka": 0,
-        "dataDostepu": "abc",
-        "doKiedyObowiazujeStatus": "abc",
-        "doKiedyObowiazujeWyswietl": "abc",
-        "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
-    },
-    {
-        "id": 27,
-        "bank": "mBank",
-        "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
-        "minLTV": 0.8,
-        "maxLTV": 0.9,
-        "minKwotaKredytu": 20000,
-        "maxKwotaKredytu": 2000000,
-        "ofertaNazwa": "Intensive",
-        "ofertaNazwaDopisek": "Wiosenna przeprowadzka",
-        "odKiedyObowiazuje": "2020, 04, 01",
-        "doKiedyObowiazuje": "2020, 04, 22",
-        "prowizjaStawka": 0.00,
-        "marza": 2.25,
-        "oprocStale": "nie",
-        "oprocStaleIleLat": null,
-        "oprocStaleMarzaPotem": null,
-        "pomostoweStawkaMiesieczna": 1.5,
-        "pomostoweJakLiczone": "doliczoneDoMarzy",
-        "ubezpNieruchStawkaRok": 0.078,
-        "ubezpNieruchOdCzegoLicz": "wartNieruchomosci",
-        "ubezpZycieStawkaMiesieczna": 0.0054,
-        "ubezpZycieIleLat": 5,
-        "ubezpZycieOdKtoregoMiesiaca": 12,
-        "ubezZycieNaStart": 0,
-        "upezpPracaNaStart": 0,
-        "oplatyZawszeKredytowane": 0,
-        "wTrakcieBudowy": "tak",
-        "WIBOR": "3M",
-        "wycenaMieszkanie": 400,
-        "minimalneWpływy": 7000,
-        "minimalneWpływy2xRata": "nie",
-        "minimalneWplywyStatus": "abc",
-        "warunkiOferty": "• Rachunek mKonto Intensive - wymagane przez min. 5 lat\n • Wpływy na konto min 7 tys. (w 3 z ostatnich 6 miesięcy)\n •Zasilanie rachunku całą kwotą wynagrodzenia (lub 2x rata dla działalności gosp.)\n • limit w koncie lub karta kredytowa na kwotę min. 10 tys \nLUB depozyty w banku na kwotę min. 50 tys. (od 3 pełnych miesiecy)\n • 15 transakcji karta płatniczą (w 3 z ostatnich 6 miesięcy)\n  • Ubezpieczenie na życie - wymagane bankowe przez min. 5 lat\n • Ubezpieczenie nieruchomości - wymagane przez cały okres, możliwe z zewnątrz.",
-        "link": "httpss://www.mbank.pl/indywidualny/kredyty/kredyty-hipoteczne/",
-        "minLTVsave": "abc",
-        "maxLTVsave": "abc",
-        "kosztyPoczatkowe": 0,
-        "odsetkiSuma": 0,
-        "oplatyMiesieczne": 0,
-        "kosztyCalkowite": 0,
-        "prowizjaSuma": 0,
-        "pomostoweSuma": 0,
-        "ubezpNieruchSuma": 0,
-        "ubezpNieruchTOTAL": 0,
-        "ubezpZycieSuma": 0,
-        "ubezpZycieTOTAL": 0,
-        "rata": 0,
-        "ubezZycieNaStartSuma": 0,
-        "upezpPracaNaStartSuma": 0,
-        "minKwotaKredytuFILTR": "abc",
-        "maxKwotaKredytuFILTR": "abc",
-        "pomostoweTOTAL": 0,
-        "WIBORstawka": 0,
-        "dataDostepu": "abc",
-        "doKiedyObowiazujeStatus": "abc",
-        "doKiedyObowiazujeWyswietl": "abc",
-        "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
-    },
-    {
-        "id": 28,
-        "bank": "mBank",
-        "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
-        "minLTV": 0,
-        "maxLTV": 0.8,
-        "minKwotaKredytu": 150000,
-        "maxKwotaKredytu": 2000000,
-        "ofertaNazwa": "Active",
-        "ofertaNazwaDopisek": "Standard",
-        "odKiedyObowiazuje": "2020, 04, 01",
-        "doKiedyObowiazuje": "2020, 04, 22",
-        "prowizjaStawka": 0.00,
-        "marza": 4.15,
-        "oprocStale": "nie",
-        "oprocStaleIleLat": null,
-        "oprocStaleMarzaPotem": null,
-        "pomostoweStawkaMiesieczna": 1.5,
-        "pomostoweJakLiczone": "doliczoneDoMarzy",
-        "ubezpNieruchStawkaRok": 0.078,
-        "ubezpNieruchOdCzegoLicz": "wartNieruchomosci",
-        "ubezpZycieStawkaMiesieczna": 0,
-        "ubezpZycieIleLat": 5,
-        "ubezpZycieOdKtoregoMiesiaca": 0,
-        "ubezZycieNaStart": 0,
-        "upezpPracaNaStart": 0,
-        "oplatyZawszeKredytowane": 0,
-        "wTrakcieBudowy": "tak",
-        "WIBOR": "3M",
-        "wycenaMieszkanie": 400,
-        "minimalneWpływy": 5000,
-        "minimalneWpływy2xRata": "nie",
-        "minimalneWplywyStatus": "abc",
-        "warunkiOferty": "• Rachunek dowolny\n • Wpływy na konto min 5 tys. (w 3 z ostatnich 6 miesięcy)\n • limit w koncie lub karta kredytowa na kwotę min. 10tys \nLUB depozyty w banku na kwotę min. 25 tys. (od 3 pełnych miesiecy)\n • 15 transakcji karta płatniczą (w 3 z ostatnich 6 miesięcy)\n • Ubezpieczenie nieruchomości - wymagane przez cały okres, możliwe z zewnątrz.",
-        "link": "httpss://www.mbank.pl/indywidualny/kredyty/kredyty-hipoteczne/",
-        "minLTVsave": "abc",
-        "maxLTVsave": "abc",
-        "kosztyPoczatkowe": 0,
-        "odsetkiSuma": 0,
-        "oplatyMiesieczne": 0,
-        "kosztyCalkowite": 0,
-        "prowizjaSuma": 0,
-        "pomostoweSuma": 0,
-        "ubezpNieruchSuma": 0,
-        "ubezpNieruchTOTAL": 0,
-        "ubezpZycieSuma": 0,
-        "ubezpZycieTOTAL": 0,
-        "rata": 0,
-        "ubezZycieNaStartSuma": 0,
-        "upezpPracaNaStartSuma": 0,
-        "minKwotaKredytuFILTR": "abc",
-        "maxKwotaKredytuFILTR": "abc",
-        "pomostoweTOTAL": 0,
-        "WIBORstawka": 0,
-        "dataDostepu": "abc",
-        "doKiedyObowiazujeStatus": "abc",
-        "doKiedyObowiazujeWyswietl": "abc",
-        "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
-    },
-    {
-        "id": 29,
-        "bank": "mBank",
-        "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
-        "minLTV": 0,
-        "maxLTV": 0.8,
-        "minKwotaKredytu": 150000,
-        "maxKwotaKredytu": 2000000,
-        "ofertaNazwa": "Active",
-        "ofertaNazwaDopisek": "Wiosenna przeprowadzka",
-        "odKiedyObowiazuje": "2020, 04, 01",
-        "doKiedyObowiazuje": "2020, 04, 22",
-        "prowizjaStawka": 0.00,
-        "marza": 2.15,
-        "oprocStale": "nie",
-        "oprocStaleIleLat": null,
-        "oprocStaleMarzaPotem": null,
-        "pomostoweStawkaMiesieczna": 1.5,
-        "pomostoweJakLiczone": "doliczoneDoMarzy",
-        "ubezpNieruchStawkaRok": 0.078,
-        "ubezpNieruchOdCzegoLicz": "wartNieruchomosci",
-        "ubezpZycieStawkaMiesieczna": 0.0054,
-        "ubezpZycieIleLat": 5,
-        "ubezpZycieOdKtoregoMiesiaca": 12,
-        "ubezZycieNaStart": 0,
-        "upezpPracaNaStart": 0,
-        "oplatyZawszeKredytowane": 0,
-        "wTrakcieBudowy": "tak",
-        "WIBOR": "3M",
-        "wycenaMieszkanie": 400,
-        "minimalneWpływy": 5000,
-        "minimalneWpływy2xRata": "nie",
-        "minimalneWplywyStatus": "abc",
-        "warunkiOferty": "• Rachunek dowolny\n • Wpływy na konto min 5 tys. (w 3 z ostatnich 6 miesięcy)\n  •Zasilanie rachunku całą kwotą wynagrodzenia (lub 2x rata dla działalności gosp.)\n  • limit w koncie lub karta kredytowa na kwotę min. 1 tys \nLUB depozyty w banku na kwotę min. 25 tys. (od 3 pełnych miesiecy)\n • 15 transakcji karta płatniczą (w 3 z ostatnich 6 miesięcy)\n   • Ubezpieczenie na życie - wymagane bankowe przez min. 5 lat\n • Ubezpieczenie nieruchomości - wymagane przez cały okres, możliwe z zewnątrz.",
-        "link": "httpss://www.mbank.pl/indywidualny/kredyty/kredyty-hipoteczne/",
-        "minLTVsave": "abc",
-        "maxLTVsave": "abc",
-        "kosztyPoczatkowe": 0,
-        "odsetkiSuma": 0,
-        "oplatyMiesieczne": 0,
-        "kosztyCalkowite": 0,
-        "prowizjaSuma": 0,
-        "pomostoweSuma": 0,
-        "ubezpNieruchSuma": 0,
-        "ubezpNieruchTOTAL": 0,
-        "ubezpZycieSuma": 0,
-        "ubezpZycieTOTAL": 0,
-        "rata": 0,
-        "ubezZycieNaStartSuma": 0,
-        "upezpPracaNaStartSuma": 0,
-        "minKwotaKredytuFILTR": "abc",
-        "maxKwotaKredytuFILTR": "abc",
-        "pomostoweTOTAL": 0,
-        "WIBORstawka": 0,
-        "dataDostepu": "abc",
-        "doKiedyObowiazujeStatus": "abc",
-        "doKiedyObowiazujeWyswietl": "abc",
-        "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
-    },
-    {
-        "id": 30,
-        "bank": "mBank",
-        "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
-        "minLTV": 0.8,
-        "maxLTV": 0.9,
-        "minKwotaKredytu": 150000,
-        "maxKwotaKredytu": 2000000,
-        "ofertaNazwa": "Active",
-        "ofertaNazwaDopisek": "Standard",
-        "odKiedyObowiazuje": "2020, 04, 01",
-        "doKiedyObowiazuje": "2020, 04, 22",
-        "prowizjaStawka": 0.00,
-        "marza": 4.35,
-        "oprocStale": "nie",
-        "oprocStaleIleLat": null,
-        "oprocStaleMarzaPotem": null,
-        "pomostoweStawkaMiesieczna": 1.5,
-        "pomostoweJakLiczone": "doliczoneDoMarzy",
-        "ubezpNieruchStawkaRok": 0.078,
-        "ubezpNieruchOdCzegoLicz": "wartNieruchomosci",
-        "ubezpZycieStawkaMiesieczna": 0,
-        "ubezpZycieIleLat": 5,
-        "ubezpZycieOdKtoregoMiesiaca": 0,
-        "ubezZycieNaStart": 0,
-        "upezpPracaNaStart": 0,
-        "oplatyZawszeKredytowane": 0,
-        "wTrakcieBudowy": "tak",
-        "WIBOR": "3M",
-        "wycenaMieszkanie": 400,
-        "minimalneWpływy": 5000,
-        "minimalneWpływy2xRata": "nie",
-        "minimalneWplywyStatus": "abc",
-        "warunkiOferty": "• Rachunek dowolny\n • Wpływy na konto min 5 tys. (w 3 z ostatnich 6 miesięcy)\n • limit w koncie lub karta kredytowa na kwotę min. 10tys \nLUB depozyty w banku na kwotę min. 25 tys. (od 3 pełnych miesiecy)\n • 15 transakcji karta płatniczą (w 3 z ostatnich 6 miesięcy)\n • Ubezpieczenie nieruchomości - wymagane przez cały okres, możliwe z zewnątrz.",
-        "link": "httpss://www.mbank.pl/indywidualny/kredyty/kredyty-hipoteczne/",
-        "minLTVsave": "abc",
-        "maxLTVsave": "abc",
-        "kosztyPoczatkowe": 0,
-        "odsetkiSuma": 0,
-        "oplatyMiesieczne": 0,
-        "kosztyCalkowite": 0,
-        "prowizjaSuma": 0,
-        "pomostoweSuma": 0,
-        "ubezpNieruchSuma": 0,
-        "ubezpNieruchTOTAL": 0,
-        "ubezpZycieSuma": 0,
-        "ubezpZycieTOTAL": 0,
-        "rata": 0,
-        "ubezZycieNaStartSuma": 0,
-        "upezpPracaNaStartSuma": 0,
-        "minKwotaKredytuFILTR": "abc",
-        "maxKwotaKredytuFILTR": "abc",
-        "pomostoweTOTAL": 0,
-        "WIBORstawka": 0,
-        "dataDostepu": "abc",
-        "doKiedyObowiazujeStatus": "abc",
-        "doKiedyObowiazujeWyswietl": "abc",
-        "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
-    },
-    {
-        "id": 31,
-        "bank": "mBank",
-        "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
-        "minLTV": 0.8,
-        "maxLTV": 0.9,
-        "minKwotaKredytu": 150000,
-        "maxKwotaKredytu": 2000000,
-        "ofertaNazwa": "Active",
-        "ofertaNazwaDopisek": "Wiosenna przeprowadzka",
-        "odKiedyObowiazuje": "2020, 04, 01",
-        "doKiedyObowiazuje": "2020, 04, 22",
-        "prowizjaStawka": 0.00,
-        "marza": 2.35,
-        "oprocStale": "nie",
-        "oprocStaleIleLat": null,
-        "oprocStaleMarzaPotem": null,
-        "pomostoweStawkaMiesieczna": 1.5,
-        "pomostoweJakLiczone": "doliczoneDoMarzy",
-        "ubezpNieruchStawkaRok": 0.078,
-        "ubezpNieruchOdCzegoLicz": "wartNieruchomosci",
-        "ubezpZycieStawkaMiesieczna": 0.0054,
-        "ubezpZycieIleLat": 5,
-        "ubezpZycieOdKtoregoMiesiaca": 12,
-        "ubezZycieNaStart": 0,
-        "upezpPracaNaStart": 0,
-        "oplatyZawszeKredytowane": 0,
-        "wTrakcieBudowy": "tak",
-        "WIBOR": "3M",
-        "wycenaMieszkanie": 400,
-        "minimalneWpływy": 5000,
-        "minimalneWpływy2xRata": "nie",
-        "minimalneWplywyStatus": "abc",
-        "warunkiOferty": "• Rachunek dowolny\n • Wpływy na konto min 5 tys. (w 3 z ostatnich 6 miesięcy)\n  •Zasilanie rachunku całą kwotą wynagrodzenia (lub 2x rata dla działalności gosp.)\n  • limit w koncie lub karta kredytowa na kwotę min. 1 tys \nLUB depozyty w banku na kwotę min. 25 tys. (od 3 pełnych miesiecy)\n • 15 transakcji karta płatniczą (w 3 z ostatnich 6 miesięcy)\n   • Ubezpieczenie na życie - wymagane bankowe przez min. 5 lat\n • Ubezpieczenie nieruchomości - wymagane przez cały okres, możliwe z zewnątrz.",
-        "link": "httpss://www.mbank.pl/indywidualny/kredyty/kredyty-hipoteczne/",
-        "minLTVsave": "abc",
-        "maxLTVsave": "abc",
-        "kosztyPoczatkowe": 0,
-        "odsetkiSuma": 0,
-        "oplatyMiesieczne": 0,
-        "kosztyCalkowite": 0,
-        "prowizjaSuma": 0,
-        "pomostoweSuma": 0,
-        "ubezpNieruchSuma": 0,
-        "ubezpNieruchTOTAL": 0,
-        "ubezpZycieSuma": 0,
-        "ubezpZycieTOTAL": 0,
-        "rata": 0,
-        "ubezZycieNaStartSuma": 0,
-        "upezpPracaNaStartSuma": 0,
-        "minKwotaKredytuFILTR": "abc",
-        "maxKwotaKredytuFILTR": "abc",
-        "pomostoweTOTAL": 0,
-        "WIBORstawka": 0,
-        "dataDostepu": "abc",
-        "doKiedyObowiazujeStatus": "abc",
-        "doKiedyObowiazujeWyswietl": "abc",
-        "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
-    },
-    {
-        "id": 32,
-        "bank": "mBank",
-        "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
-        "minLTV": 0,
-        "maxLTV": 0.8,
-        "minKwotaKredytu": 150000,
-        "maxKwotaKredytu": 2000000,
-        "ofertaNazwa": "Standard",
-        "ofertaNazwaDopisek": "Standard",
-        "odKiedyObowiazuje": "2020, 04, 01",
-        "doKiedyObowiazuje": "2020, 04, 22",
-        "prowizjaStawka": 0.00,
-        "marza": 4.80,
-        "oprocStale": "nie",
-        "oprocStaleIleLat": null,
-        "oprocStaleMarzaPotem": null,
-        "pomostoweStawkaMiesieczna": 1.5,
-        "pomostoweJakLiczone": "doliczoneDoMarzy",
-        "ubezpNieruchStawkaRok": 0.078,
-        "ubezpNieruchOdCzegoLicz": "wartNieruchomosci",
-        "ubezpZycieStawkaMiesieczna": 0,
-        "ubezpZycieIleLat": 5,
-        "ubezpZycieOdKtoregoMiesiaca": 0,
-        "ubezZycieNaStart": 0,
-        "upezpPracaNaStart": 0,
-        "oplatyZawszeKredytowane": 0,
-        "wTrakcieBudowy": "tak",
-        "WIBOR": "3M",
-        "wycenaMieszkanie": 400,
-        "minimalneWpływy": 0,
-        "minimalneWpływy2xRata": "nie",
-        "minimalneWplywyStatus": "abc",
-        "warunkiOferty": "• Rachunek dowolny\n • Ubezpieczenie nieruchomości - wymagane przez cały okres, możliwe z zewnątrz.",
-        "link": "httpss://www.mbank.pl/indywidualny/kredyty/kredyty-hipoteczne/",
-        "minLTVsave": "abc",
-        "maxLTVsave": "abc",
-        "kosztyPoczatkowe": 0,
-        "odsetkiSuma": 0,
-        "oplatyMiesieczne": 0,
-        "kosztyCalkowite": 0,
-        "prowizjaSuma": 0,
-        "pomostoweSuma": 0,
-        "ubezpNieruchSuma": 0,
-        "ubezpNieruchTOTAL": 0,
-        "ubezpZycieSuma": 0,
-        "ubezpZycieTOTAL": 0,
-        "rata": 0,
-        "ubezZycieNaStartSuma": 0,
-        "upezpPracaNaStartSuma": 0,
-        "minKwotaKredytuFILTR": "abc",
-        "maxKwotaKredytuFILTR": "abc",
-        "pomostoweTOTAL": 0,
-        "WIBORstawka": 0,
-        "dataDostepu": "abc",
-        "doKiedyObowiazujeStatus": "abc",
-        "doKiedyObowiazujeWyswietl": "abc",
-        "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
-    },
-    {
-        "id": 33,
-        "bank": "mBank",
-        "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
-        "minLTV": 0.8,
-        "maxLTV": 0.9,
-        "minKwotaKredytu": 150000,
-        "maxKwotaKredytu": 2000000,
-        "ofertaNazwa": "Standard",
-        "ofertaNazwaDopisek": "Standard",
-        "odKiedyObowiazuje": "2020, 04, 01",
-        "doKiedyObowiazuje": "2020, 04, 22",
-        "prowizjaStawka": 0.00,
-        "marza": 5.00,
-        "oprocStale": "nie",
-        "oprocStaleIleLat": null,
-        "oprocStaleMarzaPotem": null,
-        "pomostoweStawkaMiesieczna": 1.5,
-        "pomostoweJakLiczone": "doliczoneDoMarzy",
-        "ubezpNieruchStawkaRok": 0.078,
-        "ubezpNieruchOdCzegoLicz": "wartNieruchomosci",
-        "ubezpZycieStawkaMiesieczna": 0,
-        "ubezpZycieIleLat": 5,
-        "ubezpZycieOdKtoregoMiesiaca": 0,
-        "ubezZycieNaStart": 0,
-        "upezpPracaNaStart": 0,
-        "oplatyZawszeKredytowane": 0,
-        "wTrakcieBudowy": "tak",
-        "WIBOR": "3M",
-        "wycenaMieszkanie": 400,
-        "minimalneWpływy": 0,
-        "minimalneWpływy2xRata": "nie",
-        "minimalneWplywyStatus": "abc",
-        "warunkiOferty": "• Rachunek dowolny\n • Ubezpieczenie nieruchomości - wymagane przez cały okres, możliwe z zewnątrz.",
-        "link": "httpss://www.mbank.pl/indywidualny/kredyty/kredyty-hipoteczne/",
-        "minLTVsave": "abc",
-        "maxLTVsave": "abc",
-        "kosztyPoczatkowe": 0,
-        "odsetkiSuma": 0,
-        "oplatyMiesieczne": 0,
-        "kosztyCalkowite": 0,
-        "prowizjaSuma": 0,
-        "pomostoweSuma": 0,
-        "ubezpNieruchSuma": 0,
-        "ubezpNieruchTOTAL": 0,
-        "ubezpZycieSuma": 0,
-        "ubezpZycieTOTAL": 0,
-        "rata": 0,
-        "ubezZycieNaStartSuma": 0,
-        "upezpPracaNaStartSuma": 0,
-        "minKwotaKredytuFILTR": "abc",
-        "maxKwotaKredytuFILTR": "abc",
-        "pomostoweTOTAL": 0,
-        "WIBORstawka": 0,
-        "dataDostepu": "abc",
-        "doKiedyObowiazujeStatus": "abc",
-        "doKiedyObowiazujeWyswietl": "abc",
-        "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
-    },
-    {
-        "id": 34,
-        "bank": "mBank",
-        "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
-        "minLTV": 0,
-        "maxLTV": 0.8,
-        "minKwotaKredytu": 150000,
-        "maxKwotaKredytu": 2000000,
-        "ofertaNazwa": "Standard",
-        "ofertaNazwaDopisek": "Wiosenna przeprowadzka",
-        "odKiedyObowiazuje": "2020, 04, 01",
-        "doKiedyObowiazuje": "2020, 04, 22",
-        "prowizjaStawka": 0.00,
-        "marza": 2.80,
-        "oprocStale": "nie",
-        "oprocStaleIleLat": null,
-        "oprocStaleMarzaPotem": null,
-        "pomostoweStawkaMiesieczna": 1.5,
-        "pomostoweJakLiczone": "doliczoneDoMarzy",
-        "ubezpNieruchStawkaRok": 0.078,
-        "ubezpNieruchOdCzegoLicz": "wartNieruchomosci",
-        "ubezpZycieStawkaMiesieczna": 0.0054,
-        "ubezpZycieIleLat": 5,
-        "ubezpZycieOdKtoregoMiesiaca": 12,
-        "ubezZycieNaStart": 0,
-        "upezpPracaNaStart": 0,
-        "oplatyZawszeKredytowane": 0,
-        "wTrakcieBudowy": "tak",
-        "WIBOR": "3M",
-        "wycenaMieszkanie": 400,
-        "minimalneWpływy": 0,
-        "minimalneWpływy2xRata": "nie",
-        "minimalneWplywyStatus": "abc",
-        "warunkiOferty": "• Rachunek dowolny\n  • Zasilanie rachunku całą kwotą wynagrodzenia (lub 2x rata dla działalności gosp.)\n  • Ubezpieczenie na życie - wymagane bankowe przez min. 5 lat\n • Ubezpieczenie nieruchomości - wymagane przez cały okres, możliwe z zewnątrz.",
-        "link": "httpss://www.mbank.pl/indywidualny/kredyty/kredyty-hipoteczne/",
-        "minLTVsave": "abc",
-        "maxLTVsave": "abc",
-        "kosztyPoczatkowe": 0,
-        "odsetkiSuma": 0,
-        "oplatyMiesieczne": 0,
-        "kosztyCalkowite": 0,
-        "prowizjaSuma": 0,
-        "pomostoweSuma": 0,
-        "ubezpNieruchSuma": 0,
-        "ubezpNieruchTOTAL": 0,
-        "ubezpZycieSuma": 0,
-        "ubezpZycieTOTAL": 0,
-        "rata": 0,
-        "ubezZycieNaStartSuma": 0,
-        "upezpPracaNaStartSuma": 0,
-        "minKwotaKredytuFILTR": "abc",
-        "maxKwotaKredytuFILTR": "abc",
-        "pomostoweTOTAL": 0,
-        "WIBORstawka": 0,
-        "dataDostepu": "abc",
-        "doKiedyObowiazujeStatus": "abc",
-        "doKiedyObowiazujeWyswietl": "abc",
-        "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
-    },
-    {
-        "id": 35,
-        "bank": "mBank",
-        "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
-        "minLTV": 0.8,
-        "maxLTV": 0.9,
-        "minKwotaKredytu": 150000,
-        "maxKwotaKredytu": 2000000,
-        "ofertaNazwa": "Standard",
-        "ofertaNazwaDopisek": "Wiosenna przeprowadzka",
-        "odKiedyObowiazuje": "2020, 04, 01",
-        "doKiedyObowiazuje": "2020, 04, 22",
-        "prowizjaStawka": 0.00,
-        "marza": 3.00,
-        "oprocStale": "nie",
-        "oprocStaleIleLat": null,
-        "oprocStaleMarzaPotem": null,
-        "pomostoweStawkaMiesieczna": 1.5,
-        "pomostoweJakLiczone": "doliczoneDoMarzy",
-        "ubezpNieruchStawkaRok": 0.078,
-        "ubezpNieruchOdCzegoLicz": "wartNieruchomosci",
-        "ubezpZycieStawkaMiesieczna": 0.0054,
-        "ubezpZycieIleLat": 5,
-        "ubezpZycieOdKtoregoMiesiaca": 12,
-        "ubezZycieNaStart": 0,
-        "upezpPracaNaStart": 0,
-        "oplatyZawszeKredytowane": 0,
-        "wTrakcieBudowy": "tak",
-        "WIBOR": "3M",
-        "wycenaMieszkanie": 400,
-        "minimalneWpływy": 0,
-        "minimalneWpływy2xRata": "nie",
-        "minimalneWplywyStatus": "abc",
-        "warunkiOferty": "• Rachunek dowolny\n  • Zasilanie rachunku całą kwotą wynagrodzenia (lub 2x rata dla działalności gosp.)\n  • Ubezpieczenie na życie - wymagane bankowe przez min. 5 lat\n • Ubezpieczenie nieruchomości - wymagane przez cały okres, możliwe z zewnątrz.",
-        "link": "httpss://www.mbank.pl/indywidualny/kredyty/kredyty-hipoteczne/",
-        "minLTVsave": "abc",
-        "maxLTVsave": "abc",
-        "kosztyPoczatkowe": 0,
-        "odsetkiSuma": 0,
-        "oplatyMiesieczne": 0,
-        "kosztyCalkowite": 0,
-        "prowizjaSuma": 0,
-        "pomostoweSuma": 0,
-        "ubezpNieruchSuma": 0,
-        "ubezpNieruchTOTAL": 0,
-        "ubezpZycieSuma": 0,
-        "ubezpZycieTOTAL": 0,
-        "rata": 0,
-        "ubezZycieNaStartSuma": 0,
-        "upezpPracaNaStartSuma": 0,
-        "minKwotaKredytuFILTR": "abc",
-        "maxKwotaKredytuFILTR": "abc",
-        "pomostoweTOTAL": 0,
-        "WIBORstawka": 0,
-        "dataDostepu": "abc",
-        "doKiedyObowiazujeStatus": "abc",
-        "doKiedyObowiazujeWyswietl": "abc",
-        "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
-    },
-    {
-        "id": 36,
-        "bank": "mBank",
-        "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
-        "minLTV": 0,
-        "maxLTV": 0.9,
-        "minKwotaKredytu": 150000,
-        "maxKwotaKredytu": 2000000,
-        "ofertaNazwa": "Oferta Specjalna",
-        "ofertaNazwaDopisek": "Dla klientów Dom Dewelopment",
-        "odKiedyObowiazuje": "2020, 04, 01",
-        "doKiedyObowiazuje": "2020, 04, 22",
-        "prowizjaStawka": 0.00,
-        "marza": 2.30,
-        "oprocStale": "nie",
-        "oprocStaleIleLat": null,
-        "oprocStaleMarzaPotem": null,
-        "pomostoweStawkaMiesieczna": 1.5,
-        "pomostoweJakLiczone": "doliczoneDoMarzy",
-        "ubezpNieruchStawkaRok": 0.078,
-        "ubezpNieruchOdCzegoLicz": "wartNieruchomosci",
-        "ubezpZycieStawkaMiesieczna": 0.0054,
-        "ubezpZycieIleLat": 5,
-        "ubezpZycieOdKtoregoMiesiaca": 12,
-        "ubezZycieNaStart": 0,
-        "upezpPracaNaStart": 0,
-        "oplatyZawszeKredytowane": 0,
-        "wTrakcieBudowy": "tak",
-        "WIBOR": "3M",
-        "wycenaMieszkanie": 400,
-        "minimalneWpływy": 0,
-        "minimalneWpływy2xRata": "nie",
-        "minimalneWplywyStatus": "abc",
-        "warunkiOferty": "• Rachunek dowolny\n  •Zasilanie rachunku całą kwotą wynagrodzenia (lub 2x rata dla działalności gosp.)\n  • Ubezpieczenie na życie - wymagane bankowe przez min. 5 lat\n • Ubezpieczenie nieruchomości - wymagane przez cały okres, możliwe z zewnątrz.\n • Zakup od deweloepra Dom Dewelopment",
-        "link": "httpss://www.mbank.pl/indywidualny/kredyty/kredyty-hipoteczne/",
-        "minLTVsave": "abc",
-        "maxLTVsave": "abc",
-        "kosztyPoczatkowe": 0,
-        "odsetkiSuma": 0,
-        "oplatyMiesieczne": 0,
-        "kosztyCalkowite": 0,
-        "prowizjaSuma": 0,
-        "pomostoweSuma": 0,
-        "ubezpNieruchSuma": 0,
-        "ubezpNieruchTOTAL": 0,
-        "ubezpZycieSuma": 0,
-        "ubezpZycieTOTAL": 0,
-        "rata": 0,
-        "ubezZycieNaStartSuma": 0,
-        "upezpPracaNaStartSuma": 0,
-        "minKwotaKredytuFILTR": "abc",
-        "maxKwotaKredytuFILTR": "abc",
-        "pomostoweTOTAL": 0,
-        "WIBORstawka": 0,
-        "dataDostepu": "abc",
-        "doKiedyObowiazujeStatus": "abc",
-        "doKiedyObowiazujeWyswietl": "abc",
-        "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 37,
@@ -2165,6 +1454,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Alior_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 80,
         "minKwotaKredytu": 100000,
         "maxKwotaKredytu": 3000000,
         "ofertaNazwa": "Własne M w wielkim mieście",
@@ -2217,7 +1508,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 38,
@@ -2225,6 +1517,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Alior_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 80,
         "minKwotaKredytu": 100000,
         "maxKwotaKredytu": 3000000,
         "ofertaNazwa": "Własne M w wielkim mieście",
@@ -2277,7 +1571,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 39,
@@ -2285,6 +1580,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Alior_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 80,
         "minKwotaKredytu": 100000,
         "maxKwotaKredytu": 3000000,
         "ofertaNazwa": "Własne M w wielkim mieście",
@@ -2337,7 +1634,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 40,
@@ -2345,6 +1643,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Alior_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 80,
         "minKwotaKredytu": 100000,
         "maxKwotaKredytu": 3000000,
         "ofertaNazwa": "Własne M w wielkim mieście",
@@ -2397,7 +1697,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 41,
@@ -2405,6 +1706,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Alior_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 80,
         "minKwotaKredytu": 100000,
         "maxKwotaKredytu": 3000000,
         "ofertaNazwa": "Własne M w wielkim mieście",
@@ -2457,7 +1760,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 42,
@@ -2465,6 +1769,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Alior_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 80,
         "minKwotaKredytu": 100000,
         "maxKwotaKredytu": 3000000,
         "ofertaNazwa": "Własne M w wielkim mieście",
@@ -2517,7 +1823,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 43,
@@ -2525,6 +1832,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Alior_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 80,
         "minKwotaKredytu": 100000,
         "maxKwotaKredytu": 3000000,
         "ofertaNazwa": "Standard",
@@ -2577,7 +1886,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 44,
@@ -2585,6 +1895,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Alior_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 80,
         "minKwotaKredytu": 100000,
         "maxKwotaKredytu": 3000000,
         "ofertaNazwa": "Standard",
@@ -2637,7 +1949,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 45,
@@ -2645,6 +1958,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Alior_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 80,
         "minKwotaKredytu": 100000,
         "maxKwotaKredytu": 3000000,
         "ofertaNazwa": "Standard",
@@ -2697,7 +2012,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 46,
@@ -2705,6 +2021,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Alior_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 80,
         "minKwotaKredytu": 100000,
         "maxKwotaKredytu": 3000000,
         "ofertaNazwa": "Standard",
@@ -2757,7 +2075,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 47,
@@ -2765,6 +2084,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Alior_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 80,
         "minKwotaKredytu": 100000,
         "maxKwotaKredytu": 3000000,
         "ofertaNazwa": "Standard",
@@ -2817,7 +2138,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 48,
@@ -2825,6 +2147,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Alior_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 80,
         "minKwotaKredytu": 100000,
         "maxKwotaKredytu": 3000000,
         "ofertaNazwa": "Standard",
@@ -2877,7 +2201,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 49,
@@ -2885,6 +2210,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/City_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 80001,
         "maxKwotaKredytu": 6000000,
         "ofertaNazwa": "Priority",
@@ -2937,7 +2264,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 50,
@@ -2945,6 +2273,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/City_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 80001,
         "maxKwotaKredytu": 6000000,
         "ofertaNazwa": "Priority",
@@ -2997,7 +2327,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 51,
@@ -3005,6 +2336,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/City_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 80001,
         "maxKwotaKredytu": 6000000,
         "ofertaNazwa": "Standard",
@@ -3057,7 +2390,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 52,
@@ -3065,6 +2399,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -3117,7 +2453,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 53,
@@ -3125,6 +2462,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -3177,7 +2516,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 54,
@@ -3185,6 +2525,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -3237,7 +2579,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 55,
@@ -3245,6 +2588,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -3297,7 +2642,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 56,
@@ -3305,6 +2651,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -3357,7 +2705,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 57,
@@ -3365,6 +2714,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -3417,7 +2768,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 58,
@@ -3425,6 +2777,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -3477,7 +2831,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 59,
@@ -3485,6 +2840,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -3537,7 +2894,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 60,
@@ -3545,6 +2903,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -3597,7 +2957,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 61,
@@ -3605,6 +2966,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -3657,7 +3020,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 62,
@@ -3665,6 +3029,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -3717,7 +3083,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 63,
@@ -3725,6 +3092,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -3777,7 +3146,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 64,
@@ -3785,6 +3155,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -3837,7 +3209,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 65,
@@ -3845,6 +3218,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -3897,7 +3272,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 66,
@@ -3905,6 +3281,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -3957,7 +3335,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 67,
@@ -3965,6 +3344,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4017,7 +3398,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 68,
@@ -4025,6 +3407,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4077,7 +3461,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 69,
@@ -4085,6 +3470,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4137,7 +3524,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 70,
@@ -4145,6 +3533,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4197,7 +3587,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 71,
@@ -4205,6 +3596,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4257,7 +3650,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 72,
@@ -4265,6 +3659,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4317,7 +3713,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 73,
@@ -4325,6 +3722,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4377,7 +3776,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 74,
@@ -4385,6 +3785,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4437,7 +3839,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 75,
@@ -4445,6 +3848,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4497,7 +3902,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 76,
@@ -4505,6 +3911,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4557,7 +3965,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 77,
@@ -4565,6 +3974,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4617,7 +4028,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 78,
@@ -4625,6 +4037,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4677,7 +4091,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 79,
@@ -4685,6 +4100,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4737,7 +4154,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 80,
@@ -4745,6 +4163,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4797,7 +4217,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 81,
@@ -4805,6 +4226,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4857,7 +4280,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 82,
@@ -4865,6 +4289,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4917,7 +4343,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 83,
@@ -4925,6 +4352,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -4977,7 +4406,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 84,
@@ -4985,6 +4415,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -5037,7 +4469,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 85,
@@ -5045,6 +4478,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -5097,7 +4532,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 86,
@@ -5105,6 +4541,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -5157,7 +4595,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 87,
@@ -5165,6 +4604,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -5217,7 +4658,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 88,
@@ -5225,6 +4667,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -5277,7 +4721,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 89,
@@ -5285,6 +4730,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -5337,7 +4784,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 90,
@@ -5345,6 +4793,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -5397,7 +4847,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 91,
@@ -5405,6 +4856,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -5457,7 +4910,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 92,
@@ -5465,6 +4919,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -5517,7 +4973,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 93,
@@ -5525,6 +4982,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -5577,7 +5036,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 94,
@@ -5585,6 +5045,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -5637,7 +5099,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 95,
@@ -5645,6 +5108,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -5697,7 +5162,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 96,
@@ -5705,6 +5171,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Pakiet Własny Kąt",
@@ -5757,7 +5225,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 97,
@@ -5765,6 +5234,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Standard",
@@ -5817,7 +5288,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 98,
@@ -5825,6 +5297,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Standard",
@@ -5877,7 +5351,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 99,
@@ -5885,6 +5360,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Standard",
@@ -5937,7 +5414,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 100,
@@ -5945,6 +5423,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Standard",
@@ -5997,7 +5477,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 101,
@@ -6005,6 +5486,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Standard",
@@ -6057,7 +5540,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 102,
@@ -6065,6 +5549,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Standard",
@@ -6117,7 +5603,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 103,
@@ -6125,6 +5612,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Standard",
@@ -6177,7 +5666,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 104,
@@ -6185,6 +5675,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Standard",
@@ -6237,7 +5729,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 105,
@@ -6245,6 +5738,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Standard",
@@ -6297,7 +5792,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 106,
@@ -6305,6 +5801,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Standard",
@@ -6357,7 +5855,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 107,
@@ -6365,6 +5864,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Standard",
@@ -6417,7 +5918,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 108,
@@ -6425,6 +5927,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Standard",
@@ -6477,7 +5981,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 109,
@@ -6485,6 +5990,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Standard",
@@ -6537,7 +6044,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 110,
@@ -6545,6 +6053,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Standard",
@@ -6597,7 +6107,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 111,
@@ -6605,6 +6116,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Standard",
@@ -6657,7 +6170,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 112,
@@ -6665,6 +6179,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Standard",
@@ -6717,7 +6233,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 113,
@@ -6725,6 +6242,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Standard",
@@ -6777,7 +6296,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 114,
@@ -6785,6 +6305,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Standard",
@@ -6837,7 +6359,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 115,
@@ -6845,6 +6368,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Standard",
@@ -6897,7 +6422,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 116,
@@ -6905,6 +6431,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Standard",
@@ -6957,7 +6485,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 117,
@@ -6965,6 +6494,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Standard",
@@ -7017,7 +6548,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 118,
@@ -7025,6 +6557,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Standard",
@@ -7077,7 +6611,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 119,
@@ -7085,6 +6620,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Standard",
@@ -7137,7 +6674,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 120,
@@ -7145,6 +6683,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Standard",
@@ -7197,7 +6737,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 121,
@@ -7205,6 +6746,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Standard",
@@ -7257,7 +6800,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 122,
@@ -7265,6 +6809,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Standard",
@@ -7317,7 +6863,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 123,
@@ -7325,6 +6872,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Standard",
@@ -7377,7 +6926,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 124,
@@ -7385,6 +6935,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Standard",
@@ -7437,7 +6989,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 125,
@@ -7445,6 +6998,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Standard",
@@ -7497,7 +7052,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 126,
@@ -7505,6 +7061,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Standard",
@@ -7557,7 +7115,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 127,
@@ -7565,6 +7124,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Standard",
@@ -7617,7 +7178,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 128,
@@ -7625,6 +7187,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Standard",
@@ -7677,7 +7241,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 129,
@@ -7685,6 +7250,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Standard",
@@ -7737,7 +7304,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 130,
@@ -7745,6 +7313,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Standard",
@@ -7797,7 +7367,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 131,
@@ -7805,6 +7376,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.7,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Standard",
@@ -7857,7 +7430,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 132,
@@ -7865,6 +7439,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Standard",
@@ -7917,7 +7493,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 133,
@@ -7925,6 +7502,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Standard",
@@ -7977,7 +7556,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 134,
@@ -7985,6 +7565,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Standard",
@@ -8037,7 +7619,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 135,
@@ -8045,6 +7628,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Standard",
@@ -8097,7 +7682,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 136,
@@ -8105,6 +7691,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.7,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Standard",
@@ -8157,7 +7745,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 137,
@@ -8165,6 +7754,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 40000,
         "maxKwotaKredytu": 80000,
         "ofertaNazwa": "Standard",
@@ -8217,7 +7808,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 138,
@@ -8225,6 +7817,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 80000,
         "maxKwotaKredytu": 120000,
         "ofertaNazwa": "Standard",
@@ -8277,7 +7871,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 139,
@@ -8285,6 +7880,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 120000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "Standard",
@@ -8337,7 +7934,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 140,
@@ -8345,6 +7943,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 200000,
         "maxKwotaKredytu": 700000,
         "ofertaNazwa": "Standard",
@@ -8397,7 +7997,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 141,
@@ -8405,6 +8006,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/PKO_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 35,
+        "maxWiek": 75,
         "minKwotaKredytu": 700000,
         "maxKwotaKredytu": 30000000,
         "ofertaNazwa": "Standard",
@@ -8457,7 +8060,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 142,
@@ -8465,6 +8069,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 400001,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "4D/OS/2020",
@@ -8517,7 +8123,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 143,
@@ -8525,6 +8132,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 200001,
         "maxKwotaKredytu": 400000,
         "ofertaNazwa": "4D/OS/2020",
@@ -8577,7 +8186,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 144,
@@ -8585,6 +8195,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 10000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "4D/OS/2020",
@@ -8637,7 +8249,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 145,
@@ -8645,6 +8258,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 400001,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "4D/OS/2020",
@@ -8697,7 +8312,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 146,
@@ -8705,6 +8321,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 200001,
         "maxKwotaKredytu": 400000,
         "ofertaNazwa": "4D/OS/2020",
@@ -8757,7 +8375,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 147,
@@ -8765,6 +8384,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 10000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "4D/OS/2020",
@@ -8817,7 +8438,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 148,
@@ -8825,6 +8447,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 400001,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "4D/OS/2020",
@@ -8877,7 +8501,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 149,
@@ -8885,6 +8510,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 200001,
         "maxKwotaKredytu": 400000,
         "ofertaNazwa": "4D/OS/2020",
@@ -8937,7 +8564,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 150,
@@ -8945,6 +8573,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 10000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "4D/OS/2020",
@@ -8997,7 +8627,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 151,
@@ -9005,6 +8636,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 400001,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "4D/OS/2020",
@@ -9057,7 +8690,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 152,
@@ -9065,6 +8699,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 200001,
         "maxKwotaKredytu": 400000,
         "ofertaNazwa": "4D/OS/2020",
@@ -9117,7 +8753,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 153,
@@ -9125,6 +8762,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 10000,
         "maxKwotaKredytu": 200000,
         "ofertaNazwa": "4D/OS/2020",
@@ -9177,7 +8816,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 154,
@@ -9185,6 +8825,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Pekao_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 10000,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "4D/OS/2020",
@@ -9237,7 +8879,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 155,
@@ -9245,6 +8888,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 149999,
         "ofertaNazwa": "Standard, klient zewnętrzny",
@@ -9297,7 +8942,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 156,
@@ -9305,6 +8951,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 150000,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Standard, klient zewnętrzny",
@@ -9357,7 +9005,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 157,
@@ -9365,6 +9014,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 149999,
         "ofertaNazwa": "Standard, klient zewnętrzny",
@@ -9417,7 +9068,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 158,
@@ -9425,6 +9077,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 150000,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Standard, klient zewnętrzny",
@@ -9477,7 +9131,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 159,
@@ -9485,6 +9140,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.85,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Standard, klient zewnętrzny",
@@ -9537,7 +9194,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 160,
@@ -9545,6 +9203,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0.85,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Standard, klient zewnętrzny",
@@ -9597,7 +9257,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 161,
@@ -9605,6 +9266,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 149999,
         "ofertaNazwa": "Standard, klient wewnętrzny",
@@ -9657,7 +9320,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 162,
@@ -9665,6 +9329,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 150000,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Standard, klient wewnętrzny",
@@ -9717,7 +9383,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 163,
@@ -9725,6 +9392,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.08,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 149999,
         "ofertaNazwa": "Standard, klient wewnętrzny",
@@ -9777,7 +9446,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 164,
@@ -9785,6 +9455,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 150000,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Standard, klient wewnętrzny",
@@ -9837,7 +9509,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 165,
@@ -9845,6 +9518,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.85,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Standard, klient wewnętrzny",
@@ -9897,7 +9572,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 166,
@@ -9905,6 +9581,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0.85,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Standard, klient wewnętrzny",
@@ -9957,7 +9635,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 167,
@@ -9965,6 +9644,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Oproc. stałe 5 lat",
@@ -10017,7 +9698,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 168,
@@ -10025,6 +9707,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Oproc. stałe 5 lat",
@@ -10077,7 +9761,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 169,
@@ -10085,6 +9770,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.85,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Oproc. stałe 5 lat",
@@ -10137,7 +9824,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 170,
@@ -10145,6 +9833,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0.85,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Oproc. stałe 5 lat",
@@ -10197,7 +9887,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 171,
@@ -10205,6 +9896,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0,
         "maxLTV": 0.5,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Oproc. stałe 5 lat",
@@ -10257,7 +9950,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 172,
@@ -10265,6 +9959,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0.5,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Oproc. stałe 5 lat",
@@ -10317,7 +10013,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 173,
@@ -10325,6 +10022,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.85,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Oproc. stałe 5 lat",
@@ -10377,7 +10076,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 174,
@@ -10385,6 +10085,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/Santander_logo.png",
         "minLTV": 0.85,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 70,
         "minKwotaKredytu": 1,
         "maxKwotaKredytu": 10000000,
         "ofertaNazwa": "Oproc. stałe 5 lat",
@@ -10437,7 +10139,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 175,
@@ -10445,6 +10148,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 67,
         "minKwotaKredytu": 20000,
         "maxKwotaKredytu": 2000000,
         "ofertaNazwa": "Intensive",
@@ -10497,7 +10202,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 176,
@@ -10505,6 +10211,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 67,
         "minKwotaKredytu": 20000,
         "maxKwotaKredytu": 2000000,
         "ofertaNazwa": "Intensive",
@@ -10557,7 +10265,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 177,
@@ -10565,6 +10274,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 67,
         "minKwotaKredytu": 20000,
         "maxKwotaKredytu": 2000000,
         "ofertaNazwa": "Intensive",
@@ -10617,7 +10328,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 178,
@@ -10625,6 +10337,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 67,
         "minKwotaKredytu": 20000,
         "maxKwotaKredytu": 2000000,
         "ofertaNazwa": "Intensive",
@@ -10677,7 +10391,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 179,
@@ -10685,6 +10400,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 67,
         "minKwotaKredytu": 150000,
         "maxKwotaKredytu": 2000000,
         "ofertaNazwa": "Active",
@@ -10737,7 +10454,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 180,
@@ -10745,6 +10463,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 67,
         "minKwotaKredytu": 150000,
         "maxKwotaKredytu": 2000000,
         "ofertaNazwa": "Active",
@@ -10797,7 +10517,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 181,
@@ -10805,6 +10526,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 67,
         "minKwotaKredytu": 150000,
         "maxKwotaKredytu": 2000000,
         "ofertaNazwa": "Active",
@@ -10857,7 +10580,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 182,
@@ -10865,6 +10589,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 67,
         "minKwotaKredytu": 150000,
         "maxKwotaKredytu": 2000000,
         "ofertaNazwa": "Active",
@@ -10917,7 +10643,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 183,
@@ -10925,6 +10652,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 67,
         "minKwotaKredytu": 150000,
         "maxKwotaKredytu": 2000000,
         "ofertaNazwa": "Standard",
@@ -10977,7 +10706,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 184,
@@ -10985,6 +10715,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
         "minLTV": 0,
         "maxLTV": 0.8,
+        "maxLiczbaLat": 35,
+        "maxWiek": 67,
         "minKwotaKredytu": 150000,
         "maxKwotaKredytu": 2000000,
         "ofertaNazwa": "Standard",
@@ -11037,7 +10769,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 185,
@@ -11045,6 +10778,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 67,
         "minKwotaKredytu": 150000,
         "maxKwotaKredytu": 2000000,
         "ofertaNazwa": "Standard",
@@ -11097,7 +10832,8 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     },
     {
         "id": 186,
@@ -11105,6 +10841,8 @@
         "logoURL": "https://ohipo.pl/zdjecia/mBank_logo.png",
         "minLTV": 0.8,
         "maxLTV": 0.9,
+        "maxLiczbaLat": 30,
+        "maxWiek": 67,
         "minKwotaKredytu": 150000,
         "maxKwotaKredytu": 2000000,
         "ofertaNazwa": "Standard",
@@ -11157,6 +10895,7 @@
         "doKiedyObowiazujeStatus": "abc",
         "doKiedyObowiazujeWyswietl": "abc",
         "kwotaKredytuOferty": 0,
-        "LTVobliczone": 0
+        "LTVobliczone": 0,
+        "maxWiekStatus": "wiekOK"
     }
 ]

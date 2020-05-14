@@ -55,9 +55,9 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input [formControl]="wDeklarowaneWplywy"
-              matTooltip="Wpisz ile lat w tym roku kończy najstarszy kredytobiorca." (input)="mWplywy" matInput
-              type="number" matInput placeholder="Wiek najstarszego kredytobiorcy">
+            <input [formControl]="wWiekNajstarszego"
+              matTooltip="Wpisz ile lat w tym roku kończy najstarszy kredytobiorca. Pozostaw pole puste aby wyłączyć ten filtr."
+              (input)="mWiekNajstarszego" matInput type="number" matInput placeholder="Wiek najstarszego kredytobiorcy">
             <span matSuffix>lat</span>
           </mat-form-field>
         </div>
