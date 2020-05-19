@@ -12,6 +12,9 @@
     gtag('config', 'UA-165452260-1');
   </script>
 
+
+
+  <!-- Skrypt dla formularza kontaktowego-->
   <script>
     var mndFileds = new Array('Last Name', 'Mobile', 'Email', 'LEADCF2', 'City', 'Description');
     var fldLangVal = new Array('Imię i Nazwisko', 'Telefon komórkowy', 'Adres Email', 'Województwo', 'Miasto', 'Twoje potrzeby');
@@ -58,20 +61,109 @@
     }
   </script>
 
+  <!-- KONIEC Skrypt dla formularza kontaktowego-->
+
+
+  <script>
+    // --- Config --- //
+    var purecookieDesc = "Strona korzysta z anonimizowanych plików cookies. Możesz określić warunki ich przechowywania lub dostępu do nich."; // Description
+    var purecookieLink = '<a href="cookie-policy.html" target="_blank">Co to są cookies?</a>'; // Cookiepolicy link
+    var purecookieButton = "Rozumiem"; // Button text
+    // ---        --- //
+
+
+    function pureFadeIn(elem, display) {
+      var el = document.getElementById(elem);
+      el.style.opacity = 0;
+      el.style.display = display || "block";
+
+      (function fade() {
+        var val = parseFloat(el.style.opacity);
+        if (!((val += .02) > 1)) {
+          el.style.opacity = val;
+          requestAnimationFrame(fade);
+        }
+      })();
+    };
+    function pureFadeOut(elem) {
+      var el = document.getElementById(elem);
+      el.style.opacity = 1;
+
+      (function fade() {
+        if ((el.style.opacity -= .02) < 0) {
+          el.style.display = "none";
+        } else {
+          requestAnimationFrame(fade);
+        }
+      })();
+    };
+
+    function setCookie(name, value, days) {
+      var expires = "";
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+    function getCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+    function eraseCookie(name) {
+      document.cookie = name + '=; Max-Age=-99999999;';
+    }
+
+    function cookieConsent() {
+      if (!getCookie('purecookieDismiss')) {
+
+        document.getElementById("cookies").innerHTML += '<div class="cookieConsentContainer" id="cookieConsentContainer"><div class="cookieDesc"><p>' + purecookieDesc + '<br> ' + purecookieLink + '</p></div><div class="cookieButton"><a onClick="purecookieDismiss();">' + purecookieButton + '</a></div></div>';
+        pureFadeIn("cookieConsentContainer");
+      }
+    }
+
+    function purecookieDismiss() {
+      setCookie('purecookieDismiss', '1', 7);
+      pureFadeOut("cookieConsentContainer");
+    }
+
+    window.onload = function () { cookieConsent(); };
+  </script>
+  <!-- KONIEC Skrypt dla pokazania cookies-->
+
+
+
+
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <meta charset="utf-8">
   <title>ohipo</title>
   <base href="/">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- 
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  -->
+
+
 </head>
 
 <body>
   <app-root></app-root>
 
 
+  <!-- to jest div któa sobie iestnieje tylko po to, zeby popup cookies nie psuł cełego html-->
+  <div id="cookies"></div>
 
 
 

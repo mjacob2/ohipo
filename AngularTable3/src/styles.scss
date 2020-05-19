@@ -2,17 +2,23 @@
 @include mat-core();
 
 $my-app-primary: mat-palette($mat-blue, 800);
-$my-app-accent: mat-palette($mat-amber, 200, A100, A400);
+$my-app-accent: mat-palette($mat-amber, A400);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
+$moja: mat-palette($mat-blue, 200);
 
 @include angular-material-theme($my-app-theme);
 
 
 body {
-  font-family: Roboto, Arial, sans-serif;
+font-family: Roboto, Arial, sans-serif;
  margin: 0;
- background-color: mat-color($my-app-primary); ;
+ background-color: mat-color($my-app-primary);
 
+}
+
+
+.mat-sidenav-content{
+  background-color: mat-color($my-app-primary);
 }
 
 .mat-checkbox-layout {
@@ -70,8 +76,8 @@ mat-panel-title{
 
 //tło dla background kiedy dialog jest otwarty
 .backdropBackground{
-  background: rgba(75, 75, 75, 0.384); // Make sure this color has an opacity of less than 1
-  backdrop-filter: blur(8px); // This be the blur
+  background: mat-color($my-app-primary); // Jeśli ma działać blur, to opacity musi być mniej niż1
+  //backdrop-filter: blur(8px); // To jest blur
 }
 
 form{
@@ -114,6 +120,69 @@ th{
   .mat-tooltip {
     white-space: pre-line;
   }
+
+
+
+//dla Cookies
+.cookieConsentContainer {
+	z-index: 999;
+	width: 350px;
+	min-height: 20px;
+	box-sizing: border-box;
+	padding: 30px 30px 30px 30px;
+	background: mat-color($mat-blue, 100);
+	position: fixed;
+  bottom: 16px;
+	right: 16px;
+
+}
+.cookieConsentContainer .cookieTitle a {
+	font-family: OpenSans, arial, "sans-serif";
+	color: mat-color($mat-gray, 900);
+	font-size: 22px;
+	line-height: 20px;
+
+}
+.cookieConsentContainer .cookieDesc p {
+	margin: 0;
+	padding: 0;
+	font-family: OpenSans, arial, "sans-serif";
+	color: mat-color($mat-gray, 900);
+	font-size: 14px;
+	line-height: 20px;
+	display: block;
+	margin-top: 10px;
+} .cookieConsentContainer .cookieDesc a {
+	font-family: OpenSans, arial, "sans-serif";
+	color: mat-color($mat-gray, 900);
+	text-decoration: underline;
+}
+.cookieConsentContainer .cookieButton a {
+	display: inline-block;
+	font-family: OpenSans, arial, "sans-serif";
+	color: rgb(255, 255, 255);
+	font-size: 14px;
+	font-weight: bold;
+	margin-top: 14px;
+	background: #000000;
+	box-sizing: border-box; 
+	padding: 15px 24px;
+	text-align: center;
+}
+.cookieConsentContainer .cookieButton a:hover { 
+	cursor: pointer;
+	background: rgb(48, 93, 179);
+}
+// koniec dla Cookies
+
+
+
+
+
+
+
+
+
 
 @media only screen and (max-width: 1380px) {
   

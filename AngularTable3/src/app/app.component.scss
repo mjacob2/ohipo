@@ -26,7 +26,6 @@
 
 
 
-
 .side-naw{
   padding: 16px;
   display: flex;
@@ -77,12 +76,17 @@ table {
   }
 
 
-  .filtry-elementy{
-    display: flex;
-    flex-direction: column;;
+.filtry-elementy{
+display: flex;
+flex-direction: column;;
 padding-left: 16px;
 padding-right: 16px;
+
+.mat-checkbox{
+  margin-bottom: 18px;
+}
   }
+
 
 
 

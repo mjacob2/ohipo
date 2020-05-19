@@ -38,11 +38,12 @@
         <div class="filtry-naglowek">Filtry nieruchomości</div>
 
         <div class="filtry-elementy">
-          <mat-checkbox color="primary" matTooltip="Stan zaawansowania poniżej 90%"
+          <mat-checkbox color="primary" matTooltip="Zaznacz, jeśli stan zaawansowania budowy poniżej 90%"
             [formControl]="wTrakcieBudowyFilter">
             Nieruchomość w trakcie budowy
           </mat-checkbox>
         </div>
+
         <mat-divider></mat-divider>
 
         <div class="filtry-naglowek">Filtry kredytobiorcy</div>
@@ -50,21 +51,105 @@
           <mat-form-field>
             <input [formControl]="wDeklarowaneWplywy"
               matTooltip="Wpisz kwotę jaką jesteś w stanie zasilać konto co miesiąc, najlepiej z tytułu wynagrodzenia. Pozostaw pole puste aby wyłączyć ten filtr."
-              (input)="mWplywy" matInput type="number" matInput placeholder="Deklarowane wpływy na konto">
+              matInput type="number" matInput placeholder="Deklarowane wpływy na konto">
             <span matSuffix>zł</span>
           </mat-form-field>
 
           <mat-form-field>
-            <input [formControl]="wWiekNajstarszego"
+            <input [formControl]="wWiekNajstarszego" #wiekNajstarszegoInput
               matTooltip="Wpisz ile lat w tym roku kończy najstarszy kredytobiorca. Pozostaw pole puste aby wyłączyć ten filtr."
-              (input)="mWiekNajstarszego" matInput type="number" matInput placeholder="Wiek najstarszego kredytobiorcy">
+              matInput type="number" matInput placeholder="Wiek najstarszego kredytobiorcy">
             <span matSuffix>lat</span>
           </mat-form-field>
         </div>
+
         <mat-divider></mat-divider>
 
+        <div matTooltip="Ukryj oferty, które nie akceptują zaznaczonych poniżej źródeł dochodu jako główne."
+          class="filtry-naglowek">
+          Filtry źródła dochodu</div>
+
+        <div class="filtry-elementy filtryZrodlaDochodu">
+          <mat-checkbox color="primary" [formControl]="wUmowaOPraceCzasNieokreslony">
+            Umowa o pracę, czas nieokreślony
+          </mat-checkbox>
+        </div>
+
+        <div class="filtry-elementy">
+          <mat-checkbox color="primary" [formControl]="wUmowaOPraceCzasOkreslony">
+            Umowa o pracę, czas określony
+          </mat-checkbox>
+        </div>
+
+        <div class="filtry-elementy">
+          <mat-checkbox color="primary" [formControl]="wUmowaZlecenieDzielo">
+            Umowa Zlecenie / o dzieło
+          </mat-checkbox>
+        </div>
+
+        <div class="filtry-elementy">
+          <mat-checkbox color="primary" [formControl]="uUmowaNaZastepstwo">
+            Umowa na zastępstwo
+          </mat-checkbox>
+        </div>
+
+        <div class="filtry-elementy">
+          <mat-checkbox color="primary" [formControl]="wDzialanoscGospodarcza">
+            Działalność gospodarcza
+          </mat-checkbox>
+        </div>
+
+        <div class="filtry-elementy">
+          <mat-checkbox color="primary" [formControl]="wDochodyZnajmu">
+            Dochody z najmu
+          </mat-checkbox>
+        </div>
+
+        <div class="filtry-elementy">
+          <mat-checkbox color="primary" [formControl]="wEmerytura">
+            Emerytura
+          </mat-checkbox>
+        </div>
+
+        <div class="filtry-elementy">
+          <mat-checkbox color="primary" [formControl]="wRenta">
+            Renta na czas nieokreślony
+          </mat-checkbox>
+        </div>
+
+        <div class="filtry-elementy">
+          <mat-checkbox color="primary" [formControl]="wDywidendy">
+            Dywidendy
+          </mat-checkbox>
+        </div>
+
+        <div class="filtry-elementy">
+          <mat-checkbox color="primary" [formControl]="wDietyDelegacje">
+            Diety / delegacje
+          </mat-checkbox>
+        </div>
+
+        <div class="filtry-elementy">
+          <mat-checkbox color="primary" [formControl]="wDochodyMarynarzy">
+            Dochody marynarzy
+          </mat-checkbox>
+        </div>
+
+        <div class="filtry-elementy">
+          <mat-checkbox color="primary" [formControl]="wPowolanie">
+            Powołanie (np. członka zarządu)
+          </mat-checkbox>
+        </div>
+
+
+
+
+        <mat-divider></mat-divider>
+
+
+
         <!-- PRZYCISK KONTAKT Z DORADCĄ-->
-        <button mat-raised-button color="accent" (click)="openDialogKontakt()">
+        <button style="margin-top: 16px;" mat-raised-button color="accent" (click)="openDialogKontakt()">
           <mat-icon>stars</mat-icon> ZAPYTAJ DORADCĘ
         </button>
 
@@ -128,8 +213,11 @@
                     placeholder="Wartość nieruchomości">
                   <mat-error>{{errorMessageformWartoscNieruchomosci}}</mat-error>
                   <span matSuffix>zł</span>
+
                 </mat-form-field>
 
+                <!--     
+                <mat-slider class="dane-o-kredycie-element"></mat-slider> -->
 
 
                 <!--WKŁAD WŁASNY-->
@@ -139,7 +227,11 @@
                      matInput placeholder="Wkład własny">
                   <mat-error>{{errorMessageformWkladWlasny}}</mat-error>
                   <span matSuffix>zł</span>
+
                 </mat-form-field>
+
+
+
 
 
 
@@ -206,6 +298,11 @@
                   <mat-error>min. -10, max. 10</mat-error>
                 </mat-form-field>
 
+                <!-- PRZYCISK KONTAKT Z DORADCĄ-->
+                <button mat-raised-button color="accent" (click)="openDialogKontakt()">
+                  <mat-icon>stars</mat-icon> ZAPYTAJ DORADCĘ
+                </button>
+
 
                 <!-- DOLNY RZĄD 1 akordeona-->
                 <mat-action-row>
@@ -218,10 +315,7 @@
                       zaawansowane
                     </mat-slide-toggle>
 
-                    <!-- PRZYCISK KONTAKT Z DORADCĄ-->
-                    <button mat-raised-button color="accent" (click)="openDialogKontakt()">
-                      <mat-icon>stars</mat-icon> ZAPYTAJ DORADCĘ
-                    </button>
+
 
                     <!--PRZYCISK PRZELICZ-->
 
@@ -504,7 +598,7 @@
 
 
         <!--to jest paginator na dole tabeli-->
-        <mat-paginator [pageSizeOptions]="[15, 50, 100]"></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[15, 30, 50]"></mat-paginator>
 
 
 
@@ -537,6 +631,7 @@
 
 
 </div>
+
 
 
 

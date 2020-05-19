@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, ElementRef } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, MatSortable } from '@angular/material/sort';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -8,12 +8,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import oferty from '../app/oferty/oferty.json';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 import { CurrencyPipe } from '@angular/common';
 
 //Importuj Services
-import { HttpOfertyService } from './services/http/http-oferty.service';
+//import { HttpOfertyService } from './services/http/http-oferty.service';
 import { WzoryService } from './services/wzory/wzory.service';
 import { InputErrorsService } from './services/inputErrors/input-errors.service'
 
@@ -98,6 +98,7 @@ export interface PeriodicElement {
   maxLiczbaLat: number;
   maxWiek: number;
   maxWiekStatus: string;
+
 }
 
 //co się składa na ELEMENT DATA
@@ -135,7 +136,7 @@ export class AppComponent implements OnInit {
     changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
     private _snackBar: MatSnackBar,
     //kontruktor dla Service pobierania ofert './services/http-oferty.service'
-    private _http: HttpOfertyService,
+    //private _http: HttpOfertyService,
 
     //konstruktor żeby wyświetlić error dla min. wkład włąsny w postaci 50 000 zł zamiast 50000
     private currencyPipe: CurrencyPipe,
@@ -186,16 +187,36 @@ export class AppComponent implements OnInit {
   wDeklarowaneWplywy = new FormControl();
   wWiekNajstarszego = new FormControl();
   nameFilter = new FormControl();
+
+  //Filtry dochodów
+  wUmowaOPraceCzasNieokreslony = new FormControl();
+  wUmowaOPraceCzasOkreslony = new FormControl();
+  wUmowaZlecenieDzielo = new FormControl();
+  uUmowaNaZastepstwo = new FormControl();
+  wDzialanoscGospodarcza = new FormControl();
+  wDochodyZnajmu = new FormControl();
+  wEmerytura = new FormControl();
+  wRenta = new FormControl();
+  wDywidendy = new FormControl();
+  wDietyDelegacje = new FormControl();
+  wDochodyMarynarzy = new FormControl();
+  wPowolanie = new FormControl();
+
+
+
   globalFilter = '';
   //Ustal zmienne dla filtrów
   mLTV: number = 0;
+
+
+
 
   //wyświetlane kolumny   narazie ukrywamy 'select', po szczegółach
   displayedColumns: string[] = ['szczegoly', 'bank', 'ofertaNazwa', 'kosztyCalkowite', 'kosztyPoczatkowe', 'rata', 'oplatyMiesieczne', 'marza', 'pomostoweSuma'];
 
   //po tych kolumnach mogą być filtrowane oferty
   filteredValues = {
-    minimalneWplywyStatus: '', bank: '', maxLiczbaLat: '', maxWiekStatus: '', ofertaNazwa: '', minKwotaKredytuFILTR: '', maxKwotaKredytuFILTR: '', wTrakcieBudowy: '', maxLTVsave: '', minLTVsave: '', doKiedyObowiazujeStatus: '', odKiedyObowiazuje: ''
+    minimalneWplywyStatus: '', bank: '', maxLiczbaLat: '', maxWiekStatus: '', ofertaNazwa: '', minKwotaKredytuFILTR: '', maxKwotaKredytuFILTR: '', wTrakcieBudowy: '', maxLTVsave: '', minLTVsave: '', doKiedyObowiazujeStatus: '', odKiedyObowiazuje: '', wWielkimMiescieFilterKolumna: ''
   };
 
 
@@ -209,6 +230,11 @@ export class AppComponent implements OnInit {
 
   /** to funkcja zaszyta w przycisku PRZELICZ */
   przelicz() {
+
+
+    console.log('player name: ', this.wiekNajstarszegoInput.nativeElement.value);
+
+
 
     this.mKwotaKredytu = this.mWartoscNieruchomosci - this.mwkladWlasny;
 
@@ -427,6 +453,10 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
       if (this.mLiczbaLat > 30) {
         this.filteredValues['maxLiczbaLat'] = "35";
         this.dataSource.filter = JSON.stringify(this.filteredValues);
+      } else {
+        element.minLTVsave = "abc";
+        this.filteredValues['maxLiczbaLat'] = "";
+        this.dataSource.filter = JSON.stringify(this.filteredValues);
       }
 
 
@@ -478,6 +508,8 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
       }
 
 
+
+
       /** USTAL KWOTĘ WYMAGANYCH MINIMALNYCH WPŁYWÓW DLA OFERT, KTÓRE WYMAGAJĄ WPŁYWÓW MIN 2 X RATA
        * I OD RAZU USTAW DLA NICH FILTR NA PODSTAWIE MINIMALNYCH WPŁYWÓW, ŻEBY POTEM, JAK KTOŚ PRZELICZY ZNÓW
       * OFERTY, TO ŻEBY ZASTOSOWAĆ NOWY FILTR Z NOWYMI WARTOŚCIAMI
@@ -495,6 +527,24 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
           element.minimalneWplywyStatus = "wplywyMalo"
         }
       }
+
+
+      /**Tutaj jak klikniesz przelicz sprawdź, ile jest wpisanych lat dla filtra WiekNajstarszegoKredytobiorcy i dodaj zmienioną liczbę lat kredytu (okres trwania).
+      Musi to tu byc, bo inaczej, jak wpiszesz filtr wieknajstarszego i potem zminisz liczbę lat kredytu, to się filtr nie zaktualizuje */
+
+      ELEMENT_DATA.forEach((element) => {
+        if (+this.mLiczbaLat + +this.wiekNajstarszegoInput.nativeElement.value < element.maxWiek) {
+          element.maxWiekStatus = "wiekOK"
+          this.filteredValues['maxWiekStatus'] = "wiekOK";
+        } else {
+          element.maxWiekStatus = "wiekMalo"
+        }
+      })
+      this.dataSource.filter = JSON.stringify(this.filteredValues);
+
+
+
+
     });
 
 
@@ -533,6 +583,8 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  @ViewChild('wiekNajstarszegoInput') wiekNajstarszegoInput: ElementRef;
 
   // konstruktor dla ERROR dla  formWartoscNieruchomosci
   get errorMessageformWartoscNieruchomosci(): string {
@@ -720,6 +772,9 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
       }
     });
 
+
+
+
     //FILTR: Deklarowane wpływy
     this.wDeklarowaneWplywy.valueChanges.subscribe((wDeklarowaneWplywyFilterValue) => {
       ELEMENT_DATA.forEach((element) => {
@@ -735,24 +790,23 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
     //FILTR: Wiek najstarszego kredytobiorcy
     this.wWiekNajstarszego.valueChanges.subscribe((wWiekNajstarszegoFilterValue) => {
-      console.log(+this.mLiczbaLat + +wWiekNajstarszegoFilterValue);
-
       ELEMENT_DATA.forEach((element) => {
-        if (+this.mLiczbaLat + +wWiekNajstarszegoFilterValue <= element.maxWiek) {
+        if (+this.mLiczbaLat + +wWiekNajstarszegoFilterValue < element.maxWiek) {
           element.maxWiekStatus = "wiekOK"
-
-          console.log(element.maxWiekStatus);
-
           this.filteredValues['maxWiekStatus'] = "wiekOK";
-
         } else {
           element.maxWiekStatus = "wiekMalo"
-          console.log(element.maxWiekStatus);
-
         }
       })
       this.dataSource.filter = JSON.stringify(this.filteredValues);
     });
+
+
+
+
+
+
+
 
 
 
