@@ -232,7 +232,8 @@ mat-dialog-actions{
 .mat-slider-thumb-label-text {
   opacity: 1 !important;
 }
-.mat-slider-thumb-label{
+
+.mat-slider-thumb-label{ //kolor łezki slidera
   background-color: mat-color($my-app-accent) !important;
 }
 

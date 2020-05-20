@@ -10,6 +10,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 
+
 import { CurrencyPipe } from '@angular/common';
 
 //Importuj Services
@@ -125,6 +126,7 @@ const ELEMENT_DATA: PeriodicElement[] = oferty
 
 
 export class AppComponent implements OnInit {
+
 
 
 
@@ -273,7 +275,7 @@ export class AppComponent implements OnInit {
     this.mKwotaKredytu = this.mWartoscNieruchomosci - this.wkladWlasnyNowy;
 
     console.log("wartość nieruchomości: " + this.mWartoscNieruchomosci);
-    console.log("wkład własny: " + this.mwkladWlasny);
+    console.log("wkład własny: " + this.wkladWlasnyNowy);
     console.log("kota kredytu: " + this.mKwotaKredytu);
     console.log("liczba lat: " + this.mLiczbaLat);
 
@@ -593,6 +595,9 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
       duration: 4000,
     });
 
+
+
+
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -634,6 +639,12 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
         form.hasError('max') ?
           'Maksymalnie 2 000 000' : '';
   }
+
+
+
+
+
+
 
   // konstruktor dla ERROR dla  formWkladWlasny
   get errorMessageformWkladWlasny(): string {
@@ -722,8 +733,6 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
     //CUSTOMOWY FILTR
     this.dataSource.filterPredicate = this.customFilterPredicate();
-
-
 
   }
 
@@ -837,6 +846,16 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
       })
       this.dataSource.filter = JSON.stringify(this.filteredValues);
     });
+
+
+
+
+
+
+
+
+
+
 
 
     //Dzisiajsza data dla OD-kiedyobowiazuje
