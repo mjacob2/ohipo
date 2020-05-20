@@ -2,19 +2,27 @@
 
   <mat-toolbar color="primary" class="example-toolbar">
     <button mat-icon-button (click)="snav2.toggle()">
-      <mat-icon>menu</mat-icon>
+      <mat-icon>settings</mat-icon> <span class="usun-na-malym"> DANE O KREDYCIE</span>
     </button>
+
+    <span class="example-spacer usun-na-malym"></span>
+
     <h1 class="app-name">ohipo.pl</h1>
     <!--Example spacer robi przerwę miedzy lewąstroną Toolbar a prawą, żeby było łądne dopasowanie do prawej i lewej.-->
-    <span class="example-spacer"></span>
+    <span class="example-spacer "></span>
 
 
-
+    <!-- PRZYCISK APLIKACJE-->
+    <button mat-button matTooltip="Opcja dostępna wkrótce">
+      <mat-icon>apps</mat-icon> <span class="usun-na-malym"> APLIKACJE </span>
+    </button>
 
     <!-- PRZYCISK FILTRUJ-->
     <button mat-button (click)="snav.toggle()">
-      <mat-icon>filter_list</mat-icon> FILTRY
+      <mat-icon>filter_list</mat-icon> <span class="usun-na-malym"> FILTRUJ OFERTY </span>
     </button>
+
+
 
   </mat-toolbar>
 
@@ -159,18 +167,148 @@
     <!-- 
       DRUGI SIDE NAW - LEWY
     -->
-    <mat-sidenav fixedTopGap="64" style="z-index: 100;" #snav2 [mode]="mobileQuery.matches ? 'over' : 'side'"
-      [fixedInViewport]="mobileQuery.matches">
-      <mat-nav-list>
-        <a mat-list-item routerLink=".">O porównywarce </a>
-        <a mat-list-item routerLink=".">Kontakt </a>
+    <mat-sidenav opened="true" fixedTopGap="64" style="z-index: 100;" #snav2
+      [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches">
+      <div class="side-naw filtry">
+
+        <!-- narazie niech zniknie ten krzyżyk, bo się nie mieści na małym ekranie.-->
+
+        <!--        <button class="close" mat-icon-button (click)="snav2.toggle()">
+          <mat-icon style="color: gray;">close</mat-icon>
+        </button>-->
+
+
+
+
+        <form [formGroup]="myGroup">
+
+          <!-- stara class: class="dane-o-kredycie-element"-->
+
+          <div class="dane-naglowek">Rodzaj nieruchomości</div>
+
+
+          <!--RODZAJ NIERUCHOMOSCI-->
+          <mat-form-field class="filtry-elementy">
+            <mat-select [disabled]="true" [value]="selectedOptionRodzajNieruchomosci"
+              matTooltip="Opcja zmiany dostępna wkrótce">
+              <mat-option *ngFor="let RodzajNieruchomosci of RodzajeNieruchomosci" [value]="RodzajNieruchomosci.value">
+                {{RodzajNieruchomosci.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="dane-naglowek">Wartość nieruchomości</div>
+
+          <!-- WARTOŚĆ NIERUCHOMOŚCI-->
+          <mat-form-field hideRequiredMarker class="filtry-elementy">
+            <input autofocus required min="60000" max="2000000" formControlName="formWartoscNieruchomosci"
+              (input)="mWartoscNieruchomosci=$event.target.value" matInput type="number" matInput>
+            <mat-error>{{errorMessageformWartoscNieruchomosci}}</mat-error>
+            <span matSuffix>zł</span>
+          </mat-form-field>
+
+          <div class="dane-naglowek">Wkład własny</div>
+          <!--WKŁAD WŁASNY-->
+          <mat-form-field hideRequiredMarker class="filtry-elementy">
+            <input required min="6000" max="2000000" formControlName="formWkladWlasny"
+              (input)="mwkladWlasny=$event.target.value"  matInput type="number"  matInput>
+            <mat-error>{{errorMessageformWkladWlasny}}</mat-error>
+            <span matSuffix>zł</span>
+          </mat-form-field>
+
+          <div class="dane-naglowek">Liczba lat</div>
+
+          <!--LICZBA LAT-->
+          <mat-form-field hideRequiredMarker class="filtry-elementy">
+            <input min="5" max="35" required formControlName="formLiczbaLat" (input)="mLiczbaLat=$event.target.value"
+              matInput type="number" matInput>
+            <mat-error>{{errorMessageformLiczbaLat}}</mat-error>
+          </mat-form-field>
+
+
+
+
+
+          <!--POKAŻ OPCJE ZAAWANSOWANE-->
+          <mat-slide-toggle class="filtry-elementy" style="margin-top: 16px;" color="primary"
+            [ngModelOptions]="{standalone: true}" [(ngModel)]="mpokazOpcjeZaawansowane">
+            Opcje
+            zaawansowane
+          </mat-slide-toggle>
+
+          <mat-divider *ngIf="mpokazOpcjeZaawansowane"></mat-divider>
+
+          <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">Rodzaj rat</div>
+
+          <!--RODZAJ RAT-->
+          <mat-form-field *ngIf="mpokazOpcjeZaawansowane" class="filtry-elementy">
+            <mat-select [disabled]="true" [value]="selectedOptionRaty" matTooltip="Opcja zmiany dostępna wkrótce">
+              <mat-option *ngFor="let RodzajRat of RodzajeRat" [value]="RodzajRat.value">
+                {{RodzajRat.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">Ubezp. pomostowe ile miesięcy</div>
+
+          <!--POMOSTOWE ILE MIESIĘCY-->
+          <mat-form-field hideRequiredMarker *ngIf="mpokazOpcjeZaawansowane" class="filtry-elementy">
+            <input required min="0" max="48" formControlName="formPomostoweIleMiesiecy"
+              matTooltip="Podaj ile miesięcy trzeba będzie płacić ubezpieczenie pomostowe"
+              (input)="mPomostoweIleMiesiecy" [(ngModel)]="mPomostoweIleMiesiecy"
+              (ngModelChange)="mPomostoweIleMiesiecy = $event" matInput type="number" matInput>
+            <mat-error>min. 0, max. 48</mat-error>
+          </mat-form-field>
+
+          <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">WIBOR 3M</div>
+
+          <!--WIBOR 3M-->
+          <mat-form-field hideRequiredMarker *ngIf="mpokazOpcjeZaawansowane" class="filtry-elementy">
+            <input required min="-10" max="10" formControlName="formWIBOR3M" [(ngModel)]="mWIBOR3M"
+              (ngModelChange)="mWIBOR3M = $event" matInput type="number" matInput (input)="mWIBOR3M">
+            <span matSuffix>%</span>
+            <mat-error>min. -10, max. 10</mat-error>
+          </mat-form-field>
+
+          <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">WIBOR 6M</div>
+
+          <!--WIBOR 6M-->
+          <mat-form-field hideRequiredMarker *ngIf="mpokazOpcjeZaawansowane" class="filtry-elementy">
+            <input required min="-10" max="10" formControlName="formWIBOR6M" [(ngModel)]="mWIBOR6M"
+              (ngModelChange)="mWIBOR6M = $event" matInput type="number" matInput (input)="mWIBOR6M">
+            <span matSuffix>%</span>
+            <mat-error>min. -10, max. 10</mat-error>
+          </mat-form-field>
+        </form>
+
+
+
         <!-- PRZYCISK KONTAKT Z DORADCĄ-->
-        <button mat-raised-button color="accent" (click)="openDialogKontakt()">
+        <button style="margin-right: 20px; margin-top: 18px;" mat-raised-button color="accent"
+          (click)="openDialogKontakt()">
           <mat-icon>stars</mat-icon> ZAPYTAJ DORADCĘ
         </button>
-      </mat-nav-list>
 
 
+        <!--PRZYCISK PRZELICZ-->
+
+        <button [disabled]="!myGroup.valid" style="margin-right: 20px; margin-top: 18px;" mat-raised-button
+          color="primary" (click)="przelicz()">PRZELICZ</button>
+
+
+
+        <!-- narazie tego poniżej nie pokazój, dopóki nie będzie na samym dole zawsze
+
+          <mat-nav-list>
+          <a mat-list-item routerLink=".">O porównywarce </a>
+          <a mat-list-item routerLink=".">Kontakt </a>
+        </mat-nav-list>
+
+          -->
+
+
+
+      </div>
     </mat-sidenav>
 
 
@@ -186,148 +324,6 @@
 
 
 
-        <div class="basic-container">
-          <!-- AKORDEON-->
-          <mat-accordion>
-            <!-- Pierwszy panel neich będzie otwarty przy starcie-->
-
-            <form [formGroup]="myGroup">
-
-
-              <mat-expansion-panel *ngFor="let item of [1]; first as isFirst" [(expanded)]="xpandStatus">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <mat-icon class="ikona_akordeon">settings</mat-icon>
-                    Dane o kredycie
-                  </mat-panel-title>
-                  <mat-panel-description>
-
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
-
-
-                <!-- WARTOŚĆ NIERUCHOMOŚCI-->
-                <mat-form-field hideRequiredMarker class="dane-o-kredycie-element">
-                  <input required min="60000" max="2000000" formControlName="formWartoscNieruchomosci"
-                    (input)="mWartoscNieruchomosci=$event.target.value" matInput type="number" matInput
-                    placeholder="Wartość nieruchomości">
-                  <mat-error>{{errorMessageformWartoscNieruchomosci}}</mat-error>
-                  <span matSuffix>zł</span>
-
-                </mat-form-field>
-
-                <!--     
-                <mat-slider class="dane-o-kredycie-element"></mat-slider> -->
-
-
-                <!--WKŁAD WŁASNY-->
-                <mat-form-field hideRequiredMarker class="dane-o-kredycie-element">
-                  <input required min="6000" max="2000000" formControlName="formWkladWlasny"
-                    (input)="mwkladWlasny=$event.target.value"  matInput type="number"
-                     matInput placeholder="Wkład własny">
-                  <mat-error>{{errorMessageformWkladWlasny}}</mat-error>
-                  <span matSuffix>zł</span>
-
-                </mat-form-field>
-
-
-
-
-
-
-
-                <!--LICZBA LAT-->
-                <mat-form-field hideRequiredMarker class="dane-o-kredycie-element">
-                  <input min="5" max="35" required formControlName="formLiczbaLat"
-                    (input)="mLiczbaLat=$event.target.value" matInput type="number" matInput placeholder="Liczba lat">
-                  <mat-error>{{errorMessageformLiczbaLat}}</mat-error>
-                </mat-form-field>
-
-
-
-                <!--RODZAJ NIERUCHOMOSCI-->
-                <mat-form-field class="dane-o-kredycie-element">
-                  <mat-label>Rodzaj nieruchomości </mat-label>
-                  <mat-select [disabled]="true" [value]="selectedOptionRodzajNieruchomosci"
-                    matTooltip="Opcja zmiany dostępna wkrótce">
-                    <mat-option *ngFor="let RodzajNieruchomosci of RodzajeNieruchomosci"
-                      [value]="RodzajNieruchomosci.value">
-                      {{RodzajNieruchomosci.viewValue}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-
-
-                <!--RODZAJ RAT-->
-                <mat-form-field *ngIf="mpokazOpcjeZaawansowane" class="dane-o-kredycie-element">
-                  <mat-label>Rodzaj rat </mat-label>
-                  <mat-select [disabled]="true" [value]="selectedOptionRaty" matTooltip="Opcja zmiany dostępna wkrótce">
-                    <mat-option *ngFor="let RodzajRat of RodzajeRat" [value]="RodzajRat.value">
-                      {{RodzajRat.viewValue}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-
-
-                <!--POMOSTOWE ILE MIESIĘCY-->
-                <mat-form-field hideRequiredMarker *ngIf="mpokazOpcjeZaawansowane" class="dane-o-kredycie-element">
-                  <input required min="0" max="48" formControlName="formPomostoweIleMiesiecy"
-                    matTooltip="Podaj ile miesięcy trzeba będzie płacić ubezpieczenie pomostowe"
-                    (input)="mPomostoweIleMiesiecy" [(ngModel)]="mPomostoweIleMiesiecy"
-                    (ngModelChange)="mPomostoweIleMiesiecy = $event" matInput type="number" matInput
-                    placeholder="Ile miesięcy ubezp. pomostowe">
-                  <mat-error>min. 0, max. 48</mat-error>
-                </mat-form-field>
-
-                <!--WIBOR 3M-->
-                <mat-form-field hideRequiredMarker *ngIf="mpokazOpcjeZaawansowane" class="dane-o-kredycie-element">
-                  <input required min="-10" max="10" formControlName="formWIBOR3M" [(ngModel)]="mWIBOR3M"
-                    (ngModelChange)="mWIBOR3M = $event" matInput type="number" matInput (input)="mWIBOR3M"
-                    placeholder="WIBOR 3M">
-                  <span matSuffix>%</span>
-                  <mat-error>min. -10, max. 10</mat-error>
-                </mat-form-field>
-
-
-                <!--WIBOR 6M-->
-                <mat-form-field hideRequiredMarker *ngIf="mpokazOpcjeZaawansowane" class="dane-o-kredycie-element">
-                  <input required min="-10" max="10" formControlName="formWIBOR6M" [(ngModel)]="mWIBOR6M"
-                    (ngModelChange)="mWIBOR6M = $event" matInput type="number" matInput (input)="mWIBOR6M"
-                    placeholder="WIBOR 6M">
-                  <span matSuffix>%</span>
-                  <mat-error>min. -10, max. 10</mat-error>
-                </mat-form-field>
-
-                <!-- PRZYCISK KONTAKT Z DORADCĄ-->
-                <button mat-raised-button color="accent" (click)="openDialogKontakt()">
-                  <mat-icon>stars</mat-icon> ZAPYTAJ DORADCĘ
-                </button>
-
-
-                <!-- DOLNY RZĄD 1 akordeona-->
-                <mat-action-row>
-                  <div fxLayout="row" style="width: 100%;" fxLayoutAlign="space-between start">
-
-                    <!--POKAŻ OPCJE ZAAWANSOWANE-->
-                    <mat-slide-toggle color="primary" [ngModelOptions]="{standalone: true}"
-                      [(ngModel)]="mpokazOpcjeZaawansowane">
-                      Opcje
-                      zaawansowane
-                    </mat-slide-toggle>
-
-
-
-                    <!--PRZYCISK PRZELICZ-->
-
-                    <button [disabled]="!myGroup.valid" style="margin-right: 20px;" mat-raised-button color="primary"
-                      (click)="przelicz()">PRZELICZ</button>
-                  </div>
-                </mat-action-row>
-              </mat-expansion-panel>
-            </form>
-          </mat-accordion>
-        </div>
-
         <!-- T
         A
           B
@@ -335,7 +331,7 @@
               L
                 A-->
         <div id="kontener" class="wasko mat-elevation-z8">
-          <table class="tabela" id="tabela" mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
+          <table id="tabela" mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
 
             <!-- Szczegóły Column -->
             <ng-container matColumnDef="szczegoly" sticky>
@@ -598,7 +594,7 @@
 
 
         <!--to jest paginator na dole tabeli-->
-        <mat-paginator [pageSizeOptions]="[15, 30, 50]"></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[20, 30, 50]"></mat-paginator>
 
 
 
@@ -608,7 +604,8 @@
           przepisów
           kodeksu
           cywilnego ani przyrzeczenia udzielenia określonego w
-          jego treści finansowania. Zawiera on wyłącznie informacje dodatkowe, które zgodnie z art.12 ustawy o kredycie
+          jego treści finansowania. Pomimo dołożenia wszelkich starań może zawierać błędy i/lub pewne uproszczenia.
+          Zawiera on wyłącznie informacje dodatkowe, które zgodnie z art.12 ustawy o kredycie
           hipotecznym oraz o nadzorze nad pośrednikami
           kredytu hipotecznego i agentami mogą być przekazane konsumentowi przez agenta kredytu hipotecznego. Jego celem
           jest zwrócenie uwagi konsumenta na
@@ -619,6 +616,7 @@
           kredytu hipotecznego i agentami przekazywane są oddzielnie w dokumentach i terminach uwzględniających
           procedury
           kredytowe poszczególnych kredytodawców.
+          <br>
           <br>
           Middlers Sp. z o.o. z siedzibą we Wrocławiu ul. Leszczyńskiego 4/29, 50-078 Wrocław, zarejestrowana w Sądzie
           Rejonowym dla Wrocławia-Fabrycznej KRS 0000532823, NIP 8971803272, REGON 360170795 kapitał zakładowy 5.000,00

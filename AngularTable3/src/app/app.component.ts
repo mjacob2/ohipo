@@ -111,6 +111,7 @@ const ELEMENT_DATA: PeriodicElement[] = oferty
   selector: 'app-root',
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.component.html',
+  //animacje dla rozwijanego wiersza kolumny
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
@@ -147,7 +148,7 @@ export class AppComponent implements OnInit {
 
 
   ) { // tu rzeczy dla side Barów
-    this.mobileQuery = media.matchMedia('(max-width: 1380px)');
+    this.mobileQuery = media.matchMedia('(max-width: 1700px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
@@ -155,8 +156,6 @@ export class AppComponent implements OnInit {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  //zmienna dla akordeona pierwszego
-  xpandStatus;
 
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
@@ -553,8 +552,6 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
       duration: 4000,
     });
 
-    //zamknij akordeon po obliczeniach
-    this.xpandStatus = false;
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -649,6 +646,8 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
   ngOnInit() {
 
+
+
     //stwórz form Bilder
     this.zbudujFormularz();
 
@@ -664,7 +663,6 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
     //    console.log(this.ofertyPobrane);
     //  })
 
-    this.xpandStatus = true;
 
 
 

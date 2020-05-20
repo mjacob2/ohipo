@@ -176,16 +176,23 @@ th{
 // koniec dla Cookies
 
 
+mat-dialog-actions{
+  margin-bottom: 30px;
+}
+
+
+.dane-naglowek{
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 16px;
+    }
 
 
 
 
-
-
-
-
-@media only screen and (max-width: 1380px) {
+@media only screen and (max-width: 1700px) {
   
+
 
   #kontener{
     margin-left: 0px;
@@ -213,3 +220,21 @@ th{
 
 
 }
+
+@media only screen and (max-width: 1000px) {
+
+  .usun-na-malym{
+    display: none;
+      }
+
+      .dane-naglowek{
+        margin-top: 6px;
+          }
+}
+
+.mat-dialog-container {
+margin: 0;
+overflow: visible
+
+}
+
