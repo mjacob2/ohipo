@@ -16,6 +16,7 @@ import { CurrencyPipe } from '@angular/common';
 //import { HttpOfertyService } from './services/http/http-oferty.service';
 import { WzoryService } from './services/wzory/wzory.service';
 import { InputErrorsService } from './services/inputErrors/input-errors.service'
+import { MatSliderChange } from '@angular/material/slider';
 
 
 //import { SnackBarService } from './services/snack-bar.service';
@@ -127,6 +128,13 @@ export class AppComponent implements OnInit {
 
 
 
+
+
+  //dodaj do slidera % na końcu łezki (label) do
+  formatLabel(value: number) {
+    return value + '%';
+  }
+
   //dla responsywnego sideNMavigacji
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -165,11 +173,43 @@ export class AppComponent implements OnInit {
   //Grupa dla Formularza sprawdzania walidacji danych
   myGroup: FormGroup;
 
+
+
+
+
+
+
+  //ustal wartość nieruchomosći zmienianą za każdym razem, gdy zmienia się input wartość nieruchomości
+  ngWartoscNieruchomosci = 300000
+
   // Utwórz zmienną dla kwoty deklarowanych wpływów
-  mWartoscNieruchomosci: number = 0;
-  mwkladWlasny: number = 0;
+  mWartoscNieruchomosci = +this.ngWartoscNieruchomosci;
+
+  //wpisz w formularzu od razu liczbę lat
+  ngLiczbaLat = 25
+  // ustal początkowy wkłąd własny procentowo
+
+  sliderValue = 10
+  wkladWlasnyNowy = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
+
+
+  //weź aktualną wartość nieruchomości za każdym razem, gdy zmieni się input wartość nieruchomości
+  ngWartoscNieruchomosciZmiana(wartosc: number) {
+    this.ngWartoscNieruchomosci = wartosc;
+    this.wkladWlasnyNowy = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
+  }
+
+  //weż value ze slidera
+  sliderSunie(sliderWkladWlasny: MatSliderChange) {
+    this.sliderValue = sliderWkladWlasny.value
+    this.wkladWlasnyNowy = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
+  }
+
+  // używany w działaniach wkład własny ustaw na wwyokość obliczoną przez slider
+  mwkladWlasny = this.wkladWlasnyNowy
+
   mKwotaKredytu: number = 0;
-  mLiczbaLat: number = 0;
+  mLiczbaLat = this.ngLiczbaLat;
   /**Zaznacz domyślnie RATY RÓWNE */
   selectedOptionRaty = '0';
   //zaznacz domyslnie rodzaj nieruchomości
@@ -230,12 +270,13 @@ export class AppComponent implements OnInit {
   /** to funkcja zaszyta w przycisku PRZELICZ */
   przelicz() {
 
+    this.mKwotaKredytu = this.mWartoscNieruchomosci - this.wkladWlasnyNowy;
 
-    console.log('player name: ', this.wiekNajstarszegoInput.nativeElement.value);
+    console.log("wartość nieruchomości: " + this.mWartoscNieruchomosci);
+    console.log("wkład własny: " + this.mwkladWlasny);
+    console.log("kota kredytu: " + this.mKwotaKredytu);
+    console.log("liczba lat: " + this.mLiczbaLat);
 
-
-
-    this.mKwotaKredytu = this.mWartoscNieruchomosci - this.mwkladWlasny;
 
     //Licz wszystko to co jest potrzebne dla każdej z ofert z osobna
     ELEMENT_DATA.forEach((element) => {
@@ -594,12 +635,6 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
           'Maksymalnie 2 000 000' : '';
   }
 
-
-
-
-
-
-
   // konstruktor dla ERROR dla  formWkladWlasny
   get errorMessageformWkladWlasny(): string {
 
@@ -652,7 +687,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
     this.zbudujFormularz();
 
     //sprawdć, czy nie zmieniła się wartość nieruchomoci i jeśli tak, to wymagaj minimum 10% wartości nieruchomości w polu wkład własny
-    this.zaktualizujValidary();
+    //  this.zaktualizujValidary();
 
 
     // Działa ale wyłączone bo powoduje błąd w wersji testowej
@@ -688,6 +723,8 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
     //CUSTOMOWY FILTR
     this.dataSource.filterPredicate = this.customFilterPredicate();
 
+
+
   }
 
   zbudujFormularz() {
@@ -699,23 +736,22 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
       formPomostoweIleMiesiecy: new FormControl("", [Validators.max(48), Validators.min(0)]),
       formWIBOR3M: new FormControl("", [Validators.max(10), Validators.min(-10)]),
       formWIBOR6M: new FormControl("", [Validators.max(10), Validators.min(-10)]),
-      formWkladWlasny: new FormControl("", [Validators.max(2000000), Validators.min(1)]),
+      // formWkladWlasny: new FormControl("", [Validators.max(2000000), Validators.min(1)]),
 
     });
   }
 
 
-  zaktualizujValidary() {
-    const formWkladWlasnyControl = this.myGroup.get('formWkladWlasny');
-    //const formWartoscNieruchomosciControl = this.myGroup.get('formWartoscNieruchomosci');
+  // zaktualizujValidary() {
+  //   const formWkladWlasnyControl = this.myGroup.get('formWkladWlasny');
 
-    this.myGroup.get('formWartoscNieruchomosci').valueChanges
-      .subscribe(formWartoscNieruchomosci => {
-        formWkladWlasnyControl.setValidators([Validators.required, Validators.min(this.mWartoscNieruchomosci * 0.1)]);
-        formWkladWlasnyControl.updateValueAndValidity();
+  //   this.myGroup.get('formWartoscNieruchomosci').valueChanges
+  //     .subscribe(formWartoscNieruchomosci => {
+  //      formWkladWlasnyControl.setValidators([Validators.required, Validators.min(this.mWartoscNieruchomosci * 0.1)]);
+  //      formWkladWlasnyControl.updateValueAndValidity();
 
-      });
-  }
+  //    });
+  //  }
 
 
 
@@ -757,7 +793,10 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
   }
 
 
+
   ngAfterViewInit() {
+
+
 
     //FILTR: W trakcie Budowy checkbox
     this.wTrakcieBudowyFilter.valueChanges.subscribe((wTrakcieBudowyFilterValue) => {
@@ -798,16 +837,6 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
       })
       this.dataSource.filter = JSON.stringify(this.filteredValues);
     });
-
-
-
-
-
-
-
-
-
-
 
 
     //Dzisiajsza data dla OD-kiedyobowiazuje
@@ -851,6 +880,8 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
       return `${startIndex + 1} – ${endIndex} z ${length}`;
     }
 
+
+
   }
 
 
@@ -880,6 +911,9 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
   }
 
 
+
+
+
   openDialogKontakt() {
     const dialogRef = this.dialogKontakt.open(DialogKontakt, {
 
@@ -905,3 +939,5 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
   templateUrl: './dialog-kontakt.html',
 })
 export class DialogKontakt { }
+
+

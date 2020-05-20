@@ -202,26 +202,37 @@
           <!-- WARTOŚĆ NIERUCHOMOŚCI-->
           <mat-form-field hideRequiredMarker class="filtry-elementy">
             <input autofocus required min="60000" max="2000000" formControlName="formWartoscNieruchomosci"
-              (input)="mWartoscNieruchomosci=$event.target.value" matInput type="number" matInput>
+              (input)="mWartoscNieruchomosci=$event.target.value" matInput matInput [ngModel]="ngWartoscNieruchomosci"
+              (ngModelChange)="ngWartoscNieruchomosciZmiana($event)">
             <mat-error>{{errorMessageformWartoscNieruchomosci}}</mat-error>
             <span matSuffix>zł</span>
           </mat-form-field>
 
-          <div class="dane-naglowek">Wkład własny</div>
-          <!--WKŁAD WŁASNY-->
+          <div class="dane-naglowek">Wkład własny: <span
+              *ngIf="wkladWlasnyNowy > 0">{{wkladWlasnyNowy | currency:'zł':'symbol':'1.0-0':'fr'}}</span></div>
+
+          <mat-slider (input)="sliderSunie($event)" style="margin-top: 20px;" class="filtry-elementy suwak" thumbLabel
+            [displayWith]="formatLabel" min="10" max="60">
+          </mat-slider>
+
+
+
+
+          <!--WKŁAD WŁASNY
           <mat-form-field hideRequiredMarker class="filtry-elementy">
             <input required min="6000" max="2000000" formControlName="formWkladWlasny"
               (input)="mwkladWlasny=$event.target.value"  matInput type="number"  matInput>
             <mat-error>{{errorMessageformWkladWlasny}}</mat-error>
             <span matSuffix>zł</span>
           </mat-form-field>
+-->
 
           <div class="dane-naglowek">Liczba lat</div>
 
           <!--LICZBA LAT-->
           <mat-form-field hideRequiredMarker class="filtry-elementy">
-            <input min="5" max="35" required formControlName="formLiczbaLat" (input)="mLiczbaLat=$event.target.value"
-              matInput type="number" matInput>
+            <input [ngModel]="ngLiczbaLat" min="5" max="35" required formControlName="formLiczbaLat"
+              (input)="mLiczbaLat=$event.target.value" matInput type="tel" matInput>
             <mat-error>{{errorMessageformLiczbaLat}}</mat-error>
           </mat-form-field>
 
