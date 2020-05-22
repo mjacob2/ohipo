@@ -16,7 +16,7 @@ import { CurrencyPipe } from '@angular/common';
 //Importuj Services
 //import { HttpOfertyService } from './services/http/http-oferty.service';
 import { WzoryService } from './services/wzory/wzory.service';
-import { InputErrorsService } from './services/inputErrors/input-errors.service'
+//import { InputErrorsService } from './services/inputErrors/input-errors.service'
 import { MatSliderChange } from '@angular/material/slider';
 
 
@@ -29,6 +29,12 @@ import { MatSliderChange } from '@angular/material/slider';
 
 /** Tutaj logika zaznacz jaki rodzaj rat Cię interesuje */
 interface RodzajRat {
+  value: string;
+  viewValue: string;
+}
+
+/** Tutaj logika zaznacz w któym banku konto */
+interface KontoJakiBank {
   value: string;
   viewValue: string;
 }
@@ -72,7 +78,7 @@ export interface PeriodicElement {
   oprocStale: string;
   oprocStaleIleLat: number;
   oprocStaleMarzaPotem: number;
-  doKiedyObowiazuje: string;
+  doKiedyObowiazuje: any;
   odKiedyObowiazuje: string;
   maxLTVsave: string;
   minLTVsave: string;
@@ -86,10 +92,7 @@ export interface PeriodicElement {
   maxKwotaKredytu: number;
   maxKwotaKredytuFILTR: string;
   pomostoweTOTAL: number;
-  link: string;
-  dataDostepu: any;
   doKiedyObowiazujeStatus: string;
-  doKiedyObowiazujeWyswietl: string;
   minimalneWpływy: number;
   minimalneWplywyStatus: string;
   minimalneWpływy2xRata: string;
@@ -150,7 +153,7 @@ export class AppComponent implements OnInit {
     //private _http: HttpOfertyService,
 
     //konstruktor żeby wyświetlić error dla min. wkład włąsny w postaci 50 000 zł zamiast 50000
-    private currencyPipe: CurrencyPipe,
+    //private currencyPipe: CurrencyPipe,
 
     //kontruktor dla dialogu kontaktowego
     public dialogKontakt: MatDialog,
@@ -216,6 +219,12 @@ export class AppComponent implements OnInit {
   selectedOptionRaty = '0';
   //zaznacz domyslnie rodzaj nieruchomości
   selectedOptionRodzajNieruchomosci = '0';
+  //zaznacz domyslnie w jakim banku konto: inny
+  selectedOptionInny = '0';
+
+  //zmienna żeby odczytywać jaki bank jest aktualnie wybrany, domyslnie 0 czyli Inny
+  mWybranyBank: number = 0
+
   mpokazOpcjeZaawansowane: boolean;
 
   //Ustal domyślne wartości dla stawek WIBOR i czasu pomostowego
@@ -261,27 +270,53 @@ export class AppComponent implements OnInit {
   };
 
 
+
+
   //**konstruktor dla SnackBar */
   //constructor(private _snackBar: MatSnackBar) { }
 
-  //funkcja do linkowania po kliknięciu w Żródło
-  linkuj(link) {
-    window.open(link, "_blank");
-  }
+
 
   /** to funkcja zaszyta w przycisku PRZELICZ */
   przelicz() {
 
-    this.mKwotaKredytu = this.mWartoscNieruchomosci - this.wkladWlasnyNowy;
+    console.log("wWybranyBank: " + this.mWybranyBank);
 
-    console.log("wartość nieruchomości: " + this.mWartoscNieruchomosci);
-    console.log("wkład własny: " + this.wkladWlasnyNowy);
-    console.log("kota kredytu: " + this.mKwotaKredytu);
-    console.log("liczba lat: " + this.mLiczbaLat);
+
+    this.mKwotaKredytu = this.mWartoscNieruchomosci - this.wkladWlasnyNowy;
 
 
     //Licz wszystko to co jest potrzebne dla każdej z ofert z osobna
     ELEMENT_DATA.forEach((element) => {
+
+
+      /* zniżka prowizji dla SANTADERA **/
+
+      //ustal prowizję dla Santandera, w oparciu o to, czy zaznaczono, że posiada się w nim konto od 6 miesiecy w opcjach zaawansowanych
+      if (+this.mWybranyBank === 2 && element.bank === "Santander" && element.oprocStale === "nie") {
+        element.prowizjaStawka = 1 //obniż prowizje o 2 pp dla ofert ze zmiennym oprocentowanie, czyli 1%
+        element.ofertaNazwa = element.ofertaNazwa + ", Klient wewnętrzny" // i dodaj do nazwy oferty dopisek: klient wewnętrzny
+      }
+      if (+this.mWybranyBank === 2 && element.bank === "Santander" && element.oprocStale === "tak") {
+        element.prowizjaStawka = 2 // dla oferty ze stałym oprocentowaniem obniż prowizję o 0.5 pp, czyli 2%
+        element.ofertaNazwa = element.ofertaNazwa + ", Klient wewnętrzny" // i dodaj do nazwy oferty dopisek: klient wewnętrzny
+      }
+      // Jeśli ktoś potem zmieni, ze jednak nie ma konta w Santander, to podwyższ z powrotem prowziję
+      if (+this.mWybranyBank !== 2 && element.bank === "Santander" && element.oprocStale === "nie") {
+        element.prowizjaStawka = 3 //zastosuj prowizję standardową
+        element.ofertaNazwa = "Standard" // i usuń z nazwy oferty dopisek: klient wewnętrzny
+      }
+      if (+this.mWybranyBank !== 2 && element.bank === "Santander" && element.oprocStale === "tak") {
+        element.prowizjaStawka = 2.5 //zastosuj prowizję standardową
+        element.ofertaNazwa = "Standard" // i usuń z nazwy oferty dopisek: klient wewnętrzny
+      }
+
+
+
+
+
+
+
 
       // oblicz KWOTĘ KREDYTU dla każdej z ofert z osobna biorąc po uwagę koszty wrzucone w kredyt
       element.kwotaKredytuOferty = +this.mKwotaKredytu + (+this.mKwotaKredytu * (element.oplatyZawszeKredytowane / 100))
@@ -647,38 +682,38 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
 
   // konstruktor dla ERROR dla  formWkladWlasny
-  get errorMessageformWkladWlasny(): string {
+  // get errorMessageformWkladWlasny(): string {
 
-    let nazwa = this.mWartoscNieruchomosci * 0.1
-    let nazwa3 = nazwa.toString()
-    nazwa3 = this.currencyPipe.transform(nazwa3, 'zł', 'symbol', '1.0-0', 'fr');
+  //  let nazwa = this.mWartoscNieruchomosci * 0.1
+  //   let nazwa3 = nazwa.toString()
+  //   nazwa3 = this.currencyPipe.transform(nazwa3, 'zł', 'symbol', '1.0-0', 'fr');
 
-    const form: FormControl = (this.myGroup.get('formWkladWlasny') as FormControl);
-    return form.hasError('required') ?
-      'Minimum ' + nazwa3 :
-      form.hasError('min') ?
-        'Minimum ' + nazwa3 :
-        form.hasError('max') ?
-          'Maksymalnie 2 000 000' : '';
-  }
-
-
-  // konstruktor dla ERROR dla  formKwotaKredytu
-  get errorMessageformKwotaKredytu(): string {
-    const form: FormControl = (this.myGroup.get('formKwotaKredytu') as FormControl);
-    return form.hasError('required') ?
-      'Pole wymagane' :
-      form.hasError('min') ?
-        'Minimum 50 000' :
-        form.hasError('max') ?
-          'Maksymalnie 2 000 000' : '';
-  }
-
-
-
+  //   const form: FormControl = (this.myGroup.get('formWkladWlasny') as FormControl);
+  //   return form.hasError('required') ?
+  //     'Minimum ' + nazwa3 :
+  //    form.hasError('min') ?
+  //      'Minimum ' + nazwa3 :
+  //      form.hasError('max') ?
+  //        'Maksymalnie 2 000 000' : '';
+  // }
 
 
   // konstruktor dla ERROR dla  formKwotaKredytu
+  // get errorMessageformKwotaKredytu(): string {
+  //   const form: FormControl = (this.myGroup.get('formKwotaKredytu') as FormControl);
+  //  return form.hasError('required') ?
+  //    'Pole wymagane' :
+  //    form.hasError('min') ?
+  //      'Minimum 50 000' :
+  //      form.hasError('max') ?
+  //        'Maksymalnie 2 000 000' : '';
+  // }
+
+
+
+
+
+  // konstruktor dla ERROR dla  formLiczbaLat
   get errorMessageformLiczbaLat(): string {
     const form: FormControl = (this.myGroup.get('formLiczbaLat') as FormControl);
     return form.hasError('required') ?
@@ -710,23 +745,6 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
     //  })
 
 
-
-
-
-
-
-    ELEMENT_DATA.forEach((element) => {
-      //Pokaż ładnie datę dostępu dd.mm.rrrr zamiast rrrr, mm, dd
-      element.dataDostepu = this.zamienNaDate(element.odKiedyObowiazuje);
-      //Pokaż ładnie datę obowiązawania dd.mm.rrrr zamiast rrrr, mm, dd
-      if (element.doKiedyObowiazuje === "do odwołania") {
-        element.doKiedyObowiazujeWyswietl = "do odwołania"
-      } else {
-        element.doKiedyObowiazujeWyswietl = this.zamienNaDate(element.doKiedyObowiazuje);
-      }
-    });
-
-
     // Domyslnie sortuj po kosztach całkowitych podczas uruchomienia 
     this.sort.sort(({ id: 'kosztyCalkowite', start: 'asc' }) as MatSortable);
     this.dataSource.sort = this.sort;
@@ -740,7 +758,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
     //DO VALIDACJI DANCH FORMULARZA
     this.myGroup = new FormGroup({
       formWartoscNieruchomosci: new FormControl("", [Validators.max(2000000), Validators.min(60000)]),
-      formKwotaKredytu: new FormControl("", [Validators.max(2000000), Validators.min(50000)]),
+      //formKwotaKredytu: new FormControl("", [Validators.max(2000000), Validators.min(50000)]),
       formLiczbaLat: new FormControl("", [Validators.max(35), Validators.min(5)]),
       formPomostoweIleMiesiecy: new FormControl("", [Validators.max(48), Validators.min(0)]),
       formWIBOR3M: new FormControl("", [Validators.max(10), Validators.min(-10)]),
@@ -848,33 +866,29 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
     });
 
 
-
-
-
-
-
-
-
-
-
-
     //Dzisiajsza data dla OD-kiedyobowiazuje
     var todayDate = new Date();
 
+
+
     ELEMENT_DATA.forEach((element) => {
       var mElementOdKiedyObowiazuje = new Date(element.odKiedyObowiazuje)
-      if (mElementOdKiedyObowiazuje < todayDate) {
+      if (mElementOdKiedyObowiazuje < todayDate) { //Data jest z minutami i sekundami, więc nie musi być <= bo już sekundę po północy mElementOdKiedyObowiazuje jest mniejszy od todayDate
         element.odKiedyObowiazuje = "już"
+
       }
 
 
       //Dzisiajsza data dla DO-kiedyobowiazuje
       var mElementDoKiedyObowiazuje = new Date(element.doKiedyObowiazuje)
+      mElementDoKiedyObowiazuje.setDate(mElementDoKiedyObowiazuje.getDate() + 1);// dodaj 1 dzień do daty, do kiedy obowiązuje, bo data obowiązuje do godziny 0:00:00 danego dnia, więc jest już nieaktualna jak tylko ten dzień siezacznie, a chcemy, aby była aktualna jeszcze tego jednego ostatniego dnia. Zatem.
       if (element.doKiedyObowiazuje === "do odwołania")
         element.doKiedyObowiazujeStatus = "aktualne"
-      if (mElementDoKiedyObowiazuje >= todayDate) {
+      if (mElementDoKiedyObowiazuje > todayDate) {
         element.doKiedyObowiazujeStatus = "aktualne"
+        //element.doKiedyObowiazuje = mElementDoKiedyObowiazuje
       }
+
     });
     this.filteredValues['odKiedyObowiazuje'] = "już";
     this.filteredValues['doKiedyObowiazujeStatus'] = "aktualne";
@@ -917,6 +931,14 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
     { value: '2', viewValue: 'Działka' },
   ];
 
+  /** Tutaj logika zaznacz wjakim banku konto od 6 miesięcy */
+  KontoJakieBanki: KontoJakiBank[] = [
+    { value: '0', viewValue: 'Inny' },
+    { value: '1', viewValue: 'PKO BP' },
+    { value: '2', viewValue: 'Santander' },
+  ];
+
+
   zamienNaDate(d: string) {
     var b = new Date(d);
     var curr_date = b.getDate();
@@ -941,7 +963,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      console.log(`Rezultat dialogu: ${result}`);
     });
   }
 

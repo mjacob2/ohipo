@@ -2,7 +2,7 @@
 
   <mat-toolbar color="primary" class="example-toolbar">
     <button mat-icon-button (click)="snav2.toggle()">
-      <mat-icon>settings</mat-icon> <span class="usun-na-malym"> DANE O KREDYCIE</span>
+      <mat-icon>settings</mat-icon> <span class="usun-na-malym"> EDYTUJ DANE</span>
     </button>
 
     <span class="example-spacer usun-na-malym"></span>
@@ -11,6 +11,10 @@
     <!--Example spacer robi przerwę miedzy lewąstroną Toolbar a prawą, żeby było łądne dopasowanie do prawej i lewej.-->
     <span class="example-spacer "></span>
 
+    <!-- PRZYCISK KONTAKT Z DORADCĄ-->
+    <button mat-raised-button color="accent" (click)="openDialogKontakt()">
+      <mat-icon>contact_support</mat-icon> <span class="usun-na-malym"> ZAPYTAJ DORADCĘ </span>
+    </button>
 
     <!-- PRZYCISK APLIKACJE-->
     <button mat-button matTooltip="Opcja dostępna wkrótce">
@@ -38,10 +42,10 @@
 
       <div class="side-naw filtry">
 
-
-        <div>Ukryj oferty, które nie spełniają <br> poniższych kryteriów:</div>
+        <div>Filtry działają automatycznie</div>
 
         <mat-divider></mat-divider>
+
 
         <div class="filtry-naglowek">Filtry nieruchomości</div>
 
@@ -156,10 +160,7 @@
 
 
 
-        <!-- PRZYCISK KONTAKT Z DORADCĄ-->
-        <button style="margin-top: 16px;" mat-raised-button color="accent" (click)="openDialogKontakt()">
-          <mat-icon>stars</mat-icon> ZAPYTAJ DORADCĘ
-        </button>
+
 
       </div>
     </mat-sidenav>
@@ -243,24 +244,41 @@
 
           <!--RODZAJ NIERUCHOMOSCI-->
           <mat-form-field *ngIf="mpokazOpcjeZaawansowane" class="filtry-elementy">
-            <mat-select [disabled]="true" [value]="selectedOptionRodzajNieruchomosci"
-              matTooltip="Opcja zmiany dostępna wkrótce">
+            <mat-select [disabled]="true" [value]="selectedOptionRodzajNieruchomosci">
               <mat-option *ngFor="let RodzajNieruchomosci of RodzajeNieruchomosci" [value]="RodzajNieruchomosci.value">
                 {{RodzajNieruchomosci.viewValue}}
               </mat-option>
             </mat-select>
+            <mat-hint>Opcja zmiany dostepna wkrótce</mat-hint>
           </mat-form-field>
 
           <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">Rodzaj rat</div>
 
           <!--RODZAJ RAT-->
           <mat-form-field *ngIf="mpokazOpcjeZaawansowane" class="filtry-elementy">
-            <mat-select [disabled]="true" [value]="selectedOptionRaty" matTooltip="Opcja zmiany dostępna wkrótce">
+            <mat-select [disabled]="true" [value]="selectedOptionRaty">
               <mat-option *ngFor="let RodzajRat of RodzajeRat" [value]="RodzajRat.value">
                 {{RodzajRat.viewValue}}
               </mat-option>
             </mat-select>
+            <mat-hint>Opcja zmiany dostepna wkrótce</mat-hint>
           </mat-form-field>
+
+          <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">Konto w którym banku</div>
+
+          <!--W JAKIM BANKU KONTO-->
+          <mat-form-field *ngIf="mpokazOpcjeZaawansowane" class="filtry-elementy">
+            <mat-select [(value)]="mWybranyBank" [value]="selectedOptionInny"
+              matTooltip="Zaznacz, w którym banku posiadasz aktywne konto od 6 miesięcy. Widoczne są tylko te banki, które mają zniżki dla obecnych klientów.">
+              <mat-option *ngFor="let KontoJakiBank of KontoJakieBanki" [value]="KontoJakiBank.value">
+                {{KontoJakiBank.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">Konto w którym banku</div>
+
+
 
           <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">Ubezp. pomostowe ile miesięcy</div>
 
@@ -299,7 +317,7 @@
         <!-- PRZYCISK KONTAKT Z DORADCĄ-->
         <button style="margin-right: 20px; margin-top: 18px;" mat-raised-button color="accent"
           (click)="openDialogKontakt()">
-          <mat-icon>stars</mat-icon> ZAPYTAJ DORADCĘ
+          <mat-icon>contact_support</mat-icon> ZAPYTAJ DORADCĘ
         </button>
 
 
@@ -567,11 +585,7 @@
                   [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                   <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
                   <div class="example-element-description " style="white-space: pre-wrap; width: 500px;">
-                    Źródło za stroną: <a [routerLink]="" (click)="linkuj(element.link)">{{element.link}} i jej
-                      odnośnikami
-                    </a> Data dostępu: {{element.dataDostepu}}
-                    <br>
-                    Data obowiązywania: {{element.doKiedyObowiazujeWyswietl}}
+                    Data obowiązywania: {{element.doKiedyObowiazuje}}
                     <br>
                     ID#{{element.id}}
                   </div>
