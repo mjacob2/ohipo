@@ -18,6 +18,7 @@ import { CurrencyPipe } from '@angular/common';
 import { WzoryService } from './services/wzory/wzory.service';
 //import { InputErrorsService } from './services/inputErrors/input-errors.service'
 import { MatSliderChange } from '@angular/material/slider';
+import { MatSelectChange } from '@angular/material/select';
 
 
 //import { SnackBarService } from './services/snack-bar.service';
@@ -49,27 +50,27 @@ export interface PeriodicElement {
   bank: string;
   ofertaNazwa: string;
   ofertaNazwaDopisek: string;
-  kosztyPoczatkowe: number;
+  kosztyPoczatkowe: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   marza: number;
-  rata: number;
+  rata: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   pomostoweStawkaMiesieczna: number;
-  pomostoweSuma: number;
+  pomostoweSuma: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   ubezpNieruchStawkaRok: number;
-  ubezpNieruchSuma: number;
-  ubezpNieruchTOTAL: number;
+  ubezpNieruchSuma: number;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
+  ubezpNieruchTOTAL: number;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   ubezpZycieStawkaMiesieczna: number;
   ubezpZycieSuma: number;
   wTrakcieBudowy: string;
   WIBOR: string;
   WIBORstawka: number;
   prowizjaStawka: number;
-  prowizjaSuma: number;
+  prowizjaSuma: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   warunkiOferty: string;
   wycenaMieszkanie: number;
-  oplatyMiesieczne: number;
-  odsetkiSuma: number;
+  oplatyMiesieczne: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
+  odsetkiSuma: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   ubezpZycieTOTAL: number;
-  kosztyCalkowite: number;
+  kosztyCalkowite: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   maxLTV: number;
   minLTV: number;
   ubezpZycieIleLat: number;
@@ -91,19 +92,19 @@ export interface PeriodicElement {
   minKwotaKredytuFILTR: string;
   maxKwotaKredytu: number;
   maxKwotaKredytuFILTR: string;
-  pomostoweTOTAL: number;
+  pomostoweTOTAL: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   doKiedyObowiazujeStatus: string;
   minimalneWpływy: number;
   minimalneWplywyStatus: string;
   minimalneWpływy2xRata: string;
   logoURL: string;
   oplatyZawszeKredytowane: number;
-  kwotaKredytuOferty: number;
-  LTVobliczone: number;
+  kwotaKredytuOferty: number;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
+  LTVobliczone: number;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   maxLiczbaLat: number;
   maxWiek: number;
   maxWiekStatus: string;
-
+  alternatywnyOpisOferty: string;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
 }
 
 //co się składa na ELEMENT DATA
@@ -131,8 +132,8 @@ const ELEMENT_DATA: PeriodicElement[] = oferty
 export class AppComponent implements OnInit {
 
 
-
-
+  // array dla listy wybranych po kolei banków, niech tam ma już 2 x 0, żeby jak będę patrzył na przedostatnio wybrany, żeby już było na co patrzeć
+  numbers = new Array(0, 0);
 
 
   //dodaj do slidera % na końcu łezki (label) do
@@ -272,6 +273,7 @@ export class AppComponent implements OnInit {
 
 
 
+
   //**konstruktor dla SnackBar */
   //constructor(private _snackBar: MatSnackBar) { }
 
@@ -280,7 +282,14 @@ export class AppComponent implements OnInit {
   /** to funkcja zaszyta w przycisku PRZELICZ */
   przelicz() {
 
-    console.log("wWybranyBank: " + this.mWybranyBank);
+
+    console.log(this.mWybranyBank);
+    this.numbers.push(this.mWybranyBank);//stwórz Array dla kolejno wybranych banków z listy wyboru: jaki bank masz od 6 miesiect
+    console.log("lista banków: " + this.numbers);
+    var przedostatniWybrany = this.numbers[this.numbers.length - 2]//zwróć przedostatnio wybrany bank
+    console.log("teraz wybrany: " + this.mWybranyBank);
+    console.log("przedostani wybrany: " + przedostatniWybrany);
+
 
 
     this.mKwotaKredytu = this.mWartoscNieruchomosci - this.wkladWlasnyNowy;
@@ -289,28 +298,45 @@ export class AppComponent implements OnInit {
     //Licz wszystko to co jest potrzebne dla każdej z ofert z osobna
     ELEMENT_DATA.forEach((element) => {
 
+      /* ZNIŻKA MARŻY DLA PKO BP Z TYTUŁU POSIADANIA KONTA OD 6 MIESIECY**/
+
+      if (this.mWybranyBank == 1 && przedostatniWybrany != 1) {//jesli teraz wybrany PKO BP a wczesniej inny
+        // obniż marżę
+        if (element.bank == "PKO BP" && element.oprocStale == "tak") {//jeśli PKO BP z oprocentowaniem stałym
+          element.oprocStaleMarzaPotem = element.oprocStaleMarzaPotem - 0.05 //obniż marżę po oprocentowaniu stałym o 0.05%
+          element.alternatywnyOpisOferty = " + konto od 6 mcy" // i dodaj alternatywny opis oferty
+        }
+      }
+      if (this.mWybranyBank != 1 && przedostatniWybrany == 1) {// jeśli teraz inny a wcześniej PKO BP
+        //podwyż marżę
+        if (element.bank == "PKO BP" && element.oprocStale == "tak") { //jeśli PKO BP z oprocentowaniem stałym
+          element.oprocStaleMarzaPotem = element.oprocStaleMarzaPotem + 0.05 //podwyższ marżę po oprocentowaniu stałym o 0.05%
+          element.alternatywnyOpisOferty = "" // i usuń alternatywny opis oferty
+
+        }
+      }
+
 
       /* zniżka prowizji dla SANTADERA **/
 
       //ustal prowizję dla Santandera, w oparciu o to, czy zaznaczono, że posiada się w nim konto od 6 miesiecy w opcjach zaawansowanych
-      if (+this.mWybranyBank === 2 && element.bank === "Santander" && element.oprocStale === "nie") {
+      if (+this.mWybranyBank == 2 && element.bank == "Santander" && element.oprocStale == "nie") {
         element.prowizjaStawka = 1 //obniż prowizje o 2 pp dla ofert ze zmiennym oprocentowanie, czyli 1%
-        element.ofertaNazwa = element.ofertaNazwa + ", Klient wewnętrzny" // i dodaj do nazwy oferty dopisek: klient wewnętrzny
+        element.alternatywnyOpisOferty = " + konto od 6 mcy" // i dodaj alternatywny opis oferty
       }
-      if (+this.mWybranyBank === 2 && element.bank === "Santander" && element.oprocStale === "tak") {
+      if (+this.mWybranyBank == 2 && element.bank == "Santander" && element.oprocStale == "tak") {
         element.prowizjaStawka = 2 // dla oferty ze stałym oprocentowaniem obniż prowizję o 0.5 pp, czyli 2%
-        element.ofertaNazwa = element.ofertaNazwa + ", Klient wewnętrzny" // i dodaj do nazwy oferty dopisek: klient wewnętrzny
+        element.alternatywnyOpisOferty = " + konto od 6 mcy" // i dodaj alternatywny opis oferty
       }
       // Jeśli ktoś potem zmieni, ze jednak nie ma konta w Santander, to podwyższ z powrotem prowziję
-      if (+this.mWybranyBank !== 2 && element.bank === "Santander" && element.oprocStale === "nie") {
+      if (+this.mWybranyBank != 2 && element.bank == "Santander" && element.oprocStale == "nie") {
         element.prowizjaStawka = 3 //zastosuj prowizję standardową
-        element.ofertaNazwa = "Standard" // i usuń z nazwy oferty dopisek: klient wewnętrzny
+        element.alternatywnyOpisOferty = "" // i usuń alternatywny opis oferty
       }
-      if (+this.mWybranyBank !== 2 && element.bank === "Santander" && element.oprocStale === "tak") {
+      if (+this.mWybranyBank != 2 && element.bank == "Santander" && element.oprocStale == "tak") {
         element.prowizjaStawka = 2.5 //zastosuj prowizję standardową
-        element.ofertaNazwa = "Standard" // i usuń z nazwy oferty dopisek: klient wewnętrzny
+        element.alternatywnyOpisOferty = "" // i usuń alternatywny opis oferty
       }
-
 
 
 
@@ -757,7 +783,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
   zbudujFormularz() {
     //DO VALIDACJI DANCH FORMULARZA
     this.myGroup = new FormGroup({
-      formWartoscNieruchomosci: new FormControl("", [Validators.max(2000000), Validators.min(60000)]),
+      formWartoscNieruchomosci: new FormControl("", [Validators.max(2000000), Validators.min(100000)]),
       //formKwotaKredytu: new FormControl("", [Validators.max(2000000), Validators.min(50000)]),
       formLiczbaLat: new FormControl("", [Validators.max(35), Validators.min(5)]),
       formPomostoweIleMiesiecy: new FormControl("", [Validators.max(48), Validators.min(0)]),

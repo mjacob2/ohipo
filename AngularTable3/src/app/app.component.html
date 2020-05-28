@@ -17,7 +17,7 @@
     </button>
 
     <!-- PRZYCISK APLIKACJE-->
-    <button mat-button matTooltip="Opcja dostępna wkrótce">
+    <button disabled mat-button matTooltip="Opcja dostępna wkrótce">
       <mat-icon>apps</mat-icon> <span class="usun-na-malym"> APLIKACJE </span>
     </button>
 
@@ -88,67 +88,71 @@
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox color="primary" [formControl]="wUmowaOPraceCzasOkreslony">
+          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary"
+            [formControl]="wUmowaOPraceCzasOkreslony">
             Umowa o pracę, czas określony
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox color="primary" [formControl]="wUmowaZlecenieDzielo">
+          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" disabled matTooltip="Opcja dostepna wkrótce"
+            color="primary" [formControl]="wUmowaZlecenieDzielo">
             Umowa Zlecenie / o dzieło
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox color="primary" [formControl]="uUmowaNaZastepstwo">
+          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="uUmowaNaZastepstwo">
             Umowa na zastępstwo
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox color="primary" [formControl]="wDzialanoscGospodarcza">
+          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary"
+            [formControl]="wDzialanoscGospodarcza">
             Działalność gospodarcza
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox color="primary" [formControl]="wDochodyZnajmu">
+          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDochodyZnajmu">
             Dochody z najmu
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox color="primary" [formControl]="wEmerytura">
+          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" disabled matTooltip="Opcja dostepna wkrótce"
+            color="primary" [formControl]="wEmerytura">
             Emerytura
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox color="primary" [formControl]="wRenta">
+          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wRenta">
             Renta na czas nieokreślony
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox color="primary" [formControl]="wDywidendy">
+          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDywidendy">
             Dywidendy
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox color="primary" [formControl]="wDietyDelegacje">
+          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDietyDelegacje">
             Diety / delegacje
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox color="primary" [formControl]="wDochodyMarynarzy">
+          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDochodyMarynarzy">
             Dochody marynarzy
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox color="primary" [formControl]="wPowolanie">
+          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wPowolanie">
             Powołanie (np. członka zarządu)
           </mat-checkbox>
         </div>
@@ -191,7 +195,7 @@
 
           <!-- WARTOŚĆ NIERUCHOMOŚCI-->
           <mat-form-field hideRequiredMarker class="filtry-elementy">
-            <input autofocus required min="60000" max="2000000" formControlName="formWartoscNieruchomosci"
+            <input autofocus required min="100000" max="2000000" formControlName="formWartoscNieruchomosci"
               (input)="mWartoscNieruchomosci=$event.target.value" matInput type="number" matInput
               [ngModel]="ngWartoscNieruchomosci" (ngModelChange)="ngWartoscNieruchomosciZmiana($event)">
             <mat-error>{{errorMessageformWartoscNieruchomosci}}</mat-error>
@@ -269,14 +273,12 @@
           <!--W JAKIM BANKU KONTO-->
           <mat-form-field *ngIf="mpokazOpcjeZaawansowane" class="filtry-elementy">
             <mat-select [(value)]="mWybranyBank" [value]="selectedOptionInny"
-              matTooltip="Zaznacz, w którym banku posiadasz aktywne konto od 6 miesięcy. Widoczne są tylko te banki, które mają zniżki dla obecnych klientów.">
+              matTooltip="Zaznacz, w którym banku posiadasz aktywne konto od 6 miesięcy. Do wyboru są tylko te banki, które mają zniżki dla obecnych klientów.">
               <mat-option *ngFor="let KontoJakiBank of KontoJakieBanki" [value]="KontoJakiBank.value">
                 {{KontoJakiBank.viewValue}}
               </mat-option>
             </mat-select>
           </mat-form-field>
-
-          <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">Konto w którym banku</div>
 
 
 
@@ -369,7 +371,7 @@
             <ng-container matColumnDef="szczegoly" sticky>
               <th class="szczegoly" mat-header-cell *matHeaderCellDef mat-header> </th>
               <td mat-cell *matCellDef="let element">
-                <mat-icon>{{ expandedElement !==element ? 'chevron_right' : 'expand_more' }}</mat-icon>
+                <mat-icon>{{ expandedElement !==element ? 'expand_more' : 'expand_less' }}</mat-icon>
               </td>
             </ng-container>
 
@@ -399,7 +401,8 @@
             <ng-container matColumnDef="ofertaNazwa">
               <th matTooltip="Nazwa oferty, marketingowa lub własna." class="cell-oferta-nazwa" mat-header-cell
                 *matHeaderCellDef mat-sort-header> Oferta </th>
-              <td mat-cell *matCellDef="let element"> <b> {{element.ofertaNazwa}}</b> <br>
+              <td mat-cell *matCellDef="let element"> <b> {{element.ofertaNazwa}} {{element.alternatywnyOpisOferty}}</b>
+                <br>
                 <div style="font-size: 11px; color: gray;">{{element.ofertaNazwaDopisek}}</div>
               </td>
             </ng-container>
