@@ -82,6 +82,9 @@ mat-panel-title{
 
 form{
  margin-bottom: 6px;
+ padding-top: 16px;
+ display: flex;
+ flex-direction: column;
 }
 
 th{
@@ -237,6 +240,14 @@ mat-dialog-actions{
   background-color: mat-color($my-app-accent) !important;
 }
 
+.opisyLiczbowe{
+  width: 500px;
+}
+
+.kontenerRozwijany{
+
+  display: flex; flex-direction: column; flex-wrap: wrap; justify-content: flex-start;
+}
 
 @media only screen and (max-width: 1000px) {
 
@@ -247,11 +258,39 @@ mat-dialog-actions{
       .dane-naglowek{
         margin-top: 6px;
           }
-}
+
 
 .mat-dialog-container {
 margin: 0;
 overflow: visible
 
 }
+.kontenerRozwijany{
+   flex-direction: column;;
+}
 
+
+.example-loading-shade {
+  padding: 19px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

@@ -1,0 +1,98 @@
+<!-- Note :
+   - You can modify the font style and form style to suit your website. 
+   - Code lines with comments ���Do not remove this code���  are required for the form to work properly, make sure that you do not remove these lines of code. 
+   - The Mandatory check script can modified as to suit your business needs. 
+   - It is important that you test the modified form before going live.
+   - Do not remove captcha and other form elements that are necessary for the form to work.  -->
+<div id='crmWebToEntityForm'>
+    <META HTTP-EQUIV='content-type' CONTENT='text/html;charset=UTF-8'>
+
+    <form ngNoForm action='https://crm.zoho.eu/crm/WebToCaseForm' name=WebToCases167379000002746084 method='POST'
+        onSubmit='javascript:document.charset=" UTF-8"; return checkMandatory167379000002746084()'
+        accept-charset='UTF-8'>
+
+        <input type='text' style='display:none;' name='xnQsjsdp'
+            value='6a0445a9ff00e12d39b7c1ecac528f6ba91534a528c37bd6621d738194c6a131'>
+        <input type='hidden' name='zc_gad' id='zc_gad' value=''>
+        <input type='text' style='display:none;' name='xmIwtLD'
+            value='52d052b249e16bd0ef8105c51e8bffe23ad0a050c3c643e426e236b226533b4f'>
+        <input type='text' style='display:none;' name='actionType' value='Q2FzZXM='>
+        <input type='text' style='display:none;' name='returnURL' value='https://ohipo.pl/blad.html'> <br>
+        <!-- Do not remove this code. -->
+
+
+        <div mat-dialog-content>
+            <h1 mat-dialog-title>Wyślij zgłoszenie błędu na stronie</h1>
+            <mat-label>Twoje zgłoszneie jest anonimowe. Proszę nie podawać żadnych danych osobowch.</mat-label>
+
+            <br>
+            <br>
+            <br>
+
+
+            <select style='width:100%;box-sizing:border-box; display: none;' name='Status'>
+                <option selected value='Nowe'>Nowe</option>
+                <option value='Zawieszone'>Zawieszone</option>
+                <option value='Wymaga&#x20;uwagi'>Wymaga uwagi</option>
+                <option value='Closed'>Closed</option>
+            </select>
+
+            <select style='width:100%;box-sizing:border-box; display: none;' name='Case Origin'>
+                <option value='-None-'>-None-</option>
+                <option value='Email'>Email</option>
+                <option value='Telefon'>Telefon</option>
+                <option selected value='strona&#x20;ohipo.pl'>strona ohipo.pl</option>
+                <option value='strona&#x20;middlers.pl'>strona middlers.pl</option>
+            </select>
+
+
+            <mat-form-field>
+                <mat-label>Tytuł wiadomości</mat-label>
+                <input maxlength='150' required matInput name='Subject'>
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="form-field-dialog-kontakt">
+                <mat-label>Opis błędu</mat-label>
+                <textarea required name='Description' maxlength='1000' matInput
+                    placeholder="Opisz na czym dokładnie polega problem."></textarea>
+            </mat-form-field>
+
+            <br>
+            <br>
+
+
+            <!-- Do not remove this code. -->
+            <td style='box-sizing:border-box;'><img id='imgid'
+                    src='https://crm.zoho.eu/crm/CaptchaServlet?formId=52d052b249e16bd0ef8105c51e8bffe23ad0a050c3c643e426e236b226533b4f&grpid=6a0445a9ff00e12d39b7c1ecac528f6ba91534a528c37bd6621d738194c6a131'>
+                <a href='javascript:;' onclick='reloadImg()'>Pokaż inne znaki</a></td>
+
+
+
+            <mat-form-field>
+                <mat-label>Przepisz znaki</mat-label>
+                <input type='text' maxlength='10' required matInput name='enterdigest'>
+            </mat-form-field>
+
+        </div>
+
+
+
+
+
+
+
+        <!-- Do not remove this code. -->
+        <iframe name='captchaFrame' style='display:none;'></iframe>
+
+
+        <div mat-dialog-actions align='end'>
+            <button id='formsubmit' mat-raised-button color="accent"> Wyślij
+            </button>
+
+        </div>
+
+    </form>
+
+</div>

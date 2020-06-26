@@ -5,7 +5,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import oferty from '../app/oferty/oferty.json';
+import oferty from '../assets/oferty.json';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -131,6 +131,8 @@ const ELEMENT_DATA: PeriodicElement[] = oferty
 
 export class AppComponent implements OnInit {
 
+  //to jest odniesienie do przykrywki, która przykrywa całątabelę na starcie.
+  @ViewChild('przykrywkaPoczatkowa') private przykrywkaPoczatkowaElement: ElementRef;
 
   // array dla listy wybranych po kolei banków, niech tam ma już 2 x 0, żeby jak będę patrzył na przedostatnio wybrany, żeby już było na co patrzeć
   numbers = new Array(0, 0);
@@ -157,6 +159,7 @@ export class AppComponent implements OnInit {
     //private currencyPipe: CurrencyPipe,
 
     //kontruktor dla dialogu kontaktowego
+    public dialogBlad: MatDialog,
     public dialogKontakt: MatDialog,
 
 
@@ -229,8 +232,8 @@ export class AppComponent implements OnInit {
   mpokazOpcjeZaawansowane: boolean;
 
   //Ustal domyślne wartości dla stawek WIBOR i czasu pomostowego
-  mWIBOR3M: number = 0.69;
-  mWIBOR6M: number = 0.69;
+  mWIBOR3M: number = 0.27;
+  mWIBOR6M: number = 0.29;
   mPomostoweIleMiesiecy: number = 3;
 
   /** ZADEKLAROWANE ZMIENNE DO FILTRÓW */
@@ -241,17 +244,17 @@ export class AppComponent implements OnInit {
 
   //Filtry dochodów
   wUmowaOPraceCzasNieokreslony = new FormControl();
-  wUmowaOPraceCzasOkreslony = new FormControl();
-  wUmowaZlecenieDzielo = new FormControl();
-  uUmowaNaZastepstwo = new FormControl();
-  wDzialanoscGospodarcza = new FormControl();
-  wDochodyZnajmu = new FormControl();
-  wEmerytura = new FormControl();
-  wRenta = new FormControl();
-  wDywidendy = new FormControl();
-  wDietyDelegacje = new FormControl();
-  wDochodyMarynarzy = new FormControl();
-  wPowolanie = new FormControl();
+  wUmowaOPraceCzasOkreslony = new FormControl({ value: '', disabled: true });
+  wUmowaZlecenieDzielo = new FormControl({ value: '', disabled: true });
+  uUmowaNaZastepstwo = new FormControl({ value: '', disabled: true });
+  wDzialanoscGospodarcza = new FormControl({ value: '', disabled: true });
+  wDochodyZnajmu = new FormControl({ value: '', disabled: true });
+  wEmerytura = new FormControl({ value: '', disabled: true });
+  wRenta = new FormControl({ value: '', disabled: true });
+  wDywidendy = new FormControl({ value: '', disabled: true });
+  wDietyDelegacje = new FormControl({ value: '', disabled: true });
+  wDochodyMarynarzy = new FormControl({ value: '', disabled: true });
+  wPowolanie = new FormControl({ value: '', disabled: true });
 
 
 
@@ -658,6 +661,8 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
 
 
+    // usuń przykrywkę początkową
+    this.przykrywkaPoczatkowaElement.nativeElement.remove();
 
   }
 
@@ -983,17 +988,25 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
   openDialogKontakt() {
     const dialogRef = this.dialogKontakt.open(DialogKontakt, {
-
       backdropClass: 'backdropBackground' // ta klasa będzie przypisana do zaciemnienia tła kiedy Dialog jest otwarty
     });
 
-
+    //funkcja odpalana kiedy zamykam dialog
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Rezultat dialogu: ${result}`);
     });
   }
 
+  openDialogBlad() {
+    const dialogRef = this.dialogBlad.open(DialogBlad, {
+      backdropClass: 'backdropBackground' // ta klasa będzie przypisana do zaciemnienia tła kiedy Dialog jest otwarty
+    });
 
+    //funkcja odpalana kiedy zamykam dialog
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Rezultat dialogu błąd: ${result}`);
+    });
+  }
 
 
 }
@@ -1007,4 +1020,9 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 })
 export class DialogKontakt { }
 
-
+@Component({
+  selector: './dialog-blad',
+  styleUrls: ['./dialog-blad.scss'],
+  templateUrl: './dialog-blad.html',
+})
+export class DialogBlad { }

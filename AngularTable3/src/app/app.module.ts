@@ -29,8 +29,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent, DialogKontakt } from './app.component';
+import { AppComponent, DialogKontakt, DialogBlad } from './app.component';
 import { CookiesComponent } from './cookies/cookies.component';
+
 registerLocaleData(localeFr, 'fr');
 
 
@@ -44,6 +45,7 @@ registerLocaleData(localeFr, 'fr');
   declarations: [
     AppComponent,
     DialogKontakt,
+    DialogBlad,
     CookiesComponent,
   ],
   imports: [

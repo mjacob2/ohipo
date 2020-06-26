@@ -7,9 +7,12 @@
 
     <span class="example-spacer usun-na-malym"></span>
 
-    <h1 class="app-name">ohipo.pl</h1>
-    <!--Example spacer robi przerwę miedzy lewąstroną Toolbar a prawą, żeby było łądne dopasowanie do prawej i lewej.-->
+
+    <img style="height: 40px;" src="../assets/ohipo-logo-1-bez-ramki-bialy.png" />
+    <!--Example spacer robi przerwę miedzy lewą stroną Toolbar a prawą, żeby było łądne dopasowanie do prawej i lewej.-->
     <span class="example-spacer "></span>
+
+
 
     <!-- PRZYCISK KONTAKT Z DORADCĄ-->
     <button mat-raised-button color="accent" (click)="openDialogKontakt()">
@@ -18,7 +21,7 @@
 
     <!-- PRZYCISK APLIKACJE-->
     <button disabled mat-button matTooltip="Opcja dostępna wkrótce">
-      <mat-icon>apps</mat-icon> <span class="usun-na-malym"> APLIKACJE </span>
+      <mat-icon>apps</mat-icon> <span class="usun-na-malym"> MENU </span>
     </button>
 
     <!-- PRZYCISK FILTRUJ-->
@@ -40,9 +43,9 @@
     <mat-sidenav position="end" fixedTopGap="56" style="z-index: 100;" #snav
       [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
 
-      <div class="side-naw filtry">
+      <div class="side-naw-prawy filtry">
 
-        <div>Filtry działają automatycznie</div>
+        <div style="padding-top: 16px;">Filtry działają automatycznie</div>
 
         <mat-divider></mat-divider>
 
@@ -88,71 +91,69 @@
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary"
-            [formControl]="wUmowaOPraceCzasOkreslony">
+          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wUmowaOPraceCzasOkreslony">
             Umowa o pracę, czas określony
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" disabled matTooltip="Opcja dostepna wkrótce"
-            color="primary" [formControl]="wUmowaZlecenieDzielo">
+          <mat-checkbox matTooltip="Opcja dostepna wkrótce" disabled matTooltip="Opcja dostepna wkrótce" color="primary"
+            [formControl]="wUmowaZlecenieDzielo">
             Umowa Zlecenie / o dzieło
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="uUmowaNaZastepstwo">
+          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="uUmowaNaZastepstwo">
             Umowa na zastępstwo
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary"
-            [formControl]="wDzialanoscGospodarcza">
+          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDzialanoscGospodarcza">
             Działalność gospodarcza
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDochodyZnajmu">
+          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDochodyZnajmu">
             Dochody z najmu
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" disabled matTooltip="Opcja dostepna wkrótce"
-            color="primary" [formControl]="wEmerytura">
+          <mat-checkbox matTooltip="Opcja dostepna wkrótce" disabled matTooltip="Opcja dostepna wkrótce" color="primary"
+            [formControl]="wEmerytura">
             Emerytura
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wRenta">
+          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wRenta">
             Renta na czas nieokreślony
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDywidendy">
+          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDywidendy">
             Dywidendy
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDietyDelegacje">
+          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDietyDelegacje">
             Diety / delegacje
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDochodyMarynarzy">
+          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDochodyMarynarzy">
             Dochody marynarzy
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox disabled matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wPowolanie">
+          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wPowolanie">
             Powołanie (np. członka zarządu)
           </mat-checkbox>
         </div>
@@ -221,6 +222,11 @@
           </mat-form-field>
 -->
 
+
+          <div class="dane-naglowek">Kwota kredytu: <span
+              *ngIf="wkladWlasnyNowy > 0">{{ngWartoscNieruchomosci - wkladWlasnyNowy | currency:'zł':'symbol':'1.0-0':'fr'}}</span>
+          </div>
+
           <div class="dane-naglowek">Liczba lat</div>
 
           <!--LICZBA LAT-->
@@ -235,7 +241,7 @@
 
 
           <!--POKAŻ OPCJE ZAAWANSOWANE-->
-          <mat-slide-toggle class="filtry-elementy" style="margin-top: 16px;" color="primary"
+          <mat-slide-toggle class="filtry-elementy" style="margin-top: 25px; margin-bottom: 25px;" color="primary"
             [ngModelOptions]="{standalone: true}" [(ngModel)]="mpokazOpcjeZaawansowane">
             Opcje
             zaawansowane
@@ -272,7 +278,7 @@
 
           <!--W JAKIM BANKU KONTO-->
           <mat-form-field *ngIf="mpokazOpcjeZaawansowane" class="filtry-elementy">
-            <mat-select [(value)]="mWybranyBank" [value]="selectedOptionInny"
+            <mat-select [(value)]="mWybranyBank" [(value)]="selectedOptionInny"
               matTooltip="Zaznacz, w którym banku posiadasz aktywne konto od 6 miesięcy. Do wyboru są tylko te banki, które mają zniżki dla obecnych klientów.">
               <mat-option *ngFor="let KontoJakiBank of KontoJakieBanki" [value]="KontoJakiBank.value">
                 {{KontoJakiBank.viewValue}}
@@ -312,23 +318,28 @@
             <span matSuffix>%</span>
             <mat-error>min. -10, max. 10</mat-error>
           </mat-form-field>
+
+          <!-- PRZYCISK KONTAKT Z DORADCĄ-->
+          <button style="margin-right: 20px; margin-top: 18px;" mat-raised-button color="accent"
+            (click)="openDialogKontakt()">
+            <mat-icon>contact_support</mat-icon> ZAPYTAJ DORADCĘ
+          </button>
+
+
+          <!--PRZYCISK PRZELICZ-->
+
+          <button [disabled]="!myGroup.valid" style="margin-right: 20px; margin-top: 18px;" mat-raised-button
+            color="primary" (click)="przelicz()">PRZELICZ</button>
+          <div *ngIf="!myGroup.valid" class="error-pod-przelicz">Uzupełnij poprawnie powyższe pola <br>i kliknij
+            PRZELICZ
+          </div>
+
+
         </form>
 
 
 
-        <!-- PRZYCISK KONTAKT Z DORADCĄ-->
-        <button style="margin-right: 20px; margin-top: 18px;" mat-raised-button color="accent"
-          (click)="openDialogKontakt()">
-          <mat-icon>contact_support</mat-icon> ZAPYTAJ DORADCĘ
-        </button>
 
-
-        <!--PRZYCISK PRZELICZ-->
-
-        <button [disabled]="!myGroup.valid" style="margin-right: 20px; margin-top: 18px;" mat-raised-button
-          color="primary" (click)="przelicz()">PRZELICZ</button>
-        <div *ngIf="!myGroup.valid" class="error-pod-przelicz">Uzupełnij poprawnie powyższe pola <br>i kliknij PRZELICZ
-        </div>
 
 
         <!-- narazie tego poniżej nie pokazój, dopóki nie będzie na samym dole zawsze
@@ -340,7 +351,7 @@
 
           -->
 
-
+        <button (click)="openDialogBlad()" class="butoon-blad" mat-button color="warn">Zgłoś błąd na stronie</button>
 
       </div>
     </mat-sidenav>
@@ -365,10 +376,23 @@
               L
                 A-->
         <div id="kontener" class="wasko mat-elevation-z8">
+          <div #przykrywkaPoczatkowa class="example-loading-shade">
+            <h1 style="margin-top: 150px; margin-left: 8px;">
+              <span (click)="snav2.toggle()">
+                <mat-icon>settings</mat-icon> EDYTUJ DANE (w panelu po lewej)
+              </span> i kliknij przycisk
+              <button [disabled]="!myGroup.valid" style="margin-right: 20px; margin-top: 18px;" mat-raised-button
+                color="primary" (click)="przelicz()">PRZELICZ</button>
+              <div *ngIf="!myGroup.valid" class="error-pod-przelicz">Uzupełnij poprawnie dane
+              </div>aby
+              zobaczyć wyniki w
+              tabeli.
+            </h1>
+          </div>
           <table id="tabela" mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
 
             <!-- Szczegóły Column -->
-            <ng-container matColumnDef="szczegoly" sticky>
+            <ng-container matColumnDef="szczegoly">
               <th class="szczegoly" mat-header-cell *matHeaderCellDef mat-header> </th>
               <td mat-cell *matCellDef="let element">
                 <mat-icon>{{ expandedElement !==element ? 'expand_more' : 'expand_less' }}</mat-icon>
@@ -429,7 +453,7 @@
             <ng-container matColumnDef="rata">
               <th
                 matTooltip="Wysokość pierwszej raty. Kolejne mogą maleć lub rosnąć jesli oferta zakłada zmianę oprocentowania w trakcie trwania kredytu."
-                arrowPosition="before" mat-header-cell *matHeaderCellDef mat-sort-header> Rata </th>
+                arrowPosition="before" mat-header-cell *matHeaderCellDef mat-sort-header> Rata <br> miesięczna </th>
               <td class="cell-numer" class="cell-numer" mat-cell *matCellDef="let element">
                 {{element.rata | currency:'zł':'symbol':'1.0-0':'fr' }}</td>
             </ng-container>
@@ -446,7 +470,8 @@
             <!-- Marża -->
             <ng-container matColumnDef="marza">
               <th arrowPosition="before" mat-header-cell *matHeaderCellDef mat-sort-header
-                matTooltip="Marża lub oprocentowanie nominalne dla ofert z czasowym oprocentowaniem stałym.">Marża</th>
+                matTooltip="Marża lub oprocentowanie nominalne dla ofert z czasowym oprocentowaniem stałym.">
+                Marża<br>główna</th>
               <td class="cell-numer" mat-cell *matCellDef="let element"> {{element.marza | number : '1.2-2' }}
                 %</td>
             </ng-container>
@@ -497,103 +522,107 @@
             <ng-container matColumnDef="expandedDetail">
               <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
 
-                <!--WARUNKI OFERTY-->
-                <div class="example-element-detail"
-                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                  <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
-                  <div class="example-element-description" style="white-space: pre-wrap; width: 500px;">
-                    <b>Warunki oferty:</b>
-                    <br>
-                    {{element.warunkiOferty}}
-                  </div>
-                </div>
-
-
-                <!--OPŁATY NA START-->
-                <div class="example-element-detail"
-                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                  <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
-                  <div class="example-element-description" style="white-space: pre-wrap; width: 500px;">
-                    <b>Opłaty na start:</b>
-                    <div *ngIf="element.prowizjaSuma != 0">
-                      Prowizja: {{element.prowizjaSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
-                    </div>
-                    <div *ngIf="element.wycenaMieszkanie != 0">
-                      Wycena: {{element.wycenaMieszkanie | currency:'zł':'symbol':'1.0-0':'fr' }}
-                    </div>
-                    <div *ngIf="element.ubezZycieNaStartSuma != 0">
-                      Ubezpieczenie na życie: {{element.ubezZycieNaStartSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
-                    </div>
-                    <div *ngIf="element.upezpPracaNaStartSuma != 0">
-                      Ubezpieczenie od utraty pracy:
-                      {{element.upezpPracaNaStartSuma | currency:'zł':'symbol':'1.0-0':'fr'  }}
+                <div class="kontenerRozwijany">
+                  <!--WARUNKI OFERTY-->
+                  <div class="example-element-detail"
+                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
+                    <div class="example-element-description" style="white-space: pre-wrap; width: 500px;">
+                      <b>Warunki oferty:</b>
+                      <br>
+                      {{element.warunkiOferty}}
                     </div>
                   </div>
-                </div>
 
 
-                <!--OPŁATY MIESIĘCZNE-->
-                <div class="example-element-detail"
-                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                  <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
-                  <div class="example-element-description" style="white-space: pre-wrap; width: 500px;">
-                    <b
-                      matTooltip="Opłaty dodatkowe płatne co miesiąc (lub co roku ale w przeliczeniu na miesiące dla łatwiejszego porównania). Mogą maleć w miarę spłaty kredytu, szczegóły w warunkach oferty.">Opłaty
-                      miesięczne:</b>
-                    <div *ngIf="element.ubezpZycieSuma != 0">
-                      Ubezpieczenie na życie: {{element.ubezpZycieSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
-                    </div>
-                    <div *ngIf="element.ubezpNieruchSuma != 0">
-                      Ubezpieczenie nieruchomosci: {{element.ubezpNieruchSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
+                  <!--OPŁATY NA START-->
+                  <div class="example-element-detail opisyLiczbowe"
+                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
+                    <div class="example-element-description " style="white-space: pre-wrap;">
+                      <b>Opłaty na start:</b>
+                      <div *ngIf="element.prowizjaSuma != 0">
+                        Prowizja: {{element.prowizjaSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
+                      </div>
+                      <div *ngIf="element.wycenaMieszkanie != 0">
+                        Wycena: {{element.wycenaMieszkanie | currency:'zł':'symbol':'1.0-0':'fr' }}
+                      </div>
+                      <div *ngIf="element.ubezZycieNaStartSuma != 0">
+                        Ubezpieczenie na życie: {{element.ubezZycieNaStartSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
+                      </div>
+                      <div *ngIf="element.upezpPracaNaStartSuma != 0">
+                        Ubezpieczenie od utraty pracy:
+                        {{element.upezpPracaNaStartSuma | currency:'zł':'symbol':'1.0-0':'fr'  }}
+                      </div>
                     </div>
                   </div>
-                </div>
 
 
-                <!--KOSZTY CAŁKOWITE-->
-                <div class="example-element-detail"
-                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                  <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
-                  <div class="example-element-description" style="white-space: pre-wrap; width: 500px;">
-                    <b>Koszty całkowite:</b>
-                    <div *ngIf="element.odsetkiSuma != 0">
-                      Odsetki: {{element.odsetkiSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
-                    </div>
-                    <div *ngIf="element.pomostoweTOTAL != 0">
-                      Ubezpieczenie pomostowe: {{element.pomostoweTOTAL | currency:'zł':'symbol':'1.0-0':'fr'}}
-                    </div>
-                    <div *ngIf="element.prowizjaSuma != 0">
-                      Prowizja: {{element.prowizjaSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
-                    </div>
-                    <div *ngIf="element.wycenaMieszkanie != 0">
-                      Wycena: {{element.wycenaMieszkanie | currency:'zł':'symbol':'1.0-0':'fr' }}
-                    </div>
-                    <div *ngIf="element.ubezpNieruchTOTAL != 0">
-                      Ubezpieczenie nieruchomosci: {{element.ubezpNieruchTOTAL | currency:'zł':'symbol':'1.0-0':'fr' }}
-                    </div>
-                    <div *ngIf="element.ubezpZycieTOTAL + element.ubezZycieNaStartSuma != 0">
-                      Ubezpieczenie na życie:
-                      {{element.ubezpZycieTOTAL + element.ubezZycieNaStartSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
-                    </div>
-                    <div *ngIf="element.upezpPracaNaStartSuma != 0">
-                      Ubezpieczenie od utraty pracy:
-                      {{element.upezpPracaNaStartSuma | currency:'zł':'symbol':'1.0-0':'fr'  }}
+                  <!--OPŁATY MIESIĘCZNE-->
+                  <div class="example-element-detail opisyLiczbowe"
+                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
+                    <div class="example-element-description" style="white-space: pre-wrap; width: 500px;">
+                      <b
+                        matTooltip="Opłaty dodatkowe płatne co miesiąc (lub co roku ale w przeliczeniu na miesiące dla łatwiejszego porównania). Mogą maleć w miarę spłaty kredytu, szczegóły w warunkach oferty.">Opłaty
+                        miesięczne:</b>
+                      <div *ngIf="element.ubezpZycieSuma != 0">
+                        Ubezpieczenie na życie: {{element.ubezpZycieSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
+                      </div>
+                      <div *ngIf="element.ubezpNieruchSuma != 0">
+                        Ubezpieczenie nieruchomosci: {{element.ubezpNieruchSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
+                      </div>
                     </div>
                   </div>
-                </div>
 
 
-                <!--LINK DO OFERTY-->
-                <div class="example-element-detail"
-                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                  <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
-                  <div class="example-element-description " style="white-space: pre-wrap; width: 500px;">
-                    Data obowiązywania: {{element.doKiedyObowiazuje}}
-                    <br>
-                    ID#{{element.id}}
+                  <!--KOSZTY CAŁKOWITE-->
+                  <div class="example-element-detail opisyLiczbowe"
+                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
+                    <div class="example-element-description" style="white-space: pre-wrap; width: 500px;">
+                      <b>Koszty całkowite:</b>
+                      <div *ngIf="element.odsetkiSuma != 0">
+                        Odsetki: {{element.odsetkiSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
+                      </div>
+                      <div *ngIf="element.pomostoweTOTAL != 0">
+                        Ubezpieczenie pomostowe: {{element.pomostoweTOTAL | currency:'zł':'symbol':'1.0-0':'fr'}}
+                      </div>
+                      <div *ngIf="element.prowizjaSuma != 0">
+                        Prowizja: {{element.prowizjaSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
+                      </div>
+                      <div *ngIf="element.wycenaMieszkanie != 0">
+                        Wycena: {{element.wycenaMieszkanie | currency:'zł':'symbol':'1.0-0':'fr' }}
+                      </div>
+                      <div *ngIf="element.ubezpNieruchTOTAL != 0">
+                        Ubezpieczenie nieruchomosci:
+                        {{element.ubezpNieruchTOTAL | currency:'zł':'symbol':'1.0-0':'fr' }}
+                      </div>
+                      <div *ngIf="element.ubezpZycieTOTAL + element.ubezZycieNaStartSuma != 0">
+                        Ubezpieczenie na życie:
+                        {{element.ubezpZycieTOTAL + element.ubezZycieNaStartSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
+                      </div>
+                      <div *ngIf="element.upezpPracaNaStartSuma != 0">
+                        Ubezpieczenie od utraty pracy:
+                        {{element.upezpPracaNaStartSuma | currency:'zł':'symbol':'1.0-0':'fr'  }}
+                      </div>
+                    </div>
                   </div>
-                </div>
 
+
+                  <!--LINK DO OFERTY-->
+                  <div class="example-element-detail opisyLiczbowe"
+                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
+                    <div class="example-element-description " style="white-space: pre-wrap; width: 500px;">
+                      Data obowiązywania: {{element.doKiedyObowiazuje}}
+                      <br>
+                      ID#{{element.id}}
+                    </div>
+                  </div>
+
+
+                </div>
 
 
               </td>
@@ -602,7 +631,7 @@
 
 
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
 
             <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"
               [class.example-expanded-row]="expandedElement === element"
@@ -616,7 +645,7 @@
         <!--pokaż to jeśli nie będzie ofert spełniających kryteria-->
         <mat-card class="karta-brak-ofert" *ngIf="dataSource.filteredData.length === 0">
           <mat-card-header>
-            <mat-card-title>Brak ofert spełniająych zadane kryteria.</mat-card-title>
+            <mat-card-title>Brak ofert spełniających zadane kryteria.</mat-card-title>
             <mat-card-subtitle>Spróbuj zmniejszyć kwotę kredytu lub wyłacz filtry. Pamiętaj, że kwota
               kredytu
               nie może być wyższa, niż 90% wartości nieruchomości.</mat-card-subtitle>
@@ -631,14 +660,16 @@
 
 
 
-        <footer class="stopka">Niniejszy dokument ma charakter wyłącznie poglądowy i nie stanowi oferty w rozumieniu
+        <footer class="stopka">Podane na tej stronie informacje mają charakter wyłącznie poglądowy i nie stanowią oferty
+          w rozumieniu
           przepisów
           kodeksu
           cywilnego ani przyrzeczenia udzielenia określonego w
           jego treści finansowania. Pomimo dołożenia wszelkich starań może zawierać błędy i/lub pewne uproszczenia.
-          Zawiera on wyłącznie informacje dodatkowe, które zgodnie z art.12 ustawy o kredycie
+          Strona zawiera wyłącznie informacje dodatkowe, które zgodnie z art.12 ustawy o kredycie
           hipotecznym oraz o nadzorze nad pośrednikami
-          kredytu hipotecznego i agentami mogą być przekazane konsumentowi przez agenta kredytu hipotecznego. Jego celem
+          kredytu hipotecznego i agentami mogą być przekazane konsumentowi przez agenta kredytu hipotecznego. Celem
+          strony
           jest zwrócenie uwagi konsumenta na
           parametry poszczególnych ofert kredytowych. Wszelkie informacje wymagane przepisami ustawy o kredycie
           hipotecznym

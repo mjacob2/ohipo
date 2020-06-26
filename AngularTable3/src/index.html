@@ -2,6 +2,24 @@
 <html lang="pl">
 
 <head>
+
+  <!--podstawowe Meta Data-->
+  <title>ohipo.pl - porównywarka kredytów hipotecznych</title>
+  <meta name="description"
+    content="Prawdopodobnie najdokładniejsza 😎 porównywarka kredytów hipotecznych ze wszystkich 👀. Stworzona przez Doradcę Finansowego 🐱‍🏍, dostepna dla wszystkich BEZPŁATNIE!✔">
+  <meta name="author" content="middlers sp.z o.o. ">
+
+  <!--Facebook Meta Data-->
+  <meta property="og:url" content="https://ohipo.pl/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ohipo.pl - porównywarka kredytów hipotecznych👀" />
+  <meta property="og:description"
+    content="Prawdopodobnie najdokładniejsza 😎 porównywarka kredytów hipotecznych ze wszystkich 👀. Stworzona przez Doradcę Finansowego 🐱‍🏍, dostepna BEZPŁATNIE✔" />
+  <meta property="og:image" content="https://ohipo.pl/zdjecia/ohipo_share_image.png" />
+
+
+
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165452260-1"></script>
   <script>
@@ -69,6 +87,59 @@
 
   <!-- KONIEC Skrypt dla formularza kontaktowego-->
 
+
+  <!-- Skrypd dla formularza ZGŁOŚ BŁĄD NA STRONIE-->
+  <script>
+    var mndFileds = new Array('Status', 'Case Origin', 'Subject', 'Description');
+    var fldLangVal = new Array('Status', 'Zgłoszenie Pochodzenie', 'Przedmiot', 'Opis');
+    var name = '';
+    var email = '';
+
+    /* Do not remove this code. */
+    function reloadImg() {
+      if (document.getElementById('imgid').src.indexOf('&d') !== -1) {
+        document.getElementById('imgid').src = document.getElementById('imgid').src.substring(0, document.getElementById('imgid').src.indexOf('&d')) + '&d' + new Date().getTime();
+      } else {
+        document.getElementById('imgid').src = document.getElementById('imgid').src + '&d' + new Date().getTime();
+      }
+    }
+
+    function checkMandatory167379000002746084() {
+      for (i = 0; i < mndFileds.length; i++) {
+        var fieldObj = document.forms['WebToCases167379000002746084'][mndFileds[i]];
+        if (fieldObj) {
+          if (((fieldObj.value).replace(/^\s+|\s+$/g, '')).length == 0) {
+            if (fieldObj.type == 'file') {
+              alert('Wybierz plik do przesłania.');
+              fieldObj.focus();
+              return false;
+            }
+            alert(fldLangVal[i] + ' nie może być puste.');
+            fieldObj.focus();
+            return false;
+          } else if (fieldObj.nodeName == 'SELECT') {
+            if (fieldObj.options[fieldObj.selectedIndex].value == '-None-') {
+              alert(fldLangVal[i] + ' nie może mieść wartości „brak”.');
+              fieldObj.focus();
+              return false;
+            }
+          } else if (fieldObj.type == 'checkbox') {
+            if (fieldObj.checked == false) {
+              alert('Please accept  ' + fldLangVal[i]);
+              fieldObj.focus();
+              return false;
+            }
+          }
+          try {
+            if (fieldObj.name == 'Last Name') {
+              name = fieldObj.value;
+            }
+          } catch (e) { }
+        }
+      }
+      document.getElementById('formsubmit').disabled = true;
+    }
+  </script>
 
   <script>
     // --- Config --- //
@@ -151,7 +222,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <meta charset="utf-8">
-  <title>ohipo</title>
   <base href="/">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
