@@ -27,18 +27,17 @@
 
 
 .side-naw{
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 30px;
+  padding-top: 16px;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 98%;
   justify-content: space-between;
 
 }
 
 .side-naw-prawy{
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-right: 30px;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -56,6 +55,9 @@ margin-bottom: 16px;
 }
 
 .example-is-mobile .example-toolbar {
+  padding: 0 16px 0 0;
+
+
   position: fixed;
   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
   z-index: 2;
@@ -192,7 +194,6 @@ padding-right: 16px;
 
   .cell-oferta-nazwa{
     min-width: 220px;
-
   }
 
   tr.example-detail-row {
@@ -272,12 +273,24 @@ margin-top: 35px;
     left: 0;
     bottom: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.97);
+    background: rgba(255, 255, 255, 0.90);
     z-index: 102;
     display: flex;
     align-items: initial;
     justify-content: center;
   }
+
+
+  @media only screen and (max-width: 1800px) {
+
+
+    .cell-oferta-nazwa{
+      min-width: 160px;
+    }
+
+  
+  }
+
 
   @media only screen and (max-width: 1000px) {
 

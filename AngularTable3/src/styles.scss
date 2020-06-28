@@ -29,6 +29,10 @@ font-family: Roboto, Arial, sans-serif;
   font-size: 9px;
 }
 
+.mat-slider-horizontal{
+height: 10px !important;
+margin-bottom: 20px;
+}
 
 
 .mat-checkbox-layout .mat-checkbox-label {
@@ -82,7 +86,6 @@ mat-panel-title{
 
 form{
  margin-bottom: 6px;
- padding-top: 16px;
  display: flex;
  flex-direction: column;
 }
@@ -193,9 +196,8 @@ mat-dialog-actions{
 
 
 
-@media only screen and (max-width: 1700px) {
+@media only screen and (max-width: 1800px) {
   
-
 
   #kontener{
     margin-left: 0px;

@@ -9,16 +9,17 @@ import oferty from '../assets/oferty.json';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSidenav } from '@angular/material/sidenav';
 
 
-import { CurrencyPipe } from '@angular/common';
+//import { CurrencyPipe } from '@angular/common';
 
 //Importuj Services
 //import { HttpOfertyService } from './services/http/http-oferty.service';
 import { WzoryService } from './services/wzory/wzory.service';
 //import { InputErrorsService } from './services/inputErrors/input-errors.service'
 import { MatSliderChange } from '@angular/material/slider';
-import { MatSelectChange } from '@angular/material/select';
+//import { MatSelectChange } from '@angular/material/select';
 
 
 //import { SnackBarService } from './services/snack-bar.service';
@@ -50,27 +51,18 @@ export interface PeriodicElement {
   bank: string;
   ofertaNazwa: string;
   ofertaNazwaDopisek: string;
-  kosztyPoczatkowe: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   marza: number;
-  rata: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   pomostoweStawkaMiesieczna: number;
-  pomostoweSuma: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   ubezpNieruchStawkaRok: number;
-  ubezpNieruchSuma: number;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
-  ubezpNieruchTOTAL: number;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   ubezpZycieStawkaMiesieczna: number;
   ubezpZycieSuma: number;
   wTrakcieBudowy: string;
   WIBOR: string;
   WIBORstawka: number;
   prowizjaStawka: number;
-  prowizjaSuma: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   warunkiOferty: string;
   wycenaMieszkanie: number;
-  oplatyMiesieczne: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
-  odsetkiSuma: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   ubezpZycieTOTAL: number;
-  kosztyCalkowite: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   maxLTV: number;
   minLTV: number;
   ubezpZycieIleLat: number;
@@ -92,25 +84,32 @@ export interface PeriodicElement {
   minKwotaKredytuFILTR: string;
   maxKwotaKredytu: number;
   maxKwotaKredytuFILTR: string;
-  pomostoweTOTAL: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   doKiedyObowiazujeStatus: string;
   minimalneWpływy: number;
   minimalneWplywyStatus: string;
   minimalneWpływy2xRata: string;
   logoURL: string;
   oplatyZawszeKredytowane: number;
-  kwotaKredytuOferty: number;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
-  LTVobliczone: number;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
   maxLiczbaLat: number;
   maxWiek: number;
   maxWiekStatus: string;
   alternatywnyOpisOferty: string;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
+  kosztyPoczatkowe: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
+  kwotaKredytuOferty: number;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
+  LTVobliczone: number;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
+  pomostoweTOTAL: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
+  kosztyCalkowite: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
+  oplatyMiesieczne: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
+  odsetkiSuma: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
+  ubezpNieruchSuma: number;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
+  ubezpNieruchTOTAL: number;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
+  prowizjaSuma: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
+  pomostoweSuma: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
+  rata: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
 }
 
 //co się składa na ELEMENT DATA
 const ELEMENT_DATA: PeriodicElement[] = oferty
-
-
 
 
 @Component({
@@ -134,6 +133,9 @@ export class AppComponent implements OnInit {
   //to jest odniesienie do przykrywki, która przykrywa całątabelę na starcie.
   @ViewChild('przykrywkaPoczatkowa') private przykrywkaPoczatkowaElement: ElementRef;
 
+  //to jest odniesienie do SIDENAV tego z edytuj dane ( lewy)
+  @ViewChild('snav2') snav2: MatSidenav;
+
   // array dla listy wybranych po kolei banków, niech tam ma już 2 x 0, żeby jak będę patrzył na przedostatnio wybrany, żeby już było na co patrzeć
   numbers = new Array(0, 0);
 
@@ -148,6 +150,9 @@ export class AppComponent implements OnInit {
   private _mobileQueryListener: () => void;
 
   ofertyPobrane: Object; //varable dla pobieranych ofert z sieci
+
+
+
 
   constructor(
     changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
@@ -165,7 +170,7 @@ export class AppComponent implements OnInit {
 
 
   ) { // tu rzeczy dla side Barów
-    this.mobileQuery = media.matchMedia('(max-width: 1700px)');
+    this.mobileQuery = media.matchMedia('(max-width: 1800px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
@@ -181,11 +186,6 @@ export class AppComponent implements OnInit {
 
   //Grupa dla Formularza sprawdzania walidacji danych
   myGroup: FormGroup;
-
-
-
-
-
 
 
   //ustal wartość nieruchomosći zmienianą za każdym razem, gdy zmienia się input wartość nieruchomości
@@ -284,6 +284,15 @@ export class AppComponent implements OnInit {
 
   /** to funkcja zaszyta w przycisku PRZELICZ */
   przelicz() {
+
+
+    if (window.matchMedia("(max-width: 1800px)").matches) { /* The viewport is less than, or equal to, 1800 pixels wide */
+
+      // zamknij side nav po kliknięciu PRZELICZ
+      this.snav2.close();
+    }
+
+
 
 
     console.log(this.mWybranyBank);
@@ -701,7 +710,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
     return form.hasError('required') ?
       'Pole wymagane' :
       form.hasError('min') ?
-        'Minimum 60 000' :
+        'Minimum 100 000' :
         form.hasError('max') ?
           'Maksymalnie 2 000 000' : '';
   }

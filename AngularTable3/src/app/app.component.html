@@ -1,47 +1,63 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
 
   <mat-toolbar color="primary" class="example-toolbar">
-    <button mat-icon-button (click)="snav2.toggle()">
-      <mat-icon>settings</mat-icon> <span class="usun-na-malym"> EDYTUJ DANE</span>
+    <!-- PRZYCISK APLIKACJE-->
+    <button disabled mat-button matTooltip="Opcja dostępna wkrótce">
+      <mat-icon>menu</mat-icon> <span class="usun-na-malym"> </span>
     </button>
+
+    <img onclick="location.href='https://ohipo.pl'" style="height: 40px;"
+      src="../assets/ohipo-logo-1-bez-ramki-bialy.png" />
+    <!--Example spacer robi przerwę miedzy lewą stroną Toolbar a prawą, żeby było łądne dopasowanie do prawej i lewej.-->
+    <span class="example-spacer "></span>
 
     <span class="example-spacer usun-na-malym"></span>
 
 
-    <img style="height: 40px;" src="../assets/ohipo-logo-1-bez-ramki-bialy.png" />
-    <!--Example spacer robi przerwę miedzy lewą stroną Toolbar a prawą, żeby było łądne dopasowanie do prawej i lewej.-->
-    <span class="example-spacer "></span>
+
+    <button mat-button (click)="snav2.toggle()">
+      <mat-icon>edit</mat-icon> <span class="usun-na-malym"> EDYTUJ DANE</span>
+    </button>
 
 
+
+
+
+
+
+
+
+
+    <!-- PRZYCISK FILTRUJ-->
+    <button mat-button (click)="snav.toggle()">
+      <mat-icon>filter_alt</mat-icon> <span class="usun-na-malym"> FILTRUJ OFERTY </span>
+    </button>
 
     <!-- PRZYCISK KONTAKT Z DORADCĄ-->
     <button mat-raised-button color="accent" (click)="openDialogKontakt()">
       <mat-icon>contact_support</mat-icon> <span class="usun-na-malym"> ZAPYTAJ DORADCĘ </span>
     </button>
 
-    <!-- PRZYCISK APLIKACJE-->
-    <button disabled mat-button matTooltip="Opcja dostępna wkrótce">
-      <mat-icon>apps</mat-icon> <span class="usun-na-malym"> MENU </span>
-    </button>
-
-    <!-- PRZYCISK FILTRUJ-->
-    <button mat-button (click)="snav.toggle()">
-      <mat-icon>filter_list</mat-icon> <span class="usun-na-malym"> FILTRUJ OFERTY </span>
-    </button>
-
-
-
   </mat-toolbar>
 
 
 
-  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 64 : 0">
 
     <!-- 
       PIERWSZY SIDE NAW - PRAWY
     -->
-    <mat-sidenav position="end" fixedTopGap="56" style="z-index: 100;" #snav
-      [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+    <mat-sidenav position="end" fixedTopGap="64" style="z-index: 100;" #snav
+      [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="64">
+
+
+      <button style="height: 0; position: absolute;" mat-icon-button>
+      </button> <!-- bierze na siebie focus po otwarciu sidenav-->
+
+
+      <button (click)="snav.toggle()" style="float: left; overflow: auto;" mat-icon-button>
+        <mat-icon>close</mat-icon>
+      </button>
 
       <div class="side-naw-prawy filtry">
 
@@ -173,20 +189,23 @@
     <!-- 
       DRUGI SIDE NAW - LEWY
     -->
-    <mat-sidenav opened="true" fixedTopGap="56" style="z-index: 100;" #snav2
-      [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+    <mat-sidenav opened="true" fixedTopGap="64" style="z-index: 100; " #snav2
+      [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="64">
+
+      <button style="height: 0; position: absolute;" mat-icon-button>
+      </button> <!-- bierze na siebie focus po otwarciu sidenav-->
+
+
+      <button (click)="snav2.toggle()" style="float: right; overflow: auto;" mat-icon-button>
+        <mat-icon>close</mat-icon>
+      </button>
+
       <div class="side-naw filtry">
-
-        <!-- narazie niech zniknie ten krzyżyk, bo się nie mieści na małym ekranie.-->
-
-        <!--        <button class="close" mat-icon-button (click)="snav2.toggle()">
-          <mat-icon style="color: gray;">close</mat-icon>
-        </button>-->
-
-
 
 
         <form [formGroup]="myGroup">
+
+
 
           <!-- stara class: class="dane-o-kredycie-element"-->
 
@@ -203,8 +222,13 @@
             <span matSuffix>zł</span>
           </mat-form-field>
 
+          <mat-divider></mat-divider>
+
           <div class="dane-naglowek">Wkład własny: <span
               *ngIf="wkladWlasnyNowy > 0">{{wkladWlasnyNowy | currency:'zł':'symbol':'1.0-0':'fr'}}</span></div>
+          <div class="dane-naglowek">Kwota kredytu: <span
+              *ngIf="wkladWlasnyNowy > 0">{{ngWartoscNieruchomosci - wkladWlasnyNowy | currency:'zł':'symbol':'1.0-0':'fr'}}</span>
+          </div>
 
           <mat-slider (input)="sliderSunie($event)" style="margin-top: 20px;" class="filtry-elementy suwak" thumbLabel
             [displayWith]="formatLabel" min="10" max="60">
@@ -223,9 +247,7 @@
 -->
 
 
-          <div class="dane-naglowek">Kwota kredytu: <span
-              *ngIf="wkladWlasnyNowy > 0">{{ngWartoscNieruchomosci - wkladWlasnyNowy | currency:'zł':'symbol':'1.0-0':'fr'}}</span>
-          </div>
+          <mat-divider></mat-divider>
 
           <div class="dane-naglowek">Liczba lat</div>
 
@@ -375,11 +397,15 @@
             E
               L
                 A-->
-        <div id="kontener" class="wasko mat-elevation-z8">
+        <div id="kontener" class="wasko">
+
+          <!--Przykrywka przykrywająca tabelę na początku-->
+
+
           <div #przykrywkaPoczatkowa class="example-loading-shade">
             <h1 style="margin-top: 150px; margin-left: 8px;">
               <span (click)="snav2.toggle()">
-                <mat-icon>settings</mat-icon> EDYTUJ DANE (w panelu po lewej)
+                <mat-icon>edit</mat-icon> EDYTUJ DANE
               </span> i kliknij przycisk
               <button [disabled]="!myGroup.valid" style="margin-right: 20px; margin-top: 18px;" mat-raised-button
                 color="primary" (click)="przelicz()">PRZELICZ</button>
@@ -389,6 +415,7 @@
               tabeli.
             </h1>
           </div>
+
           <table id="tabela" mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
 
             <!-- Szczegóły Column -->
@@ -453,7 +480,8 @@
             <ng-container matColumnDef="rata">
               <th
                 matTooltip="Wysokość pierwszej raty. Kolejne mogą maleć lub rosnąć jesli oferta zakłada zmianę oprocentowania w trakcie trwania kredytu."
-                arrowPosition="before" mat-header-cell *matHeaderCellDef mat-sort-header> Rata <br> miesięczna </th>
+                arrowPosition="before" mat-header-cell *matHeaderCellDef mat-sort-header> Pierwsza rata <br> miesięczna
+              </th>
               <td class="cell-numer" class="cell-numer" mat-cell *matCellDef="let element">
                 {{element.rata | currency:'zł':'symbol':'1.0-0':'fr' }}</td>
             </ng-container>
@@ -471,7 +499,7 @@
             <ng-container matColumnDef="marza">
               <th arrowPosition="before" mat-header-cell *matHeaderCellDef mat-sort-header
                 matTooltip="Marża lub oprocentowanie nominalne dla ofert z czasowym oprocentowaniem stałym.">
-                Marża<br>główna</th>
+                Marża<br>podstawowa</th>
               <td class="cell-numer" mat-cell *matCellDef="let element"> {{element.marza | number : '1.2-2' }}
                 %</td>
             </ng-container>
@@ -631,7 +659,7 @@
 
 
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
 
             <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"
               [class.example-expanded-row]="expandedElement === element"
