@@ -31,8 +31,11 @@
   padding-top: 16px;
   display: flex;
   flex-direction: column;
-  height: 98%;
   justify-content: space-between;
+  display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+display: -ms-flexbox;  /* TWEENER - IE 10 */
+display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
 
 }
 
@@ -40,7 +43,7 @@
   padding-right: 30px;
   display: flex;
   flex-direction: column;
-  height: 100%;
+
 
 }
 
@@ -285,7 +288,7 @@ margin-top: 35px;
 
 
     .cell-oferta-nazwa{
-      min-width: 160px;
+      min-width: 140px;
     }
 
   

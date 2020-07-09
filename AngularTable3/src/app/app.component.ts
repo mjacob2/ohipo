@@ -484,6 +484,8 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
           }
           ileRazy = i;
 
+
+
           //policz sumę odsetek w okresie kiedy LTV jest > 80%
           let odsetkiZaplaconeAA = WzoryService.odsetkiZaplaconeNaKoniecNokresu(element.rata, ileRazy / 12, element.kwotaKredytuOferty, element.marza + element.WIBORstawka)
 
@@ -908,6 +910,8 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
     //Dzisiajsza data dla OD-kiedyobowiazuje
     var todayDate = new Date();
+    console.log(todayDate);
+
 
 
 
@@ -997,6 +1001,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
   openDialogKontakt() {
     const dialogRef = this.dialogKontakt.open(DialogKontakt, {
+      disableClose: true, //nie zamykaj po kliknięciu poza dialogiem
       backdropClass: 'backdropBackground' // ta klasa będzie przypisana do zaciemnienia tła kiedy Dialog jest otwarty
     });
 
@@ -1008,6 +1013,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
   openDialogBlad() {
     const dialogRef = this.dialogBlad.open(DialogBlad, {
+      disableClose: true, //nie zamykaj po kliknięciu poza dialogiem
       backdropClass: 'backdropBackground' // ta klasa będzie przypisana do zaciemnienia tła kiedy Dialog jest otwarty
     });
 

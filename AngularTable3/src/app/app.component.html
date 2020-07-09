@@ -35,7 +35,7 @@
 
     <!-- PRZYCISK KONTAKT Z DORADCĄ-->
     <button mat-raised-button color="accent" (click)="openDialogKontakt()">
-      <mat-icon>contact_support</mat-icon> <span class="usun-na-malym"> ZAPYTAJ DORADCĘ </span>
+      <mat-icon>contact_support</mat-icon> <span class="usun-na-malym"> ZŁÓŻ WNIOSEK </span>
     </button>
 
   </mat-toolbar>
@@ -106,75 +106,79 @@
           </mat-checkbox>
         </div>
 
+        <div style="padding-top: 16px;">Pozostałe formy zatrudnienia już niedługo!</div>
+        <!-- 
+
+
         <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wUmowaOPraceCzasOkreslony">
+          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wUmowaOPraceCzasOkreslony">
             Umowa o pracę, czas określony
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostepna wkrótce" disabled matTooltip="Opcja dostepna wkrótce" color="primary"
+          <mat-checkbox matTooltip="Opcja dostępna wkrótce" disabled matTooltip="Opcja dostępna wkrótce" color="primary"
             [formControl]="wUmowaZlecenieDzielo">
             Umowa Zlecenie / o dzieło
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="uUmowaNaZastepstwo">
+          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="uUmowaNaZastepstwo">
             Umowa na zastępstwo
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDzialanoscGospodarcza">
+          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wDzialanoscGospodarcza">
             Działalność gospodarcza
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDochodyZnajmu">
+          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wDochodyZnajmu">
             Dochody z najmu
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostepna wkrótce" disabled matTooltip="Opcja dostepna wkrótce" color="primary"
+          <mat-checkbox matTooltip="Opcja dostępna wkrótce" disabled matTooltip="Opcja dostępna wkrótce" color="primary"
             [formControl]="wEmerytura">
             Emerytura
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wRenta">
+          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wRenta">
             Renta na czas nieokreślony
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDywidendy">
+          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wDywidendy">
             Dywidendy
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDietyDelegacje">
+          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wDietyDelegacje">
             Diety / delegacje
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wDochodyMarynarzy">
+          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wDochodyMarynarzy">
             Dochody marynarzy
           </mat-checkbox>
         </div>
 
         <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostepna wkrótce" color="primary" [formControl]="wPowolanie">
+          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wPowolanie">
             Powołanie (np. członka zarządu)
           </mat-checkbox>
         </div>
 
-
+-->
 
 
         <mat-divider></mat-divider>
@@ -222,7 +226,7 @@
             <span matSuffix>zł</span>
           </mat-form-field>
 
-          <mat-divider></mat-divider>
+
 
           <div class="dane-naglowek">Wkład własny: <span
               *ngIf="wkladWlasnyNowy > 0">{{wkladWlasnyNowy | currency:'zł':'symbol':'1.0-0':'fr'}}</span></div>
@@ -231,7 +235,7 @@
           </div>
 
           <mat-slider (input)="sliderSunie($event)" style="margin-top: 20px;" class="filtry-elementy suwak" thumbLabel
-            [displayWith]="formatLabel" min="10" max="60">
+            [displayWith]="formatLabel" min="10" max="49">
           </mat-slider>
 
 
@@ -247,7 +251,7 @@
 -->
 
 
-          <mat-divider></mat-divider>
+
 
           <div class="dane-naglowek">Liczba lat</div>
 
@@ -281,7 +285,7 @@
                 {{RodzajNieruchomosci.viewValue}}
               </mat-option>
             </mat-select>
-            <mat-hint>Opcja zmiany dostepna wkrótce</mat-hint>
+            <mat-hint>Opcja zmiany dostępna wkrótce</mat-hint>
           </mat-form-field>
 
           <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">Rodzaj rat</div>
@@ -293,7 +297,7 @@
                 {{RodzajRat.viewValue}}
               </mat-option>
             </mat-select>
-            <mat-hint>Opcja zmiany dostepna wkrótce</mat-hint>
+            <mat-hint>Opcja zmiany dostępna wkrótce</mat-hint>
           </mat-form-field>
 
           <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">Konto w którym banku</div>
@@ -341,10 +345,11 @@
             <mat-error>min. -10, max. 10</mat-error>
           </mat-form-field>
 
+
           <!-- PRZYCISK KONTAKT Z DORADCĄ-->
           <button style="margin-right: 20px; margin-top: 18px;" mat-raised-button color="accent"
             (click)="openDialogKontakt()">
-            <mat-icon>contact_support</mat-icon> ZAPYTAJ DORADCĘ
+            <mat-icon>contact_support</mat-icon> ZŁÓŻ WNIOSEK
           </button>
 
 
@@ -406,7 +411,7 @@
             <h1 style="margin-top: 150px; margin-left: 8px;">
               <span (click)="snav2.toggle()">
                 <mat-icon>edit</mat-icon> EDYTUJ DANE
-              </span> i kliknij przycisk
+              </span> i kliknij
               <button [disabled]="!myGroup.valid" style="margin-right: 20px; margin-top: 18px;" mat-raised-button
                 color="primary" (click)="przelicz()">PRZELICZ</button>
               <div *ngIf="!myGroup.valid" class="error-pod-przelicz">Uzupełnij poprawnie dane
