@@ -331,27 +331,30 @@ export class AppComponent implements OnInit {
 
       /* zniżka prowizji dla SANTADERA **/
 
-      //ustal prowizję dla Santandera, w oparciu o to, czy zaznaczono, że posiada się w nim konto od 6 miesiecy w opcjach zaawansowanych
-      if (+this.mWybranyBank == 2 && element.bank == "Santander" && element.oprocStale == "nie") {
-        element.prowizjaStawka = 1 //obniż prowizje o 2 pp dla ofert ze zmiennym oprocentowanie, czyli 1%
-        element.alternatywnyOpisOferty = " + konto od 6 mcy" // i dodaj alternatywny opis oferty
-      }
-      if (+this.mWybranyBank == 2 && element.bank == "Santander" && element.oprocStale == "tak") {
-        element.prowizjaStawka = 2 // dla oferty ze stałym oprocentowaniem obniż prowizję o 0.5 pp, czyli 2%
-        element.alternatywnyOpisOferty = " + konto od 6 mcy" // i dodaj alternatywny opis oferty
-      }
-      // Jeśli ktoś potem zmieni, ze jednak nie ma konta w Santander, to podwyższ z powrotem prowziję
-      if (+this.mWybranyBank != 2 && element.bank == "Santander" && element.oprocStale == "nie") {
-        element.prowizjaStawka = 3 //zastosuj prowizję standardową
-        element.alternatywnyOpisOferty = "" // i usuń alternatywny opis oferty
-      }
-      if (+this.mWybranyBank != 2 && element.bank == "Santander" && element.oprocStale == "tak") {
-        element.prowizjaStawka = 2.5 //zastosuj prowizję standardową
-        element.alternatywnyOpisOferty = "" // i usuń alternatywny opis oferty
-      }
-
-
-
+      /*  JUŻ NIE POTRZEBNE, BO MARŻE TERAZ NAWET SĄ INNE DLA WEWNĘTRZNEGO I ZEWNĘTRZNEGO :(
+      
+            //ustal prowizję dla Santandera, w oparciu o to, czy zaznaczono, że posiada się w nim konto od 6 miesiecy w opcjach zaawansowanych
+            if (+this.mWybranyBank == 2 && element.bank == "Santander" && element.oprocStale == "nie") {
+              element.prowizjaStawka = 2 //obniż prowizje o 2 pp dla ofert ze zmiennym oprocentowanie, czyli do 1%
+              element.alternatywnyOpisOferty = " + konto od 6 mcy" // i dodaj alternatywny opis oferty
+            }
+            if (+this.mWybranyBank == 2 && element.bank == "Santander" && element.oprocStale == "tak") {
+              element.prowizjaStawka = 2 // dla oferty ze stałym oprocentowaniem obniż prowizję o 0.5 pp, czyli do 2%
+              element.alternatywnyOpisOferty = " + konto od 6 mcy" // i dodaj alternatywny opis oferty
+            }
+            // Jeśli ktoś potem zmieni, ze jednak nie ma konta w Santander, to podwyższ z powrotem prowziję
+            if (+this.mWybranyBank != 2 && element.bank == "Santander" && element.oprocStale == "nie") {
+              element.prowizjaStawka = 3 //zastosuj prowizję standardową
+              element.alternatywnyOpisOferty = "" // i usuń alternatywny opis oferty
+            }
+            if (+this.mWybranyBank != 2 && element.bank == "Santander" && element.oprocStale == "tak") {
+              element.prowizjaStawka = 2.5 //zastosuj prowizję standardową
+              element.alternatywnyOpisOferty = "" // i usuń alternatywny opis oferty
+            }
+      
+      
+      
+      **/
 
 
 
@@ -408,7 +411,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
         element.ubezpNieruchTOTAL = +element.ubezpNieruchSuma * +this.mLiczbaLat * 12;
       }
       /**oblicz UBEZPIECZENIE NA ŻYCIE miesieczne */
-      element.ubezpZycieSuma = (element.ubezpZycieStawkaMiesieczna / 12) * element.kwotaKredytuOferty;
+      element.ubezpZycieSuma = (element.ubezpZycieStawkaMiesieczna / 100) * element.kwotaKredytuOferty;
       //** oblicz OPŁATY MIESIECZNE */
       element.oplatyMiesieczne = element.ubezpNieruchSuma + element.ubezpZycieSuma;
       /** */
@@ -545,7 +548,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
           var zostaloDoSplaty = cz1 * +kwotaKredytu - goradol * +rata;
           suma = suma + zostaloDoSplaty;
         }
-        skladkaCalkowita = (suma / liczbaLat) * element.ubezpZycieStawkaMiesieczna * liczbaLat;
+        skladkaCalkowita = (suma / liczbaLat) * (element.ubezpZycieStawkaMiesieczna / 100 * 12) * liczbaLat;
         /**Oblicz ubezpieczenie na zycie TOTAL przec cały okres kredytu */
         element.ubezpZycieTOTAL = skladkaCalkowita;
       }
@@ -979,7 +982,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
   KontoJakieBanki: KontoJakiBank[] = [
     { value: '0', viewValue: 'Inny' },
     { value: '1', viewValue: 'PKO BP' },
-    { value: '2', viewValue: 'Santander' },
+    //{ value: '2', viewValue: 'Santander' },
   ];
 
 
