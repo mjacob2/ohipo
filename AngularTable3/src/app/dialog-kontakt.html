@@ -100,7 +100,8 @@
 
         <div mat-dialog-actions align='end'>
             <button mat-button mat-dialog-close>Anuluj</button>
-            <button mat-raised-button color="accent"> Wyślij </button>
+            <button mat-raised-button color="accent" onclick='FB.AppEvents.logEvent("Formularz_Wyslij_clicked")'> Wyślij
+            </button>
 
         </div>
 
