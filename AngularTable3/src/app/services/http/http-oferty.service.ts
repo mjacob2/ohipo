@@ -1,19 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class HttpOfertyService {
+@Injectable()
+export class UserService {
   constructor(private http: HttpClient) { }
 
-  pobierzOferty() {
-    return this.http.get('https://ohipo.pl/oferty/oferty.json')
+  getUsers() {
+    return this.http.get('https://ohipo.pl/assets/oferty.json');
   }
-
-
 }
-
 
 
 

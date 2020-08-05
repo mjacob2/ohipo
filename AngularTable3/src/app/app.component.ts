@@ -5,11 +5,13 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import oferty from '../assets/oferty.json';
+//import oferty from '../assets/oferty.json';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
+
+import { UserService } from './services/http/http-oferty.service';
 
 
 //import { CurrencyPipe } from '@angular/common';
@@ -27,7 +29,7 @@ import { MatSliderChange } from '@angular/material/slider';
 //import oferty2 from '../assets/oferty2.json';
 
 //Kolumny w pliku Excel
-
+//var users: User[];
 
 /** Tutaj logika zaznacz jaki rodzaj rat Cię interesuje */
 interface RodzajRat {
@@ -46,7 +48,7 @@ interface RodzajNieruchomosci {
   value: string;
   viewValue: string;
 }
-export interface PeriodicElement {
+export interface User {
   id: number;
   bank: string;
   ofertaNazwa: string;
@@ -109,7 +111,10 @@ export interface PeriodicElement {
 }
 
 //co się składa na ELEMENT DATA
-const ELEMENT_DATA: PeriodicElement[] = oferty
+//let users: User[] = oferty
+//console.log("oferty: " + oferty);
+
+
 
 
 @Component({
@@ -130,26 +135,28 @@ const ELEMENT_DATA: PeriodicElement[] = oferty
 
 export class AppComponent implements OnInit {
 
+
+
+
+  //wyświetlane kolumny   narazie ukrywamy 'select', po szczegółach
+  displayedColumns: string[] = ['szczegoly', 'bank', 'ofertaNazwa', 'kosztyCalkowite', 'kosztyPoczatkowe', 'rata', 'oplatyMiesieczne', 'marza', 'pomostoweSuma'];
+
+
+  dataSource;
+  users: User[];
+
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+
+  @ViewChild('wiekNajstarszegoInput') wiekNajstarszegoInput: ElementRef;
+
   //to jest odniesienie do przykrywki, która przykrywa całątabelę na starcie.
   @ViewChild('przykrywkaPoczatkowa') private przykrywkaPoczatkowaElement: ElementRef;
 
   //to jest odniesienie do SIDENAV tego z edytuj dane ( lewy)
   @ViewChild('snav2') snav2: MatSidenav;
-
-  // array dla listy wybranych po kolei banków, niech tam ma już 2 x 0, żeby jak będę patrzył na przedostatnio wybrany, żeby już było na co patrzeć
-  numbers = new Array(0, 0);
-
-
-  //dodaj do slidera % na końcu łezki (label) do
-  formatLabel(value: number) {
-    return value + '%';
-  }
-
-  //dla responsywnego sideNMavigacji
-  mobileQuery: MediaQueryList;
-  private _mobileQueryListener: () => void;
-
-  ofertyPobrane: Object; //varable dla pobieranych ofert z sieci
 
 
 
@@ -167,7 +174,8 @@ export class AppComponent implements OnInit {
     public dialogBlad: MatDialog,
     public dialogKontakt: MatDialog,
 
-
+    //konstruktor dla pobierania ofert z pliku z serwera
+    private userService: UserService
 
   ) { // tu rzeczy dla side Barów
     this.mobileQuery = media.matchMedia('(max-width: 1800px)');
@@ -176,13 +184,171 @@ export class AppComponent implements OnInit {
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+
   }
 
 
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  ngOnInit() {
 
-  selection = new SelectionModel<PeriodicElement>(true, []);
-  expandedElement: PeriodicElement | null;
+    this.userService.getUsers()
+      .subscribe((users: User[]) => {
+        this.users = users;
+        this.dataSource = new MatTableDataSource(users);
+        this.dataSource.sort = this.sort;
+        console.log("users: " + users);
+        console.log("dataSource1" + this.dataSource);
+
+        //CUSTOMOWY FILTER
+        this.dataSource.filterPredicate = this.customFilterPredicate();
+
+
+
+
+
+        //FILTR: W trakcie Budowy checkbox
+        this.wTrakcieBudowyFilter.valueChanges.subscribe((wTrakcieBudowyFilterValue) => {
+          if (wTrakcieBudowyFilterValue == true) {
+            this.filteredValues['wTrakcieBudowy'] = "tak";
+            this.dataSource.filter = JSON.stringify(this.filteredValues);
+          } else {
+            this.filteredValues['wTrakcieBudowy'] = "";
+            this.dataSource.filter = JSON.stringify(this.filteredValues);
+          }
+        });
+
+
+
+
+        //FILTR: Deklarowane wpływy
+        this.wDeklarowaneWplywy.valueChanges.subscribe((wDeklarowaneWplywyFilterValue) => {
+          this.users.forEach((element) => {
+            if (wDeklarowaneWplywyFilterValue >= element.minimalneWpływy || wDeklarowaneWplywyFilterValue === null) {
+              element.minimalneWplywyStatus = "wplywyOK"
+              this.filteredValues['minimalneWplywyStatus'] = "wplywyOK";
+              this.dataSource.filter = JSON.stringify(this.filteredValues);
+            } else {
+              element.minimalneWplywyStatus = "wplywyMalo"
+            }
+          })
+        });
+
+        //FILTR: Wiek najstarszego kredytobiorcy
+        this.wWiekNajstarszego.valueChanges.subscribe((wWiekNajstarszegoFilterValue) => {
+          this.users.forEach((element) => {
+            if (+this.mLiczbaLat + +wWiekNajstarszegoFilterValue < element.maxWiek) {
+              element.maxWiekStatus = "wiekOK"
+              this.filteredValues['maxWiekStatus'] = "wiekOK";
+            } else {
+              element.maxWiekStatus = "wiekMalo"
+            }
+          })
+          this.dataSource.filter = JSON.stringify(this.filteredValues);
+        });
+
+
+        //Dzisiajsza data dla OD-kiedyobowiazuje
+        var todayDate = new Date();
+        console.log(todayDate);
+
+
+
+
+        this.users.forEach((element) => {
+          var mElementOdKiedyObowiazuje = new Date(element.odKiedyObowiazuje)
+          if (mElementOdKiedyObowiazuje < todayDate) { //Data jest z minutami i sekundami, więc nie musi być <= bo już sekundę po północy mElementOdKiedyObowiazuje jest mniejszy od todayDate
+            element.odKiedyObowiazuje = "już"
+
+          }
+
+
+          //Dzisiajsza data dla DO-kiedyobowiazuje
+          var mElementDoKiedyObowiazuje = new Date(element.doKiedyObowiazuje)
+          mElementDoKiedyObowiazuje.setDate(mElementDoKiedyObowiazuje.getDate() + 1);// dodaj 1 dzień do daty, do kiedy obowiązuje, bo data obowiązuje do godziny 0:00:00 danego dnia, więc jest już nieaktualna jak tylko ten dzień siezacznie, a chcemy, aby była aktualna jeszcze tego jednego ostatniego dnia. Zatem.
+          if (element.doKiedyObowiazuje === "do odwołania")
+            element.doKiedyObowiazujeStatus = "aktualne"
+          if (mElementDoKiedyObowiazuje > todayDate) {
+            element.doKiedyObowiazujeStatus = "aktualne"
+            //element.doKiedyObowiazuje = mElementDoKiedyObowiazuje
+          }
+
+        });
+        this.filteredValues['odKiedyObowiazuje'] = "już";
+        this.filteredValues['doKiedyObowiazujeStatus'] = "aktualne";
+        this.dataSource.filter = JSON.stringify(this.filteredValues);
+        this.dataSource.sort = this.sort;
+
+        /**funkcja pokazywania paginatora */
+        this.dataSource.paginator = this.paginator;
+
+        /**tutaj jest tłumaczenie dla paginatora na polski */
+        this.dataSource.paginator._intl.itemsPerPageLabel = "Pozycji na stronę:";
+        this.dataSource.paginator._intl.nextPageLabel = 'Następna strona';
+        this.dataSource.paginator._intl.previousPageLabel = 'Poprzednia strona';
+        this.dataSource.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
+          if (length == 0 || pageSize == 0) { return `0 z ${length}`; }
+          length = Math.max(length, 0);
+          const startIndex = page * pageSize;
+          // If the start index exceeds the list length, do not try and fix the end index to the end.
+          const endIndex = startIndex < length ?
+            Math.min(startIndex + pageSize, length) :
+            startIndex + pageSize;
+          return `${startIndex + 1} – ${endIndex} z ${length}`;
+        }
+
+      });
+
+
+
+
+    //stwórz form Bilder
+    this.zbudujFormularz();
+
+    //sprawdć, czy nie zmieniła się wartość nieruchomoci i jeśli tak, to wymagaj minimum 10% wartości nieruchomości w polu wkład własny
+    //  this.zaktualizujValidary();
+
+
+    // Działa ale wyłączone bo powoduje błąd w wersji testowej
+
+    //pobierz oferty z Service
+    // this.userService.getUsers().subscribe(data => {
+    //   this.ofertyPobrane = data;
+    //   console.log("oferty pobrane: " + this.ofertyPobrane);
+    // })
+
+    // Domyslnie sortuj po kosztach całkowitych podczas uruchomienia 
+    this.sort.sort(({ id: 'kosztyCalkowite', start: 'asc' }) as MatSortable);
+    // this.dataSource.sort = this.sort;
+
+
+  }
+
+
+  // array dla listy wybranych po kolei banków, niech tam ma już 2 x 0, żeby jak będę patrzył na przedostatnio wybrany, żeby już było na co patrzeć
+  numbers = new Array(0, 0);
+
+  //users: User[];
+
+
+  //dodaj do slidera % na końcu łezki (label) do
+  formatLabel(value: number) {
+    return value + '%';
+  }
+
+  //dla responsywnego sideNMavigacji
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+
+  ofertyPobrane: Object; //varable dla pobieranych ofert z sieci
+
+
+
+
+
+
+
+
+  selection = new SelectionModel<User>(true, []);
+  expandedElement: User | null;
 
   //Grupa dla Formularza sprawdzania walidacji danych
   myGroup: FormGroup;
@@ -265,8 +431,6 @@ export class AppComponent implements OnInit {
 
 
 
-  //wyświetlane kolumny   narazie ukrywamy 'select', po szczegółach
-  displayedColumns: string[] = ['szczegoly', 'bank', 'ofertaNazwa', 'kosztyCalkowite', 'kosztyPoczatkowe', 'rata', 'oplatyMiesieczne', 'marza', 'pomostoweSuma'];
 
   //po tych kolumnach mogą być filtrowane oferty
   filteredValues = {
@@ -280,10 +444,23 @@ export class AppComponent implements OnInit {
   //**konstruktor dla SnackBar */
   //constructor(private _snackBar: MatSnackBar) { }
 
+  przelicz2() {
+    this.users.forEach((element) => {
+      element.ofertaNazwa = "hghghghghghg";
+    })
+    //this.dataSource = new MatTableDataSource(this.users);
+    console.log("dataSource1" + this.dataSource);
 
+
+  }
 
   /** to funkcja zaszyta w przycisku PRZELICZ */
   przelicz() {
+
+
+    //console.log("dataSource w przelicz: " + this.dataSource);
+
+
 
 
     if (window.matchMedia("(max-width: 1800px)").matches) { /* The viewport is less than, or equal to, 1800 pixels wide */
@@ -295,12 +472,12 @@ export class AppComponent implements OnInit {
 
 
 
-    console.log(this.mWybranyBank);
+    //console.log(this.mWybranyBank);
     this.numbers.push(this.mWybranyBank);//stwórz Array dla kolejno wybranych banków z listy wyboru: jaki bank masz od 6 miesiect
-    console.log("lista banków: " + this.numbers);
+    //console.log("lista banków: " + this.numbers);
     var przedostatniWybrany = this.numbers[this.numbers.length - 2]//zwróć przedostatnio wybrany bank
-    console.log("teraz wybrany: " + this.mWybranyBank);
-    console.log("przedostani wybrany: " + przedostatniWybrany);
+    //console.log("teraz wybrany: " + this.mWybranyBank);
+    //console.log("przedostani wybrany: " + przedostatniWybrany);
 
 
 
@@ -308,7 +485,7 @@ export class AppComponent implements OnInit {
 
 
     //Licz wszystko to co jest potrzebne dla każdej z ofert z osobna
-    ELEMENT_DATA.forEach((element) => {
+    this.users.forEach((element) => {
 
       /* ZNIŻKA MARŻY DLA PKO BP Z TYTUŁU POSIADANIA KONTA OD 6 MIESIECY**/
 
@@ -652,7 +829,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
       /**Tutaj jak klikniesz przelicz sprawdź, ile jest wpisanych lat dla filtra WiekNajstarszegoKredytobiorcy i dodaj zmienioną liczbę lat kredytu (okres trwania).
       Musi to tu byc, bo inaczej, jak wpiszesz filtr wieknajstarszego i potem zminisz liczbę lat kredytu, to się filtr nie zaktualizuje */
 
-      ELEMENT_DATA.forEach((element) => {
+      this.users.forEach((element) => {
         if (+this.mLiczbaLat + +this.wiekNajstarszegoInput.nativeElement.value < element.maxWiek) {
           element.maxWiekStatus = "wiekOK"
           this.filteredValues['maxWiekStatus'] = "wiekOK";
@@ -678,6 +855,9 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
     // usuń przykrywkę początkową
     this.przykrywkaPoczatkowaElement.nativeElement.remove();
 
+
+
+
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -695,7 +875,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: PeriodicElement): string {
+  checkboxLabel(row?: User): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
@@ -703,11 +883,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
   }
 
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-
-  @ViewChild('wiekNajstarszegoInput') wiekNajstarszegoInput: ElementRef;
 
   // konstruktor dla ERROR dla  formWartoscNieruchomosci
   get errorMessageformWartoscNieruchomosci(): string {
@@ -770,34 +946,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
   }
 
 
-  ngOnInit() {
 
-
-
-    //stwórz form Bilder
-    this.zbudujFormularz();
-
-    //sprawdć, czy nie zmieniła się wartość nieruchomoci i jeśli tak, to wymagaj minimum 10% wartości nieruchomości w polu wkład własny
-    //  this.zaktualizujValidary();
-
-
-    // Działa ale wyłączone bo powoduje błąd w wersji testowej
-
-    // pobierz oferty z Service: http-oferty-service
-    //  this._http.pobierzOferty().subscribe(data => {
-    //    this.ofertyPobrane = data;
-    //    console.log(this.ofertyPobrane);
-    //  })
-
-
-    // Domyslnie sortuj po kosztach całkowitych podczas uruchomienia 
-    this.sort.sort(({ id: 'kosztyCalkowite', start: 'asc' }) as MatSortable);
-    this.dataSource.sort = this.sort;
-
-    //CUSTOMOWY FILTR
-    this.dataSource.filterPredicate = this.customFilterPredicate();
-
-  }
 
   zbudujFormularz() {
     //DO VALIDACJI DANCH FORMULARZA
@@ -829,7 +978,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
 
   customFilterPredicate() {
-    const myFilterPredicate = (data: PeriodicElement, filter: string): boolean => {
+    const myFilterPredicate = (data: User, filter: string): boolean => {
       var globalMatch = !this.globalFilter;
       if (this.globalFilter) {
         // search data.bank text fields
@@ -864,105 +1013,6 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
     return myFilterPredicate;
   }
 
-
-
-  ngAfterViewInit() {
-
-
-
-    //FILTR: W trakcie Budowy checkbox
-    this.wTrakcieBudowyFilter.valueChanges.subscribe((wTrakcieBudowyFilterValue) => {
-      if (wTrakcieBudowyFilterValue == true) {
-        this.filteredValues['wTrakcieBudowy'] = "tak";
-        this.dataSource.filter = JSON.stringify(this.filteredValues);
-      } else {
-        this.filteredValues['wTrakcieBudowy'] = "";
-        this.dataSource.filter = JSON.stringify(this.filteredValues);
-      }
-    });
-
-
-
-
-    //FILTR: Deklarowane wpływy
-    this.wDeklarowaneWplywy.valueChanges.subscribe((wDeklarowaneWplywyFilterValue) => {
-      ELEMENT_DATA.forEach((element) => {
-        if (wDeklarowaneWplywyFilterValue >= element.minimalneWpływy || wDeklarowaneWplywyFilterValue === null) {
-          element.minimalneWplywyStatus = "wplywyOK"
-          this.filteredValues['minimalneWplywyStatus'] = "wplywyOK";
-          this.dataSource.filter = JSON.stringify(this.filteredValues);
-        } else {
-          element.minimalneWplywyStatus = "wplywyMalo"
-        }
-      })
-    });
-
-    //FILTR: Wiek najstarszego kredytobiorcy
-    this.wWiekNajstarszego.valueChanges.subscribe((wWiekNajstarszegoFilterValue) => {
-      ELEMENT_DATA.forEach((element) => {
-        if (+this.mLiczbaLat + +wWiekNajstarszegoFilterValue < element.maxWiek) {
-          element.maxWiekStatus = "wiekOK"
-          this.filteredValues['maxWiekStatus'] = "wiekOK";
-        } else {
-          element.maxWiekStatus = "wiekMalo"
-        }
-      })
-      this.dataSource.filter = JSON.stringify(this.filteredValues);
-    });
-
-
-    //Dzisiajsza data dla OD-kiedyobowiazuje
-    var todayDate = new Date();
-    console.log(todayDate);
-
-
-
-
-    ELEMENT_DATA.forEach((element) => {
-      var mElementOdKiedyObowiazuje = new Date(element.odKiedyObowiazuje)
-      if (mElementOdKiedyObowiazuje < todayDate) { //Data jest z minutami i sekundami, więc nie musi być <= bo już sekundę po północy mElementOdKiedyObowiazuje jest mniejszy od todayDate
-        element.odKiedyObowiazuje = "już"
-
-      }
-
-
-      //Dzisiajsza data dla DO-kiedyobowiazuje
-      var mElementDoKiedyObowiazuje = new Date(element.doKiedyObowiazuje)
-      mElementDoKiedyObowiazuje.setDate(mElementDoKiedyObowiazuje.getDate() + 1);// dodaj 1 dzień do daty, do kiedy obowiązuje, bo data obowiązuje do godziny 0:00:00 danego dnia, więc jest już nieaktualna jak tylko ten dzień siezacznie, a chcemy, aby była aktualna jeszcze tego jednego ostatniego dnia. Zatem.
-      if (element.doKiedyObowiazuje === "do odwołania")
-        element.doKiedyObowiazujeStatus = "aktualne"
-      if (mElementDoKiedyObowiazuje > todayDate) {
-        element.doKiedyObowiazujeStatus = "aktualne"
-        //element.doKiedyObowiazuje = mElementDoKiedyObowiazuje
-      }
-
-    });
-    this.filteredValues['odKiedyObowiazuje'] = "już";
-    this.filteredValues['doKiedyObowiazujeStatus'] = "aktualne";
-    this.dataSource.filter = JSON.stringify(this.filteredValues);
-    this.dataSource.sort = this.sort;
-
-    /**funkcja pokazywania paginatora */
-    this.dataSource.paginator = this.paginator;
-
-    /**tutaj jest tłumaczenie dla paginatora na polski */
-    this.dataSource.paginator._intl.itemsPerPageLabel = "Pozycji na stronę:";
-    this.dataSource.paginator._intl.nextPageLabel = 'Następna strona';
-    this.dataSource.paginator._intl.previousPageLabel = 'Poprzednia strona';
-    this.dataSource.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
-      if (length == 0 || pageSize == 0) { return `0 z ${length}`; }
-      length = Math.max(length, 0);
-      const startIndex = page * pageSize;
-      // If the start index exceeds the list length, do not try and fix the end index to the end.
-      const endIndex = startIndex < length ?
-        Math.min(startIndex + pageSize, length) :
-        startIndex + pageSize;
-      return `${startIndex + 1} – ${endIndex} z ${length}`;
-    }
-
-
-
-  }
 
 
   /** Tutaj logika zaznacz jaki rodzaj rat  */

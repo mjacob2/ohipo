@@ -7,7 +7,7 @@
     </button>
 
     <img onclick="location.href='https://ohipo.pl'" style="height: 40px;"
-      src="../assets/ohipo-logo-1-bez-ramki-bialy.png" />
+      src="https://ohipo.pl/assets/ohipo-logo-1-bez-ramki-bialy.png" />
     <!--Example spacer robi przerwę miedzy lewą stroną Toolbar a prawą, żeby było łądne dopasowanie do prawej i lewej.-->
     <span class="example-spacer "></span>
 
@@ -679,7 +679,7 @@
         </div>
 
         <!--pokaż to jeśli nie będzie ofert spełniających kryteria-->
-        <mat-card class="karta-brak-ofert" *ngIf="dataSource.filteredData.length === 0">
+        <mat-card class="karta-brak-ofert" *ngIf="dataSource && dataSource.filteredData.length === 0">
           <mat-card-header>
             <mat-card-title>Brak ofert spełniających zadane kryteria.</mat-card-title>
             <mat-card-subtitle>Spróbuj zmniejszyć kwotę kredytu lub wyłacz filtry. Pamiętaj, że kwota

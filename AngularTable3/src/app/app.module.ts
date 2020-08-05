@@ -32,6 +32,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent, DialogKontakt, DialogBlad } from './app.component';
 import { CookiesComponent } from './cookies/cookies.component';
 
+import { UserService } from './services/http/http-oferty.service';
+
 registerLocaleData(localeFr, 'fr');
 
 
@@ -88,7 +90,7 @@ registerLocaleData(localeFr, 'fr');
 
 
 
-  providers: [CurrencyPipe],
+  providers: [CurrencyPipe, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
