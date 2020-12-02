@@ -563,10 +563,11 @@
                   <div class="example-element-detail"
                     [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                     <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
-                    <div class="example-element-description" style="white-space: pre-wrap; width: 500px;">
+                    <div class="example-element-description" style="white-space: pre-wrap; width: 600px;">
                       <b>Warunki oferty:</b>
-                      <br>
-                      {{element.warunkiOferty}}
+                      <div style="padding-left: 4px;">{{element.warunkiOferty}}
+                      </div>
+
                     </div>
                   </div>
 

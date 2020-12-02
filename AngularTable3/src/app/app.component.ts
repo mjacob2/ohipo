@@ -398,8 +398,8 @@ export class AppComponent implements OnInit {
   mpokazOpcjeZaawansowane: boolean;
 
   //Ustal domyślne wartości dla stawek WIBOR i czasu pomostowego
-  mWIBOR3M: number = 0.27;
-  mWIBOR6M: number = 0.29;
+  mWIBOR3M: number = 0.22;
+  mWIBOR6M: number = 0.25;
   mPomostoweIleMiesiecy: number = 3;
 
   /** ZADEKLAROWANE ZMIENNE DO FILTRÓW */
