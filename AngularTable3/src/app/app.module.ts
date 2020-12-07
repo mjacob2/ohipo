@@ -33,6 +33,7 @@ import { AppComponent, DialogKontakt, DialogBlad } from './app.component';
 import { CookiesComponent } from './cookies/cookies.component';
 
 import { UserService } from './services/http/http-oferty.service';
+import { WiborService } from './services/http/download-wibor.service';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -90,7 +91,7 @@ registerLocaleData(localeFr, 'fr');
 
 
 
-  providers: [CurrencyPipe, UserService],
+  providers: [CurrencyPipe, UserService, WiborService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

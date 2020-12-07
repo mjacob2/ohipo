@@ -13,7 +13,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 
 import { UserService } from './services/http/http-oferty.service';
 
-
+import { WiborService } from './services/http/download-wibor.service';
 //import { CurrencyPipe } from '@angular/common';
 
 //Importuj Services
@@ -21,6 +21,7 @@ import { UserService } from './services/http/http-oferty.service';
 import { WzoryService } from './services/wzory/wzory.service';
 //import { InputErrorsService } from './services/inputErrors/input-errors.service'
 import { MatSliderChange } from '@angular/material/slider';
+import { element } from 'protractor';
 //import { MatSelectChange } from '@angular/material/select';
 
 
@@ -175,7 +176,10 @@ export class AppComponent implements OnInit {
     public dialogKontakt: MatDialog,
 
     //konstruktor dla pobierania ofert z pliku z serwera
-    private userService: UserService
+    private userService: UserService,
+
+    //konstruktor dla pobierania WIBORU
+    private wiborService: WiborService
 
   ) { // tu rzeczy dla side Barów
     this.mobileQuery = media.matchMedia('(max-width: 1800px)');
@@ -190,16 +194,38 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
+    //uruchom wiborService i ściagnijaktualny WIBOR z moejje strony
+    this.wiborService
+      .downloadWIBOR()
+      .subscribe(
+        data => {
+          console.log(data['mWIBOR3M']);
+
+          //podstaw aktualny WIBOR do zmiennych mWIBOR
+          this.mWIBOR3M = data['mWIBOR3M'],
+            this.mWIBOR6M = data['mWIBOR6M']
+        });
+
+
     this.userService.getUsers()
       .subscribe((users: User[]) => {
         this.users = users;
+
         this.dataSource = new MatTableDataSource(users);
         this.dataSource.sort = this.sort;
-        console.log("users: " + users);
-        console.log("dataSource1" + this.dataSource);
+        //console.log("users: " + users);
+        //console.log("dataSource1" + this.dataSource);
 
         //CUSTOMOWY FILTER
         this.dataSource.filterPredicate = this.customFilterPredicate();
+
+
+
+
+
+
+
+
 
 
 
@@ -248,7 +274,7 @@ export class AppComponent implements OnInit {
 
         //Dzisiajsza data dla OD-kiedyobowiazuje
         var todayDate = new Date();
-        console.log(todayDate);
+        //console.log(todayDate);
 
 
 
@@ -361,7 +387,7 @@ export class AppComponent implements OnInit {
   mWartoscNieruchomosci = +this.ngWartoscNieruchomosci;
 
   //wpisz w formularzu od razu liczbę lat
-  ngLiczbaLat = 25
+  ngLiczbaLat = 30
   // ustal początkowy wkłąd własny procentowo
 
   sliderValue = 10
@@ -449,7 +475,7 @@ export class AppComponent implements OnInit {
       element.ofertaNazwa = "hghghghghghg";
     })
     //this.dataSource = new MatTableDataSource(this.users);
-    console.log("dataSource1" + this.dataSource);
+    //console.log("dataSource1" + this.dataSource);
 
 
   }
@@ -1060,7 +1086,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
     //funkcja odpalana kiedy zamykam dialog
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Rezultat dialogu: ${result}`);
+      // console.log(`Rezultat dialogu: ${result}`);
     });
   }
 
@@ -1072,7 +1098,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
     //funkcja odpalana kiedy zamykam dialog
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Rezultat dialogu błąd: ${result}`);
+      // console.log(`Rezultat dialogu błąd: ${result}`);
     });
   }
 
