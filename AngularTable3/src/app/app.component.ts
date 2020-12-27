@@ -1074,8 +1074,10 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
     return dataDzisiajX;
   }
 
-
-
+  // Otwórz formularz ZOHO do liczenia zdolnoąci kredytowej w nowej karcie przeglądarki
+  openZohoForm() {
+    window.open("https://forms.zohopublic.eu/jakubickim/form/abc/formperma/4CTCfBkz-6-h29FkJPHQmyeFShrErtcsuppDiUTmZOI", "_blank");
+  }
 
 
   openDialogKontakt() {

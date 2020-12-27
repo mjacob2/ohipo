@@ -36,7 +36,7 @@
     <!-- PRZYCISK KONTAKT Z DORADCĄ-->
     <button mat-raised-button color="accent" (click)="openDialogKontakt()"
       onclick='FB.AppEvents.logEvent("Kontakt_z_doradca_toolbar_Clicked")'>
-      <mat-icon>contact_support</mat-icon> <span class="usun-na-malym"> ZŁÓŻ WNIOSEK </span>
+      <mat-icon>contact_support</mat-icon> <span class="usun-na-malym"> ZAPYTAJ DORADCĘ </span>
     </button>
 
   </mat-toolbar>
@@ -347,21 +347,29 @@
           </mat-form-field>
 
 
-          <!-- PRZYCISK KONTAKT Z DORADCĄ-->
-          <button style="margin-right: 20px; margin-top: 18px;" mat-raised-button color="accent"
-            (click)="openDialogKontakt()" onclick='FB.AppEvents.logEvent("Kontakt_z_doradca_navBar_Clicked")'>
-            <mat-icon>contact_support</mat-icon> ZŁÓŻ WNIOSEK
-          </button>
-
-
           <!--PRZYCISK PRZELICZ-->
 
-          <button [disabled]="!myGroup.valid" style="margin-right: 20px; margin-top: 18px;" mat-raised-button
+          <button [disabled]="!myGroup.valid"
+            style="margin-right: 20px; margin-top: 18px; padding-top: 4px; padding-bottom: 4px;" mat-raised-button
             color="primary" (click)="przelicz()"
             onclick='FB.AppEvents.logEvent("Przelicz_navBar_Clicked")'>PRZELICZ</button>
           <div *ngIf="!myGroup.valid" class="error-pod-przelicz">Uzupełnij poprawnie powyższe pola <br>i kliknij
             PRZELICZ
           </div>
+
+
+          <!-- PRZYCISK KONTAKT Z DORADCĄ-->
+          <button style="margin-right: 20px; margin-top: 18px;" mat-raised-button color="accent"
+            (click)="openDialogKontakt()" onclick='FB.AppEvents.logEvent("Kontakt_z_doradca_navBar_Clicked")'>
+            <mat-icon>contact_support</mat-icon> ZAPYTAJ DORADCĘ
+          </button>
+
+          <!-- PRZYCISK SPRAWDŹ ZDOLNOŚĆ-->
+          <button style="margin-right: 20px; margin-top: 18px;" mat-raised-button color="accent"
+            (click)="openZohoForm()" onclick='FB.AppEvents.logEvent("Sprawdz_zdolnosc__navBar_Clicked")'>
+            <mat-icon>calculate</mat-icon> OBLICZ ZDOLNOŚĆ
+          </button>
+
 
 
         </form>
