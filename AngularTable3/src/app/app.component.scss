@@ -283,6 +283,19 @@ margin-top: 35px;
     justify-content: center;
   }
 
+  .neumorphism{
+    border-radius: 17px;
+    background: #1976D2;
+    box-shadow:  -2px 2px 5px #0f467c,
+                 2px -2px 5px #23a6ff;
+  }
+
+  .neumorphism_side-bar{
+    border-radius: 50px;
+    box-shadow:  -7px 7px 14px #969696,
+    7px -7px 14px #ffffff;
+  }
+
 
   @media only screen and (max-width: 1800px) {
 

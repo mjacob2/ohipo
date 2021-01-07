@@ -1,7 +1,7 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
-$my-app-primary: mat-palette($mat-blue, 800);
+$my-app-primary: mat-palette($mat-blue, 700);
 $my-app-accent: mat-palette($mat-amber, A400);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
 $moja: mat-palette($mat-blue, 200);
@@ -35,6 +35,8 @@ margin-bottom: 20px;
 }
 
 
+
+
 .mat-checkbox-layout .mat-checkbox-label {
   line-height: 1.1;
   text-align: justify;
@@ -56,6 +58,7 @@ footer{
   font-size: 8pt;
   float: right;
 }
+
 
 
 //żeby obwódka buttona outliined była lepiej widoczna
@@ -126,6 +129,19 @@ th{
   .mat-tooltip {
     white-space: pre-line;
   }
+
+.mat-button{
+  min-width: 0px !important;
+}
+
+.mat-button:active{
+  min-width: 0px !important;
+  background: #1565C0;
+  box-shadow: inset -7px 7px 14px #0c3c71,
+              inset 7px -7px 14px #1e8eff !important;
+}
+
+
 
 
 

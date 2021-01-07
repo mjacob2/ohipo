@@ -6,7 +6,7 @@
       <mat-icon>menu</mat-icon> <span class="usun-na-malym"> </span>
     </button>
 
-    <img onclick="location.href='https://ohipo.pl'" style="height: 40px;"
+    <img onclick="location.href='https://ohipo.pl'" style="height: 35px; margin-top: 4px;"
       src="https://ohipo.pl/assets/ohipo-logo-1-bez-ramki-bialy.png" />
     <!--Example spacer robi przerwę miedzy lewą stroną Toolbar a prawą, żeby było łądne dopasowanie do prawej i lewej.-->
     <span class="example-spacer "></span>
@@ -15,7 +15,7 @@
 
 
 
-    <button mat-button (click)="snav2.toggle()">
+    <button mat-button disableRipple class="neumorphism" style="margin-right: 10px;" (click)="snav2.toggle()">
       <mat-icon>edit</mat-icon> <span class="usun-na-malym"> EDYTUJ DANE</span>
     </button>
 
@@ -29,14 +29,14 @@
 
 
     <!-- PRZYCISK FILTRUJ-->
-    <button mat-button (click)="snav.toggle()">
-      <mat-icon>filter_alt</mat-icon> <span class="usun-na-malym"> FILTRUJ OFERTY </span>
+    <button mat-button disableRipple class="neumorphism" style="margin-right: 10px;" (click)="snav.toggle()">
+      <mat-icon>filter_list</mat-icon> <span class="usun-na-malym"> FILTRUJ OFERTY </span>
     </button>
 
     <!-- PRZYCISK KONTAKT Z DORADCĄ-->
-    <button mat-raised-button color="accent" (click)="openDialogKontakt()"
-      onclick='FB.AppEvents.logEvent("Kontakt_z_doradca_toolbar_Clicked")'>
-      <mat-icon>contact_support</mat-icon> <span class="usun-na-malym"> ZAPYTAJ DORADCĘ </span>
+    <button mat-button disableRipple style="color: gold;" mat-raised-button class="neumorphism"
+      (click)="openDialogKontakt()" onclick='FB.AppEvents.logEvent("Kontakt_z_doradca_toolbar_Clicked")'>
+      <mat-icon style="color: FFC400;">contact_support</mat-icon> <span class="usun-na-malym"> ZAPYTAJ DORADCĘ </span>
     </button>
 
   </mat-toolbar>
@@ -229,10 +229,10 @@
 
 
 
-          <div class="dane-naglowek">Wkład własny: <span
-              *ngIf="wkladWlasnyNowy > 0">{{wkladWlasnyNowy | currency:'zł':'symbol':'1.0-0':'fr'}}</span></div>
-          <div class="dane-naglowek">Kwota kredytu: <span
-              *ngIf="wkladWlasnyNowy > 0">{{ngWartoscNieruchomosci - wkladWlasnyNowy | currency:'zł':'symbol':'1.0-0':'fr'}}</span>
+          <div class="dane-naglowek">Wkład własny: <span *ngIf="wkladWlasnyNowy > 0">{{wkladWlasnyNowy |
+              currency:'zł':'symbol':'1.0-0':'fr'}}</span></div>
+          <div class="dane-naglowek">Kwota kredytu: <span *ngIf="wkladWlasnyNowy > 0">{{ngWartoscNieruchomosci -
+              wkladWlasnyNowy | currency:'zł':'symbol':'1.0-0':'fr'}}</span>
           </div>
 
           <mat-slider (input)="sliderSunie($event)" style="margin-top: 20px;" class="filtry-elementy suwak" thumbLabel
@@ -349,7 +349,7 @@
 
           <!--PRZYCISK PRZELICZ-->
 
-          <button [disabled]="!myGroup.valid"
+          <button mat-button disableRipple [disabled]="!myGroup.valid" class="neumorphism_side-bar"
             style="margin-right: 20px; margin-top: 18px; padding-top: 4px; padding-bottom: 4px;" mat-raised-button
             color="primary" (click)="przelicz()"
             onclick='FB.AppEvents.logEvent("Przelicz_navBar_Clicked")'>PRZELICZ</button>
@@ -359,14 +359,16 @@
 
 
           <!-- PRZYCISK KONTAKT Z DORADCĄ-->
-          <button style="margin-right: 20px; margin-top: 18px;" mat-raised-button color="accent"
-            (click)="openDialogKontakt()" onclick='FB.AppEvents.logEvent("Kontakt_z_doradca_navBar_Clicked")'>
+          <button mat-button disableRipple class="neumorphism_side-bar" style="margin-right: 20px; margin-top: 18px;"
+            mat-raised-button color="accent" (click)="openDialogKontakt()"
+            onclick='FB.AppEvents.logEvent("Kontakt_z_doradca_navBar_Clicked")'>
             <mat-icon>contact_support</mat-icon> ZAPYTAJ DORADCĘ
           </button>
 
           <!-- PRZYCISK SPRAWDŹ ZDOLNOŚĆ-->
-          <button style="margin-right: 20px; margin-top: 18px;" mat-raised-button color="accent"
-            (click)="openZohoForm()" onclick='FB.AppEvents.logEvent("Sprawdz_zdolnosc__navBar_Clicked")'>
+          <button mat-button disableRipple class="neumorphism_side-bar" style="margin-right: 20px; margin-top: 18px;"
+            mat-raised-button color="accent" (click)="openZohoForm()"
+            onclick='FB.AppEvents.logEvent("Sprawdz_zdolnosc__navBar_Clicked")'>
             <mat-icon>calculate</mat-icon> OBLICZ ZDOLNOŚĆ
           </button>
 
@@ -388,7 +390,15 @@
 
           -->
 
+
+
+        <div style="width: 200px; font-size: 11px; margin-top: 30px; text-align: center;">
+          Ta strona korzysta z anonimizowanych plików cookies. Możesz określić warunki ich przechowywania lub dostępu do
+          nich. <a href="https://middlers.pl/polityka-cookies.html">Polityka cookies</a>
+        </div>
+
         <button (click)="openDialogBlad()" class="butoon-blad" mat-button color="warn">Zgłoś błąd na stronie</button>
+
 
       </div>
     </mat-sidenav>
@@ -597,7 +607,7 @@
                       </div>
                       <div *ngIf="element.upezpPracaNaStartSuma != 0">
                         Ubezpieczenie od utraty pracy:
-                        {{element.upezpPracaNaStartSuma | currency:'zł':'symbol':'1.0-0':'fr'  }}
+                        {{element.upezpPracaNaStartSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
                       </div>
                     </div>
                   </div>
@@ -645,11 +655,12 @@
                       </div>
                       <div *ngIf="element.ubezpZycieTOTAL + element.ubezZycieNaStartSuma != 0">
                         Ubezpieczenie na życie:
-                        {{element.ubezpZycieTOTAL + element.ubezZycieNaStartSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
+                        {{element.ubezpZycieTOTAL + element.ubezZycieNaStartSuma | currency:'zł':'symbol':'1.0-0':'fr'
+                        }}
                       </div>
                       <div *ngIf="element.upezpPracaNaStartSuma != 0">
                         Ubezpieczenie od utraty pracy:
-                        {{element.upezpPracaNaStartSuma | currency:'zł':'symbol':'1.0-0':'fr'  }}
+                        {{element.upezpPracaNaStartSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
                       </div>
                     </div>
                   </div>
@@ -728,6 +739,15 @@
           Middlers Sp. z o.o. z siedzibą we Wrocławiu ul. Leszczyńskiego 4/29, 50-078 Wrocław, zarejestrowana w Sądzie
           Rejonowym dla Wrocławia-Fabrycznej KRS 0000532823, NIP 8971803272, REGON 360170795 kapitał zakładowy 5.000,00
           zł wpłacony w całości.
+
+          <br>
+          <br>
+
+          <a href="https://middlers.pl/polityka-prywatnosci.html">Polityka prywatnosci</a>
+          <br>
+          <br>
+          <a href="https://middlers.pl/polityka-cookies.html">Polityka cookies</a>
+
         </footer>
 
       </div>
