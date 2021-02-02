@@ -669,46 +669,48 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
 
       //**Oblicz sumę ODSETEK RATY RÓWNE */
-      if (element.oprocStale === "nie") { //jeśli oprocentowanie zmienne
+      if (element.oprocStale === "nie")  //jeśli oprocentowanie zmienne
         element.odsetkiSuma = WzoryService.odsetkiZaplaconeWcalymOkresie(+element.rata, +this.mLiczbaLat, element.kwotaKredytuOferty)
 
-        //Jeśli Pekao z ofertą z % wyższym do czasu jak LTV jest > 0.8 bez CPI
-        if (element.bank === "Pekao" && element.minLTV === 0.8 && element.maxLTV === 0.9) {
-          var ileRazy = 0;
-          var i = 0;
-          for (i = 0; i <= this.mLiczbaLat * 12; i++) {
-            var kwotaKredytu = element.kwotaKredytuOferty;
-            var rata = element.rata;
-            ileRazy++;
-            var r = (element.marza + element.WIBORstawka) / 1200;
-            var cz1 = (1 + r) ** i;
-            var gora = ((1 + r) ** i) - 1;
-            var goradol = gora / r;
-            var zostaloDoSplaty = cz1 * +kwotaKredytu - goradol * +rata;
-            suma = suma + zostaloDoSplaty;
-            if (zostaloDoSplaty < (+this.mWartoscNieruchomosci * 0.8)) { break }
-          }
-          ileRazy = i;
+      //Jeśli Pekao z ofertą z % wyższym do czasu jak LTV jest > 0.8 bez CPI
+      if (element.oprocStale === "jakPEKAO") {
+        var ileRazy = 0;
+        var i = 0;
+        for (i = 0; i <= this.mLiczbaLat * 12; i++) {
+          var kwotaKredytu = element.kwotaKredytuOferty;
+          var rata = element.rata;
+          ileRazy++;
+          var r = (element.marza + element.WIBORstawka) / 1200;
+          var cz1 = (1 + r) ** i;
+          var gora = ((1 + r) ** i) - 1;
+          var goradol = gora / r;
+          var zostaloDoSplaty = cz1 * +kwotaKredytu - goradol * +rata;
+          suma = suma + zostaloDoSplaty;
+          if (zostaloDoSplaty < (+this.mWartoscNieruchomosci * 0.8)) { break }
 
-
-
-          //policz sumę odsetek w okresie kiedy LTV jest > 80%
-          let odsetkiZaplaconeAA = WzoryService.odsetkiZaplaconeNaKoniecNokresu(element.rata, ileRazy / 12, element.kwotaKredytuOferty, element.marza + element.WIBORstawka)
-
-          //Oblicz ratę potem, czyli wg oprocentowania obowiązującego od momentu, kiedy LTV spadnie poniżej 80%
-          let rataPotem2 = WzoryService.rata(element.kwotaKredytuOferty, element.WIBORstawka + element.oprocStaleMarzaPotem, this.mLiczbaLat)
-
-          //Oblicz odsetki zapłacone w całym okresie wg raty potem
-          let odsetkiZaplaconeBB = WzoryService.odsetkiZaplaconeWcalymOkresie(rataPotem2, this.mLiczbaLat, element.kwotaKredytuOferty)
-
-          //Oblicz sumę odsetek płatnych na koniec okresu z początkowym oprocentowaniem, gdy LTV > 80%. ileRazy / 12 bo we wzorze jest mnożone * 12
-          let odsetkiZaplaconeCC = WzoryService.odsetkiZaplaconeNaKoniecNokresu(rataPotem2, ileRazy / 12, element.kwotaKredytuOferty, element.oprocStaleMarzaPotem + element.WIBORstawka)
-
-          //policz sumę odsetek: do odsetek płatnych w orkesie LTV >80% (odsetkiZaplaconeA) dodaj odsetki płątne w całym okresie (odsetkiZaplaconeB) pomniejszone o odsetki (odsetkiZaplaconeC), czyli, które nie będą przecież zapłacone, bo już sa zapłącone te w okresie LTV >80%.
-          element.odsetkiSuma = odsetkiZaplaconeAA + (odsetkiZaplaconeBB - odsetkiZaplaconeCC);
         }
+        ileRazy = i;
+        console.log("ile razy: " + element.id + "  " + ileRazy)
+        console.log("zostało do spłaty: " + zostaloDoSplaty)
+        //policz sumę odsetek w okresie kiedy LTV jest > 80%
+        let odsetkiZaplaconeAA = WzoryService.odsetkiZaplaconeNaKoniecNokresu(element.rata, ileRazy / 12, element.kwotaKredytuOferty, element.marza + element.WIBORstawka)
+        console.log("odsetki zanim 80%: " + odsetkiZaplaconeAA)
+        //Oblicz ratę potem, czyli wg oprocentowania obowiązującego od momentu, kiedy LTV spadnie poniżej 80%
+        let rataPotem2 = WzoryService.rata(element.kwotaKredytuOferty, element.WIBORstawka + element.oprocStaleMarzaPotem, this.mLiczbaLat)
 
-      } else { //jesli oprocentowanie stałe TAK
+        //Oblicz odsetki zapłacone w całym okresie wg raty potem
+        let odsetkiZaplaconeBB = WzoryService.odsetkiZaplaconeWcalymOkresie(rataPotem2, this.mLiczbaLat, element.kwotaKredytuOferty)
+
+        //Oblicz sumę odsetek płatnych na koniec okresu z początkowym oprocentowaniem, gdy LTV > 80%. ileRazy / 12 bo we wzorze jest mnożone * 12
+        let odsetkiZaplaconeCC = WzoryService.odsetkiZaplaconeNaKoniecNokresu(rataPotem2, ileRazy / 12, element.kwotaKredytuOferty, element.oprocStaleMarzaPotem + element.WIBORstawka)
+
+        //policz sumę odsetek: do odsetek płatnych w orkesie LTV >80% (odsetkiZaplaconeA) dodaj odsetki płątne w całym okresie (odsetkiZaplaconeB) pomniejszone o odsetki (odsetkiZaplaconeC), czyli, które nie będą przecież zapłacone, bo już sa zapłącone te w okresie LTV >80%.
+        element.odsetkiSuma = odsetkiZaplaconeAA + (odsetkiZaplaconeBB - odsetkiZaplaconeCC);
+      }
+
+
+
+      if (element.oprocStale === "tak") { //jesli oprocentowanie stałe TAK
 
         //policz sumę odsetek w okresie ze stałą stopą
         let odsetkiZaplaconeA = WzoryService.odsetkiZaplaconeNaKoniecNokresu(element.rata, element.oprocStaleIleLat, element.kwotaKredytuOferty, element.marza)
