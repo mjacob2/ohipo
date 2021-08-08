@@ -294,7 +294,7 @@ export class AppComponent implements OnInit {
             element.doKiedyObowiazujeStatus = "aktualne"
           if (mElementDoKiedyObowiazuje > todayDate) {
             element.doKiedyObowiazujeStatus = "aktualne"
-            //element.doKiedyObowiazuje = mElementDoKiedyObowiazuje
+            element.doKiedyObowiazuje = mElementDoKiedyObowiazuje
           }
 
         });

@@ -62,7 +62,7 @@
 
       <div class="side-naw-prawy filtry">
 
-        <div style="padding-top: 16px;">Filtry działają automatycznie</div>
+        <div style="padding-top: 16px;">Filtry działają natychmiast</div>
 
         <mat-divider></mat-divider>
 
@@ -625,7 +625,7 @@
                         Ubezpieczenie na życie: {{element.ubezpZycieSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
                       </div>
                       <div *ngIf="element.ubezpNieruchSuma != 0">
-                        Ubezpieczenie nieruchomosci: {{element.ubezpNieruchSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
+                        Ubezpieczenie nieruchomości: {{element.ubezpNieruchSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
                       </div>
                     </div>
                   </div>
@@ -650,7 +650,7 @@
                         Wycena: {{element.wycenaMieszkanie | currency:'zł':'symbol':'1.0-0':'fr' }}
                       </div>
                       <div *ngIf="element.ubezpNieruchTOTAL != 0">
-                        Ubezpieczenie nieruchomosci:
+                        Ubezpieczenie nieruchomości:
                         {{element.ubezpNieruchTOTAL | currency:'zł':'symbol':'1.0-0':'fr' }}
                       </div>
                       <div *ngIf="element.ubezpZycieTOTAL + element.ubezZycieNaStartSuma != 0">

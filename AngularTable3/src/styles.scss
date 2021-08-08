@@ -263,11 +263,16 @@ mat-dialog-actions{
 }
 
 .kontenerRozwijany{
-
+  padding-left: 50px;
   display: flex; flex-direction: column; flex-wrap: wrap; justify-content: flex-start;
 }
 
 @media only screen and (max-width: 1000px) {
+
+
+  .kontenerRozwijany{
+    padding-left: 0px;
+  }
 
   .usun-na-malym{
     display: none;
