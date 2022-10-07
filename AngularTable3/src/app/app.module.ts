@@ -32,8 +32,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent, DialogKontakt, DialogBlad } from './app.component';
 import { CookiesComponent } from './cookies/cookies.component';
 
-import { UserService } from './services/http/http-oferty.service';
-import { WiborService } from './services/http/download-wibor.service';
+import { OffersService } from './services/http/getOffers.service';
+import { wiborService } from './services/http/getWibor.service';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -91,7 +91,7 @@ registerLocaleData(localeFr, 'fr');
 
 
 
-  providers: [CurrencyPipe, UserService, WiborService],
+  providers: [CurrencyPipe, OffersService, wiborService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

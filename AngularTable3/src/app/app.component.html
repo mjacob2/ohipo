@@ -301,20 +301,6 @@
             <mat-hint>Opcja zmiany dostępna wkrótce</mat-hint>
           </mat-form-field>
 
-          <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">Konto w którym banku</div>
-
-          <!--W JAKIM BANKU KONTO-->
-          <mat-form-field *ngIf="mpokazOpcjeZaawansowane" class="filtry-elementy">
-            <mat-select [(value)]="mWybranyBank" [(value)]="selectedOptionInny"
-              matTooltip="Zaznacz, w którym banku posiadasz aktywne konto od 6 miesięcy. Do wyboru są tylko te banki, które mają zniżki dla obecnych klientów.">
-              <mat-option *ngFor="let KontoJakiBank of KontoJakieBanki" [value]="KontoJakiBank.value">
-                {{KontoJakiBank.viewValue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-
-
           <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">Ubezp. pomostowe ile miesięcy</div>
 
           <!--POMOSTOWE ILE MIESIĘCY-->
@@ -351,7 +337,7 @@
 
           <button mat-button disableRipple [disabled]="!myGroup.valid" class="neumorphism_side-bar"
             style="margin-right: 20px; margin-top: 18px; padding-top: 4px; padding-bottom: 4px;" mat-raised-button
-            color="primary" (click)="przelicz()"
+            color="primary" (click)="calculateOffers()"
             onclick='FB.AppEvents.logEvent("Przelicz_navBar_Clicked")'>PRZELICZ</button>
           <div *ngIf="!myGroup.valid" class="error-pod-przelicz">Uzupełnij poprawnie powyższe pola <br>i kliknij
             PRZELICZ
@@ -433,7 +419,7 @@
                 <mat-icon>edit</mat-icon> EDYTUJ DANE
               </span> i kliknij
               <button [disabled]="!myGroup.valid" style="margin-right: 20px; margin-top: 18px;" mat-raised-button
-                color="primary" (click)="przelicz()"
+                color="primary" (click)="calculateOffers()"
                 onclick='FB.AppEvents.logEvent("Przelicz_przykrywka_Clicked")'>PRZELICZ</button>
               <div *ngIf="!myGroup.valid" class="error-pod-przelicz">Uzupełnij poprawnie dane
               </div>aby

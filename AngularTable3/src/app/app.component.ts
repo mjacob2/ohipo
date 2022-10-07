@@ -5,119 +5,27 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-//import oferty from '../assets/oferty.json';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
-
-import { UserService } from './services/http/http-oferty.service';
-
-import { WiborService } from './services/http/download-wibor.service';
-//import { CurrencyPipe } from '@angular/common';
-
-//Importuj Services
-//import { HttpOfertyService } from './services/http/http-oferty.service';
-import { WzoryService } from './services/wzory/wzory.service';
-//import { InputErrorsService } from './services/inputErrors/input-errors.service'
+import { OffersService } from './services/http/getOffers.service';
+import { wiborService } from './services/http/getWibor.service';
+import { calculationFormulas } from './services/wzory/wzory.service';
 import { MatSliderChange } from '@angular/material/slider';
-import { element } from 'protractor';
-//import { MatSelectChange } from '@angular/material/select';
-
-
-//import { SnackBarService } from './services/snack-bar.service';
-
-//import oferty2 from '../assets/oferty2.json';
-
-//Kolumny w pliku Excel
-//var users: User[];
+//import { IOffer } from './IOffer';
+import { Offer } from './offer';
 
 /** Tutaj logika zaznacz jaki rodzaj rat Cię interesuje */
 interface RodzajRat {
   value: string;
   viewValue: string;
 }
-
-/** Tutaj logika zaznacz w któym banku konto */
-interface KontoJakiBank {
-  value: string;
-  viewValue: string;
-}
-
 /** Tutaj logika zaznacz jaki rodzaj rat nieruchomosci */
 interface RodzajNieruchomosci {
   value: string;
   viewValue: string;
 }
-export interface User {
-  id: number;
-  bank: string;
-  ofertaNazwa: string;
-  ofertaNazwaDopisek: string;
-  marza: number;
-  pomostoweStawkaMiesieczna: number;
-  ubezpNieruchStawkaRok: number;
-  ubezpZycieStawkaMiesieczna: number;
-  ubezpZycieSuma: number;
-  wTrakcieBudowy: string;
-  WIBOR: string;
-  WIBORstawka: number;
-  prowizjaStawka: number;
-  warunkiOferty: string;
-  wycenaMieszkanie: number;
-  ubezpZycieTOTAL: number;
-  maxLTV: number;
-  minLTV: number;
-  ubezpZycieIleLat: number;
-  ubezpNieruchOdCzegoLicz: string;
-  pomostoweJakLiczone: string;
-  oprocStale: string;
-  oprocStaleIleLat: number;
-  oprocStaleMarzaPotem: number;
-  doKiedyObowiazuje: any;
-  odKiedyObowiazuje: string;
-  maxLTVsave: string;
-  minLTVsave: string;
-  ubezZycieNaStart: number;
-  ubezZycieNaStartSuma: number;
-  ubezpZycieOdKtoregoMiesiaca: number;
-  upezpPracaNaStart: number;
-  upezpPracaNaStartSuma: number;
-  minKwotaKredytu: number;
-  minKwotaKredytuFILTR: string;
-  maxKwotaKredytu: number;
-  maxKwotaKredytuFILTR: string;
-  doKiedyObowiazujeStatus: string;
-  minimalneWpływy: number;
-  minimalneWplywyStatus: string;
-  minimalneWpływy2xRata: string;
-  logoURL: string;
-  oplatyZawszeKredytowane: number;
-  maxLiczbaLat: number;
-  maxWiek: number;
-  maxWiekStatus: string;
-  alternatywnyOpisOferty: string;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
-  kosztyPoczatkowe: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
-  kwotaKredytuOferty: number;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
-  LTVobliczone: number;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
-  pomostoweTOTAL: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
-  kosztyCalkowite: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
-  oplatyMiesieczne: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
-  odsetkiSuma: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
-  ubezpNieruchSuma: number;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
-  ubezpNieruchTOTAL: number;//w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
-  prowizjaSuma: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
-  pomostoweSuma: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
-  rata: number; //w pliku Excel nie ma tej kolumny, jest tworzona podczas przelicz()
-}
-
-//co się składa na ELEMENT DATA
-//let users: User[] = oferty
-//console.log("oferty: " + oferty);
-
-
-
-
 @Component({
   selector: 'app-root',
   styleUrls: ['./app.component.scss'],
@@ -132,214 +40,136 @@ export interface User {
   ],
 })
 
-
-
 export class AppComponent implements OnInit {
-
-
-
-
-  //wyświetlane kolumny   narazie ukrywamy 'select', po szczegółach
   displayedColumns: string[] = ['szczegoly', 'bank', 'ofertaNazwa', 'kosztyCalkowite', 'kosztyPoczatkowe', 'rata', 'oplatyMiesieczne', 'marza', 'pomostoweSuma'];
 
-
-  dataSource;
-  users: User[];
-
-
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-
   @ViewChild('wiekNajstarszegoInput') wiekNajstarszegoInput: ElementRef;
-
-  //to jest odniesienie do przykrywki, która przykrywa całątabelę na starcie.
   @ViewChild('przykrywkaPoczatkowa') private przykrywkaPoczatkowaElement: ElementRef;
-
-  //to jest odniesienie do SIDENAV tego z edytuj dane ( lewy)
   @ViewChild('snav2') snav2: MatSidenav;
 
-
+  dataSource: MatTableDataSource<Offer>;
+  offers: Offer[];
+  mWIBOR3M: number;
+  mWIBOR6M: number;
 
 
   constructor(
     changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
     private _snackBar: MatSnackBar,
-    //kontruktor dla Service pobierania ofert './services/http-oferty.service'
-    //private _http: HttpOfertyService,
-
-    //konstruktor żeby wyświetlić error dla min. wkład włąsny w postaci 50 000 zł zamiast 50000
-    //private currencyPipe: CurrencyPipe,
-
-    //kontruktor dla dialogu kontaktowego
     public dialogBlad: MatDialog,
     public dialogKontakt: MatDialog,
-
-    //konstruktor dla pobierania ofert z pliku z serwera
-    private userService: UserService,
-
-    //konstruktor dla pobierania WIBORU
-    private wiborService: WiborService
-
-  ) { // tu rzeczy dla side Barów
+    private offersService: OffersService,
+    private wiborService: wiborService
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 1800px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
+
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
-
   }
 
-
   ngOnInit() {
+    // get Offers from server
+    this.offersService.getOffers().subscribe((offers: Offer[]) => {
+      this.offers = offers;
+      this.dataSource = new MatTableDataSource(offers);
+      this.dataSource.sort = this.sort;
+      this.dataSource.filterPredicate = this.customFilterPredicate();
 
-    //uruchom wiborService i ściagnijaktualny WIBOR z moejje strony
-    this.wiborService
-      .downloadWIBOR()
-      .subscribe(
-        data => {
-          console.log(data['mWIBOR3M']);
+      //FILTR: W trakcie Budowy checkbox
+      this.wTrakcieBudowyFilter.valueChanges.subscribe((wTrakcieBudowyFilterValue) => {
+        if (wTrakcieBudowyFilterValue == true) {
+          this.filteredValues['wTrakcieBudowy'] = "tak";
+          this.dataSource.filter = JSON.stringify(this.filteredValues);
+        } else {
+          this.filteredValues['wTrakcieBudowy'] = "";
+          this.dataSource.filter = JSON.stringify(this.filteredValues);
+        }
+      });
 
-          //podstaw aktualny WIBOR do zmiennych mWIBOR
-          this.mWIBOR3M = data['mWIBOR3M'],
-            this.mWIBOR6M = data['mWIBOR6M']
-        });
-
-
-    this.userService.getUsers()
-      .subscribe((users: User[]) => {
-        this.users = users;
-
-        this.dataSource = new MatTableDataSource(users);
-        this.dataSource.sort = this.sort;
-        //console.log("users: " + users);
-        //console.log("dataSource1" + this.dataSource);
-
-        //CUSTOMOWY FILTER
-        this.dataSource.filterPredicate = this.customFilterPredicate();
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //FILTR: W trakcie Budowy checkbox
-        this.wTrakcieBudowyFilter.valueChanges.subscribe((wTrakcieBudowyFilterValue) => {
-          if (wTrakcieBudowyFilterValue == true) {
-            this.filteredValues['wTrakcieBudowy'] = "tak";
+      //FILTR: Deklarowane wpływy
+      this.wDeklarowaneWplywy.valueChanges.subscribe((wDeklarowaneWplywyFilterValue) => {
+        this.offers.forEach((element) => {
+          if (wDeklarowaneWplywyFilterValue >= element.minimalneWpływy || wDeklarowaneWplywyFilterValue === null) {
+            element.minimalneWplywyStatus = "wplywyOK"
+            this.filteredValues['minimalneWplywyStatus'] = "wplywyOK";
             this.dataSource.filter = JSON.stringify(this.filteredValues);
           } else {
-            this.filteredValues['wTrakcieBudowy'] = "";
-            this.dataSource.filter = JSON.stringify(this.filteredValues);
+            element.minimalneWplywyStatus = "wplywyMalo"
           }
-        });
+        })
+      });
 
-
-
-
-        //FILTR: Deklarowane wpływy
-        this.wDeklarowaneWplywy.valueChanges.subscribe((wDeklarowaneWplywyFilterValue) => {
-          this.users.forEach((element) => {
-            if (wDeklarowaneWplywyFilterValue >= element.minimalneWpływy || wDeklarowaneWplywyFilterValue === null) {
-              element.minimalneWplywyStatus = "wplywyOK"
-              this.filteredValues['minimalneWplywyStatus'] = "wplywyOK";
-              this.dataSource.filter = JSON.stringify(this.filteredValues);
-            } else {
-              element.minimalneWplywyStatus = "wplywyMalo"
-            }
-          })
-        });
-
-        //FILTR: Wiek najstarszego kredytobiorcy
-        this.wWiekNajstarszego.valueChanges.subscribe((wWiekNajstarszegoFilterValue) => {
-          this.users.forEach((element) => {
-            if (+this.mLiczbaLat + +wWiekNajstarszegoFilterValue < element.maxWiek) {
-              element.maxWiekStatus = "wiekOK"
-              this.filteredValues['maxWiekStatus'] = "wiekOK";
-            } else {
-              element.maxWiekStatus = "wiekMalo"
-            }
-          })
-          this.dataSource.filter = JSON.stringify(this.filteredValues);
-        });
-
-
-        //Dzisiajsza data dla OD-kiedyobowiazuje
-        var todayDate = new Date();
-        //console.log(todayDate);
-
-
-
-
-        this.users.forEach((element) => {
-          var mElementOdKiedyObowiazuje = new Date(element.odKiedyObowiazuje)
-          if (mElementOdKiedyObowiazuje < todayDate) { //Data jest z minutami i sekundami, więc nie musi być <= bo już sekundę po północy mElementOdKiedyObowiazuje jest mniejszy od todayDate
-            element.odKiedyObowiazuje = "już"
-
+      //FILTR: Wiek najstarszego kredytobiorcy
+      this.wWiekNajstarszego.valueChanges.subscribe((wWiekNajstarszegoFilterValue) => {
+        this.offers.forEach((element) => {
+          if (+this.mLiczbaLat + +wWiekNajstarszegoFilterValue < element.maxWiek) {
+            element.maxWiekStatus = "wiekOK"
+            this.filteredValues['maxWiekStatus'] = "wiekOK";
+          } else {
+            element.maxWiekStatus = "wiekMalo"
           }
-
-
-          //Dzisiajsza data dla DO-kiedyobowiazuje
-          var mElementDoKiedyObowiazuje = new Date(element.doKiedyObowiazuje)
-          mElementDoKiedyObowiazuje.setDate(mElementDoKiedyObowiazuje.getDate() + 1);// dodaj 1 dzień do daty, do kiedy obowiązuje, bo data obowiązuje do godziny 0:00:00 danego dnia, więc jest już nieaktualna jak tylko ten dzień siezacznie, a chcemy, aby była aktualna jeszcze tego jednego ostatniego dnia. Zatem.
-          if (element.doKiedyObowiazuje === "do odwołania")
-            element.doKiedyObowiazujeStatus = "aktualne"
-          if (mElementDoKiedyObowiazuje > todayDate) {
-            element.doKiedyObowiazujeStatus = "aktualne"
-            element.doKiedyObowiazuje = mElementDoKiedyObowiazuje
-          }
-
-        });
-        this.filteredValues['odKiedyObowiazuje'] = "już";
-        this.filteredValues['doKiedyObowiazujeStatus'] = "aktualne";
+        })
         this.dataSource.filter = JSON.stringify(this.filteredValues);
-        this.dataSource.sort = this.sort;
-
-        /**funkcja pokazywania paginatora */
-        this.dataSource.paginator = this.paginator;
-
-        /**tutaj jest tłumaczenie dla paginatora na polski */
-        this.dataSource.paginator._intl.itemsPerPageLabel = "Pozycji na stronę:";
-        this.dataSource.paginator._intl.nextPageLabel = 'Następna strona';
-        this.dataSource.paginator._intl.previousPageLabel = 'Poprzednia strona';
-        this.dataSource.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
-          if (length == 0 || pageSize == 0) { return `0 z ${length}`; }
-          length = Math.max(length, 0);
-          const startIndex = page * pageSize;
-          // If the start index exceeds the list length, do not try and fix the end index to the end.
-          const endIndex = startIndex < length ?
-            Math.min(startIndex + pageSize, length) :
-            startIndex + pageSize;
-          return `${startIndex + 1} – ${endIndex} z ${length}`;
-        }
-
       });
 
 
+      //Dzisiajsza data dla OD-kiedyobowiazuje
+      var todayDate = new Date();
+      this.offers.forEach((element) => {
+        var mElementOdKiedyObowiazuje = new Date(element.odKiedyObowiazuje)
+        if (mElementOdKiedyObowiazuje < todayDate) { //Data jest z minutami i sekundami, więc nie musi być <= bo już sekundę po północy mElementOdKiedyObowiazuje jest mniejszy od todayDate
+          element.odKiedyObowiazuje = "już"
+        }
 
+        //Dzisiajsza data dla DO-kiedyobowiazuje
+        var mElementDoKiedyObowiazuje = new Date(element.doKiedyObowiazuje)
+        mElementDoKiedyObowiazuje.setDate(mElementDoKiedyObowiazuje.getDate() + 1);// dodaj 1 dzień do daty, do kiedy obowiązuje, bo data obowiązuje do godziny 0:00:00 danego dnia, więc jest już nieaktualna jak tylko ten dzień siezacznie, a chcemy, aby była aktualna jeszcze tego jednego ostatniego dnia. Zatem.
+        if (element.doKiedyObowiazuje === "do odwołania")
+          element.doKiedyObowiazujeStatus = "aktualne"
+        if (mElementDoKiedyObowiazuje > todayDate) {
+          element.doKiedyObowiazujeStatus = "aktualne"
+          element.doKiedyObowiazuje = mElementDoKiedyObowiazuje
+        }
+
+      });
+      this.filteredValues['odKiedyObowiazuje'] = "już";
+      this.filteredValues['doKiedyObowiazujeStatus'] = "aktualne";
+      this.dataSource.filter = JSON.stringify(this.filteredValues);
+      this.dataSource.sort = this.sort;
+
+      /**funkcja pokazywania paginatora */
+      this.dataSource.paginator = this.paginator;
+
+      /**tutaj jest tłumaczenie dla paginatora na polski */
+      this.dataSource.paginator._intl.itemsPerPageLabel = "Pozycji na stronę:";
+      this.dataSource.paginator._intl.nextPageLabel = 'Następna strona';
+      this.dataSource.paginator._intl.previousPageLabel = 'Poprzednia strona';
+      this.dataSource.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
+        if (length == 0 || pageSize == 0) { return `0 z ${length}`; }
+        length = Math.max(length, 0);
+        const startIndex = page * pageSize;
+        // If the start index exceeds the list length, do not try and fix the end index to the end.
+        const endIndex = startIndex < length ?
+          Math.min(startIndex + pageSize, length) :
+          startIndex + pageSize;
+        return `${startIndex + 1} – ${endIndex} z ${length}`;
+      }
+
+    });
+
+    // get WIBOR from server
+    this.wiborService.getWibor().subscribe(data => {
+      this.mWIBOR3M = data['mWIBOR3M'],
+        this.mWIBOR6M = data['mWIBOR6M']
+    });
 
     //stwórz form Bilder
     this.zbudujFormularz();
-
-    //sprawdć, czy nie zmieniła się wartość nieruchomoci i jeśli tak, to wymagaj minimum 10% wartości nieruchomości w polu wkład własny
-    //  this.zaktualizujValidary();
-
-
-    // Działa ale wyłączone bo powoduje błąd w wersji testowej
-
-    //pobierz oferty z Service
-    // this.userService.getUsers().subscribe(data => {
-    //   this.ofertyPobrane = data;
-    //   console.log("oferty pobrane: " + this.ofertyPobrane);
-    // })
 
     // Domyslnie sortuj po kosztach całkowitych podczas uruchomienia 
     this.sort.sort(({ id: 'kosztyCalkowite', start: 'asc' }) as MatSortable);
@@ -347,14 +177,6 @@ export class AppComponent implements OnInit {
 
 
   }
-
-
-  // array dla listy wybranych po kolei banków, niech tam ma już 2 x 0, żeby jak będę patrzył na przedostatnio wybrany, żeby już było na co patrzeć
-  numbers = new Array(0, 0);
-
-  //users: User[];
-
-
   //dodaj do slidera % na końcu łezki (label) do
   formatLabel(value: number) {
     return value + '%';
@@ -363,44 +185,22 @@ export class AppComponent implements OnInit {
   //dla responsywnego sideNMavigacji
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
-
   ofertyPobrane: Object; //varable dla pobieranych ofert z sieci
-
-
-
-
-
-
-
-
-  selection = new SelectionModel<User>(true, []);
-  expandedElement: User | null;
+  selection = new SelectionModel<Offer>(true, []);
+  expandedElement: Offer | null;
 
   //Grupa dla Formularza sprawdzania walidacji danych
   myGroup: FormGroup;
-
-
-  //ustal wartość nieruchomosći zmienianą za każdym razem, gdy zmienia się input wartość nieruchomości
-  ngWartoscNieruchomosci = 300000
-
-  // Utwórz zmienną dla kwoty deklarowanych wpływów
+  ngWartoscNieruchomosci = 300000;
   mWartoscNieruchomosci = +this.ngWartoscNieruchomosci;
-
-  //wpisz w formularzu od razu liczbę lat
-  ngLiczbaLat = 30
-  // ustal początkowy wkłąd własny procentowo
-
+  ngLiczbaLat = 25
   sliderValue = 10
   wkladWlasnyNowy = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
 
-
-  //weź aktualną wartość nieruchomości za każdym razem, gdy zmieni się input wartość nieruchomości
   ngWartoscNieruchomosciZmiana(wartosc: number) {
     this.ngWartoscNieruchomosci = wartosc;
     this.wkladWlasnyNowy = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
   }
-
-  //weż value ze slidera
   sliderSunie(sliderWkladWlasny: MatSliderChange) {
     this.sliderValue = sliderWkladWlasny.value
     this.wkladWlasnyNowy = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
@@ -408,7 +208,6 @@ export class AppComponent implements OnInit {
 
   // używany w działaniach wkład własny ustaw na wwyokość obliczoną przez slider
   mwkladWlasny = this.wkladWlasnyNowy
-
   mKwotaKredytu: number = 0;
   mLiczbaLat = this.ngLiczbaLat;
   /**Zaznacz domyślnie RATY RÓWNE */
@@ -419,13 +218,11 @@ export class AppComponent implements OnInit {
   selectedOptionInny = '0';
 
   //zmienna żeby odczytywać jaki bank jest aktualnie wybrany, domyslnie 0 czyli Inny
-  mWybranyBank: number = 0
+  inWhichBankAlreadyAccount: number = 0;
 
   mpokazOpcjeZaawansowane: boolean;
 
   //Ustal domyślne wartości dla stawek WIBOR i czasu pomostowego
-  mWIBOR3M: number = 0.22;
-  mWIBOR6M: number = 0.25;
   mPomostoweIleMiesiecy: number = 3;
 
   /** ZADEKLAROWANE ZMIENNE DO FILTRÓW */
@@ -448,175 +245,34 @@ export class AppComponent implements OnInit {
   wDochodyMarynarzy = new FormControl({ value: '', disabled: true });
   wPowolanie = new FormControl({ value: '', disabled: true });
 
-
-
   globalFilter = '';
   //Ustal zmienne dla filtrów
   mLTV: number = 0;
-
-
-
-
 
   //po tych kolumnach mogą być filtrowane oferty
   filteredValues = {
     minimalneWplywyStatus: '', bank: '', maxLiczbaLat: '', maxWiekStatus: '', ofertaNazwa: '', minKwotaKredytuFILTR: '', maxKwotaKredytuFILTR: '', wTrakcieBudowy: '', maxLTVsave: '', minLTVsave: '', doKiedyObowiazujeStatus: '', odKiedyObowiazuje: '', wWielkimMiescieFilterKolumna: ''
   };
 
-
-
-
-
-  //**konstruktor dla SnackBar */
-  //constructor(private _snackBar: MatSnackBar) { }
-
-  przelicz2() {
-    this.users.forEach((element) => {
-      element.ofertaNazwa = "hghghghghghg";
-    })
-    //this.dataSource = new MatTableDataSource(this.users);
-    //console.log("dataSource1" + this.dataSource);
-
-
-  }
-
-  /** to funkcja zaszyta w przycisku PRZELICZ */
-  przelicz() {
-
-
-    //console.log("dataSource w przelicz: " + this.dataSource);
-
-
-
-
-    if (window.matchMedia("(max-width: 1800px)").matches) { /* The viewport is less than, or equal to, 1800 pixels wide */
-
-      // zamknij side nav po kliknięciu PRZELICZ
+  calculateOffers(): void {
+    if (window.matchMedia("(max-width: 1800px)").matches) {
       this.snav2.close();
     }
 
+    this.mKwotaKredytu = calculationFormulas.calculateCreditAmount(this.mWartoscNieruchomosci, this.wkladWlasnyNowy);
 
+    this.offers.forEach((offer) => {
 
-
-    //console.log(this.mWybranyBank);
-    this.numbers.push(this.mWybranyBank);//stwórz Array dla kolejno wybranych banków z listy wyboru: jaki bank masz od 6 miesiect
-    //console.log("lista banków: " + this.numbers);
-    var przedostatniWybrany = this.numbers[this.numbers.length - 2]//zwróć przedostatnio wybrany bank
-    //console.log("teraz wybrany: " + this.mWybranyBank);
-    //console.log("przedostani wybrany: " + przedostatniWybrany);
-
-
-
-    this.mKwotaKredytu = this.mWartoscNieruchomosci - this.wkladWlasnyNowy;
-
-
-    //Licz wszystko to co jest potrzebne dla każdej z ofert z osobna
-    this.users.forEach((element) => {
-
-      /* ZNIŻKA MARŻY DLA PKO BP Z TYTUŁU POSIADANIA KONTA OD 6 MIESIECY**/
-
-      if (this.mWybranyBank == 1 && przedostatniWybrany != 1) {//jesli teraz wybrany PKO BP a wczesniej inny
-        // obniż marżę
-        if (element.bank == "PKO BP" && element.oprocStale == "tak") {//jeśli PKO BP z oprocentowaniem stałym
-          element.oprocStaleMarzaPotem = element.oprocStaleMarzaPotem - 0.05 //obniż marżę po oprocentowaniu stałym o 0.05%
-          element.alternatywnyOpisOferty = " + konto od 6 mcy" // i dodaj alternatywny opis oferty
-        }
-      }
-      if (this.mWybranyBank != 1 && przedostatniWybrany == 1) {// jeśli teraz inny a wcześniej PKO BP
-        //podwyż marżę
-        if (element.bank == "PKO BP" && element.oprocStale == "tak") { //jeśli PKO BP z oprocentowaniem stałym
-          element.oprocStaleMarzaPotem = element.oprocStaleMarzaPotem + 0.05 //podwyższ marżę po oprocentowaniu stałym o 0.05%
-          element.alternatywnyOpisOferty = "" // i usuń alternatywny opis oferty
-
-        }
-      }
-
-
-      /* zniżka prowizji dla SANTADERA **/
-
-      /*  JUŻ NIE POTRZEBNE, BO MARŻE TERAZ NAWET SĄ INNE DLA WEWNĘTRZNEGO I ZEWNĘTRZNEGO :(
-      
-            //ustal prowizję dla Santandera, w oparciu o to, czy zaznaczono, że posiada się w nim konto od 6 miesiecy w opcjach zaawansowanych
-            if (+this.mWybranyBank == 2 && element.bank == "Santander" && element.oprocStale == "nie") {
-              element.prowizjaStawka = 2 //obniż prowizje o 2 pp dla ofert ze zmiennym oprocentowanie, czyli do 1%
-              element.alternatywnyOpisOferty = " + konto od 6 mcy" // i dodaj alternatywny opis oferty
-            }
-            if (+this.mWybranyBank == 2 && element.bank == "Santander" && element.oprocStale == "tak") {
-              element.prowizjaStawka = 2 // dla oferty ze stałym oprocentowaniem obniż prowizję o 0.5 pp, czyli do 2%
-              element.alternatywnyOpisOferty = " + konto od 6 mcy" // i dodaj alternatywny opis oferty
-            }
-            // Jeśli ktoś potem zmieni, ze jednak nie ma konta w Santander, to podwyższ z powrotem prowziję
-            if (+this.mWybranyBank != 2 && element.bank == "Santander" && element.oprocStale == "nie") {
-              element.prowizjaStawka = 3 //zastosuj prowizję standardową
-              element.alternatywnyOpisOferty = "" // i usuń alternatywny opis oferty
-            }
-            if (+this.mWybranyBank != 2 && element.bank == "Santander" && element.oprocStale == "tak") {
-              element.prowizjaStawka = 2.5 //zastosuj prowizję standardową
-              element.alternatywnyOpisOferty = "" // i usuń alternatywny opis oferty
-            }
-      
-      
-      
-      **/
-
-
-
-
-      // oblicz KWOTĘ KREDYTU dla każdej z ofert z osobna biorąc po uwagę koszty wrzucone w kredyt
-      element.kwotaKredytuOferty = +this.mKwotaKredytu + (+this.mKwotaKredytu * (element.oplatyZawszeKredytowane / 100))
-
-      //Oblicz ogólne LTV
-      this.mLTV = +this.mKwotaKredytu / +this.mWartoscNieruchomosci;
-
-      //oblicz LTV dla oferty z osobna
-      element.LTVobliczone = element.kwotaKredytuOferty / +this.mWartoscNieruchomosci
-      //  console.log(element.id + " " + element.LTVobliczone);
-
-      //Ustal i wpisz stawkę WIBOR dla każdej oferty
-      if (element.WIBOR === "3M") {
-        element.WIBORstawka = this.mWIBOR3M;
-      }
-      if (element.WIBOR === "6M") {
-        element.WIBORstawka = this.mWIBOR6M;
-      }
-
-      /**
-       * 
-       *    RATY
-       * 
-       */
-
-      /**oblicz pierwszą ratę RÓWNE */
-      if (element.oprocStale === "nie") { //jeśli oprocentowanie zmienne
-        element.rata = WzoryService.rata(element.kwotaKredytuOferty, element.WIBORstawka + element.marza, this.mLiczbaLat)
-
-      } else { //jesli oprocentowanie stałe to nie bierz WIBOR
-        element.rata = WzoryService.rata(element.kwotaKredytuOferty, element.marza, this.mLiczbaLat)
-      }
-      /**Tutaj jest formuła do liczenia raty MALEJĄCEJ PIERWSZEJ 
-element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (element.kwotaKredytuOferty * (((+element.WIBOR + +element.marza)/100)/12))) 
-*/
-      /** */
-
-
-      /**
-       * 
-       *   OPŁATY MIESIĘCZNE
-       * 
-       */
-
-      /**oblicz UBEZPIECZENIE NIERUCHOMOŚCI */
-      if (element.ubezpNieruchOdCzegoLicz === "wartNieruchomosci") { /** Tutaj banki, które liczą ubezp. nieruch. od wartości nieruchomości */
-        element.ubezpNieruchSuma = (element.ubezpNieruchStawkaRok / 100 / 12) * +this.mWartoscNieruchomosci;
-        element.ubezpNieruchTOTAL = element.ubezpNieruchSuma * +this.mLiczbaLat * 12;
-      } else { /** Tutaj banki, które liczą ubezp. nieruch. od kwoty kredytu */
-        element.ubezpNieruchSuma = (+element.ubezpNieruchStawkaRok / 100 / 12) * element.kwotaKredytuOferty;
-        element.ubezpNieruchTOTAL = +element.ubezpNieruchSuma * +this.mLiczbaLat * 12;
-      }
-      /**oblicz UBEZPIECZENIE NA ŻYCIE miesieczne */
-      element.ubezpZycieSuma = (element.ubezpZycieStawkaMiesieczna / 100) * element.kwotaKredytuOferty;
+      offer.kwotaKredytuOferty = calculationFormulas.calculateCreditAmountWithAddictionalCosts(this.mKwotaKredytu, offer.oplatyZawszeKredytowane);
+      this.mLTV = calculationFormulas.calculateGeneralLTV(this.mKwotaKredytu, this.mWartoscNieruchomosci);
+      offer.LTVobliczone = calculationFormulas.calculateOfferLTV(offer.kwotaKredytuOferty, this.mWartoscNieruchomosci);
+      offer.WIBORstawka = calculationFormulas.assignCurrentWIBORtoOffers(offer.WIBOR, this.mWIBOR3M, this.mWIBOR6M);
+      offer.rata = calculationFormulas.calculateFirstEqualInstallment(offer.oprocStale, offer.kwotaKredytuOferty, offer.WIBORstawka, offer.marza, this.mLiczbaLat);
+      offer.ubezpNieruchSuma = calculationFormulas.CalculateApartmentInsuranceMonthly(offer.ubezpNieruchOdCzegoLicz, offer.ubezpNieruchStawkaRok, this.mWartoscNieruchomosci, this.mKwotaKredytu)
+      offer.ubezpNieruchTOTAL = calculationFormulas.calculateTotalAppartmentInsurance(offer.ubezpNieruchOdCzegoLicz, offer.ubezpNieruchSuma, this.mLiczbaLat);
+      offer.ubezpZycieSuma = calculationFormulas.calculateLifeInsuranceMonthly(offer.ubezpZycieStawkaMiesieczna, offer.kwotaKredytuOferty);
       //** oblicz OPŁATY MIESIECZNE */
-      element.oplatyMiesieczne = element.ubezpNieruchSuma + element.ubezpZycieSuma;
+      offer.oplatyMiesieczne = offer.ubezpNieruchSuma + offer.ubezpZycieSuma;
       /** */
 
 
@@ -627,36 +283,36 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
        */
 
       /**oblicz PROWIZJĘ*/
-      element.prowizjaSuma = + (+this.mKwotaKredytu * (+element.prowizjaStawka / 100));
+      offer.prowizjaSuma = + (+this.mKwotaKredytu * (+offer.prowizjaStawka / 100));
       /** Oblicz UBEZP. ŻYCIE NA START */
-      element.ubezZycieNaStartSuma = +element.kwotaKredytuOferty * (+element.ubezZycieNaStart / 100);
+      offer.ubezZycieNaStartSuma = +offer.kwotaKredytuOferty * (+offer.ubezZycieNaStart / 100);
       /** Olblicz UBEZP. PRACA NA START */
-      element.upezpPracaNaStartSuma = +this.mKwotaKredytu * (+element.upezpPracaNaStart / 100);
+      offer.upezpPracaNaStartSuma = +this.mKwotaKredytu * (+offer.upezpPracaNaStart / 100);
       /**oblicz OPŁATY NA START -  SUMA*/
-      element.kosztyPoczatkowe = +element.prowizjaSuma + +element.wycenaMieszkanie + +element.ubezZycieNaStartSuma + +element.upezpPracaNaStartSuma;
+      offer.kosztyPoczatkowe = +offer.prowizjaSuma + +offer.wycenaMieszkanie + +offer.ubezZycieNaStartSuma + +offer.upezpPracaNaStartSuma;
       /** */
 
 
       /**oblicz UBEZPIECZENIE POMOSTOWE  */
-      if (element.pomostoweJakLiczone === "stawka") { //Jeśli ubezp. pomostowe jest płątne jako dodatkowa opłata ze swojąstawką
+      if (offer.pomostoweJakLiczone === "stawka") { //Jeśli ubezp. pomostowe jest płątne jako dodatkowa opłata ze swojąstawką
 
         // Oblicz ile jest płątne miesieczne ubezp. pomosotowe
-        element.pomostoweSuma = (element.pomostoweStawkaMiesieczna / 100 / 12) * element.kwotaKredytuOferty;
+        offer.pomostoweSuma = (offer.pomostoweStawkaMiesieczna / 100 / 12) * offer.kwotaKredytuOferty;
 
         //Oblicz ile jest płątne za cały okres założony do kalkulacji
-        element.pomostoweTOTAL = element.pomostoweSuma * +this.mPomostoweIleMiesiecy;
+        offer.pomostoweTOTAL = offer.pomostoweSuma * +this.mPomostoweIleMiesiecy;
 
 
-      } if (element.pomostoweJakLiczone === "doliczoneDoMarzy") { //Jeśli ubezpieczenie pomostowe jest płatne jako podwyżka do marży, to oblicz je jako różnicę miedzy ratą z oprocentowaniem powiększonym o element.pomostoweStawkaMiesieczna a zwykła ratą bez tego
+      } if (offer.pomostoweJakLiczone === "doliczoneDoMarzy") { //Jeśli ubezpieczenie pomostowe jest płatne jako podwyżka do marży, to oblicz je jako różnicę miedzy ratą z oprocentowaniem powiększonym o element.pomostoweStawkaMiesieczna a zwykła ratą bez tego
 
-        element.pomostoweSuma =
+        offer.pomostoweSuma =
           //rata z element.pomostoweStawkaMiesieczna
-          WzoryService.rata(element.kwotaKredytuOferty, element.WIBORstawka + element.marza + element.pomostoweStawkaMiesieczna, this.mLiczbaLat)
+          calculationFormulas.rata(offer.kwotaKredytuOferty, offer.WIBORstawka + offer.marza + offer.pomostoweStawkaMiesieczna, this.mLiczbaLat)
           //rata zwykła standardowa
-          - WzoryService.rata(element.kwotaKredytuOferty, element.WIBORstawka + element.marza, this.mLiczbaLat)
+          - calculationFormulas.rata(offer.kwotaKredytuOferty, offer.WIBORstawka + offer.marza, this.mLiczbaLat)
 
         //Oblicz ile jest płątne za cały okres założony do kalkulacji
-        element.pomostoweTOTAL = element.pomostoweSuma * +this.mPomostoweIleMiesiecy;
+        offer.pomostoweTOTAL = offer.pomostoweSuma * +this.mPomostoweIleMiesiecy;
       }
 
 
@@ -669,18 +325,18 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
 
       //**Oblicz sumę ODSETEK RATY RÓWNE */
-      if (element.oprocStale === "nie")  //jeśli oprocentowanie zmienne
-        element.odsetkiSuma = WzoryService.odsetkiZaplaconeWcalymOkresie(+element.rata, +this.mLiczbaLat, element.kwotaKredytuOferty)
+      if (offer.oprocStale === "nie")  //jeśli oprocentowanie zmienne
+        offer.odsetkiSuma = calculationFormulas.odsetkiZaplaconeWcalymOkresie(+offer.rata, +this.mLiczbaLat, offer.kwotaKredytuOferty)
 
       //Jeśli Pekao z ofertą z % wyższym do czasu jak LTV jest > 0.8 bez CPI
-      if (element.oprocStale === "jakPEKAO") {
+      if (offer.oprocStale === "jakPEKAO") {
         var ileRazy = 0;
         var i = 0;
         for (i = 0; i <= this.mLiczbaLat * 12; i++) {
-          var kwotaKredytu = element.kwotaKredytuOferty;
-          var rata = element.rata;
+          var kwotaKredytu = offer.kwotaKredytuOferty;
+          var rata = offer.rata;
           ileRazy++;
-          var r = (element.marza + element.WIBORstawka) / 1200;
+          var r = (offer.marza + offer.WIBORstawka) / 1200;
           var cz1 = (1 + r) ** i;
           var gora = ((1 + r) ** i) - 1;
           var goradol = gora / r;
@@ -690,76 +346,76 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
         }
         ileRazy = i;
-        console.log("ile razy: " + element.id + "  " + ileRazy)
+        console.log("ile razy: " + offer.id + "  " + ileRazy)
         console.log("zostało do spłaty: " + zostaloDoSplaty)
         //policz sumę odsetek w okresie kiedy LTV jest > 80%
-        let odsetkiZaplaconeAA = WzoryService.odsetkiZaplaconeNaKoniecNokresu(element.rata, ileRazy / 12, element.kwotaKredytuOferty, element.marza + element.WIBORstawka)
+        let odsetkiZaplaconeAA = calculationFormulas.odsetkiZaplaconeNaKoniecNokresu(offer.rata, ileRazy / 12, offer.kwotaKredytuOferty, offer.marza + offer.WIBORstawka)
         console.log("odsetki zanim 80%: " + odsetkiZaplaconeAA)
         //Oblicz ratę potem, czyli wg oprocentowania obowiązującego od momentu, kiedy LTV spadnie poniżej 80%
-        let rataPotem2 = WzoryService.rata(element.kwotaKredytuOferty, element.WIBORstawka + element.oprocStaleMarzaPotem, this.mLiczbaLat)
+        let rataPotem2 = calculationFormulas.rata(offer.kwotaKredytuOferty, offer.WIBORstawka + offer.oprocStaleMarzaPotem, this.mLiczbaLat)
 
         //Oblicz odsetki zapłacone w całym okresie wg raty potem
-        let odsetkiZaplaconeBB = WzoryService.odsetkiZaplaconeWcalymOkresie(rataPotem2, this.mLiczbaLat, element.kwotaKredytuOferty)
+        let odsetkiZaplaconeBB = calculationFormulas.odsetkiZaplaconeWcalymOkresie(rataPotem2, this.mLiczbaLat, offer.kwotaKredytuOferty)
 
         //Oblicz sumę odsetek płatnych na koniec okresu z początkowym oprocentowaniem, gdy LTV > 80%. ileRazy / 12 bo we wzorze jest mnożone * 12
-        let odsetkiZaplaconeCC = WzoryService.odsetkiZaplaconeNaKoniecNokresu(rataPotem2, ileRazy / 12, element.kwotaKredytuOferty, element.oprocStaleMarzaPotem + element.WIBORstawka)
+        let odsetkiZaplaconeCC = calculationFormulas.odsetkiZaplaconeNaKoniecNokresu(rataPotem2, ileRazy / 12, offer.kwotaKredytuOferty, offer.oprocStaleMarzaPotem + offer.WIBORstawka)
 
         //policz sumę odsetek: do odsetek płatnych w orkesie LTV >80% (odsetkiZaplaconeA) dodaj odsetki płątne w całym okresie (odsetkiZaplaconeB) pomniejszone o odsetki (odsetkiZaplaconeC), czyli, które nie będą przecież zapłacone, bo już sa zapłącone te w okresie LTV >80%.
-        element.odsetkiSuma = odsetkiZaplaconeAA + (odsetkiZaplaconeBB - odsetkiZaplaconeCC);
+        offer.odsetkiSuma = odsetkiZaplaconeAA + (odsetkiZaplaconeBB - odsetkiZaplaconeCC);
       }
 
 
 
-      if (element.oprocStale === "tak") { //jesli oprocentowanie stałe TAK
+      if (offer.oprocStale === "tak") { //jesli oprocentowanie stałe TAK
 
         //policz sumę odsetek w okresie ze stałą stopą
-        let odsetkiZaplaconeA = WzoryService.odsetkiZaplaconeNaKoniecNokresu(element.rata, element.oprocStaleIleLat, element.kwotaKredytuOferty, element.marza)
+        let odsetkiZaplaconeA = calculationFormulas.odsetkiZaplaconeNaKoniecNokresu(offer.rata, offer.oprocStaleIleLat, offer.kwotaKredytuOferty, offer.marza)
 
         //Oblicz ratę potem, czyli wg oprocentowania w kolejnym okresie po oprocentowaniu zmiennym
-        let rataPotem = WzoryService.rata(element.kwotaKredytuOferty, +element.WIBORstawka + +element.oprocStaleMarzaPotem, +this.mLiczbaLat)
+        let rataPotem = calculationFormulas.rata(offer.kwotaKredytuOferty, +offer.WIBORstawka + +offer.oprocStaleMarzaPotem, +this.mLiczbaLat)
 
         //Oblicz odsetki zapłacone w całym okresie wg raty potem
         // @@@@@@@@@@@@@@@@@@@@@ czy tu nie powinna byćponiżej element.kwotaKredytuOferty zamiast this.mKwotaKRedytu???????????????????????????????????
-        let odsetkiZaplaconeB = WzoryService.odsetkiZaplaconeWcalymOkresie(rataPotem, this.mLiczbaLat, this.mKwotaKredytu)
+        let odsetkiZaplaconeB = calculationFormulas.odsetkiZaplaconeWcalymOkresie(rataPotem, this.mLiczbaLat, this.mKwotaKredytu)
 
         //Oblicz sumę odsetek płatnych na koniec okresu ze stałą stopą
-        let odsetkiZaplaconeC = WzoryService.odsetkiZaplaconeNaKoniecNokresu(rataPotem, element.oprocStaleIleLat, element.kwotaKredytuOferty, element.oprocStaleMarzaPotem + element.WIBORstawka)
+        let odsetkiZaplaconeC = calculationFormulas.odsetkiZaplaconeNaKoniecNokresu(rataPotem, offer.oprocStaleIleLat, offer.kwotaKredytuOferty, offer.oprocStaleMarzaPotem + offer.WIBORstawka)
 
         //policz sumę odsetek: do odsetek płatnych w orkesie ze stałąstopą (odsetkiZaplaconeA) dodaj odsetki płątne w całym okresie (odsetkiZaplaconeB) pomniejszone o odsetki (odsetkiZaplaconeC), czyli, które nie będą przecież zapłacone, bo już sa zapłącone te w okresie ze stałą stopą.
-        element.odsetkiSuma = odsetkiZaplaconeA + (odsetkiZaplaconeB - odsetkiZaplaconeC);
+        offer.odsetkiSuma = odsetkiZaplaconeA + (odsetkiZaplaconeB - odsetkiZaplaconeC);
       }
 
 
       /** CAŁKOWITY KOSZT UBEZPIECZENIA OD SALDA KREDYTU MALEJACEGO CO ROKU */
 
-      if (element.ubezpZycieIleLat === 999) { // jesi ubezpieczenie jest pobierane przez cały okres kredytu
+      if (offer.ubezpZycieIleLat === 999) { // jesi ubezpieczenie jest pobierane przez cały okres kredytu
         var liczbaLat = this.mLiczbaLat;
       } else {
-        var liczbaLat = element.ubezpZycieIleLat - 1;
+        var liczbaLat = offer.ubezpZycieIleLat - 1;
       }
 
-      var suma = element.kwotaKredytuOferty;
+      var suma = offer.kwotaKredytuOferty;
       var skladkaCalkowita = 0;
 
-      if (element.ubezpZycieIleLat > 1) { //licz tylko jeśli oferta zawiera ubezpieczenie na życie
-        for (i = element.ubezpZycieOdKtoregoMiesiaca; i <= liczbaLat * 12; i = i + 12) {
-          var kwotaKredytu = element.kwotaKredytuOferty;
-          var rata = element.rata;
+      if (offer.ubezpZycieIleLat > 1) { //licz tylko jeśli oferta zawiera ubezpieczenie na życie
+        for (i = offer.ubezpZycieOdKtoregoMiesiaca; i <= liczbaLat * 12; i = i + 12) {
+          var kwotaKredytu = offer.kwotaKredytuOferty;
+          var rata = offer.rata;
           var i: number;
-          var r = (element.marza + element.WIBORstawka) / 1200;
+          var r = (offer.marza + offer.WIBORstawka) / 1200;
           var cz1 = (1 + r) ** i;
           var gora = ((1 + r) ** i) - 1;
           var goradol = gora / r;
           var zostaloDoSplaty = cz1 * +kwotaKredytu - goradol * +rata;
           suma = suma + zostaloDoSplaty;
         }
-        skladkaCalkowita = (suma / liczbaLat) * (element.ubezpZycieStawkaMiesieczna / 100 * 12) * liczbaLat;
+        skladkaCalkowita = (suma / liczbaLat) * (offer.ubezpZycieStawkaMiesieczna / 100 * 12) * liczbaLat;
         /**Oblicz ubezpieczenie na zycie TOTAL przec cały okres kredytu */
-        element.ubezpZycieTOTAL = skladkaCalkowita;
+        offer.ubezpZycieTOTAL = skladkaCalkowita;
       }
 
       /** KOSZTY CAŁKOWITE */
-      element.kosztyCalkowite = +element.prowizjaSuma + +element.wycenaMieszkanie + +element.ubezpZycieTOTAL + +element.ubezpNieruchTOTAL + +element.odsetkiSuma + +element.ubezZycieNaStartSuma + element.upezpPracaNaStartSuma + +element.pomostoweTOTAL;
+      offer.kosztyCalkowite = +offer.prowizjaSuma + +offer.wycenaMieszkanie + +offer.ubezpZycieTOTAL + +offer.ubezpNieruchTOTAL + +offer.odsetkiSuma + +offer.ubezZycieNaStartSuma + offer.upezpPracaNaStartSuma + +offer.pomostoweTOTAL;
 
 
 
@@ -779,7 +435,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
         this.filteredValues['maxLiczbaLat'] = "35";
         this.dataSource.filter = JSON.stringify(this.filteredValues);
       } else {
-        element.minLTVsave = "abc";
+        offer.minLTVsave = "abc";
         this.filteredValues['maxLiczbaLat'] = "";
         this.dataSource.filter = JSON.stringify(this.filteredValues);
       }
@@ -790,46 +446,46 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
 
       //FILTR: minLTV
-      if (element.LTVobliczone > element.minLTV) {
-        element.minLTVsave = "minLTVok";
+      if (offer.LTVobliczone > offer.minLTV) {
+        offer.minLTVsave = "minLTVok";
         this.filteredValues['minLTVsave'] = "minLTVok";
         this.dataSource.filter = JSON.stringify(this.filteredValues);
       } else {
-        element.minLTVsave = "abc";
+        offer.minLTVsave = "abc";
         this.filteredValues['minLTVsave'] = "minLTVok";
         this.dataSource.filter = JSON.stringify(this.filteredValues);
       }
 
 
       //FILTR: maxLTV
-      if (element.LTVobliczone <= element.maxLTV) {
-        element.maxLTVsave = "maxLTVok";
+      if (offer.LTVobliczone <= offer.maxLTV) {
+        offer.maxLTVsave = "maxLTVok";
         this.filteredValues['maxLTVsave'] = "maxLTVok";
         this.dataSource.filter = JSON.stringify(this.filteredValues);
 
       } else {
-        element.maxLTVsave = "abc";
+        offer.maxLTVsave = "abc";
         this.filteredValues['maxLTVsave'] = "maxLTVok";
         this.dataSource.filter = JSON.stringify(this.filteredValues);
       }
 
 
       //FILTR minimalnej kwoty kredytu
-      if (element.kwotaKredytuOferty >= element.minKwotaKredytu) {
-        element.minKwotaKredytuFILTR = "minKwotaKredytuOK";
+      if (offer.kwotaKredytuOferty >= offer.minKwotaKredytu) {
+        offer.minKwotaKredytuFILTR = "minKwotaKredytuOK";
         this.filteredValues['minKwotaKredytuFILTR'] = "minKwotaKredytuOK";
         this.dataSource.filter = JSON.stringify(this.filteredValues);
       } else {
-        element.minKwotaKredytuFILTR = "abc";
+        offer.minKwotaKredytuFILTR = "abc";
       }
 
       //FILTR maxymalnej kwoty kredytu
-      if (element.kwotaKredytuOferty <= element.maxKwotaKredytu) {
-        element.maxKwotaKredytuFILTR = "maxKWotaKredytuOK";
+      if (offer.kwotaKredytuOferty <= offer.maxKwotaKredytu) {
+        offer.maxKwotaKredytuFILTR = "maxKWotaKredytuOK";
         this.filteredValues['maxKwotaKredytuFILTR'] = "maxKWotaKredytuOK";
         this.dataSource.filter = JSON.stringify(this.filteredValues);
       } else {
-        element.maxKwotaKredytuFILTR = "abc";
+        offer.maxKwotaKredytuFILTR = "abc";
       }
 
 
@@ -841,15 +497,15 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
        */
 
       //Ustal kwotę wymaganych minimalnych wpływów dla ofert, które wymagają wpływów min 2 x rata
-      if (element.minimalneWpływy2xRata === "tak") {
-        element.minimalneWpływy = +element.rata * 2;
+      if (offer.minimalneWpływy2xRata === "tak") {
+        offer.minimalneWpływy = +offer.rata * 2;
         //zastosuj filtr ten sam co dla wpływów
-        if (+this.wDeklarowaneWplywy.value >= element.minimalneWpływy || this.wDeklarowaneWplywy === null) {
-          element.minimalneWplywyStatus = "wplywyOK"
+        if (+this.wDeklarowaneWplywy.value >= offer.minimalneWpływy || this.wDeklarowaneWplywy === null) {
+          offer.minimalneWplywyStatus = "wplywyOK"
           this.filteredValues['minimalneWplywyStatus'] = "wplywyOK";
           this.dataSource.filter = JSON.stringify(this.filteredValues);
         } else {
-          element.minimalneWplywyStatus = "wplywyMalo"
+          offer.minimalneWplywyStatus = "wplywyMalo"
         }
       }
 
@@ -857,7 +513,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
       /**Tutaj jak klikniesz przelicz sprawdź, ile jest wpisanych lat dla filtra WiekNajstarszegoKredytobiorcy i dodaj zmienioną liczbę lat kredytu (okres trwania).
       Musi to tu byc, bo inaczej, jak wpiszesz filtr wieknajstarszego i potem zminisz liczbę lat kredytu, to się filtr nie zaktualizuje */
 
-      this.users.forEach((element) => {
+      this.offers.forEach((element) => {
         if (+this.mLiczbaLat + +this.wiekNajstarszegoInput.nativeElement.value < element.maxWiek) {
           element.maxWiekStatus = "wiekOK"
           this.filteredValues['maxWiekStatus'] = "wiekOK";
@@ -888,6 +544,15 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
   }
 
+
+
+
+
+
+
+
+
+
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -903,7 +568,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: User): string {
+  checkboxLabel(row?: Offer): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
@@ -976,7 +641,7 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
 
 
 
-  zbudujFormularz() {
+  zbudujFormularz(): void {
     //DO VALIDACJI DANCH FORMULARZA
     this.myGroup = new FormGroup({
       formWartoscNieruchomosci: new FormControl("", [Validators.max(2000000), Validators.min(100000)]),
@@ -990,23 +655,8 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
     });
   }
 
-
-  // zaktualizujValidary() {
-  //   const formWkladWlasnyControl = this.myGroup.get('formWkladWlasny');
-
-  //   this.myGroup.get('formWartoscNieruchomosci').valueChanges
-  //     .subscribe(formWartoscNieruchomosci => {
-  //      formWkladWlasnyControl.setValidators([Validators.required, Validators.min(this.mWartoscNieruchomosci * 0.1)]);
-  //      formWkladWlasnyControl.updateValueAndValidity();
-
-  //    });
-  //  }
-
-
-
-
   customFilterPredicate() {
-    const myFilterPredicate = (data: User, filter: string): boolean => {
+    const myFilterPredicate = (data: Offer, filter: string): boolean => {
       var globalMatch = !this.globalFilter;
       if (this.globalFilter) {
         // search data.bank text fields
@@ -1042,27 +692,16 @@ element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (ele
   }
 
 
-
-  /** Tutaj logika zaznacz jaki rodzaj rat  */
   RodzajeRat: RodzajRat[] = [
     { value: '0', viewValue: 'Równe' },
     { value: '1', viewValue: 'Malejące' },
   ];
 
-  /** Tutaj logika zaznacz jaki rodzaj nieruchomosci */
   RodzajeNieruchomosci: RodzajNieruchomosci[] = [
     { value: '0', viewValue: 'Mieszkanie' },
     { value: '1', viewValue: 'Dom' },
     { value: '2', viewValue: 'Działka' },
   ];
-
-  /** Tutaj logika zaznacz wjakim banku konto od 6 miesięcy */
-  KontoJakieBanki: KontoJakiBank[] = [
-    { value: '0', viewValue: 'Inny' },
-    { value: '1', viewValue: 'PKO BP' },
-    //{ value: '2', viewValue: 'Santander' },
-  ];
-
 
   zamienNaDate(d: string) {
     var b = new Date(d);

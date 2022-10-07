@@ -1,9 +1,75 @@
 import { Injectable } from '@angular/core';
+import { Offer } from 'src/app/offer';
 
 @Injectable({
   providedIn: 'root'
 })
-export class WzoryService {
+export class calculationFormulas {
+
+  static calculateCreditAmount(propertyValue, ownContribution) {
+    var creditAmount = propertyValue - ownContribution;
+    return creditAmount;
+  }
+
+  static calculateCreditAmountWithAddictionalCosts(creditAmount, costsAlwaysInCredit) {
+    var creditAmountWithAdditionalCosts = +creditAmount + (+creditAmount * (costsAlwaysInCredit / 100));
+    return creditAmountWithAdditionalCosts;
+  }
+
+  static calculateGeneralLTV(creditAmount: number, propertyValue: number) {
+    var generalLTV = +creditAmount / +propertyValue;
+    return generalLTV;
+  }
+
+  static calculateOfferLTV(creditAmountofOffer, propertyValue) {
+    var offerLTV = creditAmountofOffer / +propertyValue;
+    return offerLTV;
+  }
+
+  static assignCurrentWIBORtoOffers(offerWibor: string, currentWibor3M: number, currentWibor6M: number) {
+    if (offerWibor === "3M") {
+      return currentWibor3M;
+    }
+    if (offerWibor === "6M") {
+      return currentWibor6M;
+    }
+  }
+
+  static calculateFirstEqualInstallment(isOfferFixedRate, creditAmountOfOffer, offerWibor, offerMargin, creditLengthInYears) {
+    if (isOfferFixedRate === "nie") {
+      return calculationFormulas.rata(creditAmountOfOffer, offerWibor + offerMargin, creditLengthInYears);
+    } else {
+      return calculationFormulas.rata(creditAmountOfOffer, offerMargin, creditLengthInYears);
+    }
+  }
+
+  static CalculateApartmentInsuranceMonthly(appartmentInsuranceCalculatedFrom, appartmentInsuranceRatePerYear: number, propertyValue, creditAmount) {
+    if (appartmentInsuranceCalculatedFrom === "wartNieruchomosci") {
+      return (appartmentInsuranceRatePerYear / 100 / 12) * +propertyValue;
+    }
+    else {
+      return (+appartmentInsuranceRatePerYear / 100 / 12) * creditAmount;
+    }
+  }
+
+  static calculateTotalAppartmentInsurance(appartmentInsuranceCalculatedFrom: string, apartmentInsuranceMonthly: number, creditLengthInYears: number) {
+    if (appartmentInsuranceCalculatedFrom === "wartNieruchomosci") {
+      return apartmentInsuranceMonthly * +creditLengthInYears * 12;
+    }
+    else {
+      return +apartmentInsuranceMonthly * +creditLengthInYears * 12;
+    }
+  }
+
+  static calculateLifeInsuranceMonthly(lifeInsuranceMonthlyRate, creditAmountOfOffer) {
+    return (lifeInsuranceMonthlyRate / 100) * creditAmountOfOffer;
+  }
+  /**Tutaj jest formuła do liczenia raty MALEJĄCEJ PIERWSZEJ 
+  element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (element.kwotaKredytuOferty * (((+element.WIBOR + +element.marza)/100)/12))) 
+  */
+  static costsMonthly(offer: Offer): number {
+    return offer.ubezpNieruchSuma + offer.ubezpZycieSuma;
+  }
 
 
   /** odsetki zapłacone w całym okresie

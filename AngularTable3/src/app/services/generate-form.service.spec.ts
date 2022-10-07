@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { calculationFormulas } from './wzory.service';
+import { GenerateFormService } from './generate-form.service';
 
-describe('WzoryService', () => {
-  let service: calculationFormulas;
+describe('GenerateFormService', () => {
+  let service: GenerateFormService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(calculationFormulas);
+    service = TestBed.inject(GenerateFormService);
   });
 
   it('should be created', () => {
