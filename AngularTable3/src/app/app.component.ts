@@ -18,6 +18,7 @@ import { Offer } from './offer';
 import { IOffer } from './ioffer';
 import { Wibor } from './wibor';
 import { element } from 'protractor';
+import { type } from 'os';
 
 
 /** Tutaj logika zaznacz jaki rodzaj rat Cię interesuje */
@@ -86,32 +87,25 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    this.wiborService.getWibor().subscribe((response: Wibor[]) => {
+    this.wiborService.getWibor().subscribe((wibors: Wibor[]) => {
+      for (let i in wibors) {
 
-      response.forEach(element => {
-        var el = new Wibor(element['name'], element['value'])
-        this.wibors.push(el);
-      })
+        //Assign JSON object to Wibor Object
+        this.wibors[i] = Object.assign(new Wibor(), wibors[i]);
+        //wiborObject.getName();
+        //wiborObject.changeWibor();
+      }
 
       this.wiborDataSource = this.wibors;
 
-      this.wiborDataSource.forEach(element => {
-        element.getName();
-        element.changeName();
-      });
+      this.mWIBOR3M = this.wiborDataSource.find(i => i.name === 'wibor3m').getWibor();
+      this.mWIBOR6M = this.wiborDataSource.find(i => i.name === 'wibor6m').getWibor();
     });
-
 
 
     // get Offers from server
     this.offersService.getOffers().subscribe((response: Offer[]) => {
       this.offers = response;
-
-      this.offers.forEach(element => {
-        element = new Offer(element['id'])
-        //element.writeId();
-        // console.log(element.bank);
-      });
 
       this.dataSource = new MatTableDataSource(this.offers);
       this.dataSource.sort = this.sort;
@@ -199,11 +193,11 @@ export class AppComponent implements OnInit {
 
     });
 
-    // get WIBOR from server
-    this.wiborService.getWibor().subscribe(data => {
-      this.mWIBOR3M = data['mWIBOR3M'],
-        this.mWIBOR6M = data['mWIBOR6M']
-    });
+    // // get WIBOR from server
+    // this.wiborService.getWibor().subscribe(data => {
+    //   this.mWIBOR3M = data['mWIBOR3M'],
+    //     this.mWIBOR6M = data['mWIBOR6M']
+    // });
 
     //stwórz form Bilder
     this.zbudujFormularz();
@@ -296,8 +290,6 @@ export class AppComponent implements OnInit {
 
     this.mKwotaKredytu = Calculate.CreditAmount(this.mWartoscNieruchomosci, this.wkladWlasnyNowy);
     this.mLTV = Calculate.GeneralLTV(this.mKwotaKredytu, this.mWartoscNieruchomosci);
-
-
 
     this.offers.forEach((offer) => {
       offer.kwotaKredytuOferty = Calculate.CreditAmountWithAddictionalCosts(this.mKwotaKredytu, offer.oplatyZawszeKredytowane);
