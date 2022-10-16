@@ -4,29 +4,29 @@ import { Offer } from 'src/app/offer';
 @Injectable({
   providedIn: 'root'
 })
-export class calculationFormulas {
+export class Calculate {
 
-  static calculateCreditAmount(propertyValue, ownContribution) {
+  static CreditAmount(propertyValue, ownContribution) {
     var creditAmount = propertyValue - ownContribution;
     return creditAmount;
   }
 
-  static calculateCreditAmountWithAddictionalCosts(creditAmount, costsAlwaysInCredit) {
+  static CreditAmountWithAddictionalCosts(creditAmount, costsAlwaysInCredit) {
     var creditAmountWithAdditionalCosts = +creditAmount + (+creditAmount * (costsAlwaysInCredit / 100));
     return creditAmountWithAdditionalCosts;
   }
 
-  static calculateGeneralLTV(creditAmount: number, propertyValue: number) {
+  static GeneralLTV(creditAmount: number, propertyValue: number) {
     var generalLTV = +creditAmount / +propertyValue;
     return generalLTV;
   }
 
-  static calculateOfferLTV(creditAmountofOffer, propertyValue) {
+  static OfferLTV(creditAmountofOffer, propertyValue) {
     var offerLTV = creditAmountofOffer / +propertyValue;
     return offerLTV;
   }
 
-  static assignCurrentWIBORtoOffers(offerWibor: string, currentWibor3M: number, currentWibor6M: number) {
+  static AssignCurrentWIBORtoOffers(offerWibor: string, currentWibor3M: number, currentWibor6M: number) {
     if (offerWibor === "3M") {
       return currentWibor3M;
     }
@@ -35,25 +35,25 @@ export class calculationFormulas {
     }
   }
 
-  static calculateFirstEqualInstallment(isOfferFixedRate, creditAmountOfOffer, offerWibor, offerMargin, creditLengthInYears) {
+  static FirstEqualInstallment(isOfferFixedRate, creditAmountOfOffer, offerWibor, offerMargin, creditLengthInYears) {
     if (isOfferFixedRate === "nie") {
-      return calculationFormulas.rata(creditAmountOfOffer, offerWibor + offerMargin, creditLengthInYears);
+      return Calculate.rata(creditAmountOfOffer, offerWibor + offerMargin, creditLengthInYears);
     } else {
-      return calculationFormulas.rata(creditAmountOfOffer, offerMargin, creditLengthInYears);
+      return Calculate.rata(creditAmountOfOffer, offerMargin, creditLengthInYears);
     }
   }
 
-  static CalculateApartmentInsuranceMonthly(appartmentInsuranceCalculatedFrom, appartmentInsuranceRatePerYear: number, propertyValue, creditAmount) {
-    if (appartmentInsuranceCalculatedFrom === "wartNieruchomosci") {
-      return (appartmentInsuranceRatePerYear / 100 / 12) * +propertyValue;
+  static ApartmentInsuranceMonthly(apartmentInsuranceCalculatedFrom, apartmentInsuranceRatePerYear: number, propertyValue, creditAmount) {
+    if (apartmentInsuranceCalculatedFrom === "wartNieruchomosci") {
+      return (apartmentInsuranceRatePerYear / 100 / 12) * +propertyValue;
     }
     else {
-      return (+appartmentInsuranceRatePerYear / 100 / 12) * creditAmount;
+      return (+apartmentInsuranceRatePerYear / 100 / 12) * creditAmount;
     }
   }
 
-  static calculateTotalAppartmentInsurance(appartmentInsuranceCalculatedFrom: string, apartmentInsuranceMonthly: number, creditLengthInYears: number) {
-    if (appartmentInsuranceCalculatedFrom === "wartNieruchomosci") {
+  static TotalAppartmentInsurance(apartmentInsuranceCalculatedFrom: string, apartmentInsuranceMonthly: number, creditLengthInYears: number) {
+    if (apartmentInsuranceCalculatedFrom === "wartNieruchomosci") {
       return apartmentInsuranceMonthly * +creditLengthInYears * 12;
     }
     else {
@@ -61,15 +61,31 @@ export class calculationFormulas {
     }
   }
 
-  static calculateLifeInsuranceMonthly(lifeInsuranceMonthlyRate, creditAmountOfOffer) {
+  static LifeInsuranceMonthly(lifeInsuranceMonthlyRate, creditAmountOfOffer) {
     return (lifeInsuranceMonthlyRate / 100) * creditAmountOfOffer;
   }
   /**Tutaj jest formuła do liczenia raty MALEJĄCEJ PIERWSZEJ 
   element.rata = "" + ((element.kwotaKredytuOferty / (+this.mLiczbaLat*12)) + (element.kwotaKredytuOferty * (((+element.WIBOR + +element.marza)/100)/12))) 
   */
-  static costsMonthly(offer: Offer): number {
-    return offer.ubezpNieruchSuma + offer.ubezpZycieSuma;
+  static CostsMonthly(apartmentInsuranceMonthly, lifeInsuranceMonthly): number {
+    return apartmentInsuranceMonthly + lifeInsuranceMonthly;
   }
+
+  /**
+   * Calculates commission to pay at the beginning of the credit.
+   *
+   * @param loanValue - Total amount of credit
+   * @param commissionRate - commission rate per year [%]
+   * @returns commission to pay
+   */
+  static Commission(loanValue: number, commissionRate: number): number {
+    return loanValue * (commissionRate / 100);
+  }
+
+  static LifeInsuranceCostUpFront(loanValue, lifeInsuranceUpFrontRate): number {
+    return loanValue * (lifeInsuranceUpFrontRate / 100);
+  }
+
 
 
   /** odsetki zapłacone w całym okresie
@@ -120,7 +136,7 @@ export class calculationFormulas {
    * N - liczba rat
    */
 
-  static rata(kwotaKredytu: number, r: number, liczbaLat: number) {
+  public static rata(kwotaKredytu: number, r: number, liczbaLat: number) {
     r = r / 1200
     return (r / (1 - (1 + r) ** (-1 * (liczbaLat * 12)))) * kwotaKredytu
   }

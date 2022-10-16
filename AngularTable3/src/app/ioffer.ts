@@ -1,4 +1,5 @@
-export class Offer {
+export interface IOffer {
+
     id: number;
     bank: string;
     ofertaNazwa: string;
@@ -58,18 +59,4 @@ export class Offer {
     prowizjaSuma: number;
     pomostoweSuma: number;
     rata: number;
-
-
-    constructor(
-        id: number
-
-    ) {
-        this.id = id
-    }
-
-
-
-    writeId() {
-        console.log(this.id);
-    }
 }

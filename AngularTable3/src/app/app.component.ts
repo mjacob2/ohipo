@@ -11,10 +11,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { OffersService } from './services/http/getOffers.service';
 import { wiborService } from './services/http/getWibor.service';
-import { calculationFormulas } from './services/wzory/wzory.service';
+import { wiborObjectService } from './services/http/get-wibor.service';
+import { Calculate } from './services/wzory/wzory.service';
 import { MatSliderChange } from '@angular/material/slider';
-//import { IOffer } from './IOffer';
 import { Offer } from './offer';
+import { IOffer } from './ioffer';
+import { Wibor } from './wibor';
+import { element } from 'protractor';
+
 
 /** Tutaj logika zaznacz jaki rodzaj rat Cię interesuje */
 interface RodzajRat {
@@ -41,7 +45,8 @@ interface RodzajNieruchomosci {
 })
 
 export class AppComponent implements OnInit {
-  displayedColumns: string[] = ['szczegoly', 'bank', 'ofertaNazwa', 'kosztyCalkowite', 'kosztyPoczatkowe', 'rata', 'oplatyMiesieczne', 'marza', 'pomostoweSuma'];
+  displayedColumns: string[] = ['szczegoly', 'bank', 'ofertaNazwa', 'kosztyCalkowite', 'kosztyPoczatkowe', 'rata', 'oplatyMiesieczne', 'marza'];
+  wiborDisplayedColumns: string[] = ['name', 'value'];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -50,9 +55,15 @@ export class AppComponent implements OnInit {
   @ViewChild('snav2') snav2: MatSidenav;
 
   dataSource: MatTableDataSource<Offer>;
+  wiborDataSource: Wibor[];
   offers: Offer[];
+  offersObjects: Offer[];
+  wibors: Wibor[] = [];
+  offers2: Offer;
   mWIBOR3M: number;
   mWIBOR6M: number;
+  oferty: IOffer;
+  tt: IOffer[];
 
 
   constructor(
@@ -61,7 +72,8 @@ export class AppComponent implements OnInit {
     public dialogBlad: MatDialog,
     public dialogKontakt: MatDialog,
     private offersService: OffersService,
-    private wiborService: wiborService
+    private wiborService: wiborService,
+    private wiborObjectService: wiborObjectService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 1800px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -73,10 +85,35 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.wiborService.getWibor().subscribe((response: Wibor[]) => {
+
+      response.forEach(element => {
+        var el = new Wibor(element['name'], element['value'])
+        this.wibors.push(el);
+      })
+
+      this.wiborDataSource = this.wibors;
+
+      this.wiborDataSource.forEach(element => {
+        element.getName();
+        element.changeName();
+      });
+    });
+
+
+
     // get Offers from server
-    this.offersService.getOffers().subscribe((offers: Offer[]) => {
-      this.offers = offers;
-      this.dataSource = new MatTableDataSource(offers);
+    this.offersService.getOffers().subscribe((response: Offer[]) => {
+      this.offers = response;
+
+      this.offers.forEach(element => {
+        element = new Offer(element['id'])
+        //element.writeId();
+        // console.log(element.bank);
+      });
+
+      this.dataSource = new MatTableDataSource(this.offers);
       this.dataSource.sort = this.sort;
       this.dataSource.filterPredicate = this.customFilterPredicate();
 
@@ -222,9 +259,6 @@ export class AppComponent implements OnInit {
 
   mpokazOpcjeZaawansowane: boolean;
 
-  //Ustal domyślne wartości dla stawek WIBOR i czasu pomostowego
-  mPomostoweIleMiesiecy: number = 3;
-
   /** ZADEKLAROWANE ZMIENNE DO FILTRÓW */
   wTrakcieBudowyFilter = new FormControl();
   wDeklarowaneWplywy = new FormControl();
@@ -255,67 +289,31 @@ export class AppComponent implements OnInit {
   };
 
   calculateOffers(): void {
+
     if (window.matchMedia("(max-width: 1800px)").matches) {
       this.snav2.close();
     }
 
-    this.mKwotaKredytu = calculationFormulas.calculateCreditAmount(this.mWartoscNieruchomosci, this.wkladWlasnyNowy);
+    this.mKwotaKredytu = Calculate.CreditAmount(this.mWartoscNieruchomosci, this.wkladWlasnyNowy);
+    this.mLTV = Calculate.GeneralLTV(this.mKwotaKredytu, this.mWartoscNieruchomosci);
+
+
 
     this.offers.forEach((offer) => {
-
-      offer.kwotaKredytuOferty = calculationFormulas.calculateCreditAmountWithAddictionalCosts(this.mKwotaKredytu, offer.oplatyZawszeKredytowane);
-      this.mLTV = calculationFormulas.calculateGeneralLTV(this.mKwotaKredytu, this.mWartoscNieruchomosci);
-      offer.LTVobliczone = calculationFormulas.calculateOfferLTV(offer.kwotaKredytuOferty, this.mWartoscNieruchomosci);
-      offer.WIBORstawka = calculationFormulas.assignCurrentWIBORtoOffers(offer.WIBOR, this.mWIBOR3M, this.mWIBOR6M);
-      offer.rata = calculationFormulas.calculateFirstEqualInstallment(offer.oprocStale, offer.kwotaKredytuOferty, offer.WIBORstawka, offer.marza, this.mLiczbaLat);
-      offer.ubezpNieruchSuma = calculationFormulas.CalculateApartmentInsuranceMonthly(offer.ubezpNieruchOdCzegoLicz, offer.ubezpNieruchStawkaRok, this.mWartoscNieruchomosci, this.mKwotaKredytu)
-      offer.ubezpNieruchTOTAL = calculationFormulas.calculateTotalAppartmentInsurance(offer.ubezpNieruchOdCzegoLicz, offer.ubezpNieruchSuma, this.mLiczbaLat);
-      offer.ubezpZycieSuma = calculationFormulas.calculateLifeInsuranceMonthly(offer.ubezpZycieStawkaMiesieczna, offer.kwotaKredytuOferty);
-      //** oblicz OPŁATY MIESIECZNE */
-      offer.oplatyMiesieczne = offer.ubezpNieruchSuma + offer.ubezpZycieSuma;
-      /** */
-
-
-      /**
-       * 
-       *    OPŁATY NA START
-       * 
-       */
-
-      /**oblicz PROWIZJĘ*/
-      offer.prowizjaSuma = + (+this.mKwotaKredytu * (+offer.prowizjaStawka / 100));
-      /** Oblicz UBEZP. ŻYCIE NA START */
-      offer.ubezZycieNaStartSuma = +offer.kwotaKredytuOferty * (+offer.ubezZycieNaStart / 100);
+      offer.kwotaKredytuOferty = Calculate.CreditAmountWithAddictionalCosts(this.mKwotaKredytu, offer.oplatyZawszeKredytowane);
+      offer.LTVobliczone = Calculate.OfferLTV(offer.kwotaKredytuOferty, this.mWartoscNieruchomosci);
+      offer.WIBORstawka = Calculate.AssignCurrentWIBORtoOffers(offer.WIBOR, this.mWIBOR3M, this.mWIBOR6M);
+      offer.rata = Calculate.FirstEqualInstallment(offer.oprocStale, offer.kwotaKredytuOferty, offer.WIBORstawka, offer.marza, this.mLiczbaLat);
+      offer.ubezpNieruchSuma = Calculate.ApartmentInsuranceMonthly(offer.ubezpNieruchOdCzegoLicz, offer.ubezpNieruchStawkaRok, this.mWartoscNieruchomosci, this.mKwotaKredytu)
+      offer.ubezpNieruchTOTAL = Calculate.TotalAppartmentInsurance(offer.ubezpNieruchOdCzegoLicz, offer.ubezpNieruchSuma, this.mLiczbaLat);
+      offer.ubezpZycieSuma = Calculate.LifeInsuranceMonthly(offer.ubezpZycieStawkaMiesieczna, offer.kwotaKredytuOferty);
+      offer.oplatyMiesieczne = Calculate.CostsMonthly(offer.ubezpNieruchSuma, offer.ubezpZycieSuma);
+      offer.prowizjaSuma = Calculate.Commission(this.mKwotaKredytu, offer.prowizjaStawka);
+      offer.ubezZycieNaStartSuma = Calculate.LifeInsuranceCostUpFront(offer.kwotaKredytuOferty, offer.ubezZycieNaStart);
       /** Olblicz UBEZP. PRACA NA START */
       offer.upezpPracaNaStartSuma = +this.mKwotaKredytu * (+offer.upezpPracaNaStart / 100);
       /**oblicz OPŁATY NA START -  SUMA*/
       offer.kosztyPoczatkowe = +offer.prowizjaSuma + +offer.wycenaMieszkanie + +offer.ubezZycieNaStartSuma + +offer.upezpPracaNaStartSuma;
-      /** */
-
-
-      /**oblicz UBEZPIECZENIE POMOSTOWE  */
-      if (offer.pomostoweJakLiczone === "stawka") { //Jeśli ubezp. pomostowe jest płątne jako dodatkowa opłata ze swojąstawką
-
-        // Oblicz ile jest płątne miesieczne ubezp. pomosotowe
-        offer.pomostoweSuma = (offer.pomostoweStawkaMiesieczna / 100 / 12) * offer.kwotaKredytuOferty;
-
-        //Oblicz ile jest płątne za cały okres założony do kalkulacji
-        offer.pomostoweTOTAL = offer.pomostoweSuma * +this.mPomostoweIleMiesiecy;
-
-
-      } if (offer.pomostoweJakLiczone === "doliczoneDoMarzy") { //Jeśli ubezpieczenie pomostowe jest płatne jako podwyżka do marży, to oblicz je jako różnicę miedzy ratą z oprocentowaniem powiększonym o element.pomostoweStawkaMiesieczna a zwykła ratą bez tego
-
-        offer.pomostoweSuma =
-          //rata z element.pomostoweStawkaMiesieczna
-          calculationFormulas.rata(offer.kwotaKredytuOferty, offer.WIBORstawka + offer.marza + offer.pomostoweStawkaMiesieczna, this.mLiczbaLat)
-          //rata zwykła standardowa
-          - calculationFormulas.rata(offer.kwotaKredytuOferty, offer.WIBORstawka + offer.marza, this.mLiczbaLat)
-
-        //Oblicz ile jest płątne za cały okres założony do kalkulacji
-        offer.pomostoweTOTAL = offer.pomostoweSuma * +this.mPomostoweIleMiesiecy;
-      }
-
-
 
       /***
        * 
@@ -326,7 +324,7 @@ export class AppComponent implements OnInit {
 
       //**Oblicz sumę ODSETEK RATY RÓWNE */
       if (offer.oprocStale === "nie")  //jeśli oprocentowanie zmienne
-        offer.odsetkiSuma = calculationFormulas.odsetkiZaplaconeWcalymOkresie(+offer.rata, +this.mLiczbaLat, offer.kwotaKredytuOferty)
+        offer.odsetkiSuma = Calculate.odsetkiZaplaconeWcalymOkresie(+offer.rata, +this.mLiczbaLat, offer.kwotaKredytuOferty)
 
       //Jeśli Pekao z ofertą z % wyższym do czasu jak LTV jest > 0.8 bez CPI
       if (offer.oprocStale === "jakPEKAO") {
@@ -346,40 +344,36 @@ export class AppComponent implements OnInit {
 
         }
         ileRazy = i;
-        console.log("ile razy: " + offer.id + "  " + ileRazy)
-        console.log("zostało do spłaty: " + zostaloDoSplaty)
         //policz sumę odsetek w okresie kiedy LTV jest > 80%
-        let odsetkiZaplaconeAA = calculationFormulas.odsetkiZaplaconeNaKoniecNokresu(offer.rata, ileRazy / 12, offer.kwotaKredytuOferty, offer.marza + offer.WIBORstawka)
-        console.log("odsetki zanim 80%: " + odsetkiZaplaconeAA)
+        let odsetkiZaplaconeAA = Calculate.odsetkiZaplaconeNaKoniecNokresu(offer.rata, ileRazy / 12, offer.kwotaKredytuOferty, offer.marza + offer.WIBORstawka)
         //Oblicz ratę potem, czyli wg oprocentowania obowiązującego od momentu, kiedy LTV spadnie poniżej 80%
-        let rataPotem2 = calculationFormulas.rata(offer.kwotaKredytuOferty, offer.WIBORstawka + offer.oprocStaleMarzaPotem, this.mLiczbaLat)
+        let rataPotem2 = Calculate.rata(offer.kwotaKredytuOferty, offer.WIBORstawka + offer.oprocStaleMarzaPotem, this.mLiczbaLat)
 
         //Oblicz odsetki zapłacone w całym okresie wg raty potem
-        let odsetkiZaplaconeBB = calculationFormulas.odsetkiZaplaconeWcalymOkresie(rataPotem2, this.mLiczbaLat, offer.kwotaKredytuOferty)
+        let odsetkiZaplaconeBB = Calculate.odsetkiZaplaconeWcalymOkresie(rataPotem2, this.mLiczbaLat, offer.kwotaKredytuOferty)
 
         //Oblicz sumę odsetek płatnych na koniec okresu z początkowym oprocentowaniem, gdy LTV > 80%. ileRazy / 12 bo we wzorze jest mnożone * 12
-        let odsetkiZaplaconeCC = calculationFormulas.odsetkiZaplaconeNaKoniecNokresu(rataPotem2, ileRazy / 12, offer.kwotaKredytuOferty, offer.oprocStaleMarzaPotem + offer.WIBORstawka)
+        let odsetkiZaplaconeCC = Calculate.odsetkiZaplaconeNaKoniecNokresu(rataPotem2, ileRazy / 12, offer.kwotaKredytuOferty, offer.oprocStaleMarzaPotem + offer.WIBORstawka)
 
         //policz sumę odsetek: do odsetek płatnych w orkesie LTV >80% (odsetkiZaplaconeA) dodaj odsetki płątne w całym okresie (odsetkiZaplaconeB) pomniejszone o odsetki (odsetkiZaplaconeC), czyli, które nie będą przecież zapłacone, bo już sa zapłącone te w okresie LTV >80%.
         offer.odsetkiSuma = odsetkiZaplaconeAA + (odsetkiZaplaconeBB - odsetkiZaplaconeCC);
       }
 
 
-
       if (offer.oprocStale === "tak") { //jesli oprocentowanie stałe TAK
 
         //policz sumę odsetek w okresie ze stałą stopą
-        let odsetkiZaplaconeA = calculationFormulas.odsetkiZaplaconeNaKoniecNokresu(offer.rata, offer.oprocStaleIleLat, offer.kwotaKredytuOferty, offer.marza)
+        let odsetkiZaplaconeA = Calculate.odsetkiZaplaconeNaKoniecNokresu(offer.rata, offer.oprocStaleIleLat, offer.kwotaKredytuOferty, offer.marza)
 
         //Oblicz ratę potem, czyli wg oprocentowania w kolejnym okresie po oprocentowaniu zmiennym
-        let rataPotem = calculationFormulas.rata(offer.kwotaKredytuOferty, +offer.WIBORstawka + +offer.oprocStaleMarzaPotem, +this.mLiczbaLat)
+        let rataPotem = Calculate.rata(offer.kwotaKredytuOferty, +offer.WIBORstawka + +offer.oprocStaleMarzaPotem, +this.mLiczbaLat)
 
         //Oblicz odsetki zapłacone w całym okresie wg raty potem
         // @@@@@@@@@@@@@@@@@@@@@ czy tu nie powinna byćponiżej element.kwotaKredytuOferty zamiast this.mKwotaKRedytu???????????????????????????????????
-        let odsetkiZaplaconeB = calculationFormulas.odsetkiZaplaconeWcalymOkresie(rataPotem, this.mLiczbaLat, this.mKwotaKredytu)
+        let odsetkiZaplaconeB = Calculate.odsetkiZaplaconeWcalymOkresie(rataPotem, this.mLiczbaLat, this.mKwotaKredytu)
 
         //Oblicz sumę odsetek płatnych na koniec okresu ze stałą stopą
-        let odsetkiZaplaconeC = calculationFormulas.odsetkiZaplaconeNaKoniecNokresu(rataPotem, offer.oprocStaleIleLat, offer.kwotaKredytuOferty, offer.oprocStaleMarzaPotem + offer.WIBORstawka)
+        let odsetkiZaplaconeC = Calculate.odsetkiZaplaconeNaKoniecNokresu(rataPotem, offer.oprocStaleIleLat, offer.kwotaKredytuOferty, offer.oprocStaleMarzaPotem + offer.WIBORstawka)
 
         //policz sumę odsetek: do odsetek płatnych w orkesie ze stałąstopą (odsetkiZaplaconeA) dodaj odsetki płątne w całym okresie (odsetkiZaplaconeB) pomniejszone o odsetki (odsetkiZaplaconeC), czyli, które nie będą przecież zapłacone, bo już sa zapłącone te w okresie ze stałą stopą.
         offer.odsetkiSuma = odsetkiZaplaconeA + (odsetkiZaplaconeB - odsetkiZaplaconeC);
@@ -415,7 +409,7 @@ export class AppComponent implements OnInit {
       }
 
       /** KOSZTY CAŁKOWITE */
-      offer.kosztyCalkowite = +offer.prowizjaSuma + +offer.wycenaMieszkanie + +offer.ubezpZycieTOTAL + +offer.ubezpNieruchTOTAL + +offer.odsetkiSuma + +offer.ubezZycieNaStartSuma + offer.upezpPracaNaStartSuma + +offer.pomostoweTOTAL;
+      offer.kosztyCalkowite = +offer.prowizjaSuma + +offer.wycenaMieszkanie + +offer.ubezpZycieTOTAL + +offer.ubezpNieruchTOTAL + +offer.odsetkiSuma + +offer.ubezZycieNaStartSuma + offer.upezpPracaNaStartSuma;
 
 
 
@@ -529,6 +523,7 @@ export class AppComponent implements OnInit {
     });
 
 
+
     //**pokaż snack bar */
     this._snackBar.open("Oferty zostały przeliczone", "zamknij", {
       duration: 4000,
@@ -542,7 +537,32 @@ export class AppComponent implements OnInit {
 
 
 
+
+
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -647,7 +667,6 @@ export class AppComponent implements OnInit {
       formWartoscNieruchomosci: new FormControl("", [Validators.max(2000000), Validators.min(100000)]),
       //formKwotaKredytu: new FormControl("", [Validators.max(2000000), Validators.min(50000)]),
       formLiczbaLat: new FormControl("", [Validators.max(35), Validators.min(5)]),
-      formPomostoweIleMiesiecy: new FormControl("", [Validators.max(48), Validators.min(0)]),
       formWIBOR3M: new FormControl("", [Validators.max(10), Validators.min(-10)]),
       formWIBOR6M: new FormControl("", [Validators.max(10), Validators.min(-10)]),
       // formWkladWlasny: new FormControl("", [Validators.max(2000000), Validators.min(1)]),

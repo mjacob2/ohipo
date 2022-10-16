@@ -301,16 +301,6 @@
             <mat-hint>Opcja zmiany dostępna wkrótce</mat-hint>
           </mat-form-field>
 
-          <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">Ubezp. pomostowe ile miesięcy</div>
-
-          <!--POMOSTOWE ILE MIESIĘCY-->
-          <mat-form-field hideRequiredMarker *ngIf="mpokazOpcjeZaawansowane" class="filtry-elementy">
-            <input required min="0" max="48" formControlName="formPomostoweIleMiesiecy"
-              matTooltip="Podaj ile miesięcy trzeba będzie płacić ubezpieczenie pomostowe"
-              (input)="mPomostoweIleMiesiecy" [(ngModel)]="mPomostoweIleMiesiecy"
-              (ngModelChange)="mPomostoweIleMiesiecy = $event" matInput type="number" matInput>
-            <mat-error>min. 0, max. 48</mat-error>
-          </mat-form-field>
 
           <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">WIBOR 3M</div>
 
@@ -517,15 +507,6 @@
             </ng-container>
 
 
-            <!-- pomostowe Column -->
-            <ng-container matColumnDef="pomostoweSuma">
-              <th arrowPosition="before" mat-header-cell *matHeaderCellDef mat-sort-header
-                matTooltip="Ubezpieczenie pomostowe - płatne co miesiąc, dopóki w Księdze Wieczystej nie będzie wpisana hipoteka.">
-                Ubezp.<br> pomost.</th>
-              <td class="cell-numer" mat-cell *matCellDef="let element">
-                {{element.pomostoweSuma | currency:'zł':'symbol':'1.0-0':'fr' }} </td>
-            </ng-container>
-
 
             <!-- WIBOR rodzaj Column -->
             <ng-container matColumnDef="WIBOR">
@@ -625,9 +606,6 @@
                       <b>Koszty całkowite:</b>
                       <div *ngIf="element.odsetkiSuma != 0">
                         Odsetki: {{element.odsetkiSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
-                      </div>
-                      <div *ngIf="element.pomostoweTOTAL != 0">
-                        Ubezpieczenie pomostowe: {{element.pomostoweTOTAL | currency:'zł':'symbol':'1.0-0':'fr'}}
                       </div>
                       <div *ngIf="element.prowizjaSuma != 0">
                         Prowizja: {{element.prowizjaSuma | currency:'zł':'symbol':'1.0-0':'fr' }}
@@ -735,6 +713,27 @@
           <a href="https://middlers.pl/polityka-cookies.html">Polityka cookies</a>
 
         </footer>
+
+
+        <table mat-table [dataSource]="wiborDataSource">
+          <!-- Position Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="value">
+            <th mat-header-cell *matHeaderCellDef> Value </th>
+            <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="wiborDisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: wiborDisplayedColumns;"></tr>
+        </table>
+
+
+
 
       </div>
     </mat-sidenav-content>

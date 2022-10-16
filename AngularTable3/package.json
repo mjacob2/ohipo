@@ -2,12 +2,13 @@
   "name": "angular-table3",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
+    "ng": "nx",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "node ./decorate-angular-cli.js"
   },
   "private": true,
   "dependencies": {
@@ -33,6 +34,8 @@
     "@angular/cli": "^9.1.0",
     "@angular/compiler-cli": "^9.1.0",
     "@angular/language-service": "~9.1.0",
+    "@nrwl/nx-cloud": "13.0.0",
+    "@nrwl/workspace": "13.9.7",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^8.10.59",
@@ -44,6 +47,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.5.3",
+    "nx": "13.9.7",
     "protractor": "~5.4.0",
     "ts-node": "^8.8.1",
     "tslint": "~5.15.0",
