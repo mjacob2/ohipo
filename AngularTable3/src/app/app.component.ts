@@ -57,10 +57,8 @@ export class AppComponent implements OnInit {
 
   dataSource: MatTableDataSource<Offer>;
   wiborDataSource: Wibor[];
-  offers: Offer[];
-  offersObjects: Offer[];
+  offers: Offer[] = [];
   wibors: Wibor[] = [];
-  offers2: Offer;
   mWIBOR3M: number;
   mWIBOR6M: number;
   oferty: IOffer;
@@ -74,7 +72,6 @@ export class AppComponent implements OnInit {
     public dialogKontakt: MatDialog,
     private offersService: OffersService,
     private wiborService: wiborService,
-    private wiborObjectService: wiborObjectService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 1800px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -87,11 +84,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    this.wiborService.getWibor().subscribe((wibors: Wibor[]) => {
-      for (let i in wibors) {
+    this.wiborService.getWibor().subscribe((response: Wibor[]) => {
+      for (let i in response) {
 
         //Assign JSON object to Wibor Object
-        this.wibors[i] = Object.assign(new Wibor(), wibors[i]);
+        this.wibors[i] = Object.assign(new Wibor(), response[i]);
         //wiborObject.getName();
         //wiborObject.changeWibor();
       }
@@ -105,7 +102,12 @@ export class AppComponent implements OnInit {
 
     // get Offers from server
     this.offersService.getOffers().subscribe((response: Offer[]) => {
-      this.offers = response;
+
+      for (let i in response) {
+        this.offers[i] = Object.assign(new Offer(), response[i]);
+      }
+
+      //this.offers = response;
 
       this.dataSource = new MatTableDataSource(this.offers);
       this.dataSource.sort = this.sort;
@@ -284,6 +286,8 @@ export class AppComponent implements OnInit {
 
   calculateOffers(): void {
 
+
+
     if (window.matchMedia("(max-width: 1800px)").matches) {
       this.snav2.close();
     }
@@ -292,6 +296,9 @@ export class AppComponent implements OnInit {
     this.mLTV = Calculate.GeneralLTV(this.mKwotaKredytu, this.mWartoscNieruchomosci);
 
     this.offers.forEach((offer) => {
+
+      offer.writeId();
+
       offer.kwotaKredytuOferty = Calculate.CreditAmountWithAddictionalCosts(this.mKwotaKredytu, offer.oplatyZawszeKredytowane);
       offer.LTVobliczone = Calculate.OfferLTV(offer.kwotaKredytuOferty, this.mWartoscNieruchomosci);
       offer.WIBORstawka = Calculate.AssignCurrentWIBORtoOffers(offer.WIBOR, this.mWIBOR3M, this.mWIBOR6M);

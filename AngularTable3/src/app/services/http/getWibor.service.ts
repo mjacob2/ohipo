@@ -15,24 +15,4 @@ export class wiborService {
   getWibor() {
     return this.http.get('https://ohipo.pl/assets/wiborObjects.json');
   }
-
-  wibors: Wibor[] = [];
-
-  // getWiborObjects() {
-
-  //   var listaObiektowJSON = this.http.get('https://ohipo.pl/assets/wiborObjects.json');
-  //   listaObiektowJSON.forEach(element => {
-  //     var el = new Wibor(element['name'], element['value'])
-  //     this.wibors.push(el);
-
-
-  //   });
-
-  //   return this.wibors;
-
-  // }
-
-
-
-
 }

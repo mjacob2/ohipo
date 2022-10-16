@@ -60,16 +60,9 @@ export class Offer {
     rata: number;
 
 
-    constructor(
-        id: number
-
-    ) {
-        this.id = id
-    }
-
-
 
     writeId() {
+        console.log("************");
         console.log(this.id);
     }
 }
