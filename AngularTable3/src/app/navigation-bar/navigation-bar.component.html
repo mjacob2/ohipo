@@ -1,0 +1,28 @@
+<mat-toolbar color="primary" class="example-toolbar">
+
+    <!-- PRZYCISK APLIKACJE-->
+    <button disabled mat-button matTooltip="Opcja dostępna wkrótce">
+        <mat-icon>menu</mat-icon> <span class="usun-na-malym"> </span>
+    </button>
+
+    <img onclick="location.href='https://ohipo.pl'" style="height: 35px; margin-top: 4px;"
+        src="https://ohipo.pl/assets/ohipo-logo-1-bez-ramki-bialy.png" />
+    <!--Example spacer robi przerwę miedzy lewą stroną Toolbar a prawą, żeby było łądne dopasowanie do prawej i lewej.-->
+    <span class="example-spacer "></span>
+
+
+
+    <button mat-button disableRipple class="neumorphism" style="margin-right: 10px;" (click)="snav2.toggle()">
+        <mat-icon>edit</mat-icon> <span class="usun-na-malym"> EDYTUJ DANE</span>
+    </button>
+
+
+
+    <!-- PRZYCISK KONTAKT Z DORADCĄ-->
+    <button mat-button disableRipple style="color: gold;" mat-raised-button class="neumorphism"
+        (click)="openDialogKontakt()" onclick='FB.AppEvents.logEvent("Kontakt_z_doradca_toolbar_Clicked")'>
+        <mat-icon style="color: FFC400;">contact_support</mat-icon> <span class="usun-na-malym"> ZAPYTAJ DORADCĘ
+        </span>
+    </button>
+
+</mat-toolbar>

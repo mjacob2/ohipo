@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { OffersService } from './services/http/getOffers.service';
-import { wiborService } from './services/http/getWibor.service';
+import { WiborService } from './services/http/getWibor.service';
 import { Calculate } from './services/wzory/wzory.service';
 import { MatSliderChange } from '@angular/material/slider';
 import { Offer } from './offer';
@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
     public dialogBlad: MatDialog,
     public dialogKontakt: MatDialog,
     private offersService: OffersService,
-    private wiborService: wiborService,
+    private wiborService: WiborService,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 1800px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -272,17 +272,6 @@ export class AppComponent implements OnInit {
     this.offers.forEach((offer) => {
 
       offer.calculateOffer(this.mKwotaKredytu, this.mWartoscNieruchomosci, this.mWIBOR3M, this.mWIBOR6M, this.mLiczbaLat);
-
-      /**
-       * 
-       *  F
-       *    I
-       *      L
-       *        T
-       *          R
-       *            Y
-       * 
-       */
 
       //FILTR: maxLiczbaLat
       if (this.mLiczbaLat > 30) {

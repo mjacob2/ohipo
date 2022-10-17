@@ -31,17 +31,11 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent, DialogKontakt, DialogBlad } from './app.component';
 import { CookiesComponent } from './cookies/cookies.component';
-
 import { OffersService } from './services/http/getOffers.service';
-import { wiborService } from './services/http/getWibor.service';
+import { WiborService } from './services/http/getWibor.service';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 registerLocaleData(localeFr, 'fr');
-
-
-
-
-
-
 
 @NgModule({
 
@@ -50,6 +44,7 @@ registerLocaleData(localeFr, 'fr');
     DialogKontakt,
     DialogBlad,
     CookiesComponent,
+    NavigationBarComponent,
   ],
   imports: [
     FormsModule,
@@ -81,17 +76,10 @@ registerLocaleData(localeFr, 'fr');
     MatButtonToggleModule,
     CommonModule,
     MatListModule,
-
-
     AppRoutingModule
   ],
 
-
-
-
-
-
-  providers: [CurrencyPipe, OffersService, wiborService],
+  providers: [CurrencyPipe, OffersService, WiborService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

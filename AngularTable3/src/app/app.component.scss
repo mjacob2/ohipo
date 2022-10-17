@@ -11,35 +11,39 @@
 
 /* UKRYJ STRZAŁKI ZWIĘKSZAJACE W INPUT LICZBOWYM*/
 
-          /* Chrome, Safari, Edge, Opera */
-          input::-webkit-outer-spin-button,
-          input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-          }
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
-          /* Firefox */
-          input[type=number] {
-            -moz-appearance: textfield;
-          }
-
-
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 
-.side-naw{
+
+
+.side-naw {
   padding-left: 30px;
   padding-top: 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  display: -webkit-box;   /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-display: -ms-flexbox;  /* TWEENER - IE 10 */
-display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */
 
 }
 
-.side-naw-prawy{
+.side-naw-prawy {
   padding-right: 30px;
   display: flex;
   flex-direction: column;
@@ -47,9 +51,9 @@ display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
 
 }
 
-.dane-o-kredycie-element{
-margin-right: 20px;
-margin-bottom: 16px;
+.dane-o-kredycie-element {
+  margin-right: 20px;
+  margin-bottom: 16px;
 }
 
 .example-spacer {
@@ -83,236 +87,239 @@ h1.app-name {
 }
 
 
-.close{
-align-self: flex-end;;
+.close {
+  align-self: flex-end;
+  ;
 }
 
 
 table {
-    width: 100%;
-    height: 100%;
-  }
-
-
-.filtry-elementy{
-display: flex;
-flex-direction: column;;
-padding-left: 16px;
-padding-right: 16px;
-
-
-
-.mat-checkbox{
-  margin-bottom: 18px;
+  width: 100%;
+  height: 100%;
 }
+
+
+.filtry-elementy {
+  display: flex;
+  flex-direction: column;
+  ;
+  padding-left: 16px;
+  padding-right: 16px;
+
+
+
+  .mat-checkbox {
+    margin-bottom: 18px;
   }
+}
 
 
 
 
-.stopka{
+.stopka {
   font-size: 12px;
   text-align: justify;
 }
 
 
 
-  tr.mat-row{
-    height: 52px;
-  }
+tr.mat-row {
+  height: 52px;
+}
 
 
-  .wasko{
-    overflow: auto;
+.wasko {
+  overflow: auto;
 
 
-  }
-    
+}
 
 
-  .mat-expansion-panel-header{
+
+.mat-expansion-panel-header {
   font-size: 16px;
-  }
+}
 
-.karta-brak-ofert{
+.karta-brak-ofert {
   margin: 30px;
 }
 
-  .mat-form-field {
-    font-size: 16px;
+.mat-form-field {
+  font-size: 16px;
 
-  }
-
-
+}
 
 
-  
-.th{
+
+
+
+.th {
   height: 150px;
-  
-  }
+
+}
 
 //pierwsze cell swojego typu
-  td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type{
-    padding-left: 16px;
-    padding-right: 16px;
-  }
+td.mat-cell:first-of-type,
+td.mat-footer-cell:first-of-type,
+th.mat-header-cell:first-of-type {
+  padding-left: 16px;
+  padding-right: 16px;
+}
 
 
-  th.mat-header-cell{
-    font-weight: bold;
-    font-size: 14px;
-    color: black;
-    height: 56px;
-    
-  }
+th.mat-header-cell {
+  font-weight: bold;
+  font-size: 14px;
+  color: black;
+  height: 56px;
+
+}
 
 
-  .mat-header-cell{
-    padding-right: 16px;
-  }
+.mat-header-cell {
+  padding-right: 16px;
+}
 
-  .mat-cell{
-    padding-right: 16px;
+.mat-cell {
+  padding-right: 16px;
 
-  }
+}
 
-.ikona_akordeon{
+.ikona_akordeon {
   margin-right: 10px;
 }
 
 
-  
-  .cell-numer{
-    text-align: right;
-    justify-content: right;
-    min-width: 85px;
 
-  }
+.cell-numer {
+  text-align: right;
+  justify-content: right;
+  min-width: 85px;
 
-  .cell-bank{
-    min-width: 100px;
+}
 
-  }
+.cell-bank {
+  min-width: 100px;
 
-  .cell-oferta-nazwa{
-    min-width: 220px;
-  }
+}
 
-  tr.example-detail-row {
-    height: 0;
-  }
-  
-  tr.example-element-row:not(.example-expanded-row):hover {
-    background: lightgray;
-  }
-  
-  tr.example-element-row:not(.example-expanded-row):active {
-    background: #efefef;
-  }
-  
-  .example-element-row td {
-    border-bottom-width: 0;
-  }
-  
-  .example-element-detail {
-    overflow: hidden;
-    display: flex;
-  }
-  
-  .example-element-diagram {
-    min-width: 80px;
-    border: 2px solid black;
-    padding: 8px;
-    font-weight: lighter;
-    margin: 8px 0;
-    height: 104px;
-  }
-  
-  .example-element-symbol {
-    font-weight: bold;
-    font-size: 40px;
-    line-height: normal;
-  }
-  
-  .example-element-description {
-    padding: 16px;
-  }
-  
-  .example-element-description-attribution {
-    opacity: 0.5;
-  }
+.cell-oferta-nazwa {
+  min-width: 220px;
+}
 
-.filtry-naglowek{
-font-weight: bold;
-font-size: 18px;
-margin-bottom: 16px;
-margin-top: 16px;
-  }
+tr.example-detail-row {
+  height: 0;
+}
 
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: lightgray;
+}
 
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
 
-  mat-divider{
-    margin-top: 16px;
-  }
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+.filtry-naglowek {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
 
 
-  .butoon-blad{
 
-margin-top: 35px;
-  
-  }
+mat-divider {
+  margin-top: 16px;
+}
 
-  .error-pod-przelicz{ //error, który wyskakuje pod przyciskiem przelicz, jeśli forularz jest źle wypełniony
-    font-size: 12px;
-    color: red;
-    text-align: justify;
-  }
 
-  .example-loading-shade {
-    padding: 300px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.90);
-    z-index: 102;
-    display: flex;
-    align-items: initial;
-    justify-content: center;
-  }
+.butoon-blad {
 
-  .neumorphism{
-    border-radius: 17px;
-    background: #1976D2;
-    box-shadow:  -2px 2px 5px #0f467c,
-                 2px -2px 5px #23a6ff;
-  }
+  margin-top: 35px;
 
-  .neumorphism_side-bar{
-    border-radius: 50px;
-    box-shadow:  -7px 7px 14px #969696,
+}
+
+.error-pod-przelicz {
+  //error, który wyskakuje pod przyciskiem przelicz, jeśli forularz jest źle wypełniony
+  font-size: 12px;
+  color: red;
+  text-align: justify;
+}
+
+.example-loading-shade {
+  padding: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.90);
+  z-index: 102;
+  display: flex;
+  align-items: initial;
+  justify-content: center;
+}
+
+.neumorphism {
+  border-radius: 17px;
+  background: #1976D2;
+  box-shadow: -2px 2px 5px #0f467c,
+    2px -2px 5px #23a6ff;
+}
+
+.neumorphism_side-bar {
+  border-radius: 50px;
+  box-shadow: -7px 7px 14px #969696,
     7px -7px 14px #ffffff;
+}
+
+
+@media only screen and (max-width: 1800px) {
+
+  .cell-oferta-nazwa {
+    min-width: 140px;
   }
 
-
-  @media only screen and (max-width: 1800px) {
-
-
-    .cell-oferta-nazwa{
-      min-width: 140px;
-    }
-
-  
-  }
+}
 
 
-  @media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1000px) {
 
 
-  
-  
+
+
   .example-loading-shade {
     padding: 19px;
   }

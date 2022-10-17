@@ -10,14 +10,14 @@ $moja: mat-palette($mat-blue, 200);
 
 
 body {
-font-family: Roboto, Arial, sans-serif;
- margin: 0;
- background-color: mat-color($my-app-primary);
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+  background-color: mat-color($my-app-primary);
 
 }
 
 
-.mat-sidenav-content{
+.mat-sidenav-content {
   background-color: mat-color($my-app-primary);
 }
 
@@ -25,13 +25,14 @@ font-family: Roboto, Arial, sans-serif;
   white-space: normal !important;
 
 }
-.checkboxMalyOpis{
+
+.checkboxMalyOpis {
   font-size: 9px;
 }
 
-.mat-slider-horizontal{
-height: 10px !important;
-margin-bottom: 20px;
+.mat-slider-horizontal {
+  height: 10px !important;
+  margin-bottom: 20px;
 }
 
 
@@ -42,12 +43,12 @@ margin-bottom: 20px;
   text-align: justify;
 }
 
-footer{
+footer {
   color: white;
   padding: 30px;
 }
 
-.cover{
+.cover {
   width: 100px;
   height: 100px;
   background-color: yellow;
@@ -62,50 +63,50 @@ footer{
 
 
 //żeby obwódka buttona outliined była lepiej widoczna
-.mat-stroked-button{
+.mat-stroked-button {
   border: 1px solid !important;
 }
 
-.mat-dialog-container{
+backdrop .mat-dialog-container {
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
-html, body { 
- height: 100%; 
- width: 100%;
+html,
+body {
+  height: 100%;
+  width: 100%;
 }
 
-mat-panel-title{
-  font-weight: bold; 
+mat-panel-title {
+  font-weight: bold;
   font-size: 18px;
 }
 
 //tło dla background kiedy dialog jest otwarty
-.backdropBackground{
+.backdropBackground {
   background: mat-color($my-app-primary); // Jeśli ma działać blur, to opacity musi być mniej niż1
   //backdrop-filter: blur(8px); // To jest blur
 }
 
-form{
- margin-bottom: 6px;
- display: flex;
- flex-direction: column;
+form {
+  margin-bottom: 6px;
+  display: flex;
+  flex-direction: column;
 }
 
-th{
+th {
   color: red;
 }
 
 
-#kontener{
+#kontener {
   margin-left: 30px;
   margin-right: 30px;
   overflow: initial
-
 }
 
-.mat-paginator{
+.mat-paginator {
   margin-left: 30px;
   margin-right: 30px;
 }
@@ -114,31 +115,32 @@ th{
   margin-right: 30px;
   margin-left: 30px;
   padding-top: 30px;
-  }
+}
 
-  .mat-app-background{
-    background-color: mat-color($my-app-primary); ;
-  }
+.mat-app-background {
+  background-color: mat-color($my-app-primary);
+  ;
+}
 
-  .szczegoly{
-    padding-right: 0px;
-    margin-left: 0px;
-  }
+.szczegoly {
+  padding-right: 0px;
+  margin-left: 0px;
+}
 
 //to po zwala dzielić mat-tooltip na linie
-  .mat-tooltip {
-    white-space: pre-line;
-  }
+.mat-tooltip {
+  white-space: pre-line;
+}
 
-.mat-button{
+.mat-button {
   min-width: 0px !important;
 }
 
-.mat-button:active{
+.mat-button:active {
   min-width: 0px !important;
   background: #1565C0;
   box-shadow: inset -7px 7px 14px #0c3c71,
-              inset 7px -7px 14px #1e8eff !important;
+    inset 7px -7px 14px #1e8eff !important;
 }
 
 
@@ -147,82 +149,87 @@ th{
 
 //dla Cookies
 .cookieConsentContainer {
-	z-index: 999;
-	width: 350px;
-	min-height: 20px;
-	box-sizing: border-box;
-	padding: 30px 30px 30px 30px;
-	background: mat-color($mat-blue, 100);
-	position: fixed;
+  z-index: 999;
+  width: 350px;
+  min-height: 20px;
+  box-sizing: border-box;
+  padding: 30px 30px 30px 30px;
+  background: mat-color($mat-blue, 100);
+  position: fixed;
   bottom: 16px;
-	right: 16px;
+  right: 16px;
 
 }
+
 .cookieConsentContainer .cookieTitle a {
-	font-family: OpenSans, arial, "sans-serif";
-	color: mat-color($mat-gray, 900);
-	font-size: 22px;
-	line-height: 20px;
+  font-family: OpenSans, arial, "sans-serif";
+  color: mat-color($mat-gray, 900);
+  font-size: 22px;
+  line-height: 20px;
 
 }
+
 .cookieConsentContainer .cookieDesc p {
-	margin: 0;
-	padding: 0;
-	font-family: OpenSans, arial, "sans-serif";
-	color: mat-color($mat-gray, 900);
-	font-size: 14px;
-	line-height: 20px;
-	display: block;
-	margin-top: 10px;
-} .cookieConsentContainer .cookieDesc a {
-	font-family: OpenSans, arial, "sans-serif";
-	color: mat-color($mat-gray, 900);
-	text-decoration: underline;
+  margin: 0;
+  padding: 0;
+  font-family: OpenSans, arial, "sans-serif";
+  color: mat-color($mat-gray, 900);
+  font-size: 14px;
+  line-height: 20px;
+  display: block;
+  margin-top: 10px;
 }
+
+.cookieConsentContainer .cookieDesc a {
+  font-family: OpenSans, arial, "sans-serif";
+  color: mat-color($mat-gray, 900);
+  text-decoration: underline;
+}
+
 .cookieConsentContainer .cookieButton a {
-	display: inline-block;
-	font-family: OpenSans, arial, "sans-serif";
-	color: rgb(255, 255, 255);
-	font-size: 14px;
-	font-weight: bold;
-	margin-top: 14px;
-	background: #000000;
-	box-sizing: border-box; 
-	padding: 15px 24px;
-	text-align: center;
+  display: inline-block;
+  font-family: OpenSans, arial, "sans-serif";
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 14px;
+  background: #000000;
+  box-sizing: border-box;
+  padding: 15px 24px;
+  text-align: center;
 }
-.cookieConsentContainer .cookieButton a:hover { 
-	cursor: pointer;
-	background: rgb(48, 93, 179);
+
+.cookieConsentContainer .cookieButton a:hover {
+  cursor: pointer;
+  background: rgb(48, 93, 179);
 }
+
 // koniec dla Cookies
 
 
-mat-dialog-actions{
+mat-dialog-actions {
   margin-bottom: 30px;
 }
 
 
-.dane-naglowek{
+.dane-naglowek {
   font-weight: bold;
   font-size: 15px;
   margin-top: 16px;
-    }
+}
 
 
 
 
 @media only screen and (max-width: 1800px) {
-  
 
-  #kontener{
+  #kontener {
     margin-left: 0px;
     margin-right: 0px;
     overflow: auto;
-
   }
-  
-  .mat-paginator{
+
+  .mat-paginator {
     margin-left: 0px;
     margin-right: 0px;
   }
@@ -231,71 +238,74 @@ mat-dialog-actions{
     margin-right: 0px;
     margin-left: 0px;
     padding-top: 8px;
-    }
+  }
 
-
-
-  mat-card{
+  mat-card {
     margin-bottom: 24px;
   }
 
 
 }
 
-//zawsze widoczna łezka zslidera
 .mat-slider-thumb-label {
   transform: rotate(45deg) !important;
   border-radius: 50% 50% 0 !important;
 }
+
 .mat-slider-thumb {
   transform: scale(0) !important;
 }
+
 .mat-slider-thumb-label-text {
   opacity: 1 !important;
 }
 
-.mat-slider-thumb-label{ //kolor łezki slidera
+.mat-slider-thumb-label {
   background-color: mat-color($my-app-accent) !important;
 }
 
-.opisyLiczbowe{
+.opisyLiczbowe {
   width: 500px;
 }
 
-.kontenerRozwijany{
+.kontenerRozwijany {
   padding-left: 50px;
-  display: flex; flex-direction: column; flex-wrap: wrap; justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 @media only screen and (max-width: 1000px) {
 
 
-  .kontenerRozwijany{
+  .kontenerRozwijany {
     padding-left: 0px;
   }
 
-  .usun-na-malym{
+  .usun-na-malym {
     display: none;
-      }
+  }
 
-      .dane-naglowek{
-        margin-top: 6px;
-          }
-
-
-.mat-dialog-container {
-margin: 0;
-overflow: visible
-
-}
-.kontenerRozwijany{
-   flex-direction: column;;
-}
+  .dane-naglowek {
+    margin-top: 6px;
+  }
 
 
-.example-loading-shade {
-  padding: 19px;
-}
+  .mat-dialog-container {
+    margin: 0;
+    overflow: visible
+  }
+
+  .kontenerRozwijany {
+    flex-direction: column;
+    ;
+  }
+
+
+  .example-loading-shade {
+    padding: 19px;
+  }
 
 
 

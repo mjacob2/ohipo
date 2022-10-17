@@ -8,7 +8,7 @@ import { Wibor } from 'src/app/wibor';
 @Injectable({
   providedIn: 'root',
 })
-export class wiborService {
+export class WiborService {
   constructor(
     private http: HttpClient) { }
 
