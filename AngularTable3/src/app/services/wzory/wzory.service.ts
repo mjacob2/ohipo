@@ -7,23 +7,19 @@ import { Offer } from 'src/app/offer';
 export class Calculate {
 
   static CreditAmount(propertyValue, ownContribution) {
-    var creditAmount = propertyValue - ownContribution;
-    return creditAmount;
+    return propertyValue - ownContribution;
   }
 
   static CreditAmountWithAddictionalCosts(creditAmount, costsAlwaysInCredit) {
-    var creditAmountWithAdditionalCosts = +creditAmount + (+creditAmount * (costsAlwaysInCredit / 100));
-    return creditAmountWithAdditionalCosts;
+    return +creditAmount + (creditAmount * (costsAlwaysInCredit / 100));
   }
 
   static GeneralLTV(creditAmount: number, propertyValue: number) {
-    var generalLTV = +creditAmount / +propertyValue;
-    return generalLTV;
+    return creditAmount / propertyValue;
   }
 
   static OfferLTV(creditAmountofOffer, propertyValue) {
-    var offerLTV = creditAmountofOffer / +propertyValue;
-    return offerLTV;
+    return creditAmountofOffer / propertyValue;
   }
 
   static AssignCurrentWIBORtoOffers(offerWibor: string, currentWibor3M: number, currentWibor6M: number) {
@@ -71,21 +67,17 @@ export class Calculate {
     return apartmentInsuranceMonthly + lifeInsuranceMonthly;
   }
 
-  /**
-   * Calculates commission to pay at the beginning of the credit.
-   *
-   * @param loanValue - Total amount of credit
-   * @param commissionRate - commission rate per year [%]
-   * @returns commission to pay
-   */
-  static Commission(loanValue: number, commissionRate: number): number {
-    return loanValue * (commissionRate / 100);
+  static CostUpFront(loanValue, costUpFrontRate): number {
+    return loanValue * (costUpFrontRate / 100);
   }
 
-  static LifeInsuranceCostUpFront(loanValue, lifeInsuranceUpFrontRate): number {
-    return loanValue * (lifeInsuranceUpFrontRate / 100);
+  static Sum(argumentsToAdd: string | any[]) {
+    var sum = 0;
+    for (var i = 0; i < argumentsToAdd.length; i++) {
+      sum += argumentsToAdd[i];
+    }
+    return sum;
   }
-
 
 
   /** odsetki zapłacone w całym okresie
@@ -141,51 +133,94 @@ export class Calculate {
     return (r / (1 - (1 + r) ** (-1 * (liczbaLat * 12)))) * kwotaKredytu
   }
 
+  static sumOfInterest(oprocStale, rata, creditLengthInYears, kwotaKredytuOferty, marza, propertyValue, wiborStawka, oprocStaleMarzaPotem, oprocStaleIleLat) {
+    //**Oblicz sumę ODSETEK RATY RÓWNE */
+    if (oprocStale === "nie")
+      return Calculate.odsetkiZaplaconeWcalymOkresie(rata, creditLengthInYears, kwotaKredytuOferty)
 
+    //Jeśli Pekao z ofertą z % wyższym do czasu jak LTV jest > 0.8 bez CPI
+    if (oprocStale === "jakPEKAO") {
+      var ileRazy = 0;
+      var i = 0;
+      for (i = 0; i <= creditLengthInYears * 12; i++) {
+        var kwotaKredytu = kwotaKredytuOferty;
+        ileRazy++;
+        var r = (marza + wiborStawka) / 1200;
+        var cz1 = (1 + r) ** i;
+        var gora = ((1 + r) ** i) - 1;
+        var goradol = gora / r;
+        var zostaloDoSplaty = cz1 * +kwotaKredytu - goradol * +rata;
+        var suma = suma + zostaloDoSplaty;
+        if (zostaloDoSplaty < (propertyValue * 0.8)) { break }
 
-  constructor() { }
-
-
-  //Weź dzisiejszą datę dla DO-kiedyobowiazuje
-  //   var d = new Date();
-  //   var curr_date = d.getDate();
-  //    var curr_month = d.getMonth();
-  //    var curr_year = d.getFullYear()
-  //    var months = new Array("01", "02", "03",
-  //     "04", "05", "06", "07", "08", "09",
-  //     "10", "11", "12");
-
-
-
-
-  // Pokaż element data od kiedy obowiązuje w polu Data Dostepu
-  //   var d = mElementOdKiedyObowiazuje;
-  //   var curr_date = d.getDate();
-  //   var curr_month = d.getMonth();
-  //   var curr_year = d.getFullYear()
-  //   var months = new Array("01", "02", "03",
-  //     "04", "05", "06", "07", "08", "09",
-  //     "10", "11", "12");
-  //   var mDataDostepu = curr_date + "." + months[curr_month] + "." + curr_year
-
-
-  /** To jest filtr wyszukiwania - narazie z niego REZYGNACJA 
-    applyFilter(event: Event) {
-      const filterValue = (event.target as HTMLInputElement).value;
-      this.dataSource.filter = filterValue.trim().toLowerCase();
-      if (this.dataSource.paginator) {
-        this.dataSource.paginator.firstPage();
       }
-      
-    }   
-      
-    applyFilter2(column: string, filterValue: string) {
-      this.filterValues[column] = filterValue;
-      this.dataSource.filter = JSON.stringify(this.filterValues);
-    }    
-    */
+      ileRazy = i;
+      //policz sumę odsetek w okresie kiedy LTV jest > 80%
+      let odsetkiZaplaconeAA = Calculate.odsetkiZaplaconeNaKoniecNokresu(rata, ileRazy / 12, kwotaKredytuOferty, marza + wiborStawka)
+      //Oblicz ratę potem, czyli wg oprocentowania obowiązującego od momentu, kiedy LTV spadnie poniżej 80%
+      let rataPotem2 = Calculate.rata(kwotaKredytuOferty, wiborStawka + oprocStaleMarzaPotem, creditLengthInYears)
+
+      //Oblicz odsetki zapłacone w całym okresie wg raty potem
+      let odsetkiZaplaconeBB = Calculate.odsetkiZaplaconeWcalymOkresie(rataPotem2, creditLengthInYears, kwotaKredytuOferty)
+
+      //Oblicz sumę odsetek płatnych na koniec okresu z początkowym oprocentowaniem, gdy LTV > 80%. ileRazy / 12 bo we wzorze jest mnożone * 12
+      let odsetkiZaplaconeCC = Calculate.odsetkiZaplaconeNaKoniecNokresu(rataPotem2, ileRazy / 12, kwotaKredytuOferty, oprocStaleMarzaPotem + wiborStawka)
+
+      //policz sumę odsetek: do odsetek płatnych w orkesie LTV >80% (odsetkiZaplaconeA) dodaj odsetki płątne w całym okresie (odsetkiZaplaconeB) pomniejszone o odsetki (odsetkiZaplaconeC), czyli, które nie będą przecież zapłacone, bo już sa zapłącone te w okresie LTV >80%.
+      return odsetkiZaplaconeAA + (odsetkiZaplaconeBB - odsetkiZaplaconeCC);
+    }
+
+    if (oprocStale === "tak") { //jesli oprocentowanie stałe TAK
+
+      //policz sumę odsetek w okresie ze stałą stopą
+      let odsetkiZaplaconeA = Calculate.odsetkiZaplaconeNaKoniecNokresu(rata, oprocStaleIleLat, kwotaKredytuOferty, marza)
+
+      //Oblicz ratę potem, czyli wg oprocentowania w kolejnym okresie po oprocentowaniu zmiennym
+      let rataPotem = Calculate.rata(kwotaKredytuOferty, wiborStawka + oprocStaleMarzaPotem, creditLengthInYears)
+
+      //Oblicz odsetki zapłacone w całym okresie wg raty potem
+      // @@@@@@@@@@@@@@@@@@@@@ czy tu nie powinna byćponiżej element.kwotaKredytuOferty zamiast this.mKwotaKRedytu???????????????????????????????????
+      let odsetkiZaplaconeB = Calculate.odsetkiZaplaconeWcalymOkresie(rataPotem, creditLengthInYears, kwotaKredytuOferty)
+
+      //Oblicz sumę odsetek płatnych na koniec okresu ze stałą stopą
+      let odsetkiZaplaconeC = Calculate.odsetkiZaplaconeNaKoniecNokresu(rataPotem, oprocStaleIleLat, kwotaKredytuOferty, oprocStaleMarzaPotem + wiborStawka)
+
+      //policz sumę odsetek: do odsetek płatnych w orkesie ze stałąstopą (odsetkiZaplaconeA) dodaj odsetki płątne w całym okresie (odsetkiZaplaconeB) pomniejszone o odsetki (odsetkiZaplaconeC), czyli, które nie będą przecież zapłacone, bo już sa zapłącone te w okresie ze stałą stopą.
+      return odsetkiZaplaconeA + (odsetkiZaplaconeB - odsetkiZaplaconeC);
+    }
 
 
+  }
+
+
+  static totalCostOfLifeInsurance(ubezpZycieIleLat, creditLengthInYears, kwotaKredytuOferty, ubezpZycieOdKtoregoMiesiaca, rata, marza, WIBORstawka, ubezpZycieStawkaMiesieczna) {
+    /** CAŁKOWITY KOSZT UBEZPIECZENIA OD SALDA KREDYTU MALEJACEGO CO ROKU */
+
+    if (ubezpZycieIleLat === 999) { // jesi ubezpieczenie jest pobierane przez cały okres kredytu
+      var liczbaLat = creditLengthInYears;
+    } else {
+      liczbaLat = ubezpZycieIleLat - 1;
+    }
+
+    var suma = kwotaKredytuOferty;
+    var skladkaCalkowita = 0;
+
+    if (ubezpZycieIleLat > 1) { //licz tylko jeśli oferta zawiera ubezpieczenie na życie
+      for (i = ubezpZycieOdKtoregoMiesiaca; i <= liczbaLat * 12; i = i + 12) {
+        var kwotaKredytu = kwotaKredytuOferty;
+        var rata2 = rata;
+        var i: number;
+        var r = (marza + WIBORstawka) / 1200;
+        var cz1 = (1 + r) ** i;
+        var gora = ((1 + r) ** i) - 1;
+        var goradol = gora / r;
+        var zostaloDoSplaty = cz1 * +kwotaKredytu - goradol * +rata2;
+        suma = suma + zostaloDoSplaty;
+      }
+      skladkaCalkowita = (suma / liczbaLat) * (ubezpZycieStawkaMiesieczna / 100 * 12) * liczbaLat;
+    }
+    return skladkaCalkowita;
+  }
 
 
 

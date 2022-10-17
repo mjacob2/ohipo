@@ -11,14 +11,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { OffersService } from './services/http/getOffers.service';
 import { wiborService } from './services/http/getWibor.service';
-import { wiborObjectService } from './services/http/get-wibor.service';
 import { Calculate } from './services/wzory/wzory.service';
 import { MatSliderChange } from '@angular/material/slider';
 import { Offer } from './offer';
-import { IOffer } from './ioffer';
 import { Wibor } from './wibor';
-import { element } from 'protractor';
-import { type } from 'os';
 
 
 /** Tutaj logika zaznacz jaki rodzaj rat Cię interesuje */
@@ -61,9 +57,8 @@ export class AppComponent implements OnInit {
   wibors: Wibor[] = [];
   mWIBOR3M: number;
   mWIBOR6M: number;
-  oferty: IOffer;
-  tt: IOffer[];
-
+  globalFilter = '';
+  mLTV: number = 0;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
@@ -86,28 +81,19 @@ export class AppComponent implements OnInit {
 
     this.wiborService.getWibor().subscribe((response: Wibor[]) => {
       for (let i in response) {
-
-        //Assign JSON object to Wibor Object
         this.wibors[i] = Object.assign(new Wibor(), response[i]);
-        //wiborObject.getName();
-        //wiborObject.changeWibor();
       }
-
       this.wiborDataSource = this.wibors;
 
       this.mWIBOR3M = this.wiborDataSource.find(i => i.name === 'wibor3m').getWibor();
       this.mWIBOR6M = this.wiborDataSource.find(i => i.name === 'wibor6m').getWibor();
     });
 
-
-    // get Offers from server
     this.offersService.getOffers().subscribe((response: Offer[]) => {
 
       for (let i in response) {
         this.offers[i] = Object.assign(new Offer(), response[i]);
       }
-
-      //this.offers = response;
 
       this.dataSource = new MatTableDataSource(this.offers);
       this.dataSource.sort = this.sort;
@@ -239,20 +225,13 @@ export class AppComponent implements OnInit {
     this.wkladWlasnyNowy = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
   }
 
-  // używany w działaniach wkład własny ustaw na wwyokość obliczoną przez slider
   mwkladWlasny = this.wkladWlasnyNowy
   mKwotaKredytu: number = 0;
   mLiczbaLat = this.ngLiczbaLat;
-  /**Zaznacz domyślnie RATY RÓWNE */
   selectedOptionRaty = '0';
-  //zaznacz domyslnie rodzaj nieruchomości
   selectedOptionRodzajNieruchomosci = '0';
-  //zaznacz domyslnie w jakim banku konto: inny
   selectedOptionInny = '0';
-
-  //zmienna żeby odczytywać jaki bank jest aktualnie wybrany, domyslnie 0 czyli Inny
   inWhichBankAlreadyAccount: number = 0;
-
   mpokazOpcjeZaawansowane: boolean;
 
   /** ZADEKLAROWANE ZMIENNE DO FILTRÓW */
@@ -275,9 +254,6 @@ export class AppComponent implements OnInit {
   wDochodyMarynarzy = new FormControl({ value: '', disabled: true });
   wPowolanie = new FormControl({ value: '', disabled: true });
 
-  globalFilter = '';
-  //Ustal zmienne dla filtrów
-  mLTV: number = 0;
 
   //po tych kolumnach mogą być filtrowane oferty
   filteredValues = {
@@ -285,8 +261,6 @@ export class AppComponent implements OnInit {
   };
 
   calculateOffers(): void {
-
-
 
     if (window.matchMedia("(max-width: 1800px)").matches) {
       this.snav2.close();
@@ -297,120 +271,7 @@ export class AppComponent implements OnInit {
 
     this.offers.forEach((offer) => {
 
-      offer.writeId();
-
-      offer.kwotaKredytuOferty = Calculate.CreditAmountWithAddictionalCosts(this.mKwotaKredytu, offer.oplatyZawszeKredytowane);
-      offer.LTVobliczone = Calculate.OfferLTV(offer.kwotaKredytuOferty, this.mWartoscNieruchomosci);
-      offer.WIBORstawka = Calculate.AssignCurrentWIBORtoOffers(offer.WIBOR, this.mWIBOR3M, this.mWIBOR6M);
-      offer.rata = Calculate.FirstEqualInstallment(offer.oprocStale, offer.kwotaKredytuOferty, offer.WIBORstawka, offer.marza, this.mLiczbaLat);
-      offer.ubezpNieruchSuma = Calculate.ApartmentInsuranceMonthly(offer.ubezpNieruchOdCzegoLicz, offer.ubezpNieruchStawkaRok, this.mWartoscNieruchomosci, this.mKwotaKredytu)
-      offer.ubezpNieruchTOTAL = Calculate.TotalAppartmentInsurance(offer.ubezpNieruchOdCzegoLicz, offer.ubezpNieruchSuma, this.mLiczbaLat);
-      offer.ubezpZycieSuma = Calculate.LifeInsuranceMonthly(offer.ubezpZycieStawkaMiesieczna, offer.kwotaKredytuOferty);
-      offer.oplatyMiesieczne = Calculate.CostsMonthly(offer.ubezpNieruchSuma, offer.ubezpZycieSuma);
-      offer.prowizjaSuma = Calculate.Commission(this.mKwotaKredytu, offer.prowizjaStawka);
-      offer.ubezZycieNaStartSuma = Calculate.LifeInsuranceCostUpFront(offer.kwotaKredytuOferty, offer.ubezZycieNaStart);
-      /** Olblicz UBEZP. PRACA NA START */
-      offer.upezpPracaNaStartSuma = +this.mKwotaKredytu * (+offer.upezpPracaNaStart / 100);
-      /**oblicz OPŁATY NA START -  SUMA*/
-      offer.kosztyPoczatkowe = +offer.prowizjaSuma + +offer.wycenaMieszkanie + +offer.ubezZycieNaStartSuma + +offer.upezpPracaNaStartSuma;
-
-      /***
-       * 
-       *    SUMA ODSETEK
-       * 
-       */
-
-
-      //**Oblicz sumę ODSETEK RATY RÓWNE */
-      if (offer.oprocStale === "nie")  //jeśli oprocentowanie zmienne
-        offer.odsetkiSuma = Calculate.odsetkiZaplaconeWcalymOkresie(+offer.rata, +this.mLiczbaLat, offer.kwotaKredytuOferty)
-
-      //Jeśli Pekao z ofertą z % wyższym do czasu jak LTV jest > 0.8 bez CPI
-      if (offer.oprocStale === "jakPEKAO") {
-        var ileRazy = 0;
-        var i = 0;
-        for (i = 0; i <= this.mLiczbaLat * 12; i++) {
-          var kwotaKredytu = offer.kwotaKredytuOferty;
-          var rata = offer.rata;
-          ileRazy++;
-          var r = (offer.marza + offer.WIBORstawka) / 1200;
-          var cz1 = (1 + r) ** i;
-          var gora = ((1 + r) ** i) - 1;
-          var goradol = gora / r;
-          var zostaloDoSplaty = cz1 * +kwotaKredytu - goradol * +rata;
-          suma = suma + zostaloDoSplaty;
-          if (zostaloDoSplaty < (+this.mWartoscNieruchomosci * 0.8)) { break }
-
-        }
-        ileRazy = i;
-        //policz sumę odsetek w okresie kiedy LTV jest > 80%
-        let odsetkiZaplaconeAA = Calculate.odsetkiZaplaconeNaKoniecNokresu(offer.rata, ileRazy / 12, offer.kwotaKredytuOferty, offer.marza + offer.WIBORstawka)
-        //Oblicz ratę potem, czyli wg oprocentowania obowiązującego od momentu, kiedy LTV spadnie poniżej 80%
-        let rataPotem2 = Calculate.rata(offer.kwotaKredytuOferty, offer.WIBORstawka + offer.oprocStaleMarzaPotem, this.mLiczbaLat)
-
-        //Oblicz odsetki zapłacone w całym okresie wg raty potem
-        let odsetkiZaplaconeBB = Calculate.odsetkiZaplaconeWcalymOkresie(rataPotem2, this.mLiczbaLat, offer.kwotaKredytuOferty)
-
-        //Oblicz sumę odsetek płatnych na koniec okresu z początkowym oprocentowaniem, gdy LTV > 80%. ileRazy / 12 bo we wzorze jest mnożone * 12
-        let odsetkiZaplaconeCC = Calculate.odsetkiZaplaconeNaKoniecNokresu(rataPotem2, ileRazy / 12, offer.kwotaKredytuOferty, offer.oprocStaleMarzaPotem + offer.WIBORstawka)
-
-        //policz sumę odsetek: do odsetek płatnych w orkesie LTV >80% (odsetkiZaplaconeA) dodaj odsetki płątne w całym okresie (odsetkiZaplaconeB) pomniejszone o odsetki (odsetkiZaplaconeC), czyli, które nie będą przecież zapłacone, bo już sa zapłącone te w okresie LTV >80%.
-        offer.odsetkiSuma = odsetkiZaplaconeAA + (odsetkiZaplaconeBB - odsetkiZaplaconeCC);
-      }
-
-
-      if (offer.oprocStale === "tak") { //jesli oprocentowanie stałe TAK
-
-        //policz sumę odsetek w okresie ze stałą stopą
-        let odsetkiZaplaconeA = Calculate.odsetkiZaplaconeNaKoniecNokresu(offer.rata, offer.oprocStaleIleLat, offer.kwotaKredytuOferty, offer.marza)
-
-        //Oblicz ratę potem, czyli wg oprocentowania w kolejnym okresie po oprocentowaniu zmiennym
-        let rataPotem = Calculate.rata(offer.kwotaKredytuOferty, +offer.WIBORstawka + +offer.oprocStaleMarzaPotem, +this.mLiczbaLat)
-
-        //Oblicz odsetki zapłacone w całym okresie wg raty potem
-        // @@@@@@@@@@@@@@@@@@@@@ czy tu nie powinna byćponiżej element.kwotaKredytuOferty zamiast this.mKwotaKRedytu???????????????????????????????????
-        let odsetkiZaplaconeB = Calculate.odsetkiZaplaconeWcalymOkresie(rataPotem, this.mLiczbaLat, this.mKwotaKredytu)
-
-        //Oblicz sumę odsetek płatnych na koniec okresu ze stałą stopą
-        let odsetkiZaplaconeC = Calculate.odsetkiZaplaconeNaKoniecNokresu(rataPotem, offer.oprocStaleIleLat, offer.kwotaKredytuOferty, offer.oprocStaleMarzaPotem + offer.WIBORstawka)
-
-        //policz sumę odsetek: do odsetek płatnych w orkesie ze stałąstopą (odsetkiZaplaconeA) dodaj odsetki płątne w całym okresie (odsetkiZaplaconeB) pomniejszone o odsetki (odsetkiZaplaconeC), czyli, które nie będą przecież zapłacone, bo już sa zapłącone te w okresie ze stałą stopą.
-        offer.odsetkiSuma = odsetkiZaplaconeA + (odsetkiZaplaconeB - odsetkiZaplaconeC);
-      }
-
-
-      /** CAŁKOWITY KOSZT UBEZPIECZENIA OD SALDA KREDYTU MALEJACEGO CO ROKU */
-
-      if (offer.ubezpZycieIleLat === 999) { // jesi ubezpieczenie jest pobierane przez cały okres kredytu
-        var liczbaLat = this.mLiczbaLat;
-      } else {
-        var liczbaLat = offer.ubezpZycieIleLat - 1;
-      }
-
-      var suma = offer.kwotaKredytuOferty;
-      var skladkaCalkowita = 0;
-
-      if (offer.ubezpZycieIleLat > 1) { //licz tylko jeśli oferta zawiera ubezpieczenie na życie
-        for (i = offer.ubezpZycieOdKtoregoMiesiaca; i <= liczbaLat * 12; i = i + 12) {
-          var kwotaKredytu = offer.kwotaKredytuOferty;
-          var rata = offer.rata;
-          var i: number;
-          var r = (offer.marza + offer.WIBORstawka) / 1200;
-          var cz1 = (1 + r) ** i;
-          var gora = ((1 + r) ** i) - 1;
-          var goradol = gora / r;
-          var zostaloDoSplaty = cz1 * +kwotaKredytu - goradol * +rata;
-          suma = suma + zostaloDoSplaty;
-        }
-        skladkaCalkowita = (suma / liczbaLat) * (offer.ubezpZycieStawkaMiesieczna / 100 * 12) * liczbaLat;
-        /**Oblicz ubezpieczenie na zycie TOTAL przec cały okres kredytu */
-        offer.ubezpZycieTOTAL = skladkaCalkowita;
-      }
-
-      /** KOSZTY CAŁKOWITE */
-      offer.kosztyCalkowite = +offer.prowizjaSuma + +offer.wycenaMieszkanie + +offer.ubezpZycieTOTAL + +offer.ubezpNieruchTOTAL + +offer.odsetkiSuma + +offer.ubezZycieNaStartSuma + offer.upezpPracaNaStartSuma;
-
-
+      offer.calculateOffer(this.mKwotaKredytu, this.mWartoscNieruchomosci, this.mWIBOR3M, this.mWIBOR6M, this.mLiczbaLat);
 
       /**
        * 
@@ -433,11 +294,6 @@ export class AppComponent implements OnInit {
         this.dataSource.filter = JSON.stringify(this.filteredValues);
       }
 
-
-
-
-
-
       //FILTR: minLTV
       if (offer.LTVobliczone > offer.minLTV) {
         offer.minLTVsave = "minLTVok";
@@ -448,7 +304,6 @@ export class AppComponent implements OnInit {
         this.filteredValues['minLTVsave'] = "minLTVok";
         this.dataSource.filter = JSON.stringify(this.filteredValues);
       }
-
 
       //FILTR: maxLTV
       if (offer.LTVobliczone <= offer.maxLTV) {
@@ -461,7 +316,6 @@ export class AppComponent implements OnInit {
         this.filteredValues['maxLTVsave'] = "maxLTVok";
         this.dataSource.filter = JSON.stringify(this.filteredValues);
       }
-
 
       //FILTR minimalnej kwoty kredytu
       if (offer.kwotaKredytuOferty >= offer.minKwotaKredytu) {
@@ -480,8 +334,6 @@ export class AppComponent implements OnInit {
       } else {
         offer.maxKwotaKredytuFILTR = "abc";
       }
-
-
 
 
       /** USTAL KWOTĘ WYMAGANYCH MINIMALNYCH WPŁYWÓW DLA OFERT, KTÓRE WYMAGAJĄ WPŁYWÓW MIN 2 X RATA
@@ -516,61 +368,16 @@ export class AppComponent implements OnInit {
       })
       this.dataSource.filter = JSON.stringify(this.filteredValues);
 
-
-
-
     });
-
-
 
     //**pokaż snack bar */
     this._snackBar.open("Oferty zostały przeliczone", "zamknij", {
       duration: 4000,
     });
 
-
-
     // usuń przykrywkę początkową
     this.przykrywkaPoczatkowaElement.nativeElement.remove();
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -595,8 +402,6 @@ export class AppComponent implements OnInit {
   }
 
 
-
-
   // konstruktor dla ERROR dla  formWartoscNieruchomosci
   get errorMessageformWartoscNieruchomosci(): string {
     const form: FormControl = (this.myGroup.get('formWartoscNieruchomosci') as FormControl);
@@ -608,44 +413,6 @@ export class AppComponent implements OnInit {
           'Maksymalnie 2 000 000' : '';
   }
 
-
-
-
-
-
-
-  // konstruktor dla ERROR dla  formWkladWlasny
-  // get errorMessageformWkladWlasny(): string {
-
-  //  let nazwa = this.mWartoscNieruchomosci * 0.1
-  //   let nazwa3 = nazwa.toString()
-  //   nazwa3 = this.currencyPipe.transform(nazwa3, 'zł', 'symbol', '1.0-0', 'fr');
-
-  //   const form: FormControl = (this.myGroup.get('formWkladWlasny') as FormControl);
-  //   return form.hasError('required') ?
-  //     'Minimum ' + nazwa3 :
-  //    form.hasError('min') ?
-  //      'Minimum ' + nazwa3 :
-  //      form.hasError('max') ?
-  //        'Maksymalnie 2 000 000' : '';
-  // }
-
-
-  // konstruktor dla ERROR dla  formKwotaKredytu
-  // get errorMessageformKwotaKredytu(): string {
-  //   const form: FormControl = (this.myGroup.get('formKwotaKredytu') as FormControl);
-  //  return form.hasError('required') ?
-  //    'Pole wymagane' :
-  //    form.hasError('min') ?
-  //      'Minimum 50 000' :
-  //      form.hasError('max') ?
-  //        'Maksymalnie 2 000 000' : '';
-  // }
-
-
-
-
-
   // konstruktor dla ERROR dla  formLiczbaLat
   get errorMessageformLiczbaLat(): string {
     const form: FormControl = (this.myGroup.get('formLiczbaLat') as FormControl);
@@ -656,8 +423,6 @@ export class AppComponent implements OnInit {
         form.hasError('max') ?
           'Maksymalnie 35' : '';
   }
-
-
 
 
   zbudujFormularz(): void {
@@ -762,8 +527,6 @@ export class AppComponent implements OnInit {
       // console.log(`Rezultat dialogu błąd: ${result}`);
     });
   }
-
-
 }
 
 
