@@ -7,15 +7,11 @@ import { Offer } from 'src/app/offer';
 
 @Injectable()
 export class OffersService {
-  myData: any;
 
   constructor(private http: HttpClient) { }
 
   getOffers() {
-    let response = this.http.get('https://ohipo.pl/assets/oferty.json');
-    console.log(response);
-
-    return response;
+    return this.http.get('https://ohipo.pl/assets/oferty.json');
   }
 
   // getOffers2(): Observable<Offer> {

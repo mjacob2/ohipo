@@ -51,8 +51,8 @@ export class AppComponent implements OnInit {
   @ViewChild('przykrywkaPoczatkowa') private przykrywkaPoczatkowaElement: ElementRef;
   @ViewChild('snav2') snav2: MatSidenav;
 
-  dataSource: MatTableDataSource<Offer>;
-  wiborDataSource: Wibor[];
+  offersDataSource: MatTableDataSource<Offer>;
+  wiborDataSource: Wibor[] = [];
   offers: Offer[] = [];
   wibors: Wibor[] = [];
   mWIBOR3M: number;
@@ -83,10 +83,10 @@ export class AppComponent implements OnInit {
       for (let i in response) {
         this.wibors[i] = Object.assign(new Wibor(), response[i]);
       }
-      this.wiborDataSource = this.wibors;
 
-      this.mWIBOR3M = this.wiborDataSource.find(i => i.name === 'wibor3m').getWibor();
-      this.mWIBOR6M = this.wiborDataSource.find(i => i.name === 'wibor6m').getWibor();
+      this.wiborDataSource = this.wibors;
+      this.mWIBOR3M = this.wibors.find(i => i.name === 'wibor3m').getWibor();
+      this.mWIBOR6M = this.wibors.find(i => i.name === 'wibor6m').getWibor();
     });
 
     this.offersService.getOffers().subscribe((response: Offer[]) => {
@@ -95,18 +95,18 @@ export class AppComponent implements OnInit {
         this.offers[i] = Object.assign(new Offer(), response[i]);
       }
 
-      this.dataSource = new MatTableDataSource(this.offers);
-      this.dataSource.sort = this.sort;
-      this.dataSource.filterPredicate = this.customFilterPredicate();
+      this.offersDataSource = new MatTableDataSource(this.offers);
+      this.offersDataSource.sort = this.sort;
+      this.offersDataSource.filterPredicate = this.customFilterPredicate();
 
       //FILTR: W trakcie Budowy checkbox
       this.wTrakcieBudowyFilter.valueChanges.subscribe((wTrakcieBudowyFilterValue) => {
         if (wTrakcieBudowyFilterValue == true) {
           this.filteredValues['wTrakcieBudowy'] = "tak";
-          this.dataSource.filter = JSON.stringify(this.filteredValues);
+          this.offersDataSource.filter = JSON.stringify(this.filteredValues);
         } else {
           this.filteredValues['wTrakcieBudowy'] = "";
-          this.dataSource.filter = JSON.stringify(this.filteredValues);
+          this.offersDataSource.filter = JSON.stringify(this.filteredValues);
         }
       });
 
@@ -116,7 +116,7 @@ export class AppComponent implements OnInit {
           if (wDeklarowaneWplywyFilterValue >= element.minimalneWpływy || wDeklarowaneWplywyFilterValue === null) {
             element.minimalneWplywyStatus = "wplywyOK"
             this.filteredValues['minimalneWplywyStatus'] = "wplywyOK";
-            this.dataSource.filter = JSON.stringify(this.filteredValues);
+            this.offersDataSource.filter = JSON.stringify(this.filteredValues);
           } else {
             element.minimalneWplywyStatus = "wplywyMalo"
           }
@@ -133,7 +133,7 @@ export class AppComponent implements OnInit {
             element.maxWiekStatus = "wiekMalo"
           }
         })
-        this.dataSource.filter = JSON.stringify(this.filteredValues);
+        this.offersDataSource.filter = JSON.stringify(this.filteredValues);
       });
 
 
@@ -158,17 +158,17 @@ export class AppComponent implements OnInit {
       });
       this.filteredValues['odKiedyObowiazuje'] = "już";
       this.filteredValues['doKiedyObowiazujeStatus'] = "aktualne";
-      this.dataSource.filter = JSON.stringify(this.filteredValues);
-      this.dataSource.sort = this.sort;
+      this.offersDataSource.filter = JSON.stringify(this.filteredValues);
+      this.offersDataSource.sort = this.sort;
 
       /**funkcja pokazywania paginatora */
-      this.dataSource.paginator = this.paginator;
+      this.offersDataSource.paginator = this.paginator;
 
       /**tutaj jest tłumaczenie dla paginatora na polski */
-      this.dataSource.paginator._intl.itemsPerPageLabel = "Pozycji na stronę:";
-      this.dataSource.paginator._intl.nextPageLabel = 'Następna strona';
-      this.dataSource.paginator._intl.previousPageLabel = 'Poprzednia strona';
-      this.dataSource.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
+      this.offersDataSource.paginator._intl.itemsPerPageLabel = "Pozycji na stronę:";
+      this.offersDataSource.paginator._intl.nextPageLabel = 'Następna strona';
+      this.offersDataSource.paginator._intl.previousPageLabel = 'Poprzednia strona';
+      this.offersDataSource.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
         if (length == 0 || pageSize == 0) { return `0 z ${length}`; }
         length = Math.max(length, 0);
         const startIndex = page * pageSize;
@@ -276,41 +276,41 @@ export class AppComponent implements OnInit {
       //FILTR: maxLiczbaLat
       if (this.mLiczbaLat > 30) {
         this.filteredValues['maxLiczbaLat'] = "35";
-        this.dataSource.filter = JSON.stringify(this.filteredValues);
+        this.offersDataSource.filter = JSON.stringify(this.filteredValues);
       } else {
         offer.minLTVsave = "abc";
         this.filteredValues['maxLiczbaLat'] = "";
-        this.dataSource.filter = JSON.stringify(this.filteredValues);
+        this.offersDataSource.filter = JSON.stringify(this.filteredValues);
       }
 
       //FILTR: minLTV
       if (offer.LTVobliczone > offer.minLTV) {
         offer.minLTVsave = "minLTVok";
         this.filteredValues['minLTVsave'] = "minLTVok";
-        this.dataSource.filter = JSON.stringify(this.filteredValues);
+        this.offersDataSource.filter = JSON.stringify(this.filteredValues);
       } else {
         offer.minLTVsave = "abc";
         this.filteredValues['minLTVsave'] = "minLTVok";
-        this.dataSource.filter = JSON.stringify(this.filteredValues);
+        this.offersDataSource.filter = JSON.stringify(this.filteredValues);
       }
 
       //FILTR: maxLTV
       if (offer.LTVobliczone <= offer.maxLTV) {
         offer.maxLTVsave = "maxLTVok";
         this.filteredValues['maxLTVsave'] = "maxLTVok";
-        this.dataSource.filter = JSON.stringify(this.filteredValues);
+        this.offersDataSource.filter = JSON.stringify(this.filteredValues);
 
       } else {
         offer.maxLTVsave = "abc";
         this.filteredValues['maxLTVsave'] = "maxLTVok";
-        this.dataSource.filter = JSON.stringify(this.filteredValues);
+        this.offersDataSource.filter = JSON.stringify(this.filteredValues);
       }
 
       //FILTR minimalnej kwoty kredytu
       if (offer.kwotaKredytuOferty >= offer.minKwotaKredytu) {
         offer.minKwotaKredytuFILTR = "minKwotaKredytuOK";
         this.filteredValues['minKwotaKredytuFILTR'] = "minKwotaKredytuOK";
-        this.dataSource.filter = JSON.stringify(this.filteredValues);
+        this.offersDataSource.filter = JSON.stringify(this.filteredValues);
       } else {
         offer.minKwotaKredytuFILTR = "abc";
       }
@@ -319,7 +319,7 @@ export class AppComponent implements OnInit {
       if (offer.kwotaKredytuOferty <= offer.maxKwotaKredytu) {
         offer.maxKwotaKredytuFILTR = "maxKWotaKredytuOK";
         this.filteredValues['maxKwotaKredytuFILTR'] = "maxKWotaKredytuOK";
-        this.dataSource.filter = JSON.stringify(this.filteredValues);
+        this.offersDataSource.filter = JSON.stringify(this.filteredValues);
       } else {
         offer.maxKwotaKredytuFILTR = "abc";
       }
@@ -337,7 +337,7 @@ export class AppComponent implements OnInit {
         if (+this.wDeklarowaneWplywy.value >= offer.minimalneWpływy || this.wDeklarowaneWplywy === null) {
           offer.minimalneWplywyStatus = "wplywyOK"
           this.filteredValues['minimalneWplywyStatus'] = "wplywyOK";
-          this.dataSource.filter = JSON.stringify(this.filteredValues);
+          this.offersDataSource.filter = JSON.stringify(this.filteredValues);
         } else {
           offer.minimalneWplywyStatus = "wplywyMalo"
         }
@@ -355,7 +355,7 @@ export class AppComponent implements OnInit {
           element.maxWiekStatus = "wiekMalo"
         }
       })
-      this.dataSource.filter = JSON.stringify(this.filteredValues);
+      this.offersDataSource.filter = JSON.stringify(this.filteredValues);
 
     });
 
@@ -371,7 +371,7 @@ export class AppComponent implements OnInit {
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
+    const numRows = this.offersDataSource.data.length;
     return numSelected === numRows;
   }
 
@@ -379,7 +379,7 @@ export class AppComponent implements OnInit {
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
+      this.offersDataSource.data.forEach(row => this.selection.select(row));
   }
 
   /** The label for the checkbox on the passed row */

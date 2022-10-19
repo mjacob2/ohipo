@@ -391,7 +391,7 @@
             </h1>
           </div>
 
-          <table id="tabela" mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
+          <table id="tabela" mat-table [dataSource]="offersDataSource" multiTemplateDataRows matSort>
 
             <!-- Szczegóły Column -->
             <ng-container matColumnDef="szczegoly">
@@ -636,7 +636,7 @@
         </div>
 
         <!--pokaż to jeśli nie będzie ofert spełniających kryteria-->
-        <mat-card class="karta-brak-ofert" *ngIf="dataSource && dataSource.filteredData.length === 0">
+        <mat-card class="karta-brak-ofert" *ngIf="offersDataSource && offersDataSource.filteredData.length === 0">
           <mat-card-header>
             <mat-card-title>Brak ofert spełniających zadane kryteria.</mat-card-title>
             <mat-card-subtitle>Spróbuj zmniejszyć kwotę kredytu lub wyłacz filtry. Pamiętaj, że kwota
