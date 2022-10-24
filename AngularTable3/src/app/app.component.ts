@@ -60,6 +60,10 @@ export class AppComponent implements OnInit {
   globalFilter = '';
   mLTV: number = 0;
   creditLengthInYears = 25;
+  sliderValue = 10
+  myGroup: FormGroup;
+  ngWartoscNieruchomosci = 300000;
+  contribution = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
 
   constructor(
     changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
@@ -205,23 +209,17 @@ export class AppComponent implements OnInit {
   selection = new SelectionModel<Offer>(true, []);
   expandedElement: Offer | null;
 
-  //Grupa dla Formularza sprawdzania walidacji danych
-  myGroup: FormGroup;
-  ngWartoscNieruchomosci = 300000;
-  mWartoscNieruchomosci = +this.ngWartoscNieruchomosci;
-  sliderValue = 10
-  wkladWlasnyNowy = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
+
 
   ngWartoscNieruchomosciZmiana(wartosc: number) {
     this.ngWartoscNieruchomosci = wartosc;
-    this.wkladWlasnyNowy = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
+    this.contribution = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
   }
-  sliderSunie(sliderWkladWlasny: MatSliderChange) {
-    this.sliderValue = sliderWkladWlasny.value
-    this.wkladWlasnyNowy = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
+  onSliderContributionSlide(contributionSlider: MatSliderChange) {
+    this.sliderValue = contributionSlider.value
+    this.contribution = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
   }
 
-  mwkladWlasny = this.wkladWlasnyNowy
   mKwotaKredytu: number = 0;
   selectedOptionRaty = '0';
   selectedOptionRodzajNieruchomosci = '0';
@@ -261,12 +259,12 @@ export class AppComponent implements OnInit {
       this.snav2.close();
     }
 
-    this.mKwotaKredytu = Calculate.CreditAmount(this.mWartoscNieruchomosci, this.wkladWlasnyNowy);
-    this.mLTV = Calculate.GeneralLTV(this.mKwotaKredytu, this.mWartoscNieruchomosci);
+    this.mKwotaKredytu = Calculate.CreditAmount(this.ngWartoscNieruchomosci, this.contribution);
+    this.mLTV = Calculate.GeneralLTV(this.mKwotaKredytu, this.ngWartoscNieruchomosci);
 
     this.offers.forEach((offer) => {
 
-      offer.calculateOffer(this.mKwotaKredytu, this.mWartoscNieruchomosci, this.mWIBOR3M, this.mWIBOR6M, this.creditLengthInYears);
+      offer.calculateOffer(this.mKwotaKredytu, this.ngWartoscNieruchomosci, this.mWIBOR3M, this.mWIBOR6M, this.creditLengthInYears);
 
       //FILTR: maxLiczbaLat
       if (this.creditLengthInYears > 30) {

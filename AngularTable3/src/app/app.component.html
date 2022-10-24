@@ -194,7 +194,7 @@
           <!-- WARTOŚĆ NIERUCHOMOŚCI-->
           <mat-form-field hideRequiredMarker class="filtry-elementy">
             <input autofocus required min="100000" max="2000000" formControlName="formWartoscNieruchomosci"
-              (input)="mWartoscNieruchomosci=$event.target.value" matInput type="number" matInput
+              (input)="ngWartoscNieruchomosci=$event.target.value" matInput type="number" matInput
               [ngModel]="ngWartoscNieruchomosci" (ngModelChange)="ngWartoscNieruchomosciZmiana($event)">
             <mat-error>{{errorMessageformWartoscNieruchomosci}}</mat-error>
             <span matSuffix>zł</span>
@@ -202,27 +202,15 @@
 
 
 
-          <div class="dane-naglowek">Wkład własny: <span *ngIf="wkladWlasnyNowy > 0">{{wkladWlasnyNowy |
+          <div class="dane-naglowek">Wkład własny: <span *ngIf="contribution > 0">{{contribution |
               currency:'zł':'symbol':'1.0-0':'fr'}}</span></div>
-          <div class="dane-naglowek">Kwota kredytu: <span *ngIf="wkladWlasnyNowy > 0">{{ngWartoscNieruchomosci -
-              wkladWlasnyNowy | currency:'zł':'symbol':'1.0-0':'fr'}}</span>
+          <div class="dane-naglowek">Kwota kredytu: <span *ngIf="contribution > 0">{{ngWartoscNieruchomosci -
+              contribution | currency:'zł':'symbol':'1.0-0':'fr'}}</span>
           </div>
 
-          <mat-slider (input)="sliderSunie($event)" style="margin-top: 20px;" class="filtry-elementy suwak" thumbLabel
-            [displayWith]="formatLabel" min="10" max="49">
+          <mat-slider (input)="onSliderContributionSlide($event)" style="margin-top: 20px;"
+            class="filtry-elementy suwak" thumbLabel [displayWith]="formatLabel" min="10" max="49">
           </mat-slider>
-
-
-
-
-          <!--WKŁAD WŁASNY
-          <mat-form-field hideRequiredMarker class="filtry-elementy">
-            <input required min="6000" max="2000000" formControlName="formWkladWlasny"
-              (input)="mwkladWlasny=$event.target.value"  matInput type="number"  matInput>
-            <mat-error>{{errorMessageformWkladWlasny}}</mat-error>
-            <span matSuffix>zł</span>
-          </mat-form-field>
--->
 
 
 
