@@ -59,6 +59,7 @@ export class AppComponent implements OnInit {
   mWIBOR6M: number;
   globalFilter = '';
   mLTV: number = 0;
+  creditLengthInYears = 25;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
@@ -126,7 +127,7 @@ export class AppComponent implements OnInit {
       //FILTR: Wiek najstarszego kredytobiorcy
       this.wWiekNajstarszego.valueChanges.subscribe((wWiekNajstarszegoFilterValue) => {
         this.offers.forEach((element) => {
-          if (+this.mLiczbaLat + +wWiekNajstarszegoFilterValue < element.maxWiek) {
+          if (+this.creditLengthInYears + +wWiekNajstarszegoFilterValue < element.maxWiek) {
             element.maxWiekStatus = "wiekOK"
             this.filteredValues['maxWiekStatus'] = "wiekOK";
           } else {
@@ -160,11 +161,7 @@ export class AppComponent implements OnInit {
       this.filteredValues['doKiedyObowiazujeStatus'] = "aktualne";
       this.offersDataSource.filter = JSON.stringify(this.filteredValues);
       this.offersDataSource.sort = this.sort;
-
-      /**funkcja pokazywania paginatora */
       this.offersDataSource.paginator = this.paginator;
-
-      /**tutaj jest tłumaczenie dla paginatora na polski */
       this.offersDataSource.paginator._intl.itemsPerPageLabel = "Pozycji na stronę:";
       this.offersDataSource.paginator._intl.nextPageLabel = 'Następna strona';
       this.offersDataSource.paginator._intl.previousPageLabel = 'Poprzednia strona';
@@ -212,7 +209,6 @@ export class AppComponent implements OnInit {
   myGroup: FormGroup;
   ngWartoscNieruchomosci = 300000;
   mWartoscNieruchomosci = +this.ngWartoscNieruchomosci;
-  ngLiczbaLat = 25
   sliderValue = 10
   wkladWlasnyNowy = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
 
@@ -227,7 +223,6 @@ export class AppComponent implements OnInit {
 
   mwkladWlasny = this.wkladWlasnyNowy
   mKwotaKredytu: number = 0;
-  mLiczbaLat = this.ngLiczbaLat;
   selectedOptionRaty = '0';
   selectedOptionRodzajNieruchomosci = '0';
   selectedOptionInny = '0';
@@ -271,10 +266,10 @@ export class AppComponent implements OnInit {
 
     this.offers.forEach((offer) => {
 
-      offer.calculateOffer(this.mKwotaKredytu, this.mWartoscNieruchomosci, this.mWIBOR3M, this.mWIBOR6M, this.mLiczbaLat);
+      offer.calculateOffer(this.mKwotaKredytu, this.mWartoscNieruchomosci, this.mWIBOR3M, this.mWIBOR6M, this.creditLengthInYears);
 
       //FILTR: maxLiczbaLat
-      if (this.mLiczbaLat > 30) {
+      if (this.creditLengthInYears > 30) {
         this.filteredValues['maxLiczbaLat'] = "35";
         this.offersDataSource.filter = JSON.stringify(this.filteredValues);
       } else {
@@ -348,7 +343,7 @@ export class AppComponent implements OnInit {
       Musi to tu byc, bo inaczej, jak wpiszesz filtr wieknajstarszego i potem zminisz liczbę lat kredytu, to się filtr nie zaktualizuje */
 
       this.offers.forEach((element) => {
-        if (+this.mLiczbaLat + +this.wiekNajstarszegoInput.nativeElement.value < element.maxWiek) {
+        if (+this.creditLengthInYears + +this.wiekNajstarszegoInput.nativeElement.value < element.maxWiek) {
           element.maxWiekStatus = "wiekOK"
           this.filteredValues['maxWiekStatus'] = "wiekOK";
         } else {

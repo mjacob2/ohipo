@@ -231,8 +231,8 @@
 
           <!--LICZBA LAT-->
           <mat-form-field hideRequiredMarker class="filtry-elementy">
-            <input [ngModel]="ngLiczbaLat" min="5" max="35" required formControlName="formLiczbaLat"
-              (input)="mLiczbaLat=$event.target.value" matInput type="number" matInput>
+            <input [(ngModel)]="creditLengthInYears" min="5" max="35" required formControlName="formLiczbaLat" matInput
+              type="number" matInput>
             <mat-error>{{errorMessageformLiczbaLat}}</mat-error>
           </mat-form-field>
 
