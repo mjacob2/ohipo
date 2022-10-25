@@ -191,33 +191,29 @@
 
           <div class="dane-naglowek">Wartość nieruchomości</div>
 
-          <!-- WARTOŚĆ NIERUCHOMOŚCI-->
+          <!-- PROPERTY VALUE-->
           <mat-form-field hideRequiredMarker class="filtry-elementy">
-            <input autofocus required min="100000" max="2000000" formControlName="formWartoscNieruchomosci"
-              (input)="ngWartoscNieruchomosci=$event.target.value" matInput type="number" matInput
-              [ngModel]="ngWartoscNieruchomosci" (ngModelChange)="ngWartoscNieruchomosciZmiana($event)">
+            <input autofocus required min="100000" max="2000000" formControlName="formWartoscNieruchomosci" matInput
+              type="number" [(ngModel)]="propertyValue">
             <mat-error>{{errorMessageformWartoscNieruchomosci}}</mat-error>
             <span matSuffix>zł</span>
           </mat-form-field>
 
-
-
-          <div class="dane-naglowek">Wkład własny: <span *ngIf="contribution > 0">{{contribution |
-              currency:'zł':'symbol':'1.0-0':'fr'}}</span></div>
-          <div class="dane-naglowek">Kwota kredytu: <span *ngIf="contribution > 0">{{ngWartoscNieruchomosci -
-              contribution | currency:'zł':'symbol':'1.0-0':'fr'}}</span>
+          <!-- OWN CONTRIBUTION-->
+          <div class="dane-naglowek">Wkład własny: <span> {{propertyValue * (sliderValue / 100)
+              | currency:'zł':'symbol':'1.0-0':'fr'}} </span></div>
+          <!-- LOAN AMOUNT-->
+          <div class="dane-naglowek">Kwota kredytu: <span> {{propertyValue - (propertyValue *
+              (sliderValue / 100)) | currency:'zł':'symbol':'1.0-0':'fr'}}</span>
           </div>
-
-          <mat-slider (input)="onSliderContributionSlide($event)" style="margin-top: 20px;"
-            class="filtry-elementy suwak" thumbLabel [displayWith]="formatLabel" min="10" max="49">
+          <!-- CONTRIBUTION SLIDER -->
+          <mat-slider (input)="sliderValue = $event.value" [(ngModel)]="sliderValue"
+            [ngModelOptions]="{standalone: true}" style="margin-top: 20px;" class="filtry-elementy suwak" thumbLabel
+            [displayWith]="formatLabel" min="10" max="49">
           </mat-slider>
 
-
-
-
+          <!--NUMBER OF YEARS-->
           <div class="dane-naglowek">Liczba lat</div>
-
-          <!--LICZBA LAT-->
           <mat-form-field hideRequiredMarker class="filtry-elementy">
             <input [(ngModel)]="creditLengthInYears" min="5" max="35" required formControlName="formLiczbaLat" matInput
               type="number" matInput>
@@ -225,67 +221,59 @@
           </mat-form-field>
 
 
-
-
-
           <!--POKAŻ OPCJE ZAAWANSOWANE-->
-          <mat-slide-toggle class="filtry-elementy" style="margin-top: 25px; margin-bottom: 25px;" color="primary"
-            [ngModelOptions]="{standalone: true}" [(ngModel)]="mpokazOpcjeZaawansowane">
-            Opcje
-            zaawansowane
+          <mat-slide-toggle #toggle class="filtry-elementy" style="margin-top: 25px; margin-bottom: 25px;"
+            color="primary">
+            Opcje zaawansowane
           </mat-slide-toggle>
 
-          <mat-divider *ngIf="mpokazOpcjeZaawansowane"></mat-divider>
+          <div *ngIf="toggle.checked">
 
-          <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">Rodzaj nieruchomości</div>
+            <mat-divider></mat-divider>
 
+            <!--RODZAJ NIERUCHOMOSCI-->
+            <div class="dane-naglowek">Rodzaj nieruchomości</div>
+            <mat-form-field class="filtry-elementy">
+              <mat-select [disabled]="true" [value]="selectedOptionRodzajNieruchomosci">
+                <mat-option *ngFor="let RodzajNieruchomosci of RodzajeNieruchomosci"
+                  [value]="RodzajNieruchomosci.value">
+                  {{RodzajNieruchomosci.viewValue}}
+                </mat-option>
+              </mat-select>
+              <mat-hint>Opcja zmiany dostępna wkrótce</mat-hint>
+            </mat-form-field>
 
-          <!--RODZAJ NIERUCHOMOSCI-->
-          <mat-form-field *ngIf="mpokazOpcjeZaawansowane" class="filtry-elementy">
-            <mat-select [disabled]="true" [value]="selectedOptionRodzajNieruchomosci">
-              <mat-option *ngFor="let RodzajNieruchomosci of RodzajeNieruchomosci" [value]="RodzajNieruchomosci.value">
-                {{RodzajNieruchomosci.viewValue}}
-              </mat-option>
-            </mat-select>
-            <mat-hint>Opcja zmiany dostępna wkrótce</mat-hint>
-          </mat-form-field>
+            <!--RODZAJ RAT-->
+            <div class="dane-naglowek">Rodzaj rat</div>
+            <mat-form-field class="filtry-elementy">
+              <mat-select [disabled]="true" [value]="selectedOptionRaty">
+                <mat-option *ngFor="let RodzajRat of RodzajeRat" [value]="RodzajRat.value">
+                  {{RodzajRat.viewValue}}
+                </mat-option>
+              </mat-select>
+              <mat-hint>Opcja zmiany dostępna wkrótce</mat-hint>
+            </mat-form-field>
 
-          <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">Rodzaj rat</div>
+            <!--WIBOR 3M-->
+            <div class="dane-naglowek">WIBOR 3M</div>
+            <mat-form-field hideRequiredMarker class="filtry-elementy">
+              <input required min="-10" max="10" formControlName="formWIBOR3M" [(ngModel)]="mWIBOR3M"
+                (ngModelChange)="mWIBOR3M = $event" matInput type="number" matInput (input)="mWIBOR3M">
+              <span matSuffix>%</span>
+              <mat-error>min. -10, max. 10</mat-error>
+            </mat-form-field>
 
-          <!--RODZAJ RAT-->
-          <mat-form-field *ngIf="mpokazOpcjeZaawansowane" class="filtry-elementy">
-            <mat-select [disabled]="true" [value]="selectedOptionRaty">
-              <mat-option *ngFor="let RodzajRat of RodzajeRat" [value]="RodzajRat.value">
-                {{RodzajRat.viewValue}}
-              </mat-option>
-            </mat-select>
-            <mat-hint>Opcja zmiany dostępna wkrótce</mat-hint>
-          </mat-form-field>
-
-
-          <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">WIBOR 3M</div>
-
-          <!--WIBOR 3M-->
-          <mat-form-field hideRequiredMarker *ngIf="mpokazOpcjeZaawansowane" class="filtry-elementy">
-            <input required min="-10" max="10" formControlName="formWIBOR3M" [(ngModel)]="mWIBOR3M"
-              (ngModelChange)="mWIBOR3M = $event" matInput type="number" matInput (input)="mWIBOR3M">
-            <span matSuffix>%</span>
-            <mat-error>min. -10, max. 10</mat-error>
-          </mat-form-field>
-
-          <div *ngIf="mpokazOpcjeZaawansowane" class="dane-naglowek">WIBOR 6M</div>
-
-          <!--WIBOR 6M-->
-          <mat-form-field hideRequiredMarker *ngIf="mpokazOpcjeZaawansowane" class="filtry-elementy">
-            <input required min="-10" max="10" formControlName="formWIBOR6M" [(ngModel)]="mWIBOR6M"
-              (ngModelChange)="mWIBOR6M = $event" matInput type="number" matInput (input)="mWIBOR6M">
-            <span matSuffix>%</span>
-            <mat-error>min. -10, max. 10</mat-error>
-          </mat-form-field>
-
+            <!--WIBOR 6M-->
+            <div class="dane-naglowek">WIBOR 6M</div>
+            <mat-form-field hideRequiredMarker class="filtry-elementy">
+              <input required min="-10" max="10" formControlName="formWIBOR6M" [(ngModel)]="mWIBOR6M"
+                (ngModelChange)="mWIBOR6M = $event" matInput type="number" matInput (input)="mWIBOR6M">
+              <span matSuffix>%</span>
+              <mat-error>min. -10, max. 10</mat-error>
+            </mat-form-field>
+          </div>
 
           <!--PRZYCISK PRZELICZ-->
-
           <button mat-button disableRipple [disabled]="!myGroup.valid" class="neumorphism_side-bar"
             style="margin-right: 20px; margin-top: 18px; padding-top: 4px; padding-bottom: 4px;" mat-raised-button
             color="primary" (click)="calculateOffers()"
@@ -309,23 +297,7 @@
             <mat-icon>calculate</mat-icon> OBLICZ ZDOLNOŚĆ
           </button>
 
-
-
         </form>
-
-
-
-
-
-
-        <!-- narazie tego poniżej nie pokazój, dopóki nie będzie na samym dole zawsze
-
-          <mat-nav-list>
-          <a mat-list-item routerLink=".">O porównywarce </a>
-          <a mat-list-item routerLink=".">Kontakt </a>
-        </mat-nav-list>
-
-          -->
 
 
 
@@ -364,14 +336,14 @@
           <!--Przykrywka przykrywająca tabelę na początku-->
 
 
-          <div #przykrywkaPoczatkowa class="example-loading-shade">
+          <div #cover class="example-loading-shade">
             <h1 style="margin-top: 150px; margin-left: 8px;">
               <span (click)="snav2.toggle()">
                 <mat-icon>edit</mat-icon> EDYTUJ DANE
               </span> i kliknij
               <button [disabled]="!myGroup.valid" style="margin-right: 20px; margin-top: 18px;" mat-raised-button
                 color="primary" (click)="calculateOffers()"
-                onclick='FB.AppEvents.logEvent("Przelicz_przykrywka_Clicked")'>PRZELICZ</button>
+                onclick='FB.AppEvents.logEvent("Przelicz_cover_Clicked")'>PRZELICZ</button>
               <div *ngIf="!myGroup.valid" class="error-pod-przelicz">Uzupełnij poprawnie dane
               </div>aby
               zobaczyć wyniki w
@@ -388,22 +360,6 @@
                 <mat-icon>{{ expandedElement !==element ? 'expand_more' : 'expand_less' }}</mat-icon>
               </td>
             </ng-container>
-
-            <!-- Checkbox Column -->
-            <ng-container matColumnDef="select">
-              <th style="padding-right: 22px;" mat-header-cell *matHeaderCellDef>
-                <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
-                  [checked]="selection.hasValue() && isAllSelected()"
-                  [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
-                </mat-checkbox>
-              </th>
-              <td (click)="$event.stopPropagation()" mat-cell *matCellDef="let row">
-                <mat-checkbox color="primary" (change)="$event ? selection.toggle(row) : null"
-                  [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
-                </mat-checkbox>
-              </td>
-            </ng-container>
-
 
             <!-- Bank Column -->
             <ng-container matColumnDef="bank">
@@ -467,18 +423,6 @@
                 %</td>
             </ng-container>
 
-
-
-            <!-- WIBOR rodzaj Column -->
-            <ng-container matColumnDef="WIBOR">
-              <th arrowPosition="before" mat-header-cell *matHeaderCellDef mat-sort-header
-                matTooltip="Rrodzaj stawki WIBOR jaka jest brana do obliczeń danej oferty.">WIBOR
-              </th>
-              <td class="cell-numer" mat-cell *matCellDef="let element">
-                {{element.WIBOR}} </td>
-            </ng-container>
-
-
             <!-- LTV rodzaj Column -->
             <ng-container matColumnDef="LTVobliczone">
               <th arrowPosition="before" mat-header-cell *matHeaderCellDef mat-sort-header
@@ -488,7 +432,7 @@
                 {{element.LTVobliczone * 100 | number : '1.0-1' }} % </td>
             </ng-container>
 
-            <!-- LTV rodzaj Column -->
+            <!-- Do kiedy obowiązuje Column -->
             <ng-container matColumnDef="doKiedyObowiazuje">
               <th arrowPosition="before" mat-header-cell *matHeaderCellDef mat-sort-header
                 matTooltip="Informuje jaki procent wartości nieruchomości jest kredytowany.">Obowiązuje do:
@@ -498,29 +442,23 @@
             </ng-container>
 
 
-
-
             <!-- WIERSZ ROZWIJANY -->
             <ng-container matColumnDef="expandedDetail">
               <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
 
-                <div class="kontenerRozwijany">
+                <div class="kontenerRozwijany" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                   <!--WARUNKI OFERTY-->
-                  <div class="example-element-detail"
-                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                  <div class="example-element-detail">
                     <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
                     <div class="example-element-description" style="white-space: pre-wrap; width: 600px;">
                       <b>Warunki oferty:</b>
                       <div style="padding-left: 4px;">{{element.warunkiOferty}}
                       </div>
-
                     </div>
                   </div>
 
-
                   <!--OPŁATY NA START-->
-                  <div class="example-element-detail opisyLiczbowe"
-                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                  <div class="example-element-detail opisyLiczbowe">
                     <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
                     <div class="example-element-description " style="white-space: pre-wrap;">
                       <b>Opłaty na start:</b>
@@ -542,8 +480,7 @@
 
 
                   <!--OPŁATY MIESIĘCZNE-->
-                  <div class="example-element-detail opisyLiczbowe"
-                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                  <div class="example-element-detail opisyLiczbowe">
                     <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
                     <div class="example-element-description" style="white-space: pre-wrap; width: 500px;">
                       <b
@@ -560,8 +497,7 @@
 
 
                   <!--KOSZTY CAŁKOWITE-->
-                  <div class="example-element-detail opisyLiczbowe"
-                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                  <div class="example-element-detail opisyLiczbowe">
                     <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
                     <div class="example-element-description" style="white-space: pre-wrap; width: 500px;">
                       <b>Koszty całkowite:</b>
@@ -592,8 +528,7 @@
 
 
                   <!--LINK DO OFERTY-->
-                  <div class="example-element-detail opisyLiczbowe"
-                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                  <div class="example-element-detail opisyLiczbowe">
                     <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
                     <div class="example-element-description " style="white-space: pre-wrap; width: 500px;">
                       Data obowiązywania: {{element.doKiedyObowiazuje}}
@@ -601,11 +536,7 @@
                       ID#{{element.id}}
                     </div>
                   </div>
-
-
                 </div>
-
-
               </td>
             </ng-container>
 
@@ -674,28 +605,6 @@
           <a href="https://middlers.pl/polityka-cookies.html">Polityka cookies</a>
 
         </footer>
-
-
-        <table mat-table [dataSource]="wiborDataSource">
-          <!-- Position Column -->
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-          </ng-container>
-
-          <!-- Name Column -->
-          <ng-container matColumnDef="value">
-            <th mat-header-cell *matHeaderCellDef> Value </th>
-            <td mat-cell *matCellDef="let element"> {{element.value}} </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="wiborDisplayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: wiborDisplayedColumns;"></tr>
-        </table>
-
-
-
-
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

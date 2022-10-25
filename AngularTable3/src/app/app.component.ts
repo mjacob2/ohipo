@@ -12,21 +12,11 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { OffersService } from './services/http/getOffers.service';
 import { WiborService } from './services/http/getWibor.service';
 import { Calculate } from './services/wzory/wzory.service';
-import { MatSliderChange } from '@angular/material/slider';
 import { Offer } from './offer';
 import { Wibor } from './wibor';
 
 
-/** Tutaj logika zaznacz jaki rodzaj rat Cię interesuje */
-interface RodzajRat {
-  value: string;
-  viewValue: string;
-}
-/** Tutaj logika zaznacz jaki rodzaj rat nieruchomosci */
-interface RodzajNieruchomosci {
-  value: string;
-  viewValue: string;
-}
+
 @Component({
   selector: 'app-root',
   styleUrls: ['./app.component.scss'],
@@ -36,20 +26,22 @@ interface RodzajNieruchomosci {
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
       state('expanded', style({ height: '*' })),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+      transition('expanded <=> collapsed', animate('500ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
 })
 
 export class AppComponent implements OnInit {
-  displayedColumns: string[] = ['szczegoly', 'bank', 'ofertaNazwa', 'kosztyCalkowite', 'kosztyPoczatkowe', 'rata', 'oplatyMiesieczne', 'marza'];
+  displayedColumns: string[] = ['szczegoly', 'bank', 'ofertaNazwa', 'kosztyCalkowite', 'kosztyPoczatkowe', 'rata', 'oplatyMiesieczne', 'marza', 'LTVobliczone', 'doKiedyObowiazuje'];
   wiborDisplayedColumns: string[] = ['name', 'value'];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild('wiekNajstarszegoInput') wiekNajstarszegoInput: ElementRef;
-  @ViewChild('przykrywkaPoczatkowa') private przykrywkaPoczatkowaElement: ElementRef;
+  @ViewChild('cover') private cover: ElementRef;
   @ViewChild('snav2') snav2: MatSidenav;
+
+
 
   offersDataSource: MatTableDataSource<Offer>;
   wiborDataSource: Wibor[] = [];
@@ -58,12 +50,19 @@ export class AppComponent implements OnInit {
   mWIBOR3M: number;
   mWIBOR6M: number;
   globalFilter = '';
-  mLTV: number = 0;
   creditLengthInYears = 25;
   sliderValue = 10
   myGroup: FormGroup;
-  ngWartoscNieruchomosci = 300000;
-  contribution = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
+  propertyValue = 400000;
+  contribution;
+  selectedOptionRaty = '0';
+  selectedOptionRodzajNieruchomosci = '0';
+  selectedOptionInny = '0';
+  inWhichBankAlreadyAccount: number = 0;
+  filteredValues = {
+    minimalneWplywyStatus: '', bank: '', maxLiczbaLat: '', maxWiekStatus: '', ofertaNazwa: '', minKwotaKredytuFILTR: '', maxKwotaKredytuFILTR: '', wTrakcieBudowy: '', maxLTVsave: '', minLTVsave: '', doKiedyObowiazujeStatus: '', odKiedyObowiazuje: '', wWielkimMiescieFilterKolumna: ''
+  };
+  loanValue = 0;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
@@ -88,7 +87,6 @@ export class AppComponent implements OnInit {
       for (let i in response) {
         this.wibors[i] = Object.assign(new Wibor(), response[i]);
       }
-
       this.wiborDataSource = this.wibors;
       this.mWIBOR3M = this.wibors.find(i => i.name === 'wibor3m').getWibor();
       this.mWIBOR6M = this.wibors.find(i => i.name === 'wibor6m').getWibor();
@@ -99,7 +97,6 @@ export class AppComponent implements OnInit {
       for (let i in response) {
         this.offers[i] = Object.assign(new Offer(), response[i]);
       }
-
       this.offersDataSource = new MatTableDataSource(this.offers);
       this.offersDataSource.sort = this.sort;
       this.offersDataSource.filterPredicate = this.customFilterPredicate();
@@ -182,19 +179,12 @@ export class AppComponent implements OnInit {
 
     });
 
-    // // get WIBOR from server
-    // this.wiborService.getWibor().subscribe(data => {
-    //   this.mWIBOR3M = data['mWIBOR3M'],
-    //     this.mWIBOR6M = data['mWIBOR6M']
-    // });
-
     //stwórz form Bilder
     this.zbudujFormularz();
 
     // Domyslnie sortuj po kosztach całkowitych podczas uruchomienia 
     this.sort.sort(({ id: 'kosztyCalkowite', start: 'asc' }) as MatSortable);
     // this.dataSource.sort = this.sort;
-
 
   }
   //dodaj do slidera % na końcu łezki (label) do
@@ -205,27 +195,8 @@ export class AppComponent implements OnInit {
   //dla responsywnego sideNMavigacji
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
-  ofertyPobrane: Object; //varable dla pobieranych ofert z sieci
   selection = new SelectionModel<Offer>(true, []);
   expandedElement: Offer | null;
-
-
-
-  ngWartoscNieruchomosciZmiana(wartosc: number) {
-    this.ngWartoscNieruchomosci = wartosc;
-    this.contribution = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
-  }
-  onSliderContributionSlide(contributionSlider: MatSliderChange) {
-    this.sliderValue = contributionSlider.value
-    this.contribution = (this.sliderValue / 100) * this.ngWartoscNieruchomosci
-  }
-
-  mKwotaKredytu: number = 0;
-  selectedOptionRaty = '0';
-  selectedOptionRodzajNieruchomosci = '0';
-  selectedOptionInny = '0';
-  inWhichBankAlreadyAccount: number = 0;
-  mpokazOpcjeZaawansowane: boolean;
 
   /** ZADEKLAROWANE ZMIENNE DO FILTRÓW */
   wTrakcieBudowyFilter = new FormControl();
@@ -248,23 +219,14 @@ export class AppComponent implements OnInit {
   wPowolanie = new FormControl({ value: '', disabled: true });
 
 
-  //po tych kolumnach mogą być filtrowane oferty
-  filteredValues = {
-    minimalneWplywyStatus: '', bank: '', maxLiczbaLat: '', maxWiekStatus: '', ofertaNazwa: '', minKwotaKredytuFILTR: '', maxKwotaKredytuFILTR: '', wTrakcieBudowy: '', maxLTVsave: '', minLTVsave: '', doKiedyObowiazujeStatus: '', odKiedyObowiazuje: '', wWielkimMiescieFilterKolumna: ''
-  };
-
   calculateOffers(): void {
 
-    if (window.matchMedia("(max-width: 1800px)").matches) {
-      this.snav2.close();
-    }
-
-    this.mKwotaKredytu = Calculate.CreditAmount(this.ngWartoscNieruchomosci, this.contribution);
-    this.mLTV = Calculate.GeneralLTV(this.mKwotaKredytu, this.ngWartoscNieruchomosci);
+    this.contribution = (this.sliderValue / 100) * this.propertyValue
+    this.loanValue = Calculate.CreditAmount(this.propertyValue, this.contribution);
 
     this.offers.forEach((offer) => {
 
-      offer.calculateOffer(this.mKwotaKredytu, this.ngWartoscNieruchomosci, this.mWIBOR3M, this.mWIBOR6M, this.creditLengthInYears);
+      offer.calculateOffer(this.loanValue, this.propertyValue, this.mWIBOR3M, this.mWIBOR6M, this.creditLengthInYears);
 
       //FILTR: maxLiczbaLat
       if (this.creditLengthInYears > 30) {
@@ -352,13 +314,25 @@ export class AppComponent implements OnInit {
 
     });
 
-    //**pokaż snack bar */
+    this.closeNavBar();
+    this.showSnackBar();
+    this.hideCover();
+  }
+
+  private hideCover(): void {
+    this.cover.nativeElement.remove();
+  }
+
+  private showSnackBar() {
     this._snackBar.open("Oferty zostały przeliczone", "zamknij", {
       duration: 4000,
     });
+  }
 
-    // usuń przykrywkę początkową
-    this.przykrywkaPoczatkowaElement.nativeElement.remove();
+  private closeNavBar() {
+    if (window.matchMedia("(max-width: 1800px)").matches) {
+      this.snav2.close();
+    }
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -456,13 +430,12 @@ export class AppComponent implements OnInit {
     return myFilterPredicate;
   }
 
-
-  RodzajeRat: RodzajRat[] = [
+  RodzajeRat: any[] = [
     { value: '0', viewValue: 'Równe' },
     { value: '1', viewValue: 'Malejące' },
   ];
 
-  RodzajeNieruchomosci: RodzajNieruchomosci[] = [
+  RodzajeNieruchomosci: any[] = [
     { value: '0', viewValue: 'Mieszkanie' },
     { value: '1', viewValue: 'Dom' },
     { value: '2', viewValue: 'Działka' },
