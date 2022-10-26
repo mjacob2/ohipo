@@ -41,8 +41,6 @@ export class AppComponent implements OnInit {
   @ViewChild('cover') private cover: ElementRef;
   @ViewChild('snav2') snav2: MatSidenav;
 
-
-
   offersDataSource: MatTableDataSource<Offer>;
   wiborDataSource: Wibor[] = [];
   offers: Offer[] = [];
@@ -187,10 +185,7 @@ export class AppComponent implements OnInit {
     // this.dataSource.sort = this.sort;
 
   }
-  //dodaj do slidera % na końcu łezki (label) do
-  formatLabel(value: number) {
-    return value + '%';
-  }
+
 
   //dla responsywnego sideNMavigacji
   mobileQuery: MediaQueryList;
@@ -319,44 +314,6 @@ export class AppComponent implements OnInit {
     this.hideCover();
   }
 
-  private hideCover(): void {
-    this.cover.nativeElement.remove();
-  }
-
-  private showSnackBar() {
-    this._snackBar.open("Oferty zostały przeliczone", "zamknij", {
-      duration: 4000,
-    });
-  }
-
-  private closeNavBar() {
-    if (window.matchMedia("(max-width: 1800px)").matches) {
-      this.snav2.close();
-    }
-  }
-
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.offersDataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.offersDataSource.data.forEach(row => this.selection.select(row));
-  }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: Offer): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.bank + 1}`;
-  }
-
 
   // konstruktor dla ERROR dla  formWartoscNieruchomosci
   get errorMessageformWartoscNieruchomosci(): string {
@@ -382,7 +339,6 @@ export class AppComponent implements OnInit {
 
 
   zbudujFormularz(): void {
-    //DO VALIDACJI DANCH FORMULARZA
     this.myGroup = new FormGroup({
       formWartoscNieruchomosci: new FormControl("", [Validators.max(2000000), Validators.min(100000)]),
       //formKwotaKredytu: new FormControl("", [Validators.max(2000000), Validators.min(50000)]),
@@ -424,7 +380,6 @@ export class AppComponent implements OnInit {
         data.maxLiczbaLat.toString().trim().toLowerCase().indexOf(searchString.maxLiczbaLat.toLowerCase()) !== -1
         &&
         data.maxWiekStatus.toString().trim().toLowerCase().indexOf(searchString.maxWiekStatus.toLowerCase()) !== -1
-
         ;
     }
     return myFilterPredicate;
@@ -458,30 +413,40 @@ export class AppComponent implements OnInit {
     window.open("https://forms.zohopublic.eu/jakubickim/form/abc/formperma/4CTCfBkz-6-h29FkJPHQmyeFShrErtcsuppDiUTmZOI", "_blank");
   }
 
-
   openDialogKontakt() {
     const dialogRef = this.dialogKontakt.open(DialogKontakt, {
-      disableClose: true, //nie zamykaj po kliknięciu poza dialogiem
-      backdropClass: 'backdropBackground' // ta klasa będzie przypisana do zaciemnienia tła kiedy Dialog jest otwarty
-    });
-
-    //funkcja odpalana kiedy zamykam dialog
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Rezultat dialogu: ${result}`);
+      disableClose: true,
+      backdropClass: 'backdropBackground'
     });
   }
 
   openDialogBlad() {
     const dialogRef = this.dialogBlad.open(DialogBlad, {
-      disableClose: true, //nie zamykaj po kliknięciu poza dialogiem
-      backdropClass: 'backdropBackground' // ta klasa będzie przypisana do zaciemnienia tła kiedy Dialog jest otwarty
-    });
-
-    //funkcja odpalana kiedy zamykam dialog
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Rezultat dialogu błąd: ${result}`);
+      disableClose: true,
+      backdropClass: 'backdropBackground'
     });
   }
+
+  private hideCover(): void {
+    this.cover.nativeElement.remove();
+  }
+
+  private showSnackBar() {
+    this._snackBar.open("Oferty zostały przeliczone", "zamknij", {
+      duration: 4000,
+    });
+  }
+
+  private closeNavBar() {
+    if (window.matchMedia("(max-width: 1800px)").matches) {
+      this.snav2.close();
+    }
+  }
+
+  contributionSliderLabel(value: number) {
+    return value + '%';
+  }
+
 }
 
 
