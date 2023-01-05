@@ -40,15 +40,12 @@ input[type=number] {
   /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex;
   /* NEW, Spec - Firefox, Chrome, Opera */
-
 }
 
 .side-naw-prawy {
   padding-right: 30px;
   display: flex;
   flex-direction: column;
-
-
 }
 
 .dane-o-kredycie-element {
@@ -148,10 +145,6 @@ tr.mat-row {
   font-size: 16px;
 
 }
-
-
-
-
 
 .th {
   height: 150px;
@@ -285,7 +278,7 @@ mat-divider {
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.90);
+  background: rgba(255, 255, 255, 0.95);
   z-index: 102;
   display: flex;
   align-items: initial;

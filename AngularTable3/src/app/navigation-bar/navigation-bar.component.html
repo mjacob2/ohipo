@@ -12,10 +12,15 @@
 
 
 
-    <button mat-button disableRipple class="neumorphism" style="margin-right: 10px;" (click)="snav2.toggle()">
-        <mat-icon>edit</mat-icon> <span class="usun-na-malym"> EDYTUJ DANE</span>
+     <!-- PRZYCISK EDYTUJ-->
+    <button mat-button disableRipple class="neumorphism" style="margin-right: 10px;" (click)="clickEditButton()">
+      <mat-icon>edit</mat-icon> <span class="usun-na-malym"> EDYTUJ DANE</span>
     </button>
 
+    <!-- PRZYCISK FILTRUJ-->
+    <button mat-button disableRipple class="neumorphism" style="margin-right: 10px;" (click)="clickFilterButton()">
+        <mat-icon>filter_list</mat-icon> <span class="usun-na-malym"> FILTRUJ OFERTY </span>
+      </button>
 
 
     <!-- PRZYCISK KONTAKT Z DORADCĄ-->

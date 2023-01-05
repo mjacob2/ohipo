@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IOffer } from 'src/app/ioffer';
 import { Offer } from 'src/app/offer';
 
 @Injectable()

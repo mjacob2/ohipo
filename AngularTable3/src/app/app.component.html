@@ -1,28 +1,7 @@
 <div class="example-container">
-
-  <app-navigation-bar></app-navigation-bar>
-
-  <mat-toolbar color="primary" class="example-toolbar">
-
-
-    <span class="example-spacer usun-na-malym"></span>
-
-    <button mat-button disableRipple class="neumorphism" style="margin-right: 10px;" (click)="snav2.toggle()">
-      <mat-icon>edit</mat-icon> <span class="usun-na-malym"> EDYTUJ DANE</span>
-    </button>
-
-    <!-- PRZYCISK FILTRUJ-->
-    <button mat-button disableRipple class="neumorphism" style="margin-right: 10px;" (click)="snav.toggle()">
-      <mat-icon>filter_list</mat-icon> <span class="usun-na-malym"> FILTRUJ OFERTY </span>
-    </button>
-
-  </mat-toolbar>
-
-
+  <app-navigation-bar (ClickEditButton)="snav2.toggle()" (ClickFilterButton)="snav.toggle()"></app-navigation-bar>
 
   <mat-sidenav-container class="example-sidenav-container">
-
-
     <!-- 
       PIERWSZY SIDE NAW - PRAWY
     -->
@@ -167,156 +146,12 @@
     <!-- 
       DRUGI SIDE NAW - LEWY
     -->
-    <mat-sidenav opened="true" fixedTopGap="64" style="z-index: 100; " #snav2
-      [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="64">
 
-      <button style="height: 0; position: absolute;" mat-icon-button>
-      </button> <!-- bierze na siebie focus po otwarciu sidenav-->
-
-
-      <button (click)="snav2.toggle()" style="float: right; overflow: auto;" mat-icon-button>
-        <mat-icon>close</mat-icon>
-      </button>
-
-      <div class="side-naw filtry">
-
-
-        <form [formGroup]="myGroup">
-
-
-
-          <!-- stara class: class="dane-o-kredycie-element"-->
-
-
-
-          <div class="dane-naglowek">Wartość nieruchomości</div>
-
-          <!-- PROPERTY VALUE-->
-          <mat-form-field hideRequiredMarker class="filtry-elementy">
-            <input autofocus required min="100000" max="2000000" formControlName="formWartoscNieruchomosci" matInput
-              type="number" [(ngModel)]="propertyValue">
-            <mat-error>{{errorMessageformWartoscNieruchomosci}}</mat-error>
-            <span matSuffix>zł</span>
-          </mat-form-field>
-
-          <!-- OWN CONTRIBUTION-->
-          <div class="dane-naglowek">Wkład własny: <span> {{propertyValue * (sliderValue / 100)
-              | currency:'zł':'symbol':'1.0-0':'fr'}} </span></div>
-          <!-- LOAN AMOUNT-->
-          <div class="dane-naglowek">Kwota kredytu: <span> {{propertyValue - (propertyValue *
-              (sliderValue / 100)) | currency:'zł':'symbol':'1.0-0':'fr'}}</span>
-          </div>
-          <!-- CONTRIBUTION SLIDER -->
-          <mat-slider (input)="sliderValue = $event.value" [(ngModel)]="sliderValue"
-            [ngModelOptions]="{standalone: true}" style="margin-top: 20px;" class="filtry-elementy suwak" thumbLabel
-            [displayWith]="contributionSliderLabel" min="10" max="49">
-          </mat-slider>
-
-          <!--NUMBER OF YEARS-->
-          <div class="dane-naglowek">Liczba lat</div>
-          <mat-form-field hideRequiredMarker class="filtry-elementy">
-            <input [(ngModel)]="creditLengthInYears" min="5" max="35" required formControlName="formLiczbaLat" matInput
-              type="number" matInput>
-            <mat-error>{{errorMessageformLiczbaLat}}</mat-error>
-          </mat-form-field>
-
-
-          <!--POKAŻ OPCJE ZAAWANSOWANE-->
-          <mat-slide-toggle #toggle class="filtry-elementy" style="margin-top: 25px; margin-bottom: 25px;"
-            color="primary">
-            Opcje zaawansowane
-          </mat-slide-toggle>
-
-          <div *ngIf="toggle.checked">
-
-            <mat-divider></mat-divider>
-
-            <!--RODZAJ NIERUCHOMOSCI-->
-            <div class="dane-naglowek">Rodzaj nieruchomości</div>
-            <mat-form-field class="filtry-elementy">
-              <mat-select [disabled]="true" [value]="selectedOptionRodzajNieruchomosci">
-                <mat-option *ngFor="let RodzajNieruchomosci of RodzajeNieruchomosci"
-                  [value]="RodzajNieruchomosci.value">
-                  {{RodzajNieruchomosci.viewValue}}
-                </mat-option>
-              </mat-select>
-              <mat-hint>Opcja zmiany dostępna wkrótce</mat-hint>
-            </mat-form-field>
-
-            <!--RODZAJ RAT-->
-            <div class="dane-naglowek">Rodzaj rat</div>
-            <mat-form-field class="filtry-elementy">
-              <mat-select [disabled]="true" [value]="selectedOptionRaty">
-                <mat-option *ngFor="let RodzajRat of RodzajeRat" [value]="RodzajRat.value">
-                  {{RodzajRat.viewValue}}
-                </mat-option>
-              </mat-select>
-              <mat-hint>Opcja zmiany dostępna wkrótce</mat-hint>
-            </mat-form-field>
-
-            <!--WIBOR 3M-->
-            <div class="dane-naglowek">WIBOR 3M</div>
-            <mat-form-field hideRequiredMarker class="filtry-elementy">
-              <input required min="-10" max="10" formControlName="formWIBOR3M" [(ngModel)]="mWIBOR3M"
-                (ngModelChange)="mWIBOR3M = $event" matInput type="number" matInput (input)="mWIBOR3M">
-              <span matSuffix>%</span>
-              <mat-error>min. -10, max. 10</mat-error>
-            </mat-form-field>
-
-            <!--WIBOR 6M-->
-            <div class="dane-naglowek">WIBOR 6M</div>
-            <mat-form-field hideRequiredMarker class="filtry-elementy">
-              <input required min="-10" max="10" formControlName="formWIBOR6M" [(ngModel)]="mWIBOR6M"
-                (ngModelChange)="mWIBOR6M = $event" matInput type="number" matInput (input)="mWIBOR6M">
-              <span matSuffix>%</span>
-              <mat-error>min. -10, max. 10</mat-error>
-            </mat-form-field>
-          </div>
-
-          <!--PRZYCISK PRZELICZ-->
-          <button mat-button disableRipple [disabled]="!myGroup.valid" class="neumorphism_side-bar"
-            style="margin-right: 20px; margin-top: 18px; padding-top: 4px; padding-bottom: 4px;" mat-raised-button
-            color="primary" (click)="calculateOffers()"
-            onclick='FB.AppEvents.logEvent("Przelicz_navBar_Clicked")'>PRZELICZ</button>
-          <div *ngIf="!myGroup.valid" class="error-pod-przelicz">Uzupełnij poprawnie powyższe pola <br>i kliknij
-            PRZELICZ
-          </div>
-
-
-          <!-- PRZYCISK KONTAKT Z DORADCĄ-->
-          <button mat-button disableRipple class="neumorphism_side-bar" style="margin-right: 20px; margin-top: 18px;"
-            mat-raised-button color="accent" (click)="openDialogKontakt()"
-            onclick='FB.AppEvents.logEvent("Kontakt_z_doradca_navBar_Clicked")'>
-            <mat-icon>contact_support</mat-icon> ZAPYTAJ DORADCĘ
-          </button>
-
-          <!-- PRZYCISK SPRAWDŹ ZDOLNOŚĆ-->
-          <button mat-button disableRipple class="neumorphism_side-bar" style="margin-right: 20px; margin-top: 18px;"
-            mat-raised-button color="accent" (click)="openZohoForm()"
-            onclick='FB.AppEvents.logEvent("Sprawdz_zdolnosc__navBar_Clicked")'>
-            <mat-icon>calculate</mat-icon> OBLICZ ZDOLNOŚĆ
-          </button>
-
-        </form>
-
-
-
-        <div style="width: 200px; font-size: 11px; margin-top: 30px; text-align: center;">
-          Ta strona korzysta z anonimizowanych plików cookies. Możesz określić warunki ich przechowywania lub dostępu do
-          nich. <a href="https://middlers.pl/polityka-cookies.html">Polityka cookies</a>
-        </div>
-
-        <button (click)="openDialogBlad()" class="butoon-blad" mat-button color="warn">Zgłoś błąd na stronie</button>
-
-
-      </div>
+    <mat-sidenav   opened="true" fixedTopGap="64" style="z-index: 100; width: 320px; " #snav2
+    [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="64"> 
+      <app-sidenav-edit (ToggleSidenavEditClick)="onToggleSideNaClick()" (CalculateOffersClick)="calculateOffers($event)" style="width: 502px"></app-sidenav-edit>
     </mat-sidenav>
-
-
-
-
-
-
+    
     <mat-sidenav-content>
 
 
@@ -333,23 +168,14 @@
                 A-->
         <div id="kontener" class="wasko">
 
-          <!--Przykrywka przykrywająca tabelę na początku-->
-
-
-          <div #cover class="example-loading-shade">
+          <!--Przykrywka przykrywająca tabelę na początku -->
+          <div #cover class="example-loading-shade"> 
             <h1 style="margin-top: 150px; margin-left: 8px;">
-              <span (click)="snav2.toggle()">
-                <mat-icon>edit</mat-icon> EDYTUJ DANE
-              </span> i kliknij
-              <button [disabled]="!myGroup.valid" style="margin-right: 20px; margin-top: 18px;" mat-raised-button
-                color="primary" (click)="calculateOffers()"
-                onclick='FB.AppEvents.logEvent("Przelicz_cover_Clicked")'>PRZELICZ</button>
-              <div *ngIf="!myGroup.valid" class="error-pod-przelicz">Uzupełnij poprawnie dane
-              </div>aby
-              zobaczyć wyniki w
-              tabeli.
+               Edytuj dane i przelicz oferty aby zobaczyć wyniki w tabeli
             </h1>
           </div>
+
+          
 
           <table id="tabela" mat-table [dataSource]="offersDataSource" multiTemplateDataRows matSort>
 
@@ -568,53 +394,8 @@
         <!--to jest paginator na dole tabeli-->
         <mat-paginator [pageSizeOptions]="[20, 30, 50]"></mat-paginator>
 
-
-
-
-
-        <footer class="stopka">Podane na tej stronie informacje mają charakter wyłącznie poglądowy i nie stanowią oferty
-          w rozumieniu
-          przepisów
-          kodeksu
-          cywilnego ani przyrzeczenia udzielenia określonego w
-          jego treści finansowania. Pomimo dołożenia wszelkich starań może zawierać błędy i/lub pewne uproszczenia.
-          Strona zawiera wyłącznie informacje dodatkowe, które zgodnie z art.12 ustawy o kredycie
-          hipotecznym oraz o nadzorze nad pośrednikami
-          kredytu hipotecznego i agentami mogą być przekazane konsumentowi przez agenta kredytu hipotecznego. Celem
-          strony
-          jest zwrócenie uwagi konsumenta na
-          parametry poszczególnych ofert kredytowych. Wszelkie informacje wymagane przepisami ustawy o kredycie
-          hipotecznym
-          oraz
-          o nadzorze nad pośrednikami
-          kredytu hipotecznego i agentami przekazywane są oddzielnie w dokumentach i terminach uwzględniających
-          procedury
-          kredytowe poszczególnych kredytodawców.
-          <br>
-          <br>
-          Middlers Sp. z o.o. z siedzibą we Wrocławiu ul. Leszczyńskiego 4/29, 50-078 Wrocław, zarejestrowana w Sądzie
-          Rejonowym dla Wrocławia-Fabrycznej KRS 0000532823, NIP 8971803272, REGON 360170795 kapitał zakładowy 5.000,00
-          zł wpłacony w całości.
-
-          <br>
-          <br>
-
-          <a href="https://middlers.pl/polityka-prywatnosci.html">Polityka prywatnosci</a>
-          <br>
-          <br>
-          <a href="https://middlers.pl/polityka-cookies.html">Polityka cookies</a>
-
-        </footer>
+<app-footer></app-footer>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
-
-
 </div>
-
-
-
-
-<!-- Copyright 2019 Google LLC. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at http://angular.io/license -->
