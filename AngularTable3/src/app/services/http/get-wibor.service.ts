@@ -9,6 +9,6 @@ export class wiborObjectService {
   constructor(private http: HttpClient) {}
 
   getWibor() {
-    return this.http.get("https://ohipo.pl/assets/wiborObjects.json");
+    return this.http.get("https://middlers.pl/ohipo/assets/wiborObjects.json");
   }
 }

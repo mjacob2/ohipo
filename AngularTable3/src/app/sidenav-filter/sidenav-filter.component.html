@@ -1,0 +1,132 @@
+<button style="height: 0; position: absolute;" mat-icon-button>
+</button> <!-- bierze na siebie focus po otwarciu sidenav-->
+
+
+<button style="float: left; overflow: auto;" mat-icon-button>
+    <mat-icon>close</mat-icon>
+</button>
+
+<div class="side-naw-prawy filtry">
+
+    <div style="padding-top: 16px;" class="filtry-naglowek">Filtry działają natychmiast</div>
+
+    <mat-divider></mat-divider>
+
+
+    <div class="filtry-naglowek">Filtry nieruchomości</div>
+
+    <div class="filtry-elementy">
+        <mat-checkbox color="primary" matTooltip="Zaznacz, jeśli stan zaawansowania budowy poniżej 90%"
+            [formControl]="wTrakcieBudowyFilter">
+            Nieruchomość w trakcie budowy
+        </mat-checkbox>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="filtry-naglowek">Filtry kredytobiorcy</div>
+    <div class="filtry-elementy">
+        <mat-form-field>
+            <input [formControl]="wDeklarowaneWplywy"
+                matTooltip="Wpisz kwotę jaką jesteś w stanie zasilać konto co miesiąc, najlepiej z tytułu wynagrodzenia. Pozostaw pole puste aby wyłączyć ten filtr."
+                matInput type="number" matInput placeholder="Deklarowane wpływy na konto">
+            <span matSuffix>zł</span>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input [formControl]="wWiekNajstarszego"
+                matTooltip="Wpisz ile lat w tym roku kończy najstarszy kredytobiorca. Pozostaw pole puste aby wyłączyć ten filtr."
+                matInput type="number" matInput placeholder="Wiek najstarszego kredytobiorcy">
+            <span matSuffix>lat</span>
+        </mat-form-field>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div matTooltip="Ukryj oferty, które nie akceptują zaznaczonych poniżej źródeł dochodu jako główne."
+        class="filtry-naglowek">
+        Filtry źródła dochodu</div>
+
+    <div class="filtry-elementy filtryZrodlaDochodu">
+        <mat-checkbox color="primary" [formControl]="wUmowaOPraceCzasNieokreslony">
+            Umowa o pracę, czas nieokreślony
+        </mat-checkbox>
+    </div>
+
+    <div class="filtry-elementy">
+        <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wUmowaOPraceCzasOkreslony">
+            Umowa o pracę, czas określony
+        </mat-checkbox>
+    </div>
+
+    <div class="filtry-elementy">
+        <mat-checkbox matTooltip="Opcja dostępna wkrótce" disabled matTooltip="Opcja dostępna wkrótce" color="primary"
+            [formControl]="wUmowaZlecenieDzielo">
+            Umowa Zlecenie / o dzieło
+        </mat-checkbox>
+    </div>
+
+    <div class="filtry-elementy">
+        <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="uUmowaNaZastepstwo">
+            Umowa na zastępstwo
+        </mat-checkbox>
+    </div>
+
+    <div class="filtry-elementy">
+        <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wDzialanoscGospodarcza">
+            Działalność gospodarcza
+        </mat-checkbox>
+    </div>
+
+    <div class="filtry-elementy">
+        <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wDochodyZnajmu">
+            Dochody z najmu
+        </mat-checkbox>
+    </div>
+
+    <div class="filtry-elementy">
+        <mat-checkbox matTooltip="Opcja dostępna wkrótce" disabled matTooltip="Opcja dostępna wkrótce" color="primary"
+            [formControl]="wEmerytura">
+            Emerytura
+        </mat-checkbox>
+    </div>
+
+    <div class="filtry-elementy">
+        <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wRenta">
+            Renta na czas nieokreślony
+        </mat-checkbox>
+    </div>
+
+    <div class="filtry-elementy">
+        <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wDywidendy">
+            Dywidendy
+        </mat-checkbox>
+    </div>
+
+    <div class="filtry-elementy">
+        <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wDietyDelegacje">
+            Diety / delegacje
+        </mat-checkbox>
+    </div>
+
+    <div class="filtry-elementy">
+        <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wDochodyMarynarzy">
+            Dochody marynarzy
+        </mat-checkbox>
+    </div>
+
+    <div class="filtry-elementy">
+        <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wPowolanie">
+            Powołanie (np. członka zarządu)
+        </mat-checkbox>
+    </div>
+
+
+
+    <mat-divider></mat-divider>
+
+
+
+
+
+</div>

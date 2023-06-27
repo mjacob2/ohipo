@@ -40,6 +40,7 @@ import { WiborService } from "./services/http/getWibor.service";
 import { FooterComponent } from "./footer/footer.component";
 import { NavigationBarComponent } from "./navigation-bar/navigation-bar.component";
 import { SidenavEditComponent } from './sidenav-edit/sidenav-edit.component';
+import { SidenavFilterComponent } from './sidenav-filter/sidenav-filter.component';
 
 registerLocaleData(localeFr, "fr");
 
@@ -52,6 +53,7 @@ registerLocaleData(localeFr, "fr");
     NavigationBarComponent,
     FooterComponent,
     SidenavEditComponent,
+    SidenavFilterComponent,
   ],
   imports: [
     FormsModule,

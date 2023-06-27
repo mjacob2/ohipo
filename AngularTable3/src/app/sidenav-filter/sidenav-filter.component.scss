@@ -1,0 +1,39 @@
+.side-naw {
+    padding-left: 30px;
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */
+  }
+  
+  .side-naw-prawy {
+    padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filtry-elementy {
+    display: flex;
+    flex-direction: column;
+    ;
+    padding-left: 16px;
+    padding-right: 16px;
+    .mat-checkbox {
+      margin-bottom: 18px;
+    }
+  }
+
+  .filtry-naglowek {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+  }

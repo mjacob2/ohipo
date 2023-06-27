@@ -28,22 +28,21 @@ export class Offer {
   oprocStaleMarzaPotem: number;
   doKiedyObowiazuje: any;
   odKiedyObowiazuje: string;
-  maxLTVsave: string;
-  minLTVsave: string;
+  //maxLTVsave: string;
+  //minLTVsave: string;
   ubezZycieNaStart: number;
   ubezZycieNaStartSuma: number;
   ubezpZycieOdKtoregoMiesiaca: number;
   upezpPracaNaStart: number;
   upezpPracaNaStartSuma: number;
   minKwotaKredytu: number;
-  minKwotaKredytuFILTR: string;
+  //minKwotaKredytuFILTR: string;
   maxKwotaKredytu: number;
-  maxKwotaKredytuFILTR: string;
-  doKiedyObowiazujeStatus: string;
+  //maxKwotaKredytuFILTR: string;
+  //doKiedyObowiazujeStatus: string;
   minimalneWpływy: number;
   minimalneWplywyStatus: string;
   minimalneWpływy2xRata: string;
-  logoURL: string;
   oplatyZawszeKredytowane: number;
   maxLiczbaLat: number;
   maxWiek: number;
@@ -61,6 +60,18 @@ export class Offer {
   prowizjaSuma: number;
   pomostoweSuma: number;
   rata: number;
+  links = new Map([
+    ["Millennium", "https://middlers.pl/ohipo/zdjecia/millennium_logo.png"],
+    ["ING", "https://middlers.pl/ohipo/zdjecia/ING_logo.png"],
+    ["BNP Paribas", "https://middlers.pl/ohipo/zdjecia/BNP_Paribas_logo.png"],
+    ["Alior bank", "https://middlers.pl/ohipo/zdjecia/Alior_logo.png"],
+    ["Citi", "https://middlers.pl/ohipo/zdjecia/City_logo.png"],
+    ["PKO BP", "https://middlers.pl/ohipo/zdjecia/PKO_logo.png"],
+    ["Pekao", "https://middlers.pl/ohipo/zdjecia/Pekao_logo.png"],
+    ["Santander", "https://middlers.pl/ohipo/zdjecia/Santander_logo.png"],
+    ["mBank", "https://middlers.pl/ohipo/zdjecia/mBank_logo.png"],
+    ["BPS", "https://middlers.pl/ohipo/zdjecia/bps_logo.png"],
+  ]);
 
   /**
    * Calculates all offer properties based on the user input.

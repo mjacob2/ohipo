@@ -2,184 +2,41 @@
   <app-navigation-bar (ClickEditButton)="snav2.toggle()" (ClickFilterButton)="snav.toggle()"></app-navigation-bar>
 
   <mat-sidenav-container class="example-sidenav-container">
-    <!-- 
-      PIERWSZY SIDE NAW - PRAWY
-    -->
-    <mat-sidenav position="end" fixedTopGap="64" style="z-index: 100;" #snav
+
+    <mat-sidenav position="end" fixedTopGap="64" style="z-index: 100; width: 374px;" #snav
       [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="64">
 
 
-      <button style="height: 0; position: absolute;" mat-icon-button>
-      </button> <!-- bierze na siebie focus po otwarciu sidenav-->
+      <app-sidenav-filter #sideNavFilter> </app-sidenav-filter>
 
-
-      <button (click)="snav.toggle()" style="float: left; overflow: auto;" mat-icon-button>
-        <mat-icon>close</mat-icon>
-      </button>
-
-      <div class="side-naw-prawy filtry">
-
-        <div style="padding-top: 16px;">Filtry działają natychmiast</div>
-
-        <mat-divider></mat-divider>
-
-
-        <div class="filtry-naglowek">Filtry nieruchomości</div>
-
-        <div class="filtry-elementy">
-          <mat-checkbox color="primary" matTooltip="Zaznacz, jeśli stan zaawansowania budowy poniżej 90%"
-            [formControl]="wTrakcieBudowyFilter">
-            Nieruchomość w trakcie budowy
-          </mat-checkbox>
-        </div>
-
-        <mat-divider></mat-divider>
-
-        <div class="filtry-naglowek">Filtry kredytobiorcy</div>
-        <div class="filtry-elementy">
-          <mat-form-field>
-            <input [formControl]="wDeklarowaneWplywy"
-              matTooltip="Wpisz kwotę jaką jesteś w stanie zasilać konto co miesiąc, najlepiej z tytułu wynagrodzenia. Pozostaw pole puste aby wyłączyć ten filtr."
-              matInput type="number" matInput placeholder="Deklarowane wpływy na konto">
-            <span matSuffix>zł</span>
-          </mat-form-field>
-
-          <mat-form-field>
-            <input [formControl]="wWiekNajstarszego" #wiekNajstarszegoInput
-              matTooltip="Wpisz ile lat w tym roku kończy najstarszy kredytobiorca. Pozostaw pole puste aby wyłączyć ten filtr."
-              matInput type="number" matInput placeholder="Wiek najstarszego kredytobiorcy">
-            <span matSuffix>lat</span>
-          </mat-form-field>
-        </div>
-
-        <mat-divider></mat-divider>
-
-        <div matTooltip="Ukryj oferty, które nie akceptują zaznaczonych poniżej źródeł dochodu jako główne."
-          class="filtry-naglowek">
-          Filtry źródła dochodu</div>
-
-        <div class="filtry-elementy filtryZrodlaDochodu">
-          <mat-checkbox color="primary" [formControl]="wUmowaOPraceCzasNieokreslony">
-            Umowa o pracę, czas nieokreślony
-          </mat-checkbox>
-        </div>
-
-        <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wUmowaOPraceCzasOkreslony">
-            Umowa o pracę, czas określony
-          </mat-checkbox>
-        </div>
-
-        <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostępna wkrótce" disabled matTooltip="Opcja dostępna wkrótce" color="primary"
-            [formControl]="wUmowaZlecenieDzielo">
-            Umowa Zlecenie / o dzieło
-          </mat-checkbox>
-        </div>
-
-        <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="uUmowaNaZastepstwo">
-            Umowa na zastępstwo
-          </mat-checkbox>
-        </div>
-
-        <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wDzialanoscGospodarcza">
-            Działalność gospodarcza
-          </mat-checkbox>
-        </div>
-
-        <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wDochodyZnajmu">
-            Dochody z najmu
-          </mat-checkbox>
-        </div>
-
-        <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostępna wkrótce" disabled matTooltip="Opcja dostępna wkrótce" color="primary"
-            [formControl]="wEmerytura">
-            Emerytura
-          </mat-checkbox>
-        </div>
-
-        <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wRenta">
-            Renta na czas nieokreślony
-          </mat-checkbox>
-        </div>
-
-        <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wDywidendy">
-            Dywidendy
-          </mat-checkbox>
-        </div>
-
-        <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wDietyDelegacje">
-            Diety / delegacje
-          </mat-checkbox>
-        </div>
-
-        <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wDochodyMarynarzy">
-            Dochody marynarzy
-          </mat-checkbox>
-        </div>
-
-        <div class="filtry-elementy">
-          <mat-checkbox matTooltip="Opcja dostępna wkrótce" color="primary" [formControl]="wPowolanie">
-            Powołanie (np. członka zarządu)
-          </mat-checkbox>
-        </div>
-
-
-
-        <mat-divider></mat-divider>
-
-
-
-
-
-      </div>
     </mat-sidenav>
 
-    <!-- 
-      DRUGI SIDE NAW - LEWY
-    -->
 
-    <mat-sidenav   opened="true" fixedTopGap="64" style="z-index: 100; width: 320px; " #snav2
-    [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="64"> 
-      <app-sidenav-edit (ToggleSidenavEditClick)="onToggleSideNaClick()" (CalculateOffersClick)="calculateOffers($event)" style="width: 502px"></app-sidenav-edit>
+    <mat-sidenav opened="true" fixedTopGap="64" style="z-index: 100; width: 320px; " #snav2
+      [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="64">
+      <app-sidenav-edit (ToggleSidenavEditClick)="onToggleSideNaClick()"
+        (CalculateOffersClick)="calculateOffers($event)" style="width: 502px"></app-sidenav-edit>
     </mat-sidenav>
-    
+
     <mat-sidenav-content>
 
 
 
       <div class="mat-app-background">
 
-
-
-        <!-- T
-        A
-          B
-            E
-              L
-                A-->
         <div id="kontener" class="wasko">
 
-          <!--Przykrywka przykrywająca tabelę na początku -->
-          <div #cover class="example-loading-shade"> 
+          <div #cover class="example-loading-shade">
             <h1 style="margin-top: 150px; margin-left: 8px;">
-               Edytuj dane i przelicz oferty aby zobaczyć wyniki w tabeli
+              Edytuj dane i przelicz oferty aby zobaczyć wyniki w tabeliooo
             </h1>
           </div>
 
-          
+
 
           <table id="tabela" mat-table [dataSource]="offersDataSource" multiTemplateDataRows matSort>
 
-            <!-- Szczegóły Column -->
+
             <ng-container matColumnDef="szczegoly">
               <th class="szczegoly" mat-header-cell *matHeaderCellDef mat-header> </th>
               <td mat-cell *matCellDef="let element">
@@ -187,13 +44,14 @@
               </td>
             </ng-container>
 
-            <!-- Bank Column -->
+
             <ng-container matColumnDef="bank">
               <th class="cell-bank" mat-header-cell *matHeaderCellDef mat-sort-header> Bank </th>
-              <td mat-cell *matCellDef="let element"> <img style="height: 36px;" [src]="element.logoURL" /> </td>
+              <td mat-cell *matCellDef="let element"> <img style="height: 36px;"
+                  [src]="element.links.get(element.bank)" /> </td>
             </ng-container>
 
-            <!-- ofertaNazwa Column -->
+
             <ng-container matColumnDef="ofertaNazwa">
               <th matTooltip="Nazwa oferty, marketingowa lub własna." class="cell-oferta-nazwa" mat-header-cell
                 *matHeaderCellDef mat-sort-header> Oferta </th>
@@ -203,7 +61,7 @@
               </td>
             </ng-container>
 
-            <!--Koszty całkowite Column -->
+
             <ng-container matColumnDef="kosztyCalkowite">
               <th matTooltip="Suma wszystkich kosztów jakie trzeba zapłacić korzystając z danej oferty."
                 class="cell-numer" arrowPosition="before" mat-header-cell *matHeaderCellDef mat-sort-header> Koszty <br>
@@ -212,7 +70,7 @@
                 {{element.kosztyCalkowite | currency:'zł':'symbol':'1.0-0':'fr' }}</td>
             </ng-container>
 
-            <!-- Opłaty na Start Column -->
+
             <ng-container matColumnDef="kosztyPoczatkowe">
               <th
                 matTooltip="Suma opłat płatnych gotówką przed uruchomieniem kredytu. W niektórych przypadkach można je kredytować."
@@ -221,7 +79,7 @@
                 {{element.kosztyPoczatkowe | currency:'zł':'symbol':'1.0-0':'fr' }}</td>
             </ng-container>
 
-            <!-- rata Column -->
+
             <ng-container matColumnDef="rata">
               <th
                 matTooltip="Wysokość pierwszej raty. Kolejne mogą maleć lub rosnąć jesli oferta zakłada zmianę oprocentowania w trakcie trwania kredytu."
@@ -231,7 +89,6 @@
                 {{element.rata | currency:'zł':'symbol':'1.0-0':'fr' }}</td>
             </ng-container>
 
-            <!-- Opłaty miesięczne -->
             <ng-container matColumnDef="oplatyMiesieczne">
               <th arrowPosition="before" mat-header-cell *matHeaderCellDef mat-sort-header
                 matTooltip="Suma dodatkowych opłat płatnych co miesiąc (lub co roku w przeliczeniu na miesiące). Mogą maleć w miarę spłaty kredytu.">
@@ -240,7 +97,7 @@
                 {{element.oplatyMiesieczne| currency:'zł':'symbol':'1.0-0':'fr' }}</td>
             </ng-container>
 
-            <!-- Marża -->
+
             <ng-container matColumnDef="marza">
               <th arrowPosition="before" mat-header-cell *matHeaderCellDef mat-sort-header
                 matTooltip="Marża lub oprocentowanie nominalne dla ofert z czasowym oprocentowaniem stałym.">
@@ -249,7 +106,7 @@
                 %</td>
             </ng-container>
 
-            <!-- LTV rodzaj Column -->
+
             <ng-container matColumnDef="LTVobliczone">
               <th arrowPosition="before" mat-header-cell *matHeaderCellDef mat-sort-header
                 matTooltip="Informuje jaki procent wartości nieruchomości jest kredytowany.">LTV
@@ -258,7 +115,7 @@
                 {{element.LTVobliczone * 100 | number : '1.0-1' }} % </td>
             </ng-container>
 
-            <!-- Do kiedy obowiązuje Column -->
+
             <ng-container matColumnDef="doKiedyObowiazuje">
               <th arrowPosition="before" mat-header-cell *matHeaderCellDef mat-sort-header
                 matTooltip="Informuje jaki procent wartości nieruchomości jest kredytowany.">Obowiązuje do:
@@ -268,14 +125,13 @@
             </ng-container>
 
 
-            <!-- WIERSZ ROZWIJANY -->
+
             <ng-container matColumnDef="expandedDetail">
               <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
 
                 <div class="kontenerRozwijany" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                  <!--WARUNKI OFERTY-->
+
                   <div class="example-element-detail">
-                    <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
                     <div class="example-element-description" style="white-space: pre-wrap; width: 600px;">
                       <b>Warunki oferty:</b>
                       <div style="padding-left: 4px;">{{element.warunkiOferty}}
@@ -283,9 +139,7 @@
                     </div>
                   </div>
 
-                  <!--OPŁATY NA START-->
                   <div class="example-element-detail opisyLiczbowe">
-                    <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
                     <div class="example-element-description " style="white-space: pre-wrap;">
                       <b>Opłaty na start:</b>
                       <div *ngIf="element.prowizjaSuma != 0">
@@ -305,9 +159,7 @@
                   </div>
 
 
-                  <!--OPŁATY MIESIĘCZNE-->
                   <div class="example-element-detail opisyLiczbowe">
-                    <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
                     <div class="example-element-description" style="white-space: pre-wrap; width: 500px;">
                       <b
                         matTooltip="Opłaty dodatkowe płatne co miesiąc (lub co roku ale w przeliczeniu na miesiące dla łatwiejszego porównania). Mogą maleć w miarę spłaty kredytu, szczegóły w warunkach oferty.">Opłaty
@@ -322,9 +174,7 @@
                   </div>
 
 
-                  <!--KOSZTY CAŁKOWITE-->
                   <div class="example-element-detail opisyLiczbowe">
-                    <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
                     <div class="example-element-description" style="white-space: pre-wrap; width: 500px;">
                       <b>Koszty całkowite:</b>
                       <div *ngIf="element.odsetkiSuma != 0">
@@ -353,9 +203,7 @@
                   </div>
 
 
-                  <!--LINK DO OFERTY-->
                   <div class="example-element-detail opisyLiczbowe">
-                    <!-- style="white-space: pre-wrap" sprawia, że \n robi nową linię -->
                     <div class="example-element-description " style="white-space: pre-wrap; width: 500px;">
                       Data obowiązywania: {{element.doKiedyObowiazuje}}
                       <br>
@@ -380,7 +228,6 @@
           </table>
         </div>
 
-        <!--pokaż to jeśli nie będzie ofert spełniających kryteria-->
         <mat-card class="karta-brak-ofert" *ngIf="offersDataSource && offersDataSource.filteredData.length === 0">
           <mat-card-header>
             <mat-card-title>Brak ofert spełniających zadane kryteria.</mat-card-title>
@@ -391,10 +238,9 @@
         </mat-card>
 
 
-        <!--to jest paginator na dole tabeli-->
         <mat-paginator [pageSizeOptions]="[20, 30, 50]"></mat-paginator>
 
-<app-footer></app-footer>
+        <app-footer></app-footer>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

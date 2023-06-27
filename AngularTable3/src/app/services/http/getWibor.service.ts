@@ -1,17 +1,13 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { Wibor } from 'src/app/wibor';
-
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class WiborService {
-  constructor(
-    private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getWibor() {
-    return this.http.get('https://ohipo.pl/assets/wiborObjects.json');
+    return this.http.get("https://middlers.pl/ohipo/assets/wibor.json");
   }
 }
